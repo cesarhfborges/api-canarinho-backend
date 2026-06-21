@@ -1,0 +1,745 @@
+openapi: 3.0.3
+info:
+  title: Lumen
+  description: ''
+  version: 1.0.0
+servers:
+  -
+    url: 'http://localhost:8000'
+paths:
+  /api/admin/login:
+    post:
+      summary: Login
+      operationId: login
+      description: 'Realiza a autenticação e retorna um Cookie HttpOnly.'
+      parameters: []
+      responses: {  }
+      tags:
+        - '1. Autenticação Admin'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                username:
+                  type: string
+                  description: ''
+                  example: eligendi
+                  nullable: false
+                password:
+                  type: string
+                  description: ''
+                  example: praesentium
+                  nullable: false
+              required:
+                - username
+                - password
+      security: []
+  /api/admin/logout:
+    post:
+      summary: Logout
+      operationId: logout
+      description: 'Invalida o token de sessão e remove o cookie.'
+      parameters: []
+      responses: {  }
+      tags:
+        - '1. Autenticação Admin'
+  /api/admin/me:
+    get:
+      summary: 'Obter Usuário Logado'
+      operationId: obterUsurioLogado
+      description: 'Retorna os dados do usuário autenticado no painel.'
+      parameters: []
+      responses:
+        401:
+          description: ''
+          content:
+            text/plain:
+              schema:
+                type: string
+                example: Unauthorized.
+      tags:
+        - '1. Autenticação Admin'
+  /api/admin/projects:
+    get:
+      summary: 'Listar Projetos'
+      operationId: listarProjetos
+      description: 'Retorna todos os projetos do usuário logado.'
+      parameters: []
+      responses:
+        401:
+          description: ''
+          content:
+            text/plain:
+              schema:
+                type: string
+                example: Unauthorized.
+      tags:
+        - '2. Gestão de Projetos'
+    post:
+      summary: 'Criar Projeto'
+      operationId: criarProjeto
+      description: 'Cria um novo projeto e gera seu slug.'
+      parameters: []
+      responses: {  }
+      tags:
+        - '2. Gestão de Projetos'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                  description: 'Must not be greater than 255 characters.'
+                  example: phdqewaycwakijcgbeqsbmnri
+                  nullable: false
+                slug:
+                  type: string
+                  description: 'Must not be greater than 255 characters.'
+                  example: whbzpvnxpxdcjdftr
+                  nullable: false
+              required:
+                - name
+                - slug
+  '/api/admin/projects/{id}':
+    get:
+      summary: 'Obter Projeto'
+      operationId: obterProjeto
+      description: 'Retorna os detalhes de um projeto específico.'
+      parameters: []
+      responses:
+        401:
+          description: ''
+          content:
+            text/plain:
+              schema:
+                type: string
+                example: Unauthorized.
+      tags:
+        - '2. Gestão de Projetos'
+    put:
+      summary: 'Atualizar Projeto'
+      operationId: atualizarProjeto
+      description: 'Atualiza os dados de um projeto existente.'
+      parameters: []
+      responses: {  }
+      tags:
+        - '2. Gestão de Projetos'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                  description: 'Must not be greater than 255 characters.'
+                  example: ambnblvfpijbxasv
+                  nullable: false
+                slug:
+                  type: string
+                  description: 'Must not be greater than 255 characters.'
+                  example: xfexzmjslvvrwvvhp
+                  nullable: false
+              required:
+                - name
+                - slug
+    delete:
+      summary: 'Deletar Projeto'
+      operationId: deletarProjeto
+      description: 'Remove um projeto e todos os seus endpoints e mocks vinculados.'
+      parameters: []
+      responses: {  }
+      tags:
+        - '2. Gestão de Projetos'
+    parameters:
+      -
+        in: path
+        name: id
+        description: ''
+        example: dolorum
+        required: true
+        schema:
+          type: string
+  '/api/admin/projects/{projectId}/endpoints':
+    get:
+      summary: 'Listar Endpoints'
+      operationId: listarEndpoints
+      description: 'Retorna todos os endpoints vinculados a um projeto.'
+      parameters: []
+      responses:
+        401:
+          description: ''
+          content:
+            text/plain:
+              schema:
+                type: string
+                example: Unauthorized.
+      tags:
+        - '3. Gestão de Endpoints'
+    post:
+      summary: 'Criar Endpoint'
+      operationId: criarEndpoint
+      description: 'Adiciona um novo endpoint ao projeto especificando as configurações de CRUD.'
+      parameters: []
+      responses: {  }
+      tags:
+        - '3. Gestão de Endpoints'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                  description: ''
+                  example: consequatur
+                  nullable: false
+                generator:
+                  type: string
+                  description: ''
+                  example: et
+                  nullable: true
+                endpoints:
+                  type: object
+                  description: ''
+                  example: []
+                  nullable: false
+                  properties: {  }
+                resourceSchema:
+                  type: object
+                  description: ''
+                  example: []
+                  nullable: false
+                  properties: {  }
+              required:
+                - name
+                - endpoints
+                - resourceSchema
+    parameters:
+      -
+        in: path
+        name: projectId
+        description: ''
+        example: quibusdam
+        required: true
+        schema:
+          type: string
+  '/api/admin/projects/{projectId}/endpoints/{id}':
+    get:
+      summary: 'Obter Endpoint'
+      operationId: obterEndpoint
+      description: 'Retorna os detalhes de um endpoint específico.'
+      parameters: []
+      responses:
+        401:
+          description: ''
+          content:
+            text/plain:
+              schema:
+                type: string
+                example: Unauthorized.
+      tags:
+        - '3. Gestão de Endpoints'
+    parameters:
+      -
+        in: path
+        name: projectId
+        description: ''
+        example: vitae
+        required: true
+        schema:
+          type: string
+      -
+        in: path
+        name: id
+        description: ''
+        example: sit
+        required: true
+        schema:
+          type: string
+  '/api/admin/endpoints/{id}':
+    put:
+      summary: 'Atualizar Endpoint'
+      operationId: atualizarEndpoint
+      description: 'Altera as configurações e permissões de um endpoint existente.'
+      parameters: []
+      responses: {  }
+      tags:
+        - '3. Gestão de Endpoints'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                  description: ''
+                  example: consectetur
+                  nullable: false
+                generator:
+                  type: string
+                  description: ''
+                  example: modi
+                  nullable: true
+                endpoints:
+                  type: object
+                  description: ''
+                  example: []
+                  nullable: false
+                  properties: {  }
+                resourceSchema:
+                  type: object
+                  description: ''
+                  example: []
+                  nullable: false
+                  properties: {  }
+              required:
+                - name
+                - endpoints
+                - resourceSchema
+    delete:
+      summary: 'Deletar Endpoint'
+      operationId: deletarEndpoint
+      description: 'Remove um endpoint e todos os dados associados a ele.'
+      parameters: []
+      responses: {  }
+      tags:
+        - '3. Gestão de Endpoints'
+    parameters:
+      -
+        in: path
+        name: id
+        description: ''
+        example: nam
+        required: true
+        schema:
+          type: string
+  '/api/admin/projects/{projectId}/endpoints/{id}/generate':
+    post:
+      summary: 'Gerar Dados Mock'
+      operationId: gerarDadosMock
+      description: "Gera e armazena registros falsos baseados no `resourceSchema` do Endpoint.\nOpcionalmente, envie o parâmetro `count` na query string (padrão 10)."
+      parameters: []
+      responses: {  }
+      tags:
+        - '4. Gerador de Mock'
+    parameters:
+      -
+        in: path
+        name: projectId
+        description: ''
+        example: repudiandae
+        required: true
+        schema:
+          type: string
+      -
+        in: path
+        name: id
+        description: ''
+        example: fugiat
+        required: true
+        schema:
+          type: string
+  '/api/admin/projects/{projectId}/tokens':
+    get:
+      summary: 'Listar Tokens do Projeto'
+      operationId: listarTokensDoProjeto
+      description: 'Retorna todos os tokens ativos para consumo da Mock API deste projeto.'
+      parameters: []
+      responses:
+        401:
+          description: ''
+          content:
+            text/plain:
+              schema:
+                type: string
+                example: Unauthorized.
+      tags:
+        - '4. Gestão de Tokens (Projetos)'
+    post:
+      summary: 'Emitir Novo Token'
+      operationId: emitirNovoToken
+      description: 'Gera um novo token para acesso à Mock API Dinâmica.'
+      parameters: []
+      responses: {  }
+      tags:
+        - '4. Gestão de Tokens (Projetos)'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                  description: ''
+                  example: et
+                  nullable: false
+              required:
+                - name
+    parameters:
+      -
+        in: path
+        name: projectId
+        description: ''
+        example: et
+        required: true
+        schema:
+          type: string
+  '/api/admin/tokens/{id}':
+    delete:
+      summary: 'Revogar Token'
+      operationId: revogarToken
+      description: 'Remove um token, impedindo novos acessos com ele.'
+      parameters: []
+      responses: {  }
+      tags:
+        - '4. Gestão de Tokens (Projetos)'
+    parameters:
+      -
+        in: path
+        name: id
+        description: ''
+        example: repudiandae
+        required: true
+        schema:
+          type: string
+  '/api/admin/endpoints/{endpointId}/rules':
+    get:
+      summary: 'Listar Regras'
+      operationId: listarRegras
+      description: 'Retorna as regras cadastradas para o endpoint informado.'
+      parameters: []
+      responses:
+        401:
+          description: ''
+          content:
+            text/plain:
+              schema:
+                type: string
+                example: Unauthorized.
+      tags:
+        - '5. Regras Dinâmicas (Mocks)'
+    post:
+      summary: 'Criar Regra'
+      operationId: criarRegra
+      description: 'Adiciona uma nova condição (Header, Query ou Body) que altera a resposta do endpoint.'
+      parameters: []
+      responses: {  }
+      tags:
+        - '5. Regras Dinâmicas (Mocks)'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                condition_type:
+                  type: string
+                  description: ''
+                  example: header
+                  nullable: false
+                  enum:
+                    - header
+                    - query
+                    - body
+                condition_key:
+                  type: string
+                  description: ''
+                  example: id
+                  nullable: false
+                condition_operator:
+                  type: string
+                  description: ''
+                  example: contains
+                  nullable: false
+                  enum:
+                    - equals
+                    - not_equals
+                    - contains
+                condition_value:
+                  type: string
+                  description: ''
+                  example: sint
+                  nullable: false
+                response_status:
+                  type: integer
+                  description: ''
+                  example: 7
+                  nullable: false
+                response_body:
+                  type: object
+                  description: ''
+                  example: null
+                  nullable: true
+                  properties: {  }
+              required:
+                - condition_type
+                - condition_key
+                - condition_operator
+                - condition_value
+                - response_status
+    parameters:
+      -
+        in: path
+        name: endpointId
+        description: ''
+        example: aut
+        required: true
+        schema:
+          type: string
+  '/api/admin/rules/{id}':
+    put:
+      summary: 'Atualizar Regra'
+      operationId: atualizarRegra
+      description: 'Altera as propriedades de uma regra dinâmica existente.'
+      parameters: []
+      responses: {  }
+      tags:
+        - '5. Regras Dinâmicas (Mocks)'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                condition_type:
+                  type: string
+                  description: ''
+                  example: header
+                  nullable: false
+                  enum:
+                    - header
+                    - query
+                    - body
+                condition_key:
+                  type: string
+                  description: ''
+                  example: non
+                  nullable: false
+                condition_operator:
+                  type: string
+                  description: ''
+                  example: equals
+                  nullable: false
+                  enum:
+                    - equals
+                    - not_equals
+                    - contains
+                condition_value:
+                  type: string
+                  description: ''
+                  example: et
+                  nullable: false
+                response_status:
+                  type: integer
+                  description: ''
+                  example: 14
+                  nullable: false
+                response_body:
+                  type: object
+                  description: ''
+                  example: null
+                  nullable: true
+                  properties: {  }
+              required:
+                - condition_type
+                - condition_key
+                - condition_operator
+                - condition_value
+                - response_status
+    delete:
+      summary: 'Deletar Regra'
+      operationId: deletarRegra
+      description: 'Remove permanentemente a regra de avaliação.'
+      parameters: []
+      responses: {  }
+      tags:
+        - '5. Regras Dinâmicas (Mocks)'
+    parameters:
+      -
+        in: path
+        name: id
+        description: ''
+        example: exercitationem
+        required: true
+        schema:
+          type: string
+  '/api/{username}/{projectSlug}/{path:.*}':
+    get:
+      summary: ''
+      operationId: getApiUsernameProjectSlugPath
+      description: ''
+      parameters: []
+      responses:
+        401:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  error: 'Project token not provided.'
+                properties:
+                  error:
+                    type: string
+                    example: 'Project token not provided.'
+      tags:
+        - '6. API Mocks Dinâmicos'
+      security: []
+    post:
+      summary: ''
+      operationId: postApiUsernameProjectSlugPath
+      description: ''
+      parameters: []
+      responses: {  }
+      tags:
+        - '6. API Mocks Dinâmicos'
+      security: []
+    put:
+      summary: ''
+      operationId: putApiUsernameProjectSlugPath
+      description: ''
+      parameters: []
+      responses: {  }
+      tags:
+        - '6. API Mocks Dinâmicos'
+      security: []
+    patch:
+      summary: ''
+      operationId: patchApiUsernameProjectSlugPath
+      description: ''
+      parameters: []
+      responses: {  }
+      tags:
+        - '6. API Mocks Dinâmicos'
+      security: []
+    delete:
+      summary: ''
+      operationId: deleteApiUsernameProjectSlugPath
+      description: ''
+      parameters: []
+      responses: {  }
+      tags:
+        - '6. API Mocks Dinâmicos'
+      security: []
+    parameters:
+      -
+        in: path
+        name: username
+        description: ''
+        example: quam
+        required: true
+        schema:
+          type: string
+      -
+        in: path
+        name: projectSlug
+        description: ''
+        example: et
+        required: true
+        schema:
+          type: string
+      -
+        in: path
+        name: path
+        description: ''
+        example: cum
+        required: true
+        schema:
+          type: string
+  /api/health:
+    get:
+      summary: ''
+      operationId: getApiHealth
+      description: ''
+      parameters: []
+      responses:
+        200:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  status: ok
+                  message: 'System is healthy'
+                  timestamp: 1781906498
+                properties:
+                  status:
+                    type: string
+                    example: ok
+                  message:
+                    type: string
+                    example: 'System is healthy'
+                  timestamp:
+                    type: integer
+                    example: 1781906498
+      tags:
+        - Endpoints
+      security: []
+  /api/health/database:
+    get:
+      summary: ''
+      operationId: getApiHealthDatabase
+      description: ''
+      parameters: []
+      responses:
+        200:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  status: ok
+                  message: 'Database connection is established'
+                properties:
+                  status:
+                    type: string
+                    example: ok
+                  message:
+                    type: string
+                    example: 'Database connection is established'
+      tags:
+        - Endpoints
+      security: []
+tags:
+  -
+    name: '1. Autenticação Admin'
+    description: "\nAPIs para gerenciar login e logout no painel administrativo."
+  -
+    name: '2. Gestão de Projetos'
+    description: "\nAPIs para gerenciar os projetos de Mocks."
+  -
+    name: '3. Gestão de Endpoints'
+    description: "\nAPIs para criar e gerenciar os endpoints de um projeto."
+  -
+    name: '4. Gerador de Mock'
+    description: "\nAPIs para geração automática de dados falsos para endpoints baseados em schema."
+  -
+    name: '4. Gestão de Tokens (Projetos)'
+    description: "\nAPIs para emitir e revogar tokens de acesso à Mock API de um projeto."
+  -
+    name: '5. Regras Dinâmicas (Mocks)'
+    description: "\nAPIs para configurar regras de testes dinâmicos nos endpoints. \nRespondem com status e payload customizados caso as condições batam."
+  -
+    name: '6. API Mocks Dinâmicos'
+    description: "\nO Endpoint Coringa responsável por responder aos Mocks configurados no painel.\nTodas as requisições devem vir autenticadas pelo Header `X-Project-Token` ou Bearer Token."
+  -
+    name: Endpoints
+    description: ''

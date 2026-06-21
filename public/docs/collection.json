@@ -1,0 +1,1338 @@
+{
+    "variable": [
+        {
+            "id": "baseUrl",
+            "key": "baseUrl",
+            "type": "string",
+            "name": "string",
+            "value": "http:\/\/localhost:8000"
+        }
+    ],
+    "info": {
+        "name": "Lumen",
+        "_postman_id": "126b64bb-c856-4e92-89a7-17431413ea21",
+        "description": "",
+        "schema": "https:\/\/schema.getpostman.com\/json\/collection\/v2.1.0\/collection.json"
+    },
+    "item": [
+        {
+            "name": "1. Autentica\u00e7\u00e3o Admin",
+            "description": "\nAPIs para gerenciar login e logout no painel administrativo.",
+            "item": [
+                {
+                    "name": "Login",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/admin\/login",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/admin\/login"
+                        },
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\"username\":\"eligendi\",\"password\":\"praesentium\"}"
+                        },
+                        "description": "Realiza a autentica\u00e7\u00e3o e retorna um Cookie HttpOnly.",
+                        "auth": {
+                            "type": "noauth"
+                        }
+                    },
+                    "response": []
+                },
+                {
+                    "name": "Logout",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/admin\/logout",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/admin\/logout"
+                        },
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": null,
+                        "description": "Invalida o token de sess\u00e3o e remove o cookie."
+                    },
+                    "response": []
+                },
+                {
+                    "name": "Obter Usu\u00e1rio Logado",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/admin\/me",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/admin\/me"
+                        },
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": null,
+                        "description": "Retorna os dados do usu\u00e1rio autenticado no painel."
+                    },
+                    "response": [
+                        {
+                            "header": [
+                                {
+                                    "key": "cache-control",
+                                    "value": "no-cache, private"
+                                },
+                                {
+                                    "key": "content-type",
+                                    "value": "application\/json"
+                                },
+                                {
+                                    "key": "x-ratelimit-limit",
+                                    "value": "2000"
+                                },
+                                {
+                                    "key": "x-ratelimit-remaining",
+                                    "value": "1967"
+                                },
+                                {
+                                    "key": "vary",
+                                    "value": "Origin"
+                                }
+                            ],
+                            "code": 401,
+                            "body": "Unauthorized.",
+                            "name": ""
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "2. Gest\u00e3o de Projetos",
+            "description": "\nAPIs para gerenciar os projetos de Mocks.",
+            "item": [
+                {
+                    "name": "Listar Projetos",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/admin\/projects",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/admin\/projects"
+                        },
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": null,
+                        "description": "Retorna todos os projetos do usu\u00e1rio logado."
+                    },
+                    "response": [
+                        {
+                            "header": [
+                                {
+                                    "key": "cache-control",
+                                    "value": "no-cache, private"
+                                },
+                                {
+                                    "key": "content-type",
+                                    "value": "application\/json"
+                                },
+                                {
+                                    "key": "x-ratelimit-limit",
+                                    "value": "2000"
+                                },
+                                {
+                                    "key": "x-ratelimit-remaining",
+                                    "value": "1966"
+                                },
+                                {
+                                    "key": "vary",
+                                    "value": "Origin"
+                                }
+                            ],
+                            "code": 401,
+                            "body": "Unauthorized.",
+                            "name": ""
+                        }
+                    ]
+                },
+                {
+                    "name": "Criar Projeto",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/admin\/projects",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/admin\/projects"
+                        },
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\"name\":\"phdqewaycwakijcgbeqsbmnri\",\"slug\":\"whbzpvnxpxdcjdftr\"}"
+                        },
+                        "description": "Cria um novo projeto e gera seu slug."
+                    },
+                    "response": []
+                },
+                {
+                    "name": "Obter Projeto",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/admin\/projects\/:id",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/admin\/projects\/:id",
+                            "variable": [
+                                {
+                                    "id": "id",
+                                    "key": "id",
+                                    "value": "dolorum",
+                                    "description": ""
+                                }
+                            ]
+                        },
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": null,
+                        "description": "Retorna os detalhes de um projeto espec\u00edfico."
+                    },
+                    "response": [
+                        {
+                            "header": [
+                                {
+                                    "key": "cache-control",
+                                    "value": "no-cache, private"
+                                },
+                                {
+                                    "key": "content-type",
+                                    "value": "application\/json"
+                                },
+                                {
+                                    "key": "x-ratelimit-limit",
+                                    "value": "2000"
+                                },
+                                {
+                                    "key": "x-ratelimit-remaining",
+                                    "value": "1965"
+                                },
+                                {
+                                    "key": "vary",
+                                    "value": "Origin"
+                                }
+                            ],
+                            "code": 401,
+                            "body": "Unauthorized.",
+                            "name": ""
+                        }
+                    ]
+                },
+                {
+                    "name": "Atualizar Projeto",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/admin\/projects\/:id",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/admin\/projects\/:id",
+                            "variable": [
+                                {
+                                    "id": "id",
+                                    "key": "id",
+                                    "value": "vel",
+                                    "description": ""
+                                }
+                            ]
+                        },
+                        "method": "PUT",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\"name\":\"ambnblvfpijbxasv\",\"slug\":\"xfexzmjslvvrwvvhp\"}"
+                        },
+                        "description": "Atualiza os dados de um projeto existente."
+                    },
+                    "response": []
+                },
+                {
+                    "name": "Deletar Projeto",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/admin\/projects\/:id",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/admin\/projects\/:id",
+                            "variable": [
+                                {
+                                    "id": "id",
+                                    "key": "id",
+                                    "value": "laborum",
+                                    "description": ""
+                                }
+                            ]
+                        },
+                        "method": "DELETE",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": null,
+                        "description": "Remove um projeto e todos os seus endpoints e mocks vinculados."
+                    },
+                    "response": []
+                }
+            ]
+        },
+        {
+            "name": "3. Gest\u00e3o de Endpoints",
+            "description": "\nAPIs para criar e gerenciar os endpoints de um projeto.",
+            "item": [
+                {
+                    "name": "Listar Endpoints",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/admin\/projects\/:projectId\/endpoints",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/admin\/projects\/:projectId\/endpoints",
+                            "variable": [
+                                {
+                                    "id": "projectId",
+                                    "key": "projectId",
+                                    "value": "quibusdam",
+                                    "description": ""
+                                }
+                            ]
+                        },
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": null,
+                        "description": "Retorna todos os endpoints vinculados a um projeto."
+                    },
+                    "response": [
+                        {
+                            "header": [
+                                {
+                                    "key": "cache-control",
+                                    "value": "no-cache, private"
+                                },
+                                {
+                                    "key": "content-type",
+                                    "value": "application\/json"
+                                },
+                                {
+                                    "key": "x-ratelimit-limit",
+                                    "value": "2000"
+                                },
+                                {
+                                    "key": "x-ratelimit-remaining",
+                                    "value": "1964"
+                                },
+                                {
+                                    "key": "vary",
+                                    "value": "Origin"
+                                }
+                            ],
+                            "code": 401,
+                            "body": "Unauthorized.",
+                            "name": ""
+                        }
+                    ]
+                },
+                {
+                    "name": "Criar Endpoint",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/admin\/projects\/:projectId\/endpoints",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/admin\/projects\/:projectId\/endpoints",
+                            "variable": [
+                                {
+                                    "id": "projectId",
+                                    "key": "projectId",
+                                    "value": "odio",
+                                    "description": ""
+                                }
+                            ]
+                        },
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\"name\":\"consequatur\",\"generator\":\"et\",\"endpoints\":[],\"resourceSchema\":[]}"
+                        },
+                        "description": "Adiciona um novo endpoint ao projeto especificando as configura\u00e7\u00f5es de CRUD."
+                    },
+                    "response": []
+                },
+                {
+                    "name": "Obter Endpoint",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/admin\/projects\/:projectId\/endpoints\/:id",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/admin\/projects\/:projectId\/endpoints\/:id",
+                            "variable": [
+                                {
+                                    "id": "projectId",
+                                    "key": "projectId",
+                                    "value": "vitae",
+                                    "description": ""
+                                },
+                                {
+                                    "id": "id",
+                                    "key": "id",
+                                    "value": "sit",
+                                    "description": ""
+                                }
+                            ]
+                        },
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": null,
+                        "description": "Retorna os detalhes de um endpoint espec\u00edfico."
+                    },
+                    "response": [
+                        {
+                            "header": [
+                                {
+                                    "key": "cache-control",
+                                    "value": "no-cache, private"
+                                },
+                                {
+                                    "key": "content-type",
+                                    "value": "application\/json"
+                                },
+                                {
+                                    "key": "x-ratelimit-limit",
+                                    "value": "2000"
+                                },
+                                {
+                                    "key": "x-ratelimit-remaining",
+                                    "value": "1963"
+                                },
+                                {
+                                    "key": "vary",
+                                    "value": "Origin"
+                                }
+                            ],
+                            "code": 401,
+                            "body": "Unauthorized.",
+                            "name": ""
+                        }
+                    ]
+                },
+                {
+                    "name": "Atualizar Endpoint",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/admin\/endpoints\/:id",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/admin\/endpoints\/:id",
+                            "variable": [
+                                {
+                                    "id": "id",
+                                    "key": "id",
+                                    "value": "nam",
+                                    "description": ""
+                                }
+                            ]
+                        },
+                        "method": "PUT",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\"name\":\"consectetur\",\"generator\":\"modi\",\"endpoints\":[],\"resourceSchema\":[]}"
+                        },
+                        "description": "Altera as configura\u00e7\u00f5es e permiss\u00f5es de um endpoint existente."
+                    },
+                    "response": []
+                },
+                {
+                    "name": "Deletar Endpoint",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/admin\/endpoints\/:id",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/admin\/endpoints\/:id",
+                            "variable": [
+                                {
+                                    "id": "id",
+                                    "key": "id",
+                                    "value": "soluta",
+                                    "description": ""
+                                }
+                            ]
+                        },
+                        "method": "DELETE",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": null,
+                        "description": "Remove um endpoint e todos os dados associados a ele."
+                    },
+                    "response": []
+                }
+            ]
+        },
+        {
+            "name": "4. Gerador de Mock",
+            "description": "\nAPIs para gera\u00e7\u00e3o autom\u00e1tica de dados falsos para endpoints baseados em schema.",
+            "item": [
+                {
+                    "name": "Gerar Dados Mock",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/admin\/projects\/:projectId\/endpoints\/:id\/generate",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/admin\/projects\/:projectId\/endpoints\/:id\/generate",
+                            "variable": [
+                                {
+                                    "id": "projectId",
+                                    "key": "projectId",
+                                    "value": "repudiandae",
+                                    "description": ""
+                                },
+                                {
+                                    "id": "id",
+                                    "key": "id",
+                                    "value": "fugiat",
+                                    "description": ""
+                                }
+                            ]
+                        },
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": null,
+                        "description": "Gera e armazena registros falsos baseados no `resourceSchema` do Endpoint.\nOpcionalmente, envie o par\u00e2metro `count` na query string (padr\u00e3o 10)."
+                    },
+                    "response": []
+                }
+            ]
+        },
+        {
+            "name": "4. Gest\u00e3o de Tokens (Projetos)",
+            "description": "\nAPIs para emitir e revogar tokens de acesso \u00e0 Mock API de um projeto.",
+            "item": [
+                {
+                    "name": "Listar Tokens do Projeto",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/admin\/projects\/:projectId\/tokens",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/admin\/projects\/:projectId\/tokens",
+                            "variable": [
+                                {
+                                    "id": "projectId",
+                                    "key": "projectId",
+                                    "value": "et",
+                                    "description": ""
+                                }
+                            ]
+                        },
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": null,
+                        "description": "Retorna todos os tokens ativos para consumo da Mock API deste projeto."
+                    },
+                    "response": [
+                        {
+                            "header": [
+                                {
+                                    "key": "cache-control",
+                                    "value": "no-cache, private"
+                                },
+                                {
+                                    "key": "content-type",
+                                    "value": "application\/json"
+                                },
+                                {
+                                    "key": "x-ratelimit-limit",
+                                    "value": "2000"
+                                },
+                                {
+                                    "key": "x-ratelimit-remaining",
+                                    "value": "1962"
+                                },
+                                {
+                                    "key": "vary",
+                                    "value": "Origin"
+                                }
+                            ],
+                            "code": 401,
+                            "body": "Unauthorized.",
+                            "name": ""
+                        }
+                    ]
+                },
+                {
+                    "name": "Emitir Novo Token",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/admin\/projects\/:projectId\/tokens",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/admin\/projects\/:projectId\/tokens",
+                            "variable": [
+                                {
+                                    "id": "projectId",
+                                    "key": "projectId",
+                                    "value": "et",
+                                    "description": ""
+                                }
+                            ]
+                        },
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\"name\":\"et\"}"
+                        },
+                        "description": "Gera um novo token para acesso \u00e0 Mock API Din\u00e2mica."
+                    },
+                    "response": []
+                },
+                {
+                    "name": "Revogar Token",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/admin\/tokens\/:id",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/admin\/tokens\/:id",
+                            "variable": [
+                                {
+                                    "id": "id",
+                                    "key": "id",
+                                    "value": "repudiandae",
+                                    "description": ""
+                                }
+                            ]
+                        },
+                        "method": "DELETE",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": null,
+                        "description": "Remove um token, impedindo novos acessos com ele."
+                    },
+                    "response": []
+                }
+            ]
+        },
+        {
+            "name": "5. Regras Din\u00e2micas (Mocks)",
+            "description": "\nAPIs para configurar regras de testes din\u00e2micos nos endpoints. \nRespondem com status e payload customizados caso as condi\u00e7\u00f5es batam.",
+            "item": [
+                {
+                    "name": "Listar Regras",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/admin\/endpoints\/:endpointId\/rules",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/admin\/endpoints\/:endpointId\/rules",
+                            "variable": [
+                                {
+                                    "id": "endpointId",
+                                    "key": "endpointId",
+                                    "value": "aut",
+                                    "description": ""
+                                }
+                            ]
+                        },
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": null,
+                        "description": "Retorna as regras cadastradas para o endpoint informado."
+                    },
+                    "response": [
+                        {
+                            "header": [
+                                {
+                                    "key": "cache-control",
+                                    "value": "no-cache, private"
+                                },
+                                {
+                                    "key": "content-type",
+                                    "value": "application\/json"
+                                },
+                                {
+                                    "key": "x-ratelimit-limit",
+                                    "value": "2000"
+                                },
+                                {
+                                    "key": "x-ratelimit-remaining",
+                                    "value": "1961"
+                                },
+                                {
+                                    "key": "vary",
+                                    "value": "Origin"
+                                }
+                            ],
+                            "code": 401,
+                            "body": "Unauthorized.",
+                            "name": ""
+                        }
+                    ]
+                },
+                {
+                    "name": "Criar Regra",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/admin\/endpoints\/:endpointId\/rules",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/admin\/endpoints\/:endpointId\/rules",
+                            "variable": [
+                                {
+                                    "id": "endpointId",
+                                    "key": "endpointId",
+                                    "value": "aut",
+                                    "description": ""
+                                }
+                            ]
+                        },
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\"condition_type\":\"header\",\"condition_key\":\"id\",\"condition_operator\":\"contains\",\"condition_value\":\"sint\",\"response_status\":7}"
+                        },
+                        "description": "Adiciona uma nova condi\u00e7\u00e3o (Header, Query ou Body) que altera a resposta do endpoint."
+                    },
+                    "response": []
+                },
+                {
+                    "name": "Atualizar Regra",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/admin\/rules\/:id",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/admin\/rules\/:id",
+                            "variable": [
+                                {
+                                    "id": "id",
+                                    "key": "id",
+                                    "value": "exercitationem",
+                                    "description": ""
+                                }
+                            ]
+                        },
+                        "method": "PUT",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\"condition_type\":\"header\",\"condition_key\":\"non\",\"condition_operator\":\"equals\",\"condition_value\":\"et\",\"response_status\":14}"
+                        },
+                        "description": "Altera as propriedades de uma regra din\u00e2mica existente."
+                    },
+                    "response": []
+                },
+                {
+                    "name": "Deletar Regra",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/admin\/rules\/:id",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/admin\/rules\/:id",
+                            "variable": [
+                                {
+                                    "id": "id",
+                                    "key": "id",
+                                    "value": "minima",
+                                    "description": ""
+                                }
+                            ]
+                        },
+                        "method": "DELETE",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": null,
+                        "description": "Remove permanentemente a regra de avalia\u00e7\u00e3o."
+                    },
+                    "response": []
+                }
+            ]
+        },
+        {
+            "name": "6. API Mocks Din\u00e2micos",
+            "description": "\nO Endpoint Coringa respons\u00e1vel por responder aos Mocks configurados no painel.\nTodas as requisi\u00e7\u00f5es devem vir autenticadas pelo Header `X-Project-Token` ou Bearer Token.",
+            "item": [
+                {
+                    "name": "GET api\/{username}\/{projectSlug}\/{path:.*}",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/:username\/:projectSlug\/{path:.*}",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/:username\/:projectSlug\/{path:.*}",
+                            "variable": [
+                                {
+                                    "id": "username",
+                                    "key": "username",
+                                    "value": "quam",
+                                    "description": ""
+                                },
+                                {
+                                    "id": "projectSlug",
+                                    "key": "projectSlug",
+                                    "value": "et",
+                                    "description": ""
+                                },
+                                {
+                                    "id": "path",
+                                    "key": "path",
+                                    "value": "cum",
+                                    "description": ""
+                                }
+                            ]
+                        },
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": null,
+                        "description": "",
+                        "auth": {
+                            "type": "noauth"
+                        }
+                    },
+                    "response": [
+                        {
+                            "header": [
+                                {
+                                    "key": "cache-control",
+                                    "value": "no-cache, private"
+                                },
+                                {
+                                    "key": "content-type",
+                                    "value": "application\/json"
+                                },
+                                {
+                                    "key": "x-ratelimit-limit",
+                                    "value": "2000"
+                                },
+                                {
+                                    "key": "x-ratelimit-remaining",
+                                    "value": "1960"
+                                },
+                                {
+                                    "key": "vary",
+                                    "value": "Origin"
+                                }
+                            ],
+                            "code": 401,
+                            "body": "{\"error\":\"Project token not provided.\"}",
+                            "name": ""
+                        }
+                    ]
+                },
+                {
+                    "name": "POST api\/{username}\/{projectSlug}\/{path:.*}",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/:username\/:projectSlug\/{path:.*}",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/:username\/:projectSlug\/{path:.*}",
+                            "variable": [
+                                {
+                                    "id": "username",
+                                    "key": "username",
+                                    "value": "praesentium",
+                                    "description": ""
+                                },
+                                {
+                                    "id": "projectSlug",
+                                    "key": "projectSlug",
+                                    "value": "voluptatem",
+                                    "description": ""
+                                },
+                                {
+                                    "id": "path",
+                                    "key": "path",
+                                    "value": "eos",
+                                    "description": ""
+                                }
+                            ]
+                        },
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": null,
+                        "description": "",
+                        "auth": {
+                            "type": "noauth"
+                        }
+                    },
+                    "response": []
+                },
+                {
+                    "name": "PUT api\/{username}\/{projectSlug}\/{path:.*}",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/:username\/:projectSlug\/{path:.*}",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/:username\/:projectSlug\/{path:.*}",
+                            "variable": [
+                                {
+                                    "id": "username",
+                                    "key": "username",
+                                    "value": "quia",
+                                    "description": ""
+                                },
+                                {
+                                    "id": "projectSlug",
+                                    "key": "projectSlug",
+                                    "value": "est",
+                                    "description": ""
+                                },
+                                {
+                                    "id": "path",
+                                    "key": "path",
+                                    "value": "asperiores",
+                                    "description": ""
+                                }
+                            ]
+                        },
+                        "method": "PUT",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": null,
+                        "description": "",
+                        "auth": {
+                            "type": "noauth"
+                        }
+                    },
+                    "response": []
+                },
+                {
+                    "name": "PATCH api\/{username}\/{projectSlug}\/{path:.*}",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/:username\/:projectSlug\/{path:.*}",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/:username\/:projectSlug\/{path:.*}",
+                            "variable": [
+                                {
+                                    "id": "username",
+                                    "key": "username",
+                                    "value": "sed",
+                                    "description": ""
+                                },
+                                {
+                                    "id": "projectSlug",
+                                    "key": "projectSlug",
+                                    "value": "quia",
+                                    "description": ""
+                                },
+                                {
+                                    "id": "path",
+                                    "key": "path",
+                                    "value": "et",
+                                    "description": ""
+                                }
+                            ]
+                        },
+                        "method": "PATCH",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": null,
+                        "description": "",
+                        "auth": {
+                            "type": "noauth"
+                        }
+                    },
+                    "response": []
+                },
+                {
+                    "name": "DELETE api\/{username}\/{projectSlug}\/{path:.*}",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/:username\/:projectSlug\/{path:.*}",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/:username\/:projectSlug\/{path:.*}",
+                            "variable": [
+                                {
+                                    "id": "username",
+                                    "key": "username",
+                                    "value": "quasi",
+                                    "description": ""
+                                },
+                                {
+                                    "id": "projectSlug",
+                                    "key": "projectSlug",
+                                    "value": "saepe",
+                                    "description": ""
+                                },
+                                {
+                                    "id": "path",
+                                    "key": "path",
+                                    "value": "cumque",
+                                    "description": ""
+                                }
+                            ]
+                        },
+                        "method": "DELETE",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": null,
+                        "description": "",
+                        "auth": {
+                            "type": "noauth"
+                        }
+                    },
+                    "response": []
+                }
+            ]
+        },
+        {
+            "name": "Endpoints",
+            "description": "",
+            "item": [
+                {
+                    "name": "GET api\/health",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/health",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/health"
+                        },
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": null,
+                        "description": "",
+                        "auth": {
+                            "type": "noauth"
+                        }
+                    },
+                    "response": [
+                        {
+                            "header": [
+                                {
+                                    "key": "cache-control",
+                                    "value": "no-cache, private"
+                                },
+                                {
+                                    "key": "content-type",
+                                    "value": "application\/json"
+                                },
+                                {
+                                    "key": "x-ratelimit-limit",
+                                    "value": "2000"
+                                },
+                                {
+                                    "key": "x-ratelimit-remaining",
+                                    "value": "1969"
+                                },
+                                {
+                                    "key": "vary",
+                                    "value": "Origin"
+                                }
+                            ],
+                            "code": 200,
+                            "body": "{\"status\":\"ok\",\"message\":\"System is healthy\",\"timestamp\":1781906498}",
+                            "name": ""
+                        }
+                    ]
+                },
+                {
+                    "name": "GET api\/health\/database",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/health\/database",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/health\/database"
+                        },
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": null,
+                        "description": "",
+                        "auth": {
+                            "type": "noauth"
+                        }
+                    },
+                    "response": [
+                        {
+                            "header": [
+                                {
+                                    "key": "cache-control",
+                                    "value": "no-cache, private"
+                                },
+                                {
+                                    "key": "content-type",
+                                    "value": "application\/json"
+                                },
+                                {
+                                    "key": "x-ratelimit-limit",
+                                    "value": "2000"
+                                },
+                                {
+                                    "key": "x-ratelimit-remaining",
+                                    "value": "1968"
+                                },
+                                {
+                                    "key": "vary",
+                                    "value": "Origin"
+                                }
+                            ],
+                            "code": 200,
+                            "body": "{\"status\":\"ok\",\"message\":\"Database connection is established\"}",
+                            "name": ""
+                        }
+                    ]
+                }
+            ]
+        }
+    ],
+    "auth": {
+        "type": "noauth"
+    }
+}
