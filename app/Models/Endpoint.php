@@ -18,7 +18,7 @@ class Endpoint extends Model
     ];
 
     protected $hidden = ['endpoints_config', 'resource_schema'];
-    protected $appends = ['endpoints', 'resourceSchema'];
+    protected $appends = ['endpoints', 'resourceSchema', 'count'];
 
     public function getEndpointsAttribute()
     {
@@ -28,6 +28,11 @@ class Endpoint extends Model
     public function getResourceSchemaAttribute()
     {
         return json_decode($this->attributes['resource_schema'] ?? '[]', true);
+    }
+
+    public function getCountAttribute()
+    {
+        return $this->mockData()->count();
     }
 
     public function project()
