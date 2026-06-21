@@ -23,7 +23,25 @@ class ProjectController extends Controller
      */
     public function index(Request $request)
     {
-        return response()->json($request->user()->projects);
+        $query = $request->user()->projects();
+
+        if ($request->has('filterBy') && $request->has('filter')) {
+            $filterBy = explode(',', $request->filterBy);
+            $filter = $request->filter;
+            
+            $query->where(function ($q) use ($filterBy, $filter) {
+                foreach ($filterBy as $field) {
+                    $q->orWhere(trim($field), 'like', '%' . $filter . '%');
+                }
+            });
+        }
+
+        if ($request->has('orderBy')) {
+            $orderDir = strtolower($request->get('orderDir', 'asc')) === 'desc' ? 'desc' : 'asc';
+            $query->orderBy($request->orderBy, $orderDir);
+        }
+
+        return response()->json($query->get());
     }
 
     /**
