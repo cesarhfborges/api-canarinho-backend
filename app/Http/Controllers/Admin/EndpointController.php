@@ -101,12 +101,22 @@ class EndpointController extends Controller
             }
         }
 
+        $schemaChanged = false;
+
         if ($request->has('name')) $endpoint->name = $request->name;
         if ($request->has('generator')) $endpoint->generator = $request->generator;
         if ($request->has('endpoints')) $endpoint->endpoints_config = $request->endpoints;
-        if ($request->has('resourceSchema')) $endpoint->resource_schema = $request->resourceSchema;
+        if ($request->has('resourceSchema')) {
+            $endpoint->resource_schema = $request->resourceSchema;
+            $schemaChanged = true;
+        }
         
         $endpoint->save();
+
+        if ($schemaChanged) {
+            $mockDataService = new \App\Services\MockDataService();
+            $mockDataService->syncMockDataWithSchema($endpoint);
+        }
 
         return response()->json($endpoint);
     }

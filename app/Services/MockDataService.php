@@ -45,40 +45,85 @@ class MockDataService
 
         foreach ($schema as $field) {
             $name = $field['name'] ?? null;
-            $type = $field['type'] ?? 'String';
-            
             if (!$name) continue;
 
-            if ($type === 'Object.ID') {
-                if ($name !== 'id') {
-                    $record[$name] = (string) Str::uuid();
-                }
-            } elseif ($type === 'Faker.js') {
-                $fakerValue = $field['value'] ?? '[word.word]';
-                $record[$name] = $this->mapFakerValue($faker, $fakerValue);
-            } else {
-                if (isset($field['value']) && $field['value'] !== '') {
-                    $record[$name] = $field['value'];
-                } else {
-                    // Fallback to empty string if no value provided for strict types, 
-                    // except we keep generating random if missing just for safety, 
-                    // though the user said "O value será sempre o que foi enviado"
-                    if ($type === 'String') {
-                        $record[$name] = Str::random(10);
-                    } elseif ($type === 'Number') {
-                        $record[$name] = $faker->randomNumber();
-                    } elseif ($type === 'Boolean') {
-                        $record[$name] = $faker->boolean();
-                    } elseif ($type === 'Date') {
-                        $record[$name] = now()->toDateTimeString();
-                    } else {
-                        $record[$name] = null;
-                    }
-                }
-            }
+            $record[$name] = $this->generateFieldValue($field, $faker);
         }
 
         return $record;
+    }
+
+    public function generateFieldValue(array $field, $faker)
+    {
+        $name = $field['name'] ?? null;
+        $type = $field['type'] ?? 'String';
+
+        if ($type === 'Object.ID') {
+            if ($name !== 'id') {
+                return (string) Str::uuid();
+            }
+            return null; // id is managed by DB
+        } elseif ($type === 'Faker.js') {
+            $fakerValue = $field['value'] ?? '[word.word]';
+            return $this->mapFakerValue($faker, $fakerValue);
+        } else {
+            if (isset($field['value']) && $field['value'] !== '') {
+                return $field['value'];
+            } else {
+                if ($type === 'String') {
+                    return Str::random(10);
+                } elseif ($type === 'Number') {
+                    return $faker->randomNumber();
+                } elseif ($type === 'Boolean') {
+                    return $faker->boolean();
+                } elseif ($type === 'Date') {
+                    return now()->toDateTimeString();
+                } else {
+                    return null;
+                }
+            }
+        }
+    }
+
+    public function syncMockDataWithSchema(Endpoint $endpoint)
+    {
+        $schema = $endpoint->resource_schema;
+        if (!$schema || !is_array($schema)) {
+            return;
+        }
+
+        $faker = Faker::create('pt_BR');
+        $mockRecords = $endpoint->mockData()->get();
+
+        foreach ($mockRecords as $mock) {
+            $oldData = $mock->json_data;
+            if (!is_array($oldData)) {
+                $oldData = [];
+            }
+
+            $newData = [];
+
+            foreach ($schema as $field) {
+                $name = $field['name'] ?? null;
+                if (!$name) continue;
+
+                if ($name === 'id') {
+                    $newData['id'] = $mock->id;
+                    continue;
+                }
+
+                // If the field existed in the old data, we keep it to preserve existing records
+                // unless we want to do strict type checking, but keeping old data is safer
+                if (array_key_exists($name, $oldData)) {
+                    $newData[$name] = $oldData[$name];
+                } else {
+                    // Field was added
+                    $newData[$name] = $this->generateFieldValue($field, $faker);
+                }
+            }
+
+            $mock->update(['json_data' => $newData]);
+        }
     }
 
     private function mapFakerValue($faker, string $value)
