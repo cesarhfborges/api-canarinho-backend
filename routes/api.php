@@ -7,7 +7,7 @@ $router->group(['prefix' => 'api/health'], function () use ($router) {
     $router->get('/', function () {
         return response()->json(['status' => 'ok', 'message' => 'System is healthy', 'timestamp' => time()]);
     });
-    
+
     $router->get('/database', function () {
         try {
             app('db')->connection()->getPdo();
@@ -24,16 +24,13 @@ $router->group(['prefix' => 'api/admin', 'namespace' => 'Admin'], function () us
     $router->post('login', 'AdminAuthController@login');
     $router->post('register', 'AdminAuthController@register');
     $router->post('logout', 'AdminAuthController@logout');
-    
+
     // Protected Admin Routes
     $router->group(['middleware' => 'auth'], function () use ($router) {
         $router->get('me', 'AdminAuthController@me');
         $router->put('me', 'AdminAuthController@updateMe');
         $router->put('me/password', 'AdminAuthController@updateMyPassword');
-        
-        // Dashboard Metrics
-        $router->get('dashboard/metrics', 'DashboardController@metrics');
-        
+
         // Gestão de Usuários (Apenas Admins)
         $router->get('users', 'UserController@index');
         $router->post('users', 'UserController@store');
@@ -41,7 +38,7 @@ $router->group(['prefix' => 'api/admin', 'namespace' => 'Admin'], function () us
         $router->put('users/{id}', 'UserController@update');
         $router->delete('users/{id}', 'UserController@destroy');
         $router->put('users/{id}/password', 'UserController@updatePassword');
-        
+
         // Projetos
         $router->get('projects', 'ProjectController@index');
         $router->post('projects', 'ProjectController@store');
