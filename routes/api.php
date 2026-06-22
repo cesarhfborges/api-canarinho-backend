@@ -31,6 +31,9 @@ $router->group(['prefix' => 'api/admin', 'namespace' => 'Admin'], function () us
         $router->put('me', 'AdminAuthController@updateMe');
         $router->put('me/password', 'AdminAuthController@updateMyPassword');
 
+        // Dashboard & Analytics
+        $router->get('dashboard/metrics', 'DashboardController@metrics');
+
         // Gestão de Usuários (Apenas Admins)
         $router->get('users', 'UserController@index');
         $router->post('users', 'UserController@store');
