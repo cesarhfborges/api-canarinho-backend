@@ -10,9 +10,10 @@
     ],
     "info": {
         "name": "Lumen",
-        "_postman_id": "126b64bb-c856-4e92-89a7-17431413ea21",
-        "description": "",
-        "schema": "https:\/\/schema.getpostman.com\/json\/collection\/v2.1.0\/collection.json"
+        "_postman_id": "998abe4a-788f-4670-9e63-519c5272b1a5",
+        "description": "TESTE",
+        "schema": "https:\/\/schema.getpostman.com\/json\/collection\/v2.1.0\/collection.json",
+        "version": "2.0.0"
     },
     "item": [
         {
@@ -41,9 +42,40 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"username\":\"eligendi\",\"password\":\"praesentium\"}"
+                            "raw": "{\"username\":\"eius\",\"password\":\"deleniti\"}"
                         },
                         "description": "Realiza a autentica\u00e7\u00e3o e retorna um Cookie HttpOnly.",
+                        "auth": {
+                            "type": "noauth"
+                        }
+                    },
+                    "response": []
+                },
+                {
+                    "name": "Auto-Cadastro (Registro)",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/admin\/register",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/admin\/register"
+                        },
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\"name\":\"pjseivxqfby\",\"username\":\"tagbjjysvrznxwtlrcmmcmov\",\"email\":\"prussel@example.net\",\"password\":\"Q{FC3R\"}"
+                        },
+                        "description": "Cria um novo usu\u00e1rio comum, caso a configura\u00e7\u00e3o ALLOW_REGISTRATION esteja ativa.",
                         "auth": {
                             "type": "noauth"
                         }
@@ -115,7 +147,7 @@
                                 },
                                 {
                                     "key": "x-ratelimit-remaining",
-                                    "value": "1967"
+                                    "value": "1958"
                                 },
                                 {
                                     "key": "vary",
@@ -123,10 +155,66 @@
                                 }
                             ],
                             "code": 401,
-                            "body": "Unauthorized.",
+                            "body": "{\"error\":\"Unauthorized.\"}",
                             "name": ""
                         }
                     ]
+                },
+                {
+                    "name": "Atualizar Perfil",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/admin\/me",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/admin\/me"
+                        },
+                        "method": "PUT",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\"name\":\"etijksypgyayvybwhtfu\"}"
+                        },
+                        "description": "Atualiza os dados b\u00e1sicos do pr\u00f3prio usu\u00e1rio logado."
+                    },
+                    "response": []
+                },
+                {
+                    "name": "Atualizar Senha do Perfil",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/admin\/me\/password",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/admin\/me\/password"
+                        },
+                        "method": "PUT",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\"password\":\"Bw\\\\OP;!C4A?.G+S=\"}"
+                        },
+                        "description": "Atualiza a senha do pr\u00f3prio usu\u00e1rio logado."
+                    },
+                    "response": []
                 }
             ]
         },
@@ -174,7 +262,7 @@
                                 },
                                 {
                                     "key": "x-ratelimit-remaining",
-                                    "value": "1966"
+                                    "value": "1954"
                                 },
                                 {
                                     "key": "vary",
@@ -182,7 +270,7 @@
                                 }
                             ],
                             "code": 401,
-                            "body": "Unauthorized.",
+                            "body": "{\"error\":\"Unauthorized.\"}",
                             "name": ""
                         }
                     ]
@@ -209,7 +297,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"name\":\"phdqewaycwakijcgbeqsbmnri\",\"slug\":\"whbzpvnxpxdcjdftr\"}"
+                            "raw": "{\"name\":\"jegqijwf\",\"slug\":\"ntwiatxwrdglebtwygf\"}"
                         },
                         "description": "Cria um novo projeto e gera seu slug."
                     },
@@ -227,7 +315,7 @@
                                 {
                                     "id": "id",
                                     "key": "id",
-                                    "value": "dolorum",
+                                    "value": "saepe",
                                     "description": ""
                                 }
                             ]
@@ -263,7 +351,7 @@
                                 },
                                 {
                                     "key": "x-ratelimit-remaining",
-                                    "value": "1965"
+                                    "value": "1953"
                                 },
                                 {
                                     "key": "vary",
@@ -271,7 +359,7 @@
                                 }
                             ],
                             "code": 401,
-                            "body": "Unauthorized.",
+                            "body": "{\"error\":\"Unauthorized.\"}",
                             "name": ""
                         }
                     ]
@@ -288,7 +376,7 @@
                                 {
                                     "id": "id",
                                     "key": "id",
-                                    "value": "vel",
+                                    "value": "sed",
                                     "description": ""
                                 }
                             ]
@@ -306,7 +394,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"name\":\"ambnblvfpijbxasv\",\"slug\":\"xfexzmjslvvrwvvhp\"}"
+                            "raw": "{\"name\":\"xxwhlkzmups\",\"slug\":\"kh\"}"
                         },
                         "description": "Atualiza os dados de um projeto existente."
                     },
@@ -324,7 +412,7 @@
                                 {
                                     "id": "id",
                                     "key": "id",
-                                    "value": "laborum",
+                                    "value": "dignissimos",
                                     "description": ""
                                 }
                             ]
@@ -363,7 +451,7 @@
                                 {
                                     "id": "projectId",
                                     "key": "projectId",
-                                    "value": "quibusdam",
+                                    "value": "sequi",
                                     "description": ""
                                 }
                             ]
@@ -399,7 +487,7 @@
                                 },
                                 {
                                     "key": "x-ratelimit-remaining",
-                                    "value": "1964"
+                                    "value": "1952"
                                 },
                                 {
                                     "key": "vary",
@@ -407,7 +495,7 @@
                                 }
                             ],
                             "code": 401,
-                            "body": "Unauthorized.",
+                            "body": "{\"error\":\"Unauthorized.\"}",
                             "name": ""
                         }
                     ]
@@ -424,7 +512,7 @@
                                 {
                                     "id": "projectId",
                                     "key": "projectId",
-                                    "value": "odio",
+                                    "value": "sint",
                                     "description": ""
                                 }
                             ]
@@ -442,7 +530,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"name\":\"consequatur\",\"generator\":\"et\",\"endpoints\":[],\"resourceSchema\":[]}"
+                            "raw": "{\"name\":\"qui\",\"generator\":\"fugit\"}"
                         },
                         "description": "Adiciona um novo endpoint ao projeto especificando as configura\u00e7\u00f5es de CRUD."
                     },
@@ -460,13 +548,13 @@
                                 {
                                     "id": "projectId",
                                     "key": "projectId",
-                                    "value": "vitae",
+                                    "value": "eius",
                                     "description": ""
                                 },
                                 {
                                     "id": "id",
                                     "key": "id",
-                                    "value": "sit",
+                                    "value": "nulla",
                                     "description": ""
                                 }
                             ]
@@ -502,7 +590,7 @@
                                 },
                                 {
                                     "key": "x-ratelimit-remaining",
-                                    "value": "1963"
+                                    "value": "1951"
                                 },
                                 {
                                     "key": "vary",
@@ -510,7 +598,7 @@
                                 }
                             ],
                             "code": 401,
-                            "body": "Unauthorized.",
+                            "body": "{\"error\":\"Unauthorized.\"}",
                             "name": ""
                         }
                     ]
@@ -527,7 +615,7 @@
                                 {
                                     "id": "id",
                                     "key": "id",
-                                    "value": "nam",
+                                    "value": "sunt",
                                     "description": ""
                                 }
                             ]
@@ -545,7 +633,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"name\":\"consectetur\",\"generator\":\"modi\",\"endpoints\":[],\"resourceSchema\":[]}"
+                            "raw": "{\"name\":\"a\",\"generator\":\"commodi\"}"
                         },
                         "description": "Altera as configura\u00e7\u00f5es e permiss\u00f5es de um endpoint existente."
                     },
@@ -563,7 +651,7 @@
                                 {
                                     "id": "id",
                                     "key": "id",
-                                    "value": "soluta",
+                                    "value": "expedita",
                                     "description": ""
                                 }
                             ]
@@ -602,13 +690,13 @@
                                 {
                                     "id": "projectId",
                                     "key": "projectId",
-                                    "value": "repudiandae",
+                                    "value": "ducimus",
                                     "description": ""
                                 },
                                 {
                                     "id": "id",
                                     "key": "id",
-                                    "value": "fugiat",
+                                    "value": "consequuntur",
                                     "description": ""
                                 }
                             ]
@@ -624,8 +712,11 @@
                                 "value": "application\/json"
                             }
                         ],
-                        "body": null,
-                        "description": "Gera e armazena registros falsos baseados no `resourceSchema` do Endpoint.\nOpcionalmente, envie o par\u00e2metro `count` na query string (padr\u00e3o 10)."
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\"count\":11}"
+                        },
+                        "description": "Gera e armazena registros falsos baseados no `resourceSchema` do Endpoint.\nOpcionalmente, envie o par\u00e2metro `count` no body (padr\u00e3o 10)."
                     },
                     "response": []
                 }
@@ -647,7 +738,7 @@
                                 {
                                     "id": "projectId",
                                     "key": "projectId",
-                                    "value": "et",
+                                    "value": "sed",
                                     "description": ""
                                 }
                             ]
@@ -683,7 +774,7 @@
                                 },
                                 {
                                     "key": "x-ratelimit-remaining",
-                                    "value": "1962"
+                                    "value": "1950"
                                 },
                                 {
                                     "key": "vary",
@@ -691,7 +782,7 @@
                                 }
                             ],
                             "code": 401,
-                            "body": "Unauthorized.",
+                            "body": "{\"error\":\"Unauthorized.\"}",
                             "name": ""
                         }
                     ]
@@ -708,7 +799,7 @@
                                 {
                                     "id": "projectId",
                                     "key": "projectId",
-                                    "value": "et",
+                                    "value": "voluptatibus",
                                     "description": ""
                                 }
                             ]
@@ -726,7 +817,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"name\":\"et\"}"
+                            "raw": "{\"name\":\"sint\"}"
                         },
                         "description": "Gera um novo token para acesso \u00e0 Mock API Din\u00e2mica."
                     },
@@ -744,7 +835,7 @@
                                 {
                                     "id": "id",
                                     "key": "id",
-                                    "value": "repudiandae",
+                                    "value": "iure",
                                     "description": ""
                                 }
                             ]
@@ -768,6 +859,259 @@
             ]
         },
         {
+            "name": "4. Gest\u00e3o de Usu\u00e1rios",
+            "description": "\nAPIs para gerenciar os usu\u00e1rios do sistema. Apenas Administradores podem acessar.",
+            "item": [
+                {
+                    "name": "Listar Usu\u00e1rios",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/admin\/users",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/admin\/users"
+                        },
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": null,
+                        "description": ""
+                    },
+                    "response": [
+                        {
+                            "header": [
+                                {
+                                    "key": "cache-control",
+                                    "value": "no-cache, private"
+                                },
+                                {
+                                    "key": "content-type",
+                                    "value": "application\/json"
+                                },
+                                {
+                                    "key": "x-ratelimit-limit",
+                                    "value": "2000"
+                                },
+                                {
+                                    "key": "x-ratelimit-remaining",
+                                    "value": "1956"
+                                },
+                                {
+                                    "key": "vary",
+                                    "value": "Origin"
+                                }
+                            ],
+                            "code": 401,
+                            "body": "{\"error\":\"Unauthorized.\"}",
+                            "name": ""
+                        }
+                    ]
+                },
+                {
+                    "name": "Criar Usu\u00e1rio",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/admin\/users",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/admin\/users"
+                        },
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\"name\":\"ddftdolkbqbzybtaowgrxtj\",\"username\":\"bka\",\"email\":\"earnest.orn@example.com\",\"password\":\"&9ajA0d<S7\",\"is_admin\":false,\"is_active\":false}"
+                        },
+                        "description": ""
+                    },
+                    "response": []
+                },
+                {
+                    "name": "Obter Usu\u00e1rio",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/admin\/users\/:id",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/admin\/users\/:id",
+                            "variable": [
+                                {
+                                    "id": "id",
+                                    "key": "id",
+                                    "value": "adipisci",
+                                    "description": ""
+                                }
+                            ]
+                        },
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": null,
+                        "description": ""
+                    },
+                    "response": [
+                        {
+                            "header": [
+                                {
+                                    "key": "cache-control",
+                                    "value": "no-cache, private"
+                                },
+                                {
+                                    "key": "content-type",
+                                    "value": "application\/json"
+                                },
+                                {
+                                    "key": "x-ratelimit-limit",
+                                    "value": "2000"
+                                },
+                                {
+                                    "key": "x-ratelimit-remaining",
+                                    "value": "1955"
+                                },
+                                {
+                                    "key": "vary",
+                                    "value": "Origin"
+                                }
+                            ],
+                            "code": 401,
+                            "body": "{\"error\":\"Unauthorized.\"}",
+                            "name": ""
+                        }
+                    ]
+                },
+                {
+                    "name": "Atualizar Usu\u00e1rio",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/admin\/users\/:id",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/admin\/users\/:id",
+                            "variable": [
+                                {
+                                    "id": "id",
+                                    "key": "id",
+                                    "value": "voluptatibus",
+                                    "description": ""
+                                }
+                            ]
+                        },
+                        "method": "PUT",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\"name\":\"bvfqctznqtdullriavmyue\",\"is_admin\":true,\"is_active\":true}"
+                        },
+                        "description": ""
+                    },
+                    "response": []
+                },
+                {
+                    "name": "Deletar Usu\u00e1rio",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/admin\/users\/:id",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/admin\/users\/:id",
+                            "variable": [
+                                {
+                                    "id": "id",
+                                    "key": "id",
+                                    "value": "aut",
+                                    "description": ""
+                                }
+                            ]
+                        },
+                        "method": "DELETE",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": null,
+                        "description": ""
+                    },
+                    "response": []
+                },
+                {
+                    "name": "Atualizar Senha de um Usu\u00e1rio",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/admin\/users\/:id\/password",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/admin\/users\/:id\/password",
+                            "variable": [
+                                {
+                                    "id": "id",
+                                    "key": "id",
+                                    "value": "eaque",
+                                    "description": ""
+                                }
+                            ]
+                        },
+                        "method": "PUT",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\"password\":\"\\\/-WszDCl7sxU$'pj`\"}"
+                        },
+                        "description": ""
+                    },
+                    "response": []
+                }
+            ]
+        },
+        {
             "name": "5. Regras Din\u00e2micas (Mocks)",
             "description": "\nAPIs para configurar regras de testes din\u00e2micos nos endpoints. \nRespondem com status e payload customizados caso as condi\u00e7\u00f5es batam.",
             "item": [
@@ -783,7 +1127,7 @@
                                 {
                                     "id": "endpointId",
                                     "key": "endpointId",
-                                    "value": "aut",
+                                    "value": "inventore",
                                     "description": ""
                                 }
                             ]
@@ -819,7 +1163,7 @@
                                 },
                                 {
                                     "key": "x-ratelimit-remaining",
-                                    "value": "1961"
+                                    "value": "1949"
                                 },
                                 {
                                     "key": "vary",
@@ -827,7 +1171,7 @@
                                 }
                             ],
                             "code": 401,
-                            "body": "Unauthorized.",
+                            "body": "{\"error\":\"Unauthorized.\"}",
                             "name": ""
                         }
                     ]
@@ -844,7 +1188,7 @@
                                 {
                                     "id": "endpointId",
                                     "key": "endpointId",
-                                    "value": "aut",
+                                    "value": "est",
                                     "description": ""
                                 }
                             ]
@@ -862,7 +1206,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"condition_type\":\"header\",\"condition_key\":\"id\",\"condition_operator\":\"contains\",\"condition_value\":\"sint\",\"response_status\":7}"
+                            "raw": "{\"condition_type\":\"body\",\"condition_key\":\"eum\",\"condition_operator\":\"equals\",\"condition_value\":\"veniam\",\"response_status\":2}"
                         },
                         "description": "Adiciona uma nova condi\u00e7\u00e3o (Header, Query ou Body) que altera a resposta do endpoint."
                     },
@@ -880,7 +1224,7 @@
                                 {
                                     "id": "id",
                                     "key": "id",
-                                    "value": "exercitationem",
+                                    "value": "ut",
                                     "description": ""
                                 }
                             ]
@@ -898,7 +1242,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"condition_type\":\"header\",\"condition_key\":\"non\",\"condition_operator\":\"equals\",\"condition_value\":\"et\",\"response_status\":14}"
+                            "raw": "{\"condition_type\":\"query\",\"condition_key\":\"dolorem\",\"condition_operator\":\"not_equals\",\"condition_value\":\"et\",\"response_status\":18}"
                         },
                         "description": "Altera as propriedades de uma regra din\u00e2mica existente."
                     },
@@ -916,7 +1260,7 @@
                                 {
                                     "id": "id",
                                     "key": "id",
-                                    "value": "minima",
+                                    "value": "sed",
                                     "description": ""
                                 }
                             ]
@@ -955,19 +1299,19 @@
                                 {
                                     "id": "username",
                                     "key": "username",
-                                    "value": "quam",
+                                    "value": "sit",
                                     "description": ""
                                 },
                                 {
                                     "id": "projectSlug",
                                     "key": "projectSlug",
-                                    "value": "et",
+                                    "value": "neque",
                                     "description": ""
                                 },
                                 {
                                     "id": "path",
                                     "key": "path",
-                                    "value": "cum",
+                                    "value": "illum",
                                     "description": ""
                                 }
                             ]
@@ -1006,7 +1350,7 @@
                                 },
                                 {
                                     "key": "x-ratelimit-remaining",
-                                    "value": "1960"
+                                    "value": "1948"
                                 },
                                 {
                                     "key": "vary",
@@ -1031,19 +1375,19 @@
                                 {
                                     "id": "username",
                                     "key": "username",
-                                    "value": "praesentium",
+                                    "value": "et",
                                     "description": ""
                                 },
                                 {
                                     "id": "projectSlug",
                                     "key": "projectSlug",
-                                    "value": "voluptatem",
+                                    "value": "iure",
                                     "description": ""
                                 },
                                 {
                                     "id": "path",
                                     "key": "path",
-                                    "value": "eos",
+                                    "value": "qui",
                                     "description": ""
                                 }
                             ]
@@ -1079,19 +1423,19 @@
                                 {
                                     "id": "username",
                                     "key": "username",
-                                    "value": "quia",
+                                    "value": "porro",
                                     "description": ""
                                 },
                                 {
                                     "id": "projectSlug",
                                     "key": "projectSlug",
-                                    "value": "est",
+                                    "value": "numquam",
                                     "description": ""
                                 },
                                 {
                                     "id": "path",
                                     "key": "path",
-                                    "value": "asperiores",
+                                    "value": "qui",
                                     "description": ""
                                 }
                             ]
@@ -1127,19 +1471,19 @@
                                 {
                                     "id": "username",
                                     "key": "username",
-                                    "value": "sed",
+                                    "value": "voluptas",
                                     "description": ""
                                 },
                                 {
                                     "id": "projectSlug",
                                     "key": "projectSlug",
-                                    "value": "quia",
+                                    "value": "autem",
                                     "description": ""
                                 },
                                 {
                                     "id": "path",
                                     "key": "path",
-                                    "value": "et",
+                                    "value": "suscipit",
                                     "description": ""
                                 }
                             ]
@@ -1175,19 +1519,19 @@
                                 {
                                     "id": "username",
                                     "key": "username",
-                                    "value": "quasi",
+                                    "value": "perferendis",
                                     "description": ""
                                 },
                                 {
                                     "id": "projectSlug",
                                     "key": "projectSlug",
-                                    "value": "saepe",
+                                    "value": "dolorem",
                                     "description": ""
                                 },
                                 {
                                     "id": "path",
                                     "key": "path",
-                                    "value": "cumque",
+                                    "value": "doloribus",
                                     "description": ""
                                 }
                             ]
@@ -1210,6 +1554,65 @@
                         }
                     },
                     "response": []
+                }
+            ]
+        },
+        {
+            "name": "7. Dashboard Analytics",
+            "description": "\nAPIs para prover os dados consolidados do dashboard administrativo.",
+            "item": [
+                {
+                    "name": "Obter M\u00e9tricas do Dashboard",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/admin\/dashboard\/metrics",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/admin\/dashboard\/metrics"
+                        },
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": null,
+                        "description": "Retorna os totais, gr\u00e1ficos e endpoints mais acessados do usu\u00e1rio logado."
+                    },
+                    "response": [
+                        {
+                            "header": [
+                                {
+                                    "key": "cache-control",
+                                    "value": "no-cache, private"
+                                },
+                                {
+                                    "key": "content-type",
+                                    "value": "application\/json"
+                                },
+                                {
+                                    "key": "x-ratelimit-limit",
+                                    "value": "2000"
+                                },
+                                {
+                                    "key": "x-ratelimit-remaining",
+                                    "value": "1957"
+                                },
+                                {
+                                    "key": "vary",
+                                    "value": "Origin"
+                                }
+                            ],
+                            "code": 401,
+                            "body": "{\"error\":\"Unauthorized.\"}",
+                            "name": ""
+                        }
+                    ]
                 }
             ]
         },
@@ -1260,7 +1663,7 @@
                                 },
                                 {
                                     "key": "x-ratelimit-remaining",
-                                    "value": "1969"
+                                    "value": "1960"
                                 },
                                 {
                                     "key": "vary",
@@ -1268,7 +1671,7 @@
                                 }
                             ],
                             "code": 200,
-                            "body": "{\"status\":\"ok\",\"message\":\"System is healthy\",\"timestamp\":1781906498}",
+                            "body": "{\"status\":\"ok\",\"message\":\"System is healthy\",\"timestamp\":1782144824}",
                             "name": ""
                         }
                     ]
@@ -1316,7 +1719,7 @@
                                 },
                                 {
                                     "key": "x-ratelimit-remaining",
-                                    "value": "1968"
+                                    "value": "1959"
                                 },
                                 {
                                     "key": "vary",

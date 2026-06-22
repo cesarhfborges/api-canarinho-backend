@@ -62,6 +62,7 @@
             </ul>
             <p>Use o painel lateral para explorar os métodos.</p>
         </div>
+        {!! $metadata['description'] ?? '' !!}
         {!! $intro !!}
 
         {!! $auth !!}

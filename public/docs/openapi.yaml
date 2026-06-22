@@ -1,8 +1,8 @@
 openapi: 3.0.3
 info:
   title: Lumen
-  description: ''
-  version: 1.0.0
+  description: TESTE
+  version: 2.0.0
 servers:
   -
     url: 'http://localhost:8000'
@@ -26,15 +26,57 @@ paths:
                 username:
                   type: string
                   description: ''
-                  example: eligendi
+                  example: eius
                   nullable: false
                 password:
                   type: string
                   description: ''
-                  example: praesentium
+                  example: deleniti
                   nullable: false
               required:
                 - username
+                - password
+      security: []
+  /api/admin/register:
+    post:
+      summary: 'Auto-Cadastro (Registro)'
+      operationId: autoCadastroRegistro
+      description: 'Cria um novo usuário comum, caso a configuração ALLOW_REGISTRATION esteja ativa.'
+      parameters: []
+      responses: {  }
+      tags:
+        - '1. Autenticação Admin'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                  description: 'Must not be greater than 255 characters.'
+                  example: pjseivxqfby
+                  nullable: false
+                username:
+                  type: string
+                  description: 'Must not be greater than 255 characters.'
+                  example: tagbjjysvrznxwtlrcmmcmov
+                  nullable: false
+                email:
+                  type: string
+                  description: 'Must be a valid email address. Must not be greater than 255 characters.'
+                  example: prussel@example.net
+                  nullable: false
+                password:
+                  type: string
+                  description: 'Must be at least 6 characters.'
+                  example: 'Q{FC3R'
+                  nullable: false
+              required:
+                - name
+                - username
+                - email
                 - password
       security: []
   /api/admin/logout:
@@ -56,12 +98,67 @@ paths:
         401:
           description: ''
           content:
-            text/plain:
+            application/json:
               schema:
-                type: string
-                example: Unauthorized.
+                type: object
+                example:
+                  error: Unauthorized.
+                properties:
+                  error:
+                    type: string
+                    example: Unauthorized.
       tags:
         - '1. Autenticação Admin'
+    put:
+      summary: 'Atualizar Perfil'
+      operationId: atualizarPerfil
+      description: 'Atualiza os dados básicos do próprio usuário logado.'
+      parameters: []
+      responses: {  }
+      tags:
+        - '1. Autenticação Admin'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                  description: 'Must not be greater than 255 characters.'
+                  example: etijksypgyayvybwhtfu
+                  nullable: false
+                email:
+                  type: string
+                  description: ''
+                  example: null
+                  nullable: false
+              required:
+                - name
+  /api/admin/me/password:
+    put:
+      summary: 'Atualizar Senha do Perfil'
+      operationId: atualizarSenhaDoPerfil
+      description: 'Atualiza a senha do próprio usuário logado.'
+      parameters: []
+      responses: {  }
+      tags:
+        - '1. Autenticação Admin'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                password:
+                  type: string
+                  description: 'Must be at least 6 characters.'
+                  example: 'Bw\OP;!C4A?.G+S='
+                  nullable: false
+              required:
+                - password
   /api/admin/projects:
     get:
       summary: 'Listar Projetos'
@@ -72,10 +169,15 @@ paths:
         401:
           description: ''
           content:
-            text/plain:
+            application/json:
               schema:
-                type: string
-                example: Unauthorized.
+                type: object
+                example:
+                  error: Unauthorized.
+                properties:
+                  error:
+                    type: string
+                    example: Unauthorized.
       tags:
         - '2. Gestão de Projetos'
     post:
@@ -96,12 +198,12 @@ paths:
                 name:
                   type: string
                   description: 'Must not be greater than 255 characters.'
-                  example: phdqewaycwakijcgbeqsbmnri
+                  example: jegqijwf
                   nullable: false
                 slug:
                   type: string
                   description: 'Must not be greater than 255 characters.'
-                  example: whbzpvnxpxdcjdftr
+                  example: ntwiatxwrdglebtwygf
                   nullable: false
               required:
                 - name
@@ -116,10 +218,15 @@ paths:
         401:
           description: ''
           content:
-            text/plain:
+            application/json:
               schema:
-                type: string
-                example: Unauthorized.
+                type: object
+                example:
+                  error: Unauthorized.
+                properties:
+                  error:
+                    type: string
+                    example: Unauthorized.
       tags:
         - '2. Gestão de Projetos'
     put:
@@ -140,12 +247,12 @@ paths:
                 name:
                   type: string
                   description: 'Must not be greater than 255 characters.'
-                  example: ambnblvfpijbxasv
+                  example: xxwhlkzmups
                   nullable: false
                 slug:
                   type: string
                   description: 'Must not be greater than 255 characters.'
-                  example: xfexzmjslvvrwvvhp
+                  example: kh
                   nullable: false
               required:
                 - name
@@ -163,7 +270,7 @@ paths:
         in: path
         name: id
         description: ''
-        example: dolorum
+        example: saepe
         required: true
         schema:
           type: string
@@ -177,10 +284,15 @@ paths:
         401:
           description: ''
           content:
-            text/plain:
+            application/json:
               schema:
-                type: string
-                example: Unauthorized.
+                type: object
+                example:
+                  error: Unauthorized.
+                properties:
+                  error:
+                    type: string
+                    example: Unauthorized.
       tags:
         - '3. Gestão de Endpoints'
     post:
@@ -201,35 +313,33 @@ paths:
                 name:
                   type: string
                   description: ''
-                  example: consequatur
+                  example: qui
                   nullable: false
                 generator:
                   type: string
                   description: ''
-                  example: et
+                  example: fugit
                   nullable: true
                 endpoints:
                   type: object
                   description: ''
-                  example: []
-                  nullable: false
+                  example: null
+                  nullable: true
                   properties: {  }
                 resourceSchema:
                   type: object
                   description: ''
-                  example: []
-                  nullable: false
+                  example: null
+                  nullable: true
                   properties: {  }
               required:
                 - name
-                - endpoints
-                - resourceSchema
     parameters:
       -
         in: path
         name: projectId
         description: ''
-        example: quibusdam
+        example: sequi
         required: true
         schema:
           type: string
@@ -243,10 +353,15 @@ paths:
         401:
           description: ''
           content:
-            text/plain:
+            application/json:
               schema:
-                type: string
-                example: Unauthorized.
+                type: object
+                example:
+                  error: Unauthorized.
+                properties:
+                  error:
+                    type: string
+                    example: Unauthorized.
       tags:
         - '3. Gestão de Endpoints'
     parameters:
@@ -254,7 +369,7 @@ paths:
         in: path
         name: projectId
         description: ''
-        example: vitae
+        example: eius
         required: true
         schema:
           type: string
@@ -262,7 +377,7 @@ paths:
         in: path
         name: id
         description: ''
-        example: sit
+        example: nulla
         required: true
         schema:
           type: string
@@ -285,29 +400,27 @@ paths:
                 name:
                   type: string
                   description: ''
-                  example: consectetur
+                  example: a
                   nullable: false
                 generator:
                   type: string
                   description: ''
-                  example: modi
+                  example: commodi
                   nullable: true
                 endpoints:
                   type: object
                   description: ''
-                  example: []
-                  nullable: false
+                  example: null
+                  nullable: true
                   properties: {  }
                 resourceSchema:
                   type: object
                   description: ''
-                  example: []
-                  nullable: false
+                  example: null
+                  nullable: true
                   properties: {  }
               required:
                 - name
-                - endpoints
-                - resourceSchema
     delete:
       summary: 'Deletar Endpoint'
       operationId: deletarEndpoint
@@ -321,7 +434,7 @@ paths:
         in: path
         name: id
         description: ''
-        example: nam
+        example: sunt
         required: true
         schema:
           type: string
@@ -329,17 +442,31 @@ paths:
     post:
       summary: 'Gerar Dados Mock'
       operationId: gerarDadosMock
-      description: "Gera e armazena registros falsos baseados no `resourceSchema` do Endpoint.\nOpcionalmente, envie o parâmetro `count` na query string (padrão 10)."
+      description: "Gera e armazena registros falsos baseados no `resourceSchema` do Endpoint.\nOpcionalmente, envie o parâmetro `count` no body (padrão 10)."
       parameters: []
       responses: {  }
       tags:
         - '4. Gerador de Mock'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                count:
+                  type: integer
+                  description: 'Must be at least 0. Must not be greater than 500.'
+                  example: 11
+                  nullable: false
+              required:
+                - count
     parameters:
       -
         in: path
         name: projectId
         description: ''
-        example: repudiandae
+        example: ducimus
         required: true
         schema:
           type: string
@@ -347,7 +474,7 @@ paths:
         in: path
         name: id
         description: ''
-        example: fugiat
+        example: consequuntur
         required: true
         schema:
           type: string
@@ -361,10 +488,15 @@ paths:
         401:
           description: ''
           content:
-            text/plain:
+            application/json:
               schema:
-                type: string
-                example: Unauthorized.
+                type: object
+                example:
+                  error: Unauthorized.
+                properties:
+                  error:
+                    type: string
+                    example: Unauthorized.
       tags:
         - '4. Gestão de Tokens (Projetos)'
     post:
@@ -385,7 +517,7 @@ paths:
                 name:
                   type: string
                   description: ''
-                  example: et
+                  example: sint
                   nullable: false
               required:
                 - name
@@ -394,7 +526,7 @@ paths:
         in: path
         name: projectId
         description: ''
-        example: et
+        example: sed
         required: true
         schema:
           type: string
@@ -412,7 +544,190 @@ paths:
         in: path
         name: id
         description: ''
-        example: repudiandae
+        example: iure
+        required: true
+        schema:
+          type: string
+  /api/admin/users:
+    get:
+      summary: 'Listar Usuários'
+      operationId: listarUsurios
+      description: ''
+      parameters: []
+      responses:
+        401:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  error: Unauthorized.
+                properties:
+                  error:
+                    type: string
+                    example: Unauthorized.
+      tags:
+        - '4. Gestão de Usuários'
+    post:
+      summary: 'Criar Usuário'
+      operationId: criarUsurio
+      description: ''
+      parameters: []
+      responses: {  }
+      tags:
+        - '4. Gestão de Usuários'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                  description: 'Must not be greater than 255 characters.'
+                  example: ddftdolkbqbzybtaowgrxtj
+                  nullable: false
+                username:
+                  type: string
+                  description: 'Must not be greater than 255 characters.'
+                  example: bka
+                  nullable: false
+                email:
+                  type: string
+                  description: 'Must be a valid email address. Must not be greater than 255 characters.'
+                  example: earnest.orn@example.com
+                  nullable: false
+                password:
+                  type: string
+                  description: 'Must be at least 6 characters.'
+                  example: '&9ajA0d<S7'
+                  nullable: false
+                is_admin:
+                  type: boolean
+                  description: ''
+                  example: false
+                  nullable: false
+                is_active:
+                  type: boolean
+                  description: ''
+                  example: false
+                  nullable: false
+              required:
+                - name
+                - username
+                - email
+                - password
+  '/api/admin/users/{id}':
+    get:
+      summary: 'Obter Usuário'
+      operationId: obterUsurio
+      description: ''
+      parameters: []
+      responses:
+        401:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  error: Unauthorized.
+                properties:
+                  error:
+                    type: string
+                    example: Unauthorized.
+      tags:
+        - '4. Gestão de Usuários'
+    put:
+      summary: 'Atualizar Usuário'
+      operationId: atualizarUsurio
+      description: ''
+      parameters: []
+      responses: {  }
+      tags:
+        - '4. Gestão de Usuários'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                  description: 'Must not be greater than 255 characters.'
+                  example: bvfqctznqtdullriavmyue
+                  nullable: false
+                username:
+                  type: string
+                  description: ''
+                  example: null
+                  nullable: false
+                email:
+                  type: string
+                  description: ''
+                  example: null
+                  nullable: false
+                is_admin:
+                  type: boolean
+                  description: ''
+                  example: true
+                  nullable: false
+                is_active:
+                  type: boolean
+                  description: ''
+                  example: true
+                  nullable: false
+              required:
+                - name
+    delete:
+      summary: 'Deletar Usuário'
+      operationId: deletarUsurio
+      description: ''
+      parameters: []
+      responses: {  }
+      tags:
+        - '4. Gestão de Usuários'
+    parameters:
+      -
+        in: path
+        name: id
+        description: ''
+        example: adipisci
+        required: true
+        schema:
+          type: string
+  '/api/admin/users/{id}/password':
+    put:
+      summary: 'Atualizar Senha de um Usuário'
+      operationId: atualizarSenhaDeUmUsurio
+      description: ''
+      parameters: []
+      responses: {  }
+      tags:
+        - '4. Gestão de Usuários'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                password:
+                  type: string
+                  description: 'Must be at least 6 characters.'
+                  example: "/-WszDCl7sxU$'pj`"
+                  nullable: false
+              required:
+                - password
+    parameters:
+      -
+        in: path
+        name: id
+        description: ''
+        example: eaque
         required: true
         schema:
           type: string
@@ -426,10 +741,15 @@ paths:
         401:
           description: ''
           content:
-            text/plain:
+            application/json:
               schema:
-                type: string
-                example: Unauthorized.
+                type: object
+                example:
+                  error: Unauthorized.
+                properties:
+                  error:
+                    type: string
+                    example: Unauthorized.
       tags:
         - '5. Regras Dinâmicas (Mocks)'
     post:
@@ -450,7 +770,7 @@ paths:
                 condition_type:
                   type: string
                   description: ''
-                  example: header
+                  example: body
                   nullable: false
                   enum:
                     - header
@@ -459,12 +779,12 @@ paths:
                 condition_key:
                   type: string
                   description: ''
-                  example: id
+                  example: eum
                   nullable: false
                 condition_operator:
                   type: string
                   description: ''
-                  example: contains
+                  example: equals
                   nullable: false
                   enum:
                     - equals
@@ -473,12 +793,12 @@ paths:
                 condition_value:
                   type: string
                   description: ''
-                  example: sint
+                  example: veniam
                   nullable: false
                 response_status:
                   type: integer
                   description: ''
-                  example: 7
+                  example: 2
                   nullable: false
                 response_body:
                   type: object
@@ -497,7 +817,7 @@ paths:
         in: path
         name: endpointId
         description: ''
-        example: aut
+        example: inventore
         required: true
         schema:
           type: string
@@ -520,7 +840,7 @@ paths:
                 condition_type:
                   type: string
                   description: ''
-                  example: header
+                  example: query
                   nullable: false
                   enum:
                     - header
@@ -529,12 +849,12 @@ paths:
                 condition_key:
                   type: string
                   description: ''
-                  example: non
+                  example: dolorem
                   nullable: false
                 condition_operator:
                   type: string
                   description: ''
-                  example: equals
+                  example: not_equals
                   nullable: false
                   enum:
                     - equals
@@ -548,7 +868,7 @@ paths:
                 response_status:
                   type: integer
                   description: ''
-                  example: 14
+                  example: 18
                   nullable: false
                 response_body:
                   type: object
@@ -575,7 +895,7 @@ paths:
         in: path
         name: id
         description: ''
-        example: exercitationem
+        example: ut
         required: true
         schema:
           type: string
@@ -642,7 +962,7 @@ paths:
         in: path
         name: username
         description: ''
-        example: quam
+        example: sit
         required: true
         schema:
           type: string
@@ -650,7 +970,7 @@ paths:
         in: path
         name: projectSlug
         description: ''
-        example: et
+        example: neque
         required: true
         schema:
           type: string
@@ -658,10 +978,31 @@ paths:
         in: path
         name: path
         description: ''
-        example: cum
+        example: illum
         required: true
         schema:
           type: string
+  /api/admin/dashboard/metrics:
+    get:
+      summary: 'Obter Métricas do Dashboard'
+      operationId: obterMtricasDoDashboard
+      description: 'Retorna os totais, gráficos e endpoints mais acessados do usuário logado.'
+      parameters: []
+      responses:
+        401:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  error: Unauthorized.
+                properties:
+                  error:
+                    type: string
+                    example: Unauthorized.
+      tags:
+        - '7. Dashboard Analytics'
   /api/health:
     get:
       summary: ''
@@ -678,7 +1019,7 @@ paths:
                 example:
                   status: ok
                   message: 'System is healthy'
-                  timestamp: 1781906498
+                  timestamp: 1782144824
                 properties:
                   status:
                     type: string
@@ -688,7 +1029,7 @@ paths:
                     example: 'System is healthy'
                   timestamp:
                     type: integer
-                    example: 1781906498
+                    example: 1782144824
       tags:
         - Endpoints
       security: []
@@ -735,11 +1076,17 @@ tags:
     name: '4. Gestão de Tokens (Projetos)'
     description: "\nAPIs para emitir e revogar tokens de acesso à Mock API de um projeto."
   -
+    name: '4. Gestão de Usuários'
+    description: "\nAPIs para gerenciar os usuários do sistema. Apenas Administradores podem acessar."
+  -
     name: '5. Regras Dinâmicas (Mocks)'
     description: "\nAPIs para configurar regras de testes dinâmicos nos endpoints. \nRespondem com status e payload customizados caso as condições batam."
   -
     name: '6. API Mocks Dinâmicos'
     description: "\nO Endpoint Coringa responsável por responder aos Mocks configurados no painel.\nTodas as requisições devem vir autenticadas pelo Header `X-Project-Token` ou Bearer Token."
+  -
+    name: '7. Dashboard Analytics'
+    description: "\nAPIs para prover os dados consolidados do dashboard administrativo."
   -
     name: Endpoints
     description: ''
