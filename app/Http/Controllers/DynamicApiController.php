@@ -54,6 +54,7 @@ class DynamicApiController extends Controller
                     $matchedConfig = $config;
                     array_shift($matches); // Remove o match completo da URL
                     $extractedParams = $matches;
+                    $request->attributes->set('matched_endpoint_id', $matchedEndpoint->id);
                     break 2; // Sai dos dois loops
                 }
             }

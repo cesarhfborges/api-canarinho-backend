@@ -49,4 +49,9 @@ class Endpoint extends Model
     {
         return $this->hasMany(MockData::class);
     }
+
+    public function calls()
+    {
+        return $this->hasMany(EndpointCall::class);
+    }
 }

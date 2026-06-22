@@ -81,6 +81,7 @@ $app->middleware([
 $app->routeMiddleware([
     'auth' => App\Http\Middleware\Authenticate::class,
     'project_token' => App\Http\Middleware\ProjectTokenMiddleware::class,
+    'track_metrics' => App\Http\Middleware\TrackEndpointMetrics::class,
 ]);
 
 /*

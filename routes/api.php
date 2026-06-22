@@ -31,6 +31,9 @@ $router->group(['prefix' => 'api/admin', 'namespace' => 'Admin'], function () us
         $router->put('me', 'AdminAuthController@updateMe');
         $router->put('me/password', 'AdminAuthController@updateMyPassword');
         
+        // Dashboard Metrics
+        $router->get('dashboard/metrics', 'DashboardController@metrics');
+        
         // Gestão de Usuários (Apenas Admins)
         $router->get('users', 'UserController@index');
         $router->post('users', 'UserController@store');
@@ -68,7 +71,7 @@ $router->group(['prefix' => 'api/admin', 'namespace' => 'Admin'], function () us
 });
 
 // Dynamic Mock API Routes
-$router->group(['prefix' => 'api/{username}/{projectSlug}', 'middleware' => 'project_token'], function () use ($router) {
+$router->group(['prefix' => 'api/{username}/{projectSlug}', 'middleware' => ['project_token', 'track_metrics']], function () use ($router) {
     $router->get('{path:.*}', 'DynamicApiController@handleRequest');
     $router->post('{path:.*}', 'DynamicApiController@handleRequest');
     $router->put('{path:.*}', 'DynamicApiController@handleRequest');
