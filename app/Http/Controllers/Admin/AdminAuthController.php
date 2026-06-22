@@ -35,6 +35,10 @@ class AdminAuthController extends Controller
             return response()->json(['error' => 'Unauthorized'], 401);
         }
 
+        if (!$user->is_active) {
+            return response()->json(['error' => 'Your account is inactive. Contact the administrator.'], 403);
+        }
+
         $plainTextToken = Str::random(40);
         $hashedToken = hash('sha256', $plainTextToken);
 
@@ -82,5 +86,78 @@ class AdminAuthController extends Controller
         $cookie = new \Symfony\Component\HttpFoundation\Cookie('admin_token', null, \Carbon\Carbon::now()->subYears(5), '/', null, false, true);
 
         return response()->json(['message' => 'Logged out successfully'])->withCookie($cookie);
+    }
+
+    /**
+     * Auto-Cadastro (Registro)
+     *
+     * Cria um novo usuário comum, caso a configuração ALLOW_REGISTRATION esteja ativa.
+     */
+    public function register(Request $request)
+    {
+        if (env('ALLOW_REGISTRATION', false) != true && env('ALLOW_REGISTRATION', 'false') !== 'true') {
+            return response()->json(['error' => 'Registration is currently disabled.'], 403);
+        }
+
+        $this->validate($request, [
+            'name' => 'required|string|max:255',
+            'username' => 'required|string|max:255|unique:users',
+            'email' => 'required|string|email|max:255|unique:users',
+            'password' => 'required|string|min:6|confirmed',
+        ]);
+
+        $user = User::create([
+            'name' => $request->name,
+            'username' => $request->username,
+            'email' => $request->email,
+            'password' => Hash::make($request->password),
+            'is_admin' => false,
+            'is_active' => true
+        ]);
+
+        return response()->json($user, 201);
+    }
+
+    /**
+     * Atualizar Perfil
+     *
+     * Atualiza os dados básicos do próprio usuário logado.
+     * @authenticated
+     */
+    public function updateMe(Request $request)
+    {
+        $user = $request->user();
+
+        $this->validate($request, [
+            'name' => 'sometimes|required|string|max:255',
+            'email' => 'sometimes|required|string|email|max:255|unique:users,email,' . $user->id,
+        ]);
+
+        if ($request->has('name')) $user->name = $request->name;
+        if ($request->has('email')) $user->email = $request->email;
+
+        $user->save();
+
+        return response()->json($user);
+    }
+
+    /**
+     * Atualizar Senha do Perfil
+     *
+     * Atualiza a senha do próprio usuário logado.
+     * @authenticated
+     */
+    public function updateMyPassword(Request $request)
+    {
+        $user = $request->user();
+
+        $this->validate($request, [
+            'password' => 'required|string|min:6|confirmed'
+        ]);
+
+        $user->password = Hash::make($request->password);
+        $user->save();
+
+        return response()->json(['message' => 'Password updated successfully']);
     }
 }

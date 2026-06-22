@@ -16,7 +16,9 @@ class SystemSeeder extends Seeder
             [
                 'name' => 'Administrador',
                 'email' => 'admin@canarinho.local',
-                'password' => Hash::make('canarinho1234') // Password must be changed after deployment
+                'password' => Hash::make('canarinho1234'), // Password must be changed after deployment
+                'is_admin' => true,
+                'is_active' => true
             ]
         );
     }

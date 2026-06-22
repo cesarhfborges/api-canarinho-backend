@@ -19,7 +19,12 @@ class User extends Model implements AuthenticatableContract, AuthorizableContrac
      * @var string[]
      */
     protected $fillable = [
-        'name', 'email', 'username', 'password',
+        'name',
+        'email',
+        'username',
+        'password',
+        'is_active',
+        'is_admin'
     ];
 
     /**
@@ -32,6 +37,8 @@ class User extends Model implements AuthenticatableContract, AuthorizableContrac
     ];
 
     protected $casts = [
+        'is_active' => 'boolean',
+        'is_admin' => 'boolean',
         'created_at' => 'date:Y-m-d\TH:i:s',
         'updated_at' => 'date:Y-m-d\TH:i:s',
     ];
