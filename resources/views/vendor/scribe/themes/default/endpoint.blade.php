@@ -35,9 +35,10 @@
             <summary style="cursor: pointer;">
                 <small onclick="textContent = parentElement.parentElement.open ? 'Show headers' : 'Hide headers'">Show headers</small>
             </summary>
-            <pre><code class="language-http">@foreach($response->headers as $header => $value)
-{{ $header }}: {{ is_array($value) ? implode('; ', $value) : $value }}
-@endforeach </code></pre></details> @endif
+            <pre><code class="language-json">{
+@foreach($response->headers as $header => $value)
+    {{ $header }}: {{ is_array($value) ? implode('; ', $value) : $value }}
+@endforeach}</code></pre></details> @endif
         <pre>
 @if(is_string($response->content) && Str::startsWith($response->content, "<<binary>>"))
 <code>{!! u::trans("scribe::endpoint.responses.binary") !!} - {{ htmlentities(str_replace("<<binary>>", "", $response->content)) }}</code>
