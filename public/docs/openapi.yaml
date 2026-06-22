@@ -26,12 +26,12 @@ paths:
                 username:
                   type: string
                   description: ''
-                  example: nulla
+                  example: dolore
                   nullable: false
                 password:
                   type: string
                   description: ''
-                  example: iusto
+                  example: quos
                   nullable: false
               required:
                 - username
@@ -56,22 +56,22 @@ paths:
                 name:
                   type: string
                   description: 'Must not be greater than 255 characters.'
-                  example: znrjbiofpzpmx
+                  example: xqovulwkikdgcsjp
                   nullable: false
                 username:
                   type: string
                   description: 'Must not be greater than 255 characters.'
-                  example: mbviwxsvqelhsp
+                  example: oq
                   nullable: false
                 email:
                   type: string
                   description: 'Must be a valid email address. Must not be greater than 255 characters.'
-                  example: swaniawski.donny@example.org
+                  example: thora.schuster@example.net
                   nullable: false
                 password:
                   type: string
                   description: 'Must be at least 6 characters.'
-                  example: \V|RUqK<~V5uUq\
+                  example: '&J)/!y:^'
                   nullable: false
               required:
                 - name
@@ -127,7 +127,7 @@ paths:
                 name:
                   type: string
                   description: 'Must not be greater than 255 characters.'
-                  example: obasqlvju
+                  example: zz
                   nullable: false
                 email:
                   type: string
@@ -155,7 +155,7 @@ paths:
                 password:
                   type: string
                   description: 'Must be at least 6 characters.'
-                  example: '|!u4|5YXQT'
+                  example: ':*0g@n|yyhU*:>''DXR*\'
                   nullable: false
               required:
                 - password
@@ -198,12 +198,12 @@ paths:
                 name:
                   type: string
                   description: 'Must not be greater than 255 characters.'
-                  example: hmgnamxynfyemcxw
+                  example: b
                   nullable: false
                 slug:
                   type: string
                   description: 'Must not be greater than 255 characters.'
-                  example: cm
+                  example: bizhvbenhsbr
                   nullable: false
               required:
                 - name
@@ -247,12 +247,12 @@ paths:
                 name:
                   type: string
                   description: 'Must not be greater than 255 characters.'
-                  example: bpdvwmpzxeci
+                  example: nbu
                   nullable: false
                 slug:
                   type: string
                   description: 'Must not be greater than 255 characters.'
-                  example: vmvlkvdikmmmynldn
+                  example: akcj
                   nullable: false
               required:
                 - name
@@ -270,7 +270,7 @@ paths:
         in: path
         name: id
         description: ''
-        example: doloremque
+        example: molestiae
         required: true
         schema:
           type: string
@@ -313,12 +313,12 @@ paths:
                 name:
                   type: string
                   description: ''
-                  example: inventore
+                  example: natus
                   nullable: false
                 generator:
                   type: string
                   description: ''
-                  example: non
+                  example: voluptate
                   nullable: true
                 endpoints:
                   type: object
@@ -339,7 +339,7 @@ paths:
         in: path
         name: projectId
         description: ''
-        example: ab
+        example: ullam
         required: true
         schema:
           type: string
@@ -369,7 +369,7 @@ paths:
         in: path
         name: projectId
         description: ''
-        example: aperiam
+        example: aut
         required: true
         schema:
           type: string
@@ -377,7 +377,7 @@ paths:
         in: path
         name: id
         description: ''
-        example: autem
+        example: quae
         required: true
         schema:
           type: string
@@ -400,12 +400,12 @@ paths:
                 name:
                   type: string
                   description: ''
-                  example: aut
+                  example: autem
                   nullable: false
                 generator:
                   type: string
                   description: ''
-                  example: similique
+                  example: qui
                   nullable: true
                 endpoints:
                   type: object
@@ -434,7 +434,7 @@ paths:
         in: path
         name: id
         description: ''
-        example: placeat
+        example: nulla
         required: true
         schema:
           type: string
@@ -457,7 +457,7 @@ paths:
                 count:
                   type: integer
                   description: 'Must be at least 0. Must not be greater than 500.'
-                  example: 2
+                  example: 14
                   nullable: false
               required:
                 - count
@@ -466,7 +466,7 @@ paths:
         in: path
         name: projectId
         description: ''
-        example: illo
+        example: qui
         required: true
         schema:
           type: string
@@ -474,7 +474,7 @@ paths:
         in: path
         name: id
         description: ''
-        example: et
+        example: quis
         required: true
         schema:
           type: string
@@ -517,7 +517,7 @@ paths:
                 name:
                   type: string
                   description: ''
-                  example: et
+                  example: odio
                   nullable: false
               required:
                 - name
@@ -526,7 +526,7 @@ paths:
         in: path
         name: projectId
         description: ''
-        example: aliquid
+        example: debitis
         required: true
         schema:
           type: string
@@ -544,7 +544,7 @@ paths:
         in: path
         name: id
         description: ''
-        example: eaque
+        example: eius
         required: true
         schema:
           type: string
@@ -587,27 +587,27 @@ paths:
                 name:
                   type: string
                   description: 'Must not be greater than 255 characters.'
-                  example: nnfwxcgofhxyeq
+                  example: thrbpgsnft
                   nullable: false
                 username:
                   type: string
                   description: 'Must not be greater than 255 characters.'
-                  example: ejdvxygvun
+                  example: fyhekvefrymnntrrnja
                   nullable: false
                 email:
                   type: string
                   description: 'Must be a valid email address. Must not be greater than 255 characters.'
-                  example: rath.hertha@example.org
+                  example: citlalli.boehm@example.org
                   nullable: false
                 password:
                   type: string
                   description: 'Must be at least 6 characters.'
-                  example: 'o0EGW(G6y3]VTU+'
+                  example: 'P&&gaEcdD,Y*H6[c-q,'
                   nullable: false
                 is_admin:
                   type: boolean
                   description: ''
-                  example: false
+                  example: true
                   nullable: false
                 is_active:
                   type: boolean
@@ -658,7 +658,7 @@ paths:
                 name:
                   type: string
                   description: 'Must not be greater than 255 characters.'
-                  example: xwwxbrvyyoqxttahjczv
+                  example: dejrv
                   nullable: false
                 username:
                   type: string
@@ -673,7 +673,7 @@ paths:
                 is_admin:
                   type: boolean
                   description: ''
-                  example: true
+                  example: false
                   nullable: false
                 is_active:
                   type: boolean
@@ -695,7 +695,7 @@ paths:
         in: path
         name: id
         description: ''
-        example: vitae
+        example: autem
         required: true
         schema:
           type: string
@@ -718,7 +718,7 @@ paths:
                 password:
                   type: string
                   description: 'Must be at least 6 characters.'
-                  example: Ws\^KI
+                  example: 'coABB#~'
                   nullable: false
               required:
                 - password
@@ -727,7 +727,7 @@ paths:
         in: path
         name: id
         description: ''
-        example: aliquid
+        example: ab
         required: true
         schema:
           type: string
@@ -770,7 +770,7 @@ paths:
                 condition_type:
                   type: string
                   description: ''
-                  example: header
+                  example: query
                   nullable: false
                   enum:
                     - header
@@ -779,12 +779,12 @@ paths:
                 condition_key:
                   type: string
                   description: ''
-                  example: voluptas
+                  example: saepe
                   nullable: false
                 condition_operator:
                   type: string
                   description: ''
-                  example: not_equals
+                  example: equals
                   nullable: false
                   enum:
                     - equals
@@ -793,12 +793,12 @@ paths:
                 condition_value:
                   type: string
                   description: ''
-                  example: asperiores
+                  example: et
                   nullable: false
                 response_status:
                   type: integer
                   description: ''
-                  example: 8
+                  example: 3
                   nullable: false
                 response_body:
                   type: object
@@ -817,7 +817,7 @@ paths:
         in: path
         name: endpointId
         description: ''
-        example: dolorem
+        example: nam
         required: true
         schema:
           type: string
@@ -840,7 +840,7 @@ paths:
                 condition_type:
                   type: string
                   description: ''
-                  example: query
+                  example: body
                   nullable: false
                   enum:
                     - header
@@ -849,12 +849,12 @@ paths:
                 condition_key:
                   type: string
                   description: ''
-                  example: officiis
+                  example: sequi
                   nullable: false
                 condition_operator:
                   type: string
                   description: ''
-                  example: contains
+                  example: not_equals
                   nullable: false
                   enum:
                     - equals
@@ -863,12 +863,12 @@ paths:
                 condition_value:
                   type: string
                   description: ''
-                  example: qui
+                  example: quo
                   nullable: false
                 response_status:
                   type: integer
                   description: ''
-                  example: 4
+                  example: 7
                   nullable: false
                 response_body:
                   type: object
@@ -895,7 +895,7 @@ paths:
         in: path
         name: id
         description: ''
-        example: sint
+        example: perspiciatis
         required: true
         schema:
           type: string
@@ -962,7 +962,7 @@ paths:
         in: path
         name: username
         description: ''
-        example: eos
+        example: ducimus
         required: true
         schema:
           type: string
@@ -970,7 +970,7 @@ paths:
         in: path
         name: projectSlug
         description: ''
-        example: rerum
+        example: consequatur
         required: true
         schema:
           type: string
@@ -978,7 +978,7 @@ paths:
         in: path
         name: path
         description: ''
-        example: in
+        example: nesciunt
         required: true
         schema:
           type: string
@@ -1012,46 +1012,46 @@ paths:
         -
           in: query
           name: start
-          description: 'Data inicial (formato YYYY-MM-DD HH:MM:SS). Opcional (Padrão: 7 dias atrás).'
-          example: perferendis
-          required: false
+          description: 'Data inicial (formato YYYY-MM-DD HH:MM:SS)'
+          example: '2023-01-01'
+          required: true
           schema:
             type: string
-            description: 'Data inicial (formato YYYY-MM-DD HH:MM:SS). Opcional (Padrão: 7 dias atrás).'
-            example: perferendis
+            description: 'Data inicial (formato YYYY-MM-DD HH:MM:SS)'
+            example: '2023-01-01'
             nullable: false
         -
           in: query
           name: end
-          description: 'Data final (formato YYYY-MM-DD HH:MM:SS). Opcional (Padrão: agora).'
-          example: nostrum
-          required: false
+          description: 'Data final (formato YYYY-MM-DD HH:MM:SS)'
+          example: '2023-01-31'
+          required: true
           schema:
             type: string
-            description: 'Data final (formato YYYY-MM-DD HH:MM:SS). Opcional (Padrão: agora).'
-            example: nostrum
+            description: 'Data final (formato YYYY-MM-DD HH:MM:SS)'
+            example: '2023-01-31'
             nullable: false
         -
           in: query
           name: groupby
-          description: 'Agrupamento dos dados (hour, day, month). Opcional (Padrão: day).'
-          example: in
+          description: 'Agrupamento dos dados (hour, day, month)'
+          example: day
           required: false
           schema:
             type: string
-            description: 'Agrupamento dos dados (hour, day, month). Opcional (Padrão: day).'
-            example: in
+            description: 'Agrupamento dos dados (hour, day, month)'
+            example: day
             nullable: false
         -
           in: query
           name: endpoint_id
-          description: 'ID do endpoint para filtrar. Opcional.'
-          example: 8
+          description: 'ID do endpoint para filtrar'
+          example: 1
           required: false
           schema:
             type: integer
-            description: 'ID do endpoint para filtrar. Opcional.'
-            example: 8
+            description: 'ID do endpoint para filtrar'
+            example: 1
             nullable: false
       responses:
         401:
@@ -1084,7 +1084,7 @@ paths:
                 example:
                   status: ok
                   message: 'System is healthy'
-                  timestamp: 1782154070
+                  timestamp: 1782158341
                 properties:
                   status:
                     type: string
@@ -1094,7 +1094,7 @@ paths:
                     example: 'System is healthy'
                   timestamp:
                     type: integer
-                    example: 1782154070
+                    example: 1782158341
       tags:
         - Endpoints
       security: []

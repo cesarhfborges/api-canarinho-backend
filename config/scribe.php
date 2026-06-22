@@ -134,8 +134,11 @@ INTRO
     // Supported options are: bash, javascript, php, python
     // To add a language of your own, see https://scribe.knuckles.wtf/laravel/advanced/example-requests
     'example_languages' => [
-        'bash',
         'javascript',
+        'php',
+        'python',
+        'angular',
+        'bash'
     ],
 
     // Generate a Postman collection (v2.1.0) in addition to HTML docs.

@@ -50,14 +50,17 @@
             bottom: 20px;
             right: 20px;
             z-index: 999; /* Garante que fica por cima de tudo */
-            background-color: #2563eb;
+            background:linear-gradient(to bottom, #7892c2 5%, #476e9e 100%);
+            background-color:#7892c2;
             color: white;
-            border: none;
+            border: 4px solid #4e6096;
             cursor: pointer;
-            padding: 12px 18px;
-            border-radius: 30px;
-            font-size: 14px;
+            padding: 14px 14px 13px 15px;
+            border-radius: 35px;
+            font-size: 24px;
+            line-height: 20px;
             font-weight: bold;
+            text-shadow: 0px 1px 0px #283966;
             box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
 
             /* Efeito suave para aparecer e sumir */
@@ -104,7 +107,11 @@
         @include("scribe::themes.default.groups")
 
         {!! $append !!}
-        <button id="scrollTopBtn">⬆️ Topo</button>
+        <button id="scrollTopBtn">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-arrow-up-circle-fill" viewBox="0 0 16 16">
+                <path d="M16 8A8 8 0 1 0 0 8a8 8 0 0 0 16 0m-7.5 3.5a.5.5 0 0 1-1 0V5.707L5.354 7.854a.5.5 0 1 1-.708-.708l3-3a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1-.708.708L8.5 5.707z"></path>
+            </svg>
+        </button>
     </div>
     <div class="dark-box">
         @if(isset($metadata['example_languages']))
@@ -120,23 +127,24 @@
 <script>
     document.addEventListener("DOMContentLoaded", function() {
         const button = document.getElementById("scrollTopBtn");
+        if (window.scrollY > 300) {
+            button.classList.add("show");
+        } else {
+            button.classList.remove("show");
+        }
 
         if (button) {
-            // 1. Escuta a rolagem da janela global (window)
             window.addEventListener("scroll", function() {
-                // Verifica se a página rodou mais de 300px para baixo
                 if (window.scrollY > 300) {
                     button.classList.add("show");
                 } else {
                     button.classList.remove("show");
                 }
             });
-
-            // 2. Faz a janela inteira subir de forma suave
             button.addEventListener("click", function() {
                 window.scrollTo({
                     top: 0,
-                    behavior: "smooth" // Rolagem suave nativa do navegador
+                    behavior: "smooth"
                 });
             });
         }

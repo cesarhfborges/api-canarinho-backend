@@ -22,8 +22,11 @@
 
     <style id="language-style">
         /* starts out as display none and is replaced with js later  */
-                    body .content .bash-example code { display: none; }
                     body .content .javascript-example code { display: none; }
+                    body .content .php-example code { display: none; }
+                    body .content .python-example code { display: none; }
+                    body .content .angular-example code { display: none; }
+                    body .content .bash-example code { display: none; }
             </style>
 
     <script>
@@ -42,14 +45,17 @@
             bottom: 20px;
             right: 20px;
             z-index: 999; /* Garante que fica por cima de tudo */
-            background-color: #2563eb;
+            background:linear-gradient(to bottom, #7892c2 5%, #476e9e 100%);
+            background-color:#7892c2;
             color: white;
-            border: none;
+            border: 4px solid #4e6096;
             cursor: pointer;
-            padding: 12px 18px;
-            border-radius: 30px;
-            font-size: 14px;
+            padding: 14px 14px 13px 15px;
+            border-radius: 35px;
+            font-size: 24px;
+            line-height: 20px;
             font-weight: bold;
+            text-shadow: 0px 1px 0px #283966;
             box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
 
             /* Efeito suave para aparecer e sumir */
@@ -70,7 +76,7 @@
     </style>
 </head>
 
-<body data-languages="[&quot;bash&quot;,&quot;javascript&quot;]">
+<body data-languages="[&quot;javascript&quot;,&quot;php&quot;,&quot;python&quot;,&quot;angular&quot;,&quot;bash&quot;]">
 
 <a href="#" id="nav-button">
     <span>
@@ -82,8 +88,11 @@
             <img src="../imgs/logotipo.png" alt="logo" class="logo" style="padding-top: 10px;width: 90px;margin: 0 auto;" width="100%"/>
     
             <div class="lang-selector">
-                                            <button type="button" class="lang-button" data-language-name="bash">bash</button>
                                             <button type="button" class="lang-button" data-language-name="javascript">javascript</button>
+                                            <button type="button" class="lang-button" data-language-name="php">php</button>
+                                            <button type="button" class="lang-button" data-language-name="python">python</button>
+                                            <button type="button" class="lang-button" data-language-name="angular">angular</button>
+                                            <button type="button" class="lang-button" data-language-name="bash">bash</button>
                     </div>
     
     <div class="search">
@@ -297,7 +306,7 @@
     </ul>
 
     <ul class="toc-footer" id="last-updated">
-        <li>Últ atualização: 22/06/2026 às 15:47</li>
+        <li>Últ atualização: 22/06/2026 às 16:59</li>
     </ul>
 </div>
 
@@ -342,18 +351,6 @@ Você pode alterar a linguagem utilizada através das abas no canto superior dir
 <blockquote>Example request:</blockquote>
 
 
-<div class="bash-example">
-    <pre><code class="language-bash">curl --request POST \
-    "http://localhost:8000/api/admin/login" \
-    --header "Content-Type: application/json" \
-    --header "Accept: application/json" \
-    --data "{
-    \"username\": \"nulla\",
-    \"password\": \"iusto\"
-}"
-</code></pre></div>
-
-
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
     "http://localhost:8000/api/admin/login"
@@ -365,8 +362,8 @@ const headers = {
 };
 
 let body = {
-    "username": "nulla",
-    "password": "iusto"
+    "username": "dolore",
+    "password": "quos"
 };
 
 fetch(url, {
@@ -374,6 +371,97 @@ fetch(url, {
     headers,
     body: JSON.stringify(body),
 }).then(response =&gt; response.json());</code></pre></div>
+
+
+<div class="php-example">
+    <pre><code class="language-php">$client = new \GuzzleHttp\Client();
+$url = 'http://localhost:8000/api/admin/login';
+$response = $client-&gt;post(
+    $url,
+    [
+        'headers' =&gt; [
+            'Content-Type' =&gt; 'application/json',
+            'Accept' =&gt; 'application/json',
+        ],
+        'json' =&gt; [
+            'username' =&gt; 'dolore',
+            'password' =&gt; 'quos',
+        ],
+    ]
+);
+$body = $response-&gt;getBody();
+print_r(json_decode((string) $body));</code></pre></div>
+
+
+<div class="python-example">
+    <pre><code class="language-python">import requests
+import json
+
+url = 'http://localhost:8000/api/admin/login'
+payload = {
+    "username": "dolore",
+    "password": "quos"
+}
+headers = {
+  'Content-Type': 'application/json',
+  'Accept': 'application/json'
+}
+
+response = requests.request('POST', url, headers=headers, json=payload)
+response.json()</code></pre></div>
+
+
+<div class="angular-example">
+    <pre><code class="language-typescript">import { Injectable, inject } from '@angular/core';
+import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
+import { Observable } from 'rxjs';
+
+@Injectable({
+    providedIn: 'root'
+})
+export class ApiService {
+
+    private readonly http = inject(HttpClient);
+
+    public request(): Observable&lt;any&gt; {
+        const url = 'http://localhost:8000/api/admin/login';
+
+        const headers = new HttpHeaders({
+            'Content-Type': 'application/json',
+            'Accept': 'application/json',
+        });
+
+        const params = new HttpParams();
+
+        const body = {
+            'username': 'dolore',
+            'password': 'quos',
+        }
+
+        return this.http.request&lt;any&gt;(
+           'POST',
+            url,
+            {
+                headers,
+                params,
+                body,
+                responseType: 'json'
+            }
+        );
+    }
+}</code></pre></div>
+
+
+<div class="bash-example">
+    <pre><code class="language-bash">curl --request POST \
+    "http://localhost:8000/api/admin/login" \
+    --header "Content-Type: application/json" \
+    --header "Accept: application/json" \
+    --data "{
+    \"username\": \"dolore\",
+    \"password\": \"quos\"
+}"
+</code></pre></div>
 
 </span>
 
@@ -455,10 +543,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="username"                data-endpoint="POSTapi-admin-login"
-               value="nulla"
+               value="dolore"
                data-component="body">
     <br>
-<p>Example: <code>nulla</code></p>
+<p>Example: <code>dolore</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>password</code></b>&nbsp;&nbsp;
@@ -466,10 +554,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="password"                data-endpoint="POSTapi-admin-login"
-               value="iusto"
+               value="quos"
                data-component="body">
     <br>
-<p>Example: <code>iusto</code></p>
+<p>Example: <code>quos</code></p>
         </div>
         </form>
 
@@ -484,20 +572,6 @@ You can check the Dev Tools console for debugging information.</code></pre>
 <blockquote>Example request:</blockquote>
 
 
-<div class="bash-example">
-    <pre><code class="language-bash">curl --request POST \
-    "http://localhost:8000/api/admin/register" \
-    --header "Content-Type: application/json" \
-    --header "Accept: application/json" \
-    --data "{
-    \"name\": \"znrjbiofpzpmx\",
-    \"username\": \"mbviwxsvqelhsp\",
-    \"email\": \"swaniawski.donny@example.org\",
-    \"password\": \"\\\\V|RUqK&lt;~V5uUq\\\\\"
-}"
-</code></pre></div>
-
-
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
     "http://localhost:8000/api/admin/register"
@@ -509,10 +583,10 @@ const headers = {
 };
 
 let body = {
-    "name": "znrjbiofpzpmx",
-    "username": "mbviwxsvqelhsp",
-    "email": "swaniawski.donny@example.org",
-    "password": "\\V|RUqK&lt;~V5uUq\\"
+    "name": "xqovulwkikdgcsjp",
+    "username": "oq",
+    "email": "thora.schuster@example.net",
+    "password": "&amp;J)\/!y:^"
 };
 
 fetch(url, {
@@ -520,6 +594,105 @@ fetch(url, {
     headers,
     body: JSON.stringify(body),
 }).then(response =&gt; response.json());</code></pre></div>
+
+
+<div class="php-example">
+    <pre><code class="language-php">$client = new \GuzzleHttp\Client();
+$url = 'http://localhost:8000/api/admin/register';
+$response = $client-&gt;post(
+    $url,
+    [
+        'headers' =&gt; [
+            'Content-Type' =&gt; 'application/json',
+            'Accept' =&gt; 'application/json',
+        ],
+        'json' =&gt; [
+            'name' =&gt; 'xqovulwkikdgcsjp',
+            'username' =&gt; 'oq',
+            'email' =&gt; 'thora.schuster@example.net',
+            'password' =&gt; '&amp;J)/!y:^',
+        ],
+    ]
+);
+$body = $response-&gt;getBody();
+print_r(json_decode((string) $body));</code></pre></div>
+
+
+<div class="python-example">
+    <pre><code class="language-python">import requests
+import json
+
+url = 'http://localhost:8000/api/admin/register'
+payload = {
+    "name": "xqovulwkikdgcsjp",
+    "username": "oq",
+    "email": "thora.schuster@example.net",
+    "password": "&amp;J)\/!y:^"
+}
+headers = {
+  'Content-Type': 'application/json',
+  'Accept': 'application/json'
+}
+
+response = requests.request('POST', url, headers=headers, json=payload)
+response.json()</code></pre></div>
+
+
+<div class="angular-example">
+    <pre><code class="language-typescript">import { Injectable, inject } from '@angular/core';
+import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
+import { Observable } from 'rxjs';
+
+@Injectable({
+    providedIn: 'root'
+})
+export class ApiService {
+
+    private readonly http = inject(HttpClient);
+
+    public request(): Observable&lt;any&gt; {
+        const url = 'http://localhost:8000/api/admin/register';
+
+        const headers = new HttpHeaders({
+            'Content-Type': 'application/json',
+            'Accept': 'application/json',
+        });
+
+        const params = new HttpParams();
+
+        const body = {
+            'name': 'xqovulwkikdgcsjp',
+            'username': 'oq',
+            'email': 'thora.schuster@example.net',
+            'password': '&amp;amp;J)/!y:^',
+        }
+
+        return this.http.request&lt;any&gt;(
+           'POST',
+            url,
+            {
+                headers,
+                params,
+                body,
+                responseType: 'json'
+            }
+        );
+    }
+}</code></pre></div>
+
+
+<div class="bash-example">
+    <pre><code class="language-bash">curl --request POST \
+    "http://localhost:8000/api/admin/register" \
+    --header "Content-Type: application/json" \
+    --header "Accept: application/json" \
+    --data "{
+    \"name\": \"xqovulwkikdgcsjp\",
+    \"username\": \"oq\",
+    \"email\": \"thora.schuster@example.net\",
+    \"password\": \"&amp;J)\\/!y:^\"
+}"
+</code></pre></div>
 
 </span>
 
@@ -601,10 +774,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="name"                data-endpoint="POSTapi-admin-register"
-               value="znrjbiofpzpmx"
+               value="xqovulwkikdgcsjp"
                data-component="body">
     <br>
-<p>Must not be greater than 255 characters. Example: <code>znrjbiofpzpmx</code></p>
+<p>Must not be greater than 255 characters. Example: <code>xqovulwkikdgcsjp</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>username</code></b>&nbsp;&nbsp;
@@ -612,10 +785,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="username"                data-endpoint="POSTapi-admin-register"
-               value="mbviwxsvqelhsp"
+               value="oq"
                data-component="body">
     <br>
-<p>Must not be greater than 255 characters. Example: <code>mbviwxsvqelhsp</code></p>
+<p>Must not be greater than 255 characters. Example: <code>oq</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>email</code></b>&nbsp;&nbsp;
@@ -623,10 +796,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="email"                data-endpoint="POSTapi-admin-register"
-               value="swaniawski.donny@example.org"
+               value="thora.schuster@example.net"
                data-component="body">
     <br>
-<p>Must be a valid email address. Must not be greater than 255 characters. Example: <code>swaniawski.donny@example.org</code></p>
+<p>Must be a valid email address. Must not be greater than 255 characters. Example: <code>thora.schuster@example.net</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>password</code></b>&nbsp;&nbsp;
@@ -634,10 +807,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="password"                data-endpoint="POSTapi-admin-register"
-               value="\V|RUqK<~V5uUq\"
+               value="&J)/!y:^"
                data-component="body">
     <br>
-<p>Must be at least 6 characters. Example: <code>\V|RUqK&lt;~V5uUq\</code></p>
+<p>Must be at least 6 characters. Example: <code>&amp;J)/!y:^</code></p>
         </div>
         </form>
 
@@ -651,13 +824,6 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <span id="example-requests-POSTapi-admin-logout">
 <blockquote>Example request:</blockquote>
-
-
-<div class="bash-example">
-    <pre><code class="language-bash">curl --request POST \
-    "http://localhost:8000/api/admin/logout" \
-    --header "Content-Type: application/json" \
-    --header "Accept: application/json"</code></pre></div>
 
 
 <div class="javascript-example">
@@ -674,6 +840,80 @@ fetch(url, {
     method: "POST",
     headers,
 }).then(response =&gt; response.json());</code></pre></div>
+
+
+<div class="php-example">
+    <pre><code class="language-php">$client = new \GuzzleHttp\Client();
+$url = 'http://localhost:8000/api/admin/logout';
+$response = $client-&gt;post(
+    $url,
+    [
+        'headers' =&gt; [
+            'Content-Type' =&gt; 'application/json',
+            'Accept' =&gt; 'application/json',
+        ],
+    ]
+);
+$body = $response-&gt;getBody();
+print_r(json_decode((string) $body));</code></pre></div>
+
+
+<div class="python-example">
+    <pre><code class="language-python">import requests
+import json
+
+url = 'http://localhost:8000/api/admin/logout'
+headers = {
+  'Content-Type': 'application/json',
+  'Accept': 'application/json'
+}
+
+response = requests.request('POST', url, headers=headers)
+response.json()</code></pre></div>
+
+
+<div class="angular-example">
+    <pre><code class="language-typescript">import { Injectable, inject } from '@angular/core';
+import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
+import { Observable } from 'rxjs';
+
+@Injectable({
+    providedIn: 'root'
+})
+export class ApiService {
+
+    private readonly http = inject(HttpClient);
+
+    public request(): Observable&lt;any&gt; {
+        const url = 'http://localhost:8000/api/admin/logout';
+
+        const headers = new HttpHeaders({
+            'Content-Type': 'application/json',
+            'Accept': 'application/json',
+        });
+
+        const params = new HttpParams();
+
+        const body = null;
+
+        return this.http.request&lt;any&gt;(
+           'POST',
+            url,
+            {
+                headers,
+                params,
+                responseType: 'json'
+            }
+        );
+    }
+}</code></pre></div>
+
+
+<div class="bash-example">
+    <pre><code class="language-bash">curl --request POST \
+    "http://localhost:8000/api/admin/logout" \
+    --header "Content-Type: application/json" \
+    --header "Accept: application/json"</code></pre></div>
 
 </span>
 
@@ -762,13 +1002,6 @@ You can check the Dev Tools console for debugging information.</code></pre>
 <blockquote>Example request:</blockquote>
 
 
-<div class="bash-example">
-    <pre><code class="language-bash">curl --request GET \
-    --get "http://localhost:8000/api/admin/me" \
-    --header "Content-Type: application/json" \
-    --header "Accept: application/json"</code></pre></div>
-
-
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
     "http://localhost:8000/api/admin/me"
@@ -784,23 +1017,101 @@ fetch(url, {
     headers,
 }).then(response =&gt; response.json());</code></pre></div>
 
+
+<div class="php-example">
+    <pre><code class="language-php">$client = new \GuzzleHttp\Client();
+$url = 'http://localhost:8000/api/admin/me';
+$response = $client-&gt;get(
+    $url,
+    [
+        'headers' =&gt; [
+            'Content-Type' =&gt; 'application/json',
+            'Accept' =&gt; 'application/json',
+        ],
+    ]
+);
+$body = $response-&gt;getBody();
+print_r(json_decode((string) $body));</code></pre></div>
+
+
+<div class="python-example">
+    <pre><code class="language-python">import requests
+import json
+
+url = 'http://localhost:8000/api/admin/me'
+headers = {
+  'Content-Type': 'application/json',
+  'Accept': 'application/json'
+}
+
+response = requests.request('GET', url, headers=headers)
+response.json()</code></pre></div>
+
+
+<div class="angular-example">
+    <pre><code class="language-typescript">import { Injectable, inject } from '@angular/core';
+import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
+import { Observable } from 'rxjs';
+
+@Injectable({
+    providedIn: 'root'
+})
+export class ApiService {
+
+    private readonly http = inject(HttpClient);
+
+    public request(): Observable&lt;any&gt; {
+        const url = 'http://localhost:8000/api/admin/me';
+
+        const headers = new HttpHeaders({
+            'Content-Type': 'application/json',
+            'Accept': 'application/json',
+        });
+
+        const params = new HttpParams();
+
+        const body = null;
+
+        return this.http.request&lt;any&gt;(
+           'GET',
+            url,
+            {
+                headers,
+                params,
+                responseType: 'json'
+            }
+        );
+    }
+}</code></pre></div>
+
+
+<div class="bash-example">
+    <pre><code class="language-bash">curl --request GET \
+    --get "http://localhost:8000/api/admin/me" \
+    --header "Content-Type: application/json" \
+    --header "Accept: application/json"</code></pre></div>
+
 </span>
 
 <span id="example-responses-GETapi-admin-me">
             <blockquote>
             <p>Example response (401):</p>
         </blockquote>
-                <details class="annotation">
-            <summary style="cursor: pointer;">
-                <small onclick="textContent = parentElement.parentElement.open ? 'Show headers' : 'Hide headers'">Show headers</small>
-            </summary>
-            <pre><code class="language-json">{
-    cache-control: no-cache, private
-    content-type: application/json
-    x-ratelimit-limit: 2000
-    x-ratelimit-remaining: 1871
-    vary: Origin
-}</code></pre></details>         <pre>
+                    <details class="annotation">
+                <summary style="cursor: pointer;">
+                    <small onclick="textContent = parentElement.parentElement.open ? 'Show headers' : 'Hide headers'">Show headers</small>
+                </summary>
+                <pre>
+                    <code class="language-json">{
+    "cache-control": "no-cache, private",
+    "content-type": "application/json",
+    "x-ratelimit-limit": "2000",
+    "x-ratelimit-remaining": "1731",
+    "vary": "Origin"
+}</code>
+                </pre>
+            </details>
+                    <pre>
 
 <code class="language-json" style="max-height: 300px;">{
     &quot;error&quot;: &quot;Unauthorized.&quot;
@@ -890,17 +1201,6 @@ You can check the Dev Tools console for debugging information.</code></pre>
 <blockquote>Example request:</blockquote>
 
 
-<div class="bash-example">
-    <pre><code class="language-bash">curl --request PUT \
-    "http://localhost:8000/api/admin/me" \
-    --header "Content-Type: application/json" \
-    --header "Accept: application/json" \
-    --data "{
-    \"name\": \"obasqlvju\"
-}"
-</code></pre></div>
-
-
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
     "http://localhost:8000/api/admin/me"
@@ -912,7 +1212,7 @@ const headers = {
 };
 
 let body = {
-    "name": "obasqlvju"
+    "name": "zz"
 };
 
 fetch(url, {
@@ -920,6 +1220,93 @@ fetch(url, {
     headers,
     body: JSON.stringify(body),
 }).then(response =&gt; response.json());</code></pre></div>
+
+
+<div class="php-example">
+    <pre><code class="language-php">$client = new \GuzzleHttp\Client();
+$url = 'http://localhost:8000/api/admin/me';
+$response = $client-&gt;put(
+    $url,
+    [
+        'headers' =&gt; [
+            'Content-Type' =&gt; 'application/json',
+            'Accept' =&gt; 'application/json',
+        ],
+        'json' =&gt; [
+            'name' =&gt; 'zz',
+        ],
+    ]
+);
+$body = $response-&gt;getBody();
+print_r(json_decode((string) $body));</code></pre></div>
+
+
+<div class="python-example">
+    <pre><code class="language-python">import requests
+import json
+
+url = 'http://localhost:8000/api/admin/me'
+payload = {
+    "name": "zz"
+}
+headers = {
+  'Content-Type': 'application/json',
+  'Accept': 'application/json'
+}
+
+response = requests.request('PUT', url, headers=headers, json=payload)
+response.json()</code></pre></div>
+
+
+<div class="angular-example">
+    <pre><code class="language-typescript">import { Injectable, inject } from '@angular/core';
+import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
+import { Observable } from 'rxjs';
+
+@Injectable({
+    providedIn: 'root'
+})
+export class ApiService {
+
+    private readonly http = inject(HttpClient);
+
+    public request(): Observable&lt;any&gt; {
+        const url = 'http://localhost:8000/api/admin/me';
+
+        const headers = new HttpHeaders({
+            'Content-Type': 'application/json',
+            'Accept': 'application/json',
+        });
+
+        const params = new HttpParams();
+
+        const body = {
+            'name': 'zz',
+        }
+
+        return this.http.request&lt;any&gt;(
+           'PUT',
+            url,
+            {
+                headers,
+                params,
+                body,
+                responseType: 'json'
+            }
+        );
+    }
+}</code></pre></div>
+
+
+<div class="bash-example">
+    <pre><code class="language-bash">curl --request PUT \
+    "http://localhost:8000/api/admin/me" \
+    --header "Content-Type: application/json" \
+    --header "Accept: application/json" \
+    --data "{
+    \"name\": \"zz\"
+}"
+</code></pre></div>
 
 </span>
 
@@ -1001,10 +1388,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="name"                data-endpoint="PUTapi-admin-me"
-               value="obasqlvju"
+               value="zz"
                data-component="body">
     <br>
-<p>Must not be greater than 255 characters. Example: <code>obasqlvju</code></p>
+<p>Must not be greater than 255 characters. Example: <code>zz</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>email</code></b>&nbsp;&nbsp;
@@ -1031,17 +1418,6 @@ You can check the Dev Tools console for debugging information.</code></pre>
 <blockquote>Example request:</blockquote>
 
 
-<div class="bash-example">
-    <pre><code class="language-bash">curl --request PUT \
-    "http://localhost:8000/api/admin/me/password" \
-    --header "Content-Type: application/json" \
-    --header "Accept: application/json" \
-    --data "{
-    \"password\": \"|!u4|5YXQT\"
-}"
-</code></pre></div>
-
-
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
     "http://localhost:8000/api/admin/me/password"
@@ -1053,7 +1429,7 @@ const headers = {
 };
 
 let body = {
-    "password": "|!u4|5YXQT"
+    "password": ":*0g@n|yyhU*:&gt;'DXR*\\"
 };
 
 fetch(url, {
@@ -1061,6 +1437,93 @@ fetch(url, {
     headers,
     body: JSON.stringify(body),
 }).then(response =&gt; response.json());</code></pre></div>
+
+
+<div class="php-example">
+    <pre><code class="language-php">$client = new \GuzzleHttp\Client();
+$url = 'http://localhost:8000/api/admin/me/password';
+$response = $client-&gt;put(
+    $url,
+    [
+        'headers' =&gt; [
+            'Content-Type' =&gt; 'application/json',
+            'Accept' =&gt; 'application/json',
+        ],
+        'json' =&gt; [
+            'password' =&gt; ':*0g@n|yyhU*:&gt;\'DXR*\\',
+        ],
+    ]
+);
+$body = $response-&gt;getBody();
+print_r(json_decode((string) $body));</code></pre></div>
+
+
+<div class="python-example">
+    <pre><code class="language-python">import requests
+import json
+
+url = 'http://localhost:8000/api/admin/me/password'
+payload = {
+    "password": ":*0g@n|yyhU*:&gt;'DXR*\\"
+}
+headers = {
+  'Content-Type': 'application/json',
+  'Accept': 'application/json'
+}
+
+response = requests.request('PUT', url, headers=headers, json=payload)
+response.json()</code></pre></div>
+
+
+<div class="angular-example">
+    <pre><code class="language-typescript">import { Injectable, inject } from '@angular/core';
+import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
+import { Observable } from 'rxjs';
+
+@Injectable({
+    providedIn: 'root'
+})
+export class ApiService {
+
+    private readonly http = inject(HttpClient);
+
+    public request(): Observable&lt;any&gt; {
+        const url = 'http://localhost:8000/api/admin/me/password';
+
+        const headers = new HttpHeaders({
+            'Content-Type': 'application/json',
+            'Accept': 'application/json',
+        });
+
+        const params = new HttpParams();
+
+        const body = {
+            'password': ':*0g@n|yyhU*:&amp;gt;&amp;#039;DXR*\',
+        }
+
+        return this.http.request&lt;any&gt;(
+           'PUT',
+            url,
+            {
+                headers,
+                params,
+                body,
+                responseType: 'json'
+            }
+        );
+    }
+}</code></pre></div>
+
+
+<div class="bash-example">
+    <pre><code class="language-bash">curl --request PUT \
+    "http://localhost:8000/api/admin/me/password" \
+    --header "Content-Type: application/json" \
+    --header "Accept: application/json" \
+    --data "{
+    \"password\": \":*0g@n|yyhU*:&gt;\'DXR*\\\\\"
+}"
+</code></pre></div>
 
 </span>
 
@@ -1142,10 +1605,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="password"                data-endpoint="PUTapi-admin-me-password"
-               value="|!u4|5YXQT"
+               value=":*0g@n|yyhU*:>'DXR*\"
                data-component="body">
     <br>
-<p>Must be at least 6 characters. Example: <code>|!u4|5YXQT</code></p>
+<p>Must be at least 6 characters. Example: <code>:*0g@n|yyhU*:&gt;'DXR*\</code></p>
         </div>
         </form>
 
@@ -1165,13 +1628,6 @@ You can check the Dev Tools console for debugging information.</code></pre>
 <blockquote>Example request:</blockquote>
 
 
-<div class="bash-example">
-    <pre><code class="language-bash">curl --request GET \
-    --get "http://localhost:8000/api/admin/projects" \
-    --header "Content-Type: application/json" \
-    --header "Accept: application/json"</code></pre></div>
-
-
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
     "http://localhost:8000/api/admin/projects"
@@ -1187,23 +1643,101 @@ fetch(url, {
     headers,
 }).then(response =&gt; response.json());</code></pre></div>
 
+
+<div class="php-example">
+    <pre><code class="language-php">$client = new \GuzzleHttp\Client();
+$url = 'http://localhost:8000/api/admin/projects';
+$response = $client-&gt;get(
+    $url,
+    [
+        'headers' =&gt; [
+            'Content-Type' =&gt; 'application/json',
+            'Accept' =&gt; 'application/json',
+        ],
+    ]
+);
+$body = $response-&gt;getBody();
+print_r(json_decode((string) $body));</code></pre></div>
+
+
+<div class="python-example">
+    <pre><code class="language-python">import requests
+import json
+
+url = 'http://localhost:8000/api/admin/projects'
+headers = {
+  'Content-Type': 'application/json',
+  'Accept': 'application/json'
+}
+
+response = requests.request('GET', url, headers=headers)
+response.json()</code></pre></div>
+
+
+<div class="angular-example">
+    <pre><code class="language-typescript">import { Injectable, inject } from '@angular/core';
+import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
+import { Observable } from 'rxjs';
+
+@Injectable({
+    providedIn: 'root'
+})
+export class ApiService {
+
+    private readonly http = inject(HttpClient);
+
+    public request(): Observable&lt;any&gt; {
+        const url = 'http://localhost:8000/api/admin/projects';
+
+        const headers = new HttpHeaders({
+            'Content-Type': 'application/json',
+            'Accept': 'application/json',
+        });
+
+        const params = new HttpParams();
+
+        const body = null;
+
+        return this.http.request&lt;any&gt;(
+           'GET',
+            url,
+            {
+                headers,
+                params,
+                responseType: 'json'
+            }
+        );
+    }
+}</code></pre></div>
+
+
+<div class="bash-example">
+    <pre><code class="language-bash">curl --request GET \
+    --get "http://localhost:8000/api/admin/projects" \
+    --header "Content-Type: application/json" \
+    --header "Accept: application/json"</code></pre></div>
+
 </span>
 
 <span id="example-responses-GETapi-admin-projects">
             <blockquote>
             <p>Example response (401):</p>
         </blockquote>
-                <details class="annotation">
-            <summary style="cursor: pointer;">
-                <small onclick="textContent = parentElement.parentElement.open ? 'Show headers' : 'Hide headers'">Show headers</small>
-            </summary>
-            <pre><code class="language-json">{
-    cache-control: no-cache, private
-    content-type: application/json
-    x-ratelimit-limit: 2000
-    x-ratelimit-remaining: 1866
-    vary: Origin
-}</code></pre></details>         <pre>
+                    <details class="annotation">
+                <summary style="cursor: pointer;">
+                    <small onclick="textContent = parentElement.parentElement.open ? 'Show headers' : 'Hide headers'">Show headers</small>
+                </summary>
+                <pre>
+                    <code class="language-json">{
+    "cache-control": "no-cache, private",
+    "content-type": "application/json",
+    "x-ratelimit-limit": "2000",
+    "x-ratelimit-remaining": "1726",
+    "vary": "Origin"
+}</code>
+                </pre>
+            </details>
+                    <pre>
 
 <code class="language-json" style="max-height: 300px;">{
     &quot;error&quot;: &quot;Unauthorized.&quot;
@@ -1293,18 +1827,6 @@ You can check the Dev Tools console for debugging information.</code></pre>
 <blockquote>Example request:</blockquote>
 
 
-<div class="bash-example">
-    <pre><code class="language-bash">curl --request POST \
-    "http://localhost:8000/api/admin/projects" \
-    --header "Content-Type: application/json" \
-    --header "Accept: application/json" \
-    --data "{
-    \"name\": \"hmgnamxynfyemcxw\",
-    \"slug\": \"cm\"
-}"
-</code></pre></div>
-
-
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
     "http://localhost:8000/api/admin/projects"
@@ -1316,8 +1838,8 @@ const headers = {
 };
 
 let body = {
-    "name": "hmgnamxynfyemcxw",
-    "slug": "cm"
+    "name": "b",
+    "slug": "bizhvbenhsbr"
 };
 
 fetch(url, {
@@ -1325,6 +1847,97 @@ fetch(url, {
     headers,
     body: JSON.stringify(body),
 }).then(response =&gt; response.json());</code></pre></div>
+
+
+<div class="php-example">
+    <pre><code class="language-php">$client = new \GuzzleHttp\Client();
+$url = 'http://localhost:8000/api/admin/projects';
+$response = $client-&gt;post(
+    $url,
+    [
+        'headers' =&gt; [
+            'Content-Type' =&gt; 'application/json',
+            'Accept' =&gt; 'application/json',
+        ],
+        'json' =&gt; [
+            'name' =&gt; 'b',
+            'slug' =&gt; 'bizhvbenhsbr',
+        ],
+    ]
+);
+$body = $response-&gt;getBody();
+print_r(json_decode((string) $body));</code></pre></div>
+
+
+<div class="python-example">
+    <pre><code class="language-python">import requests
+import json
+
+url = 'http://localhost:8000/api/admin/projects'
+payload = {
+    "name": "b",
+    "slug": "bizhvbenhsbr"
+}
+headers = {
+  'Content-Type': 'application/json',
+  'Accept': 'application/json'
+}
+
+response = requests.request('POST', url, headers=headers, json=payload)
+response.json()</code></pre></div>
+
+
+<div class="angular-example">
+    <pre><code class="language-typescript">import { Injectable, inject } from '@angular/core';
+import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
+import { Observable } from 'rxjs';
+
+@Injectable({
+    providedIn: 'root'
+})
+export class ApiService {
+
+    private readonly http = inject(HttpClient);
+
+    public request(): Observable&lt;any&gt; {
+        const url = 'http://localhost:8000/api/admin/projects';
+
+        const headers = new HttpHeaders({
+            'Content-Type': 'application/json',
+            'Accept': 'application/json',
+        });
+
+        const params = new HttpParams();
+
+        const body = {
+            'name': 'b',
+            'slug': 'bizhvbenhsbr',
+        }
+
+        return this.http.request&lt;any&gt;(
+           'POST',
+            url,
+            {
+                headers,
+                params,
+                body,
+                responseType: 'json'
+            }
+        );
+    }
+}</code></pre></div>
+
+
+<div class="bash-example">
+    <pre><code class="language-bash">curl --request POST \
+    "http://localhost:8000/api/admin/projects" \
+    --header "Content-Type: application/json" \
+    --header "Accept: application/json" \
+    --data "{
+    \"name\": \"b\",
+    \"slug\": \"bizhvbenhsbr\"
+}"
+</code></pre></div>
 
 </span>
 
@@ -1406,10 +2019,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="name"                data-endpoint="POSTapi-admin-projects"
-               value="hmgnamxynfyemcxw"
+               value="b"
                data-component="body">
     <br>
-<p>Must not be greater than 255 characters. Example: <code>hmgnamxynfyemcxw</code></p>
+<p>Must not be greater than 255 characters. Example: <code>b</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>slug</code></b>&nbsp;&nbsp;
@@ -1417,10 +2030,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="slug"                data-endpoint="POSTapi-admin-projects"
-               value="cm"
+               value="bizhvbenhsbr"
                data-component="body">
     <br>
-<p>Must not be greater than 255 characters. Example: <code>cm</code></p>
+<p>Must not be greater than 255 characters. Example: <code>bizhvbenhsbr</code></p>
         </div>
         </form>
 
@@ -1436,16 +2049,9 @@ You can check the Dev Tools console for debugging information.</code></pre>
 <blockquote>Example request:</blockquote>
 
 
-<div class="bash-example">
-    <pre><code class="language-bash">curl --request GET \
-    --get "http://localhost:8000/api/admin/projects/doloremque" \
-    --header "Content-Type: application/json" \
-    --header "Accept: application/json"</code></pre></div>
-
-
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://localhost:8000/api/admin/projects/doloremque"
+    "http://localhost:8000/api/admin/projects/molestiae"
 );
 
 const headers = {
@@ -1458,23 +2064,101 @@ fetch(url, {
     headers,
 }).then(response =&gt; response.json());</code></pre></div>
 
+
+<div class="php-example">
+    <pre><code class="language-php">$client = new \GuzzleHttp\Client();
+$url = 'http://localhost:8000/api/admin/projects/molestiae';
+$response = $client-&gt;get(
+    $url,
+    [
+        'headers' =&gt; [
+            'Content-Type' =&gt; 'application/json',
+            'Accept' =&gt; 'application/json',
+        ],
+    ]
+);
+$body = $response-&gt;getBody();
+print_r(json_decode((string) $body));</code></pre></div>
+
+
+<div class="python-example">
+    <pre><code class="language-python">import requests
+import json
+
+url = 'http://localhost:8000/api/admin/projects/molestiae'
+headers = {
+  'Content-Type': 'application/json',
+  'Accept': 'application/json'
+}
+
+response = requests.request('GET', url, headers=headers)
+response.json()</code></pre></div>
+
+
+<div class="angular-example">
+    <pre><code class="language-typescript">import { Injectable, inject } from '@angular/core';
+import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
+import { Observable } from 'rxjs';
+
+@Injectable({
+    providedIn: 'root'
+})
+export class ApiService {
+
+    private readonly http = inject(HttpClient);
+
+    public request(): Observable&lt;any&gt; {
+        const url = 'http://localhost:8000/api/admin/projects/{id}';
+
+        const headers = new HttpHeaders({
+            'Content-Type': 'application/json',
+            'Accept': 'application/json',
+        });
+
+        const params = new HttpParams();
+
+        const body = null;
+
+        return this.http.request&lt;any&gt;(
+           'GET',
+            url,
+            {
+                headers,
+                params,
+                responseType: 'json'
+            }
+        );
+    }
+}</code></pre></div>
+
+
+<div class="bash-example">
+    <pre><code class="language-bash">curl --request GET \
+    --get "http://localhost:8000/api/admin/projects/molestiae" \
+    --header "Content-Type: application/json" \
+    --header "Accept: application/json"</code></pre></div>
+
 </span>
 
 <span id="example-responses-GETapi-admin-projects--id-">
             <blockquote>
             <p>Example response (401):</p>
         </blockquote>
-                <details class="annotation">
-            <summary style="cursor: pointer;">
-                <small onclick="textContent = parentElement.parentElement.open ? 'Show headers' : 'Hide headers'">Show headers</small>
-            </summary>
-            <pre><code class="language-json">{
-    cache-control: no-cache, private
-    content-type: application/json
-    x-ratelimit-limit: 2000
-    x-ratelimit-remaining: 1865
-    vary: Origin
-}</code></pre></details>         <pre>
+                    <details class="annotation">
+                <summary style="cursor: pointer;">
+                    <small onclick="textContent = parentElement.parentElement.open ? 'Show headers' : 'Hide headers'">Show headers</small>
+                </summary>
+                <pre>
+                    <code class="language-json">{
+    "cache-control": "no-cache, private",
+    "content-type": "application/json",
+    "x-ratelimit-limit": "2000",
+    "x-ratelimit-remaining": "1725",
+    "vary": "Origin"
+}</code>
+                </pre>
+            </details>
+                    <pre>
 
 <code class="language-json" style="max-height: 300px;">{
     &quot;error&quot;: &quot;Unauthorized.&quot;
@@ -1557,10 +2241,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="id"                data-endpoint="GETapi-admin-projects--id-"
-               value="doloremque"
+               value="molestiae"
                data-component="url">
     <br>
-<p>Example: <code>doloremque</code></p>
+<p>Example: <code>molestiae</code></p>
             </div>
                     </form>
 
@@ -1576,21 +2260,9 @@ You can check the Dev Tools console for debugging information.</code></pre>
 <blockquote>Example request:</blockquote>
 
 
-<div class="bash-example">
-    <pre><code class="language-bash">curl --request PUT \
-    "http://localhost:8000/api/admin/projects/eveniet" \
-    --header "Content-Type: application/json" \
-    --header "Accept: application/json" \
-    --data "{
-    \"name\": \"bpdvwmpzxeci\",
-    \"slug\": \"vmvlkvdikmmmynldn\"
-}"
-</code></pre></div>
-
-
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://localhost:8000/api/admin/projects/eveniet"
+    "http://localhost:8000/api/admin/projects/dolor"
 );
 
 const headers = {
@@ -1599,8 +2271,8 @@ const headers = {
 };
 
 let body = {
-    "name": "bpdvwmpzxeci",
-    "slug": "vmvlkvdikmmmynldn"
+    "name": "nbu",
+    "slug": "akcj"
 };
 
 fetch(url, {
@@ -1608,6 +2280,97 @@ fetch(url, {
     headers,
     body: JSON.stringify(body),
 }).then(response =&gt; response.json());</code></pre></div>
+
+
+<div class="php-example">
+    <pre><code class="language-php">$client = new \GuzzleHttp\Client();
+$url = 'http://localhost:8000/api/admin/projects/dolor';
+$response = $client-&gt;put(
+    $url,
+    [
+        'headers' =&gt; [
+            'Content-Type' =&gt; 'application/json',
+            'Accept' =&gt; 'application/json',
+        ],
+        'json' =&gt; [
+            'name' =&gt; 'nbu',
+            'slug' =&gt; 'akcj',
+        ],
+    ]
+);
+$body = $response-&gt;getBody();
+print_r(json_decode((string) $body));</code></pre></div>
+
+
+<div class="python-example">
+    <pre><code class="language-python">import requests
+import json
+
+url = 'http://localhost:8000/api/admin/projects/dolor'
+payload = {
+    "name": "nbu",
+    "slug": "akcj"
+}
+headers = {
+  'Content-Type': 'application/json',
+  'Accept': 'application/json'
+}
+
+response = requests.request('PUT', url, headers=headers, json=payload)
+response.json()</code></pre></div>
+
+
+<div class="angular-example">
+    <pre><code class="language-typescript">import { Injectable, inject } from '@angular/core';
+import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
+import { Observable } from 'rxjs';
+
+@Injectable({
+    providedIn: 'root'
+})
+export class ApiService {
+
+    private readonly http = inject(HttpClient);
+
+    public request(): Observable&lt;any&gt; {
+        const url = 'http://localhost:8000/api/admin/projects/{id}';
+
+        const headers = new HttpHeaders({
+            'Content-Type': 'application/json',
+            'Accept': 'application/json',
+        });
+
+        const params = new HttpParams();
+
+        const body = {
+            'name': 'nbu',
+            'slug': 'akcj',
+        }
+
+        return this.http.request&lt;any&gt;(
+           'PUT',
+            url,
+            {
+                headers,
+                params,
+                body,
+                responseType: 'json'
+            }
+        );
+    }
+}</code></pre></div>
+
+
+<div class="bash-example">
+    <pre><code class="language-bash">curl --request PUT \
+    "http://localhost:8000/api/admin/projects/dolor" \
+    --header "Content-Type: application/json" \
+    --header "Accept: application/json" \
+    --data "{
+    \"name\": \"nbu\",
+    \"slug\": \"akcj\"
+}"
+</code></pre></div>
 
 </span>
 
@@ -1689,10 +2452,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="id"                data-endpoint="PUTapi-admin-projects--id-"
-               value="eveniet"
+               value="dolor"
                data-component="url">
     <br>
-<p>Example: <code>eveniet</code></p>
+<p>Example: <code>dolor</code></p>
             </div>
                             <h4 class="fancy-heading-panel"><b>Body Parameters</b></h4>
         <div style=" padding-left: 28px;  clear: unset;">
@@ -1701,10 +2464,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="name"                data-endpoint="PUTapi-admin-projects--id-"
-               value="bpdvwmpzxeci"
+               value="nbu"
                data-component="body">
     <br>
-<p>Must not be greater than 255 characters. Example: <code>bpdvwmpzxeci</code></p>
+<p>Must not be greater than 255 characters. Example: <code>nbu</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>slug</code></b>&nbsp;&nbsp;
@@ -1712,10 +2475,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="slug"                data-endpoint="PUTapi-admin-projects--id-"
-               value="vmvlkvdikmmmynldn"
+               value="akcj"
                data-component="body">
     <br>
-<p>Must not be greater than 255 characters. Example: <code>vmvlkvdikmmmynldn</code></p>
+<p>Must not be greater than 255 characters. Example: <code>akcj</code></p>
         </div>
         </form>
 
@@ -1731,16 +2494,9 @@ You can check the Dev Tools console for debugging information.</code></pre>
 <blockquote>Example request:</blockquote>
 
 
-<div class="bash-example">
-    <pre><code class="language-bash">curl --request DELETE \
-    "http://localhost:8000/api/admin/projects/et" \
-    --header "Content-Type: application/json" \
-    --header "Accept: application/json"</code></pre></div>
-
-
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://localhost:8000/api/admin/projects/et"
+    "http://localhost:8000/api/admin/projects/voluptas"
 );
 
 const headers = {
@@ -1752,6 +2508,80 @@ fetch(url, {
     method: "DELETE",
     headers,
 }).then(response =&gt; response.json());</code></pre></div>
+
+
+<div class="php-example">
+    <pre><code class="language-php">$client = new \GuzzleHttp\Client();
+$url = 'http://localhost:8000/api/admin/projects/voluptas';
+$response = $client-&gt;delete(
+    $url,
+    [
+        'headers' =&gt; [
+            'Content-Type' =&gt; 'application/json',
+            'Accept' =&gt; 'application/json',
+        ],
+    ]
+);
+$body = $response-&gt;getBody();
+print_r(json_decode((string) $body));</code></pre></div>
+
+
+<div class="python-example">
+    <pre><code class="language-python">import requests
+import json
+
+url = 'http://localhost:8000/api/admin/projects/voluptas'
+headers = {
+  'Content-Type': 'application/json',
+  'Accept': 'application/json'
+}
+
+response = requests.request('DELETE', url, headers=headers)
+response.json()</code></pre></div>
+
+
+<div class="angular-example">
+    <pre><code class="language-typescript">import { Injectable, inject } from '@angular/core';
+import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
+import { Observable } from 'rxjs';
+
+@Injectable({
+    providedIn: 'root'
+})
+export class ApiService {
+
+    private readonly http = inject(HttpClient);
+
+    public request(): Observable&lt;any&gt; {
+        const url = 'http://localhost:8000/api/admin/projects/{id}';
+
+        const headers = new HttpHeaders({
+            'Content-Type': 'application/json',
+            'Accept': 'application/json',
+        });
+
+        const params = new HttpParams();
+
+        const body = null;
+
+        return this.http.request&lt;any&gt;(
+           'DELETE',
+            url,
+            {
+                headers,
+                params,
+                responseType: 'json'
+            }
+        );
+    }
+}</code></pre></div>
+
+
+<div class="bash-example">
+    <pre><code class="language-bash">curl --request DELETE \
+    "http://localhost:8000/api/admin/projects/voluptas" \
+    --header "Content-Type: application/json" \
+    --header "Accept: application/json"</code></pre></div>
 
 </span>
 
@@ -1833,10 +2663,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="id"                data-endpoint="DELETEapi-admin-projects--id-"
-               value="et"
+               value="voluptas"
                data-component="url">
     <br>
-<p>Example: <code>et</code></p>
+<p>Example: <code>voluptas</code></p>
             </div>
                     </form>
 
@@ -1856,16 +2686,9 @@ You can check the Dev Tools console for debugging information.</code></pre>
 <blockquote>Example request:</blockquote>
 
 
-<div class="bash-example">
-    <pre><code class="language-bash">curl --request GET \
-    --get "http://localhost:8000/api/admin/projects/ab/endpoints" \
-    --header "Content-Type: application/json" \
-    --header "Accept: application/json"</code></pre></div>
-
-
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://localhost:8000/api/admin/projects/ab/endpoints"
+    "http://localhost:8000/api/admin/projects/ullam/endpoints"
 );
 
 const headers = {
@@ -1878,23 +2701,101 @@ fetch(url, {
     headers,
 }).then(response =&gt; response.json());</code></pre></div>
 
+
+<div class="php-example">
+    <pre><code class="language-php">$client = new \GuzzleHttp\Client();
+$url = 'http://localhost:8000/api/admin/projects/ullam/endpoints';
+$response = $client-&gt;get(
+    $url,
+    [
+        'headers' =&gt; [
+            'Content-Type' =&gt; 'application/json',
+            'Accept' =&gt; 'application/json',
+        ],
+    ]
+);
+$body = $response-&gt;getBody();
+print_r(json_decode((string) $body));</code></pre></div>
+
+
+<div class="python-example">
+    <pre><code class="language-python">import requests
+import json
+
+url = 'http://localhost:8000/api/admin/projects/ullam/endpoints'
+headers = {
+  'Content-Type': 'application/json',
+  'Accept': 'application/json'
+}
+
+response = requests.request('GET', url, headers=headers)
+response.json()</code></pre></div>
+
+
+<div class="angular-example">
+    <pre><code class="language-typescript">import { Injectable, inject } from '@angular/core';
+import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
+import { Observable } from 'rxjs';
+
+@Injectable({
+    providedIn: 'root'
+})
+export class ApiService {
+
+    private readonly http = inject(HttpClient);
+
+    public request(): Observable&lt;any&gt; {
+        const url = 'http://localhost:8000/api/admin/projects/{projectId}/endpoints';
+
+        const headers = new HttpHeaders({
+            'Content-Type': 'application/json',
+            'Accept': 'application/json',
+        });
+
+        const params = new HttpParams();
+
+        const body = null;
+
+        return this.http.request&lt;any&gt;(
+           'GET',
+            url,
+            {
+                headers,
+                params,
+                responseType: 'json'
+            }
+        );
+    }
+}</code></pre></div>
+
+
+<div class="bash-example">
+    <pre><code class="language-bash">curl --request GET \
+    --get "http://localhost:8000/api/admin/projects/ullam/endpoints" \
+    --header "Content-Type: application/json" \
+    --header "Accept: application/json"</code></pre></div>
+
 </span>
 
 <span id="example-responses-GETapi-admin-projects--projectId--endpoints">
             <blockquote>
             <p>Example response (401):</p>
         </blockquote>
-                <details class="annotation">
-            <summary style="cursor: pointer;">
-                <small onclick="textContent = parentElement.parentElement.open ? 'Show headers' : 'Hide headers'">Show headers</small>
-            </summary>
-            <pre><code class="language-json">{
-    cache-control: no-cache, private
-    content-type: application/json
-    x-ratelimit-limit: 2000
-    x-ratelimit-remaining: 1864
-    vary: Origin
-}</code></pre></details>         <pre>
+                    <details class="annotation">
+                <summary style="cursor: pointer;">
+                    <small onclick="textContent = parentElement.parentElement.open ? 'Show headers' : 'Hide headers'">Show headers</small>
+                </summary>
+                <pre>
+                    <code class="language-json">{
+    "cache-control": "no-cache, private",
+    "content-type": "application/json",
+    "x-ratelimit-limit": "2000",
+    "x-ratelimit-remaining": "1724",
+    "vary": "Origin"
+}</code>
+                </pre>
+            </details>
+                    <pre>
 
 <code class="language-json" style="max-height: 300px;">{
     &quot;error&quot;: &quot;Unauthorized.&quot;
@@ -1977,10 +2878,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="projectId"                data-endpoint="GETapi-admin-projects--projectId--endpoints"
-               value="ab"
+               value="ullam"
                data-component="url">
     <br>
-<p>Example: <code>ab</code></p>
+<p>Example: <code>ullam</code></p>
             </div>
                     </form>
 
@@ -1996,21 +2897,9 @@ You can check the Dev Tools console for debugging information.</code></pre>
 <blockquote>Example request:</blockquote>
 
 
-<div class="bash-example">
-    <pre><code class="language-bash">curl --request POST \
-    "http://localhost:8000/api/admin/projects/error/endpoints" \
-    --header "Content-Type: application/json" \
-    --header "Accept: application/json" \
-    --data "{
-    \"name\": \"inventore\",
-    \"generator\": \"non\"
-}"
-</code></pre></div>
-
-
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://localhost:8000/api/admin/projects/error/endpoints"
+    "http://localhost:8000/api/admin/projects/ex/endpoints"
 );
 
 const headers = {
@@ -2019,8 +2908,8 @@ const headers = {
 };
 
 let body = {
-    "name": "inventore",
-    "generator": "non"
+    "name": "natus",
+    "generator": "voluptate"
 };
 
 fetch(url, {
@@ -2028,6 +2917,97 @@ fetch(url, {
     headers,
     body: JSON.stringify(body),
 }).then(response =&gt; response.json());</code></pre></div>
+
+
+<div class="php-example">
+    <pre><code class="language-php">$client = new \GuzzleHttp\Client();
+$url = 'http://localhost:8000/api/admin/projects/ex/endpoints';
+$response = $client-&gt;post(
+    $url,
+    [
+        'headers' =&gt; [
+            'Content-Type' =&gt; 'application/json',
+            'Accept' =&gt; 'application/json',
+        ],
+        'json' =&gt; [
+            'name' =&gt; 'natus',
+            'generator' =&gt; 'voluptate',
+        ],
+    ]
+);
+$body = $response-&gt;getBody();
+print_r(json_decode((string) $body));</code></pre></div>
+
+
+<div class="python-example">
+    <pre><code class="language-python">import requests
+import json
+
+url = 'http://localhost:8000/api/admin/projects/ex/endpoints'
+payload = {
+    "name": "natus",
+    "generator": "voluptate"
+}
+headers = {
+  'Content-Type': 'application/json',
+  'Accept': 'application/json'
+}
+
+response = requests.request('POST', url, headers=headers, json=payload)
+response.json()</code></pre></div>
+
+
+<div class="angular-example">
+    <pre><code class="language-typescript">import { Injectable, inject } from '@angular/core';
+import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
+import { Observable } from 'rxjs';
+
+@Injectable({
+    providedIn: 'root'
+})
+export class ApiService {
+
+    private readonly http = inject(HttpClient);
+
+    public request(): Observable&lt;any&gt; {
+        const url = 'http://localhost:8000/api/admin/projects/{projectId}/endpoints';
+
+        const headers = new HttpHeaders({
+            'Content-Type': 'application/json',
+            'Accept': 'application/json',
+        });
+
+        const params = new HttpParams();
+
+        const body = {
+            'name': 'natus',
+            'generator': 'voluptate',
+        }
+
+        return this.http.request&lt;any&gt;(
+           'POST',
+            url,
+            {
+                headers,
+                params,
+                body,
+                responseType: 'json'
+            }
+        );
+    }
+}</code></pre></div>
+
+
+<div class="bash-example">
+    <pre><code class="language-bash">curl --request POST \
+    "http://localhost:8000/api/admin/projects/ex/endpoints" \
+    --header "Content-Type: application/json" \
+    --header "Accept: application/json" \
+    --data "{
+    \"name\": \"natus\",
+    \"generator\": \"voluptate\"
+}"
+</code></pre></div>
 
 </span>
 
@@ -2109,10 +3089,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="projectId"                data-endpoint="POSTapi-admin-projects--projectId--endpoints"
-               value="error"
+               value="ex"
                data-component="url">
     <br>
-<p>Example: <code>error</code></p>
+<p>Example: <code>ex</code></p>
             </div>
                             <h4 class="fancy-heading-panel"><b>Body Parameters</b></h4>
         <div style=" padding-left: 28px;  clear: unset;">
@@ -2121,10 +3101,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="name"                data-endpoint="POSTapi-admin-projects--projectId--endpoints"
-               value="inventore"
+               value="natus"
                data-component="body">
     <br>
-<p>Example: <code>inventore</code></p>
+<p>Example: <code>natus</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>generator</code></b>&nbsp;&nbsp;
@@ -2132,10 +3112,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
 <i>optional</i> &nbsp;
                 <input type="text" style="display: none"
                               name="generator"                data-endpoint="POSTapi-admin-projects--projectId--endpoints"
-               value="non"
+               value="voluptate"
                data-component="body">
     <br>
-<p>Example: <code>non</code></p>
+<p>Example: <code>voluptate</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>endpoints</code></b>&nbsp;&nbsp;
@@ -2173,16 +3153,9 @@ You can check the Dev Tools console for debugging information.</code></pre>
 <blockquote>Example request:</blockquote>
 
 
-<div class="bash-example">
-    <pre><code class="language-bash">curl --request GET \
-    --get "http://localhost:8000/api/admin/projects/aperiam/endpoints/autem" \
-    --header "Content-Type: application/json" \
-    --header "Accept: application/json"</code></pre></div>
-
-
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://localhost:8000/api/admin/projects/aperiam/endpoints/autem"
+    "http://localhost:8000/api/admin/projects/aut/endpoints/quae"
 );
 
 const headers = {
@@ -2195,23 +3168,101 @@ fetch(url, {
     headers,
 }).then(response =&gt; response.json());</code></pre></div>
 
+
+<div class="php-example">
+    <pre><code class="language-php">$client = new \GuzzleHttp\Client();
+$url = 'http://localhost:8000/api/admin/projects/aut/endpoints/quae';
+$response = $client-&gt;get(
+    $url,
+    [
+        'headers' =&gt; [
+            'Content-Type' =&gt; 'application/json',
+            'Accept' =&gt; 'application/json',
+        ],
+    ]
+);
+$body = $response-&gt;getBody();
+print_r(json_decode((string) $body));</code></pre></div>
+
+
+<div class="python-example">
+    <pre><code class="language-python">import requests
+import json
+
+url = 'http://localhost:8000/api/admin/projects/aut/endpoints/quae'
+headers = {
+  'Content-Type': 'application/json',
+  'Accept': 'application/json'
+}
+
+response = requests.request('GET', url, headers=headers)
+response.json()</code></pre></div>
+
+
+<div class="angular-example">
+    <pre><code class="language-typescript">import { Injectable, inject } from '@angular/core';
+import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
+import { Observable } from 'rxjs';
+
+@Injectable({
+    providedIn: 'root'
+})
+export class ApiService {
+
+    private readonly http = inject(HttpClient);
+
+    public request(): Observable&lt;any&gt; {
+        const url = 'http://localhost:8000/api/admin/projects/{projectId}/endpoints/{id}';
+
+        const headers = new HttpHeaders({
+            'Content-Type': 'application/json',
+            'Accept': 'application/json',
+        });
+
+        const params = new HttpParams();
+
+        const body = null;
+
+        return this.http.request&lt;any&gt;(
+           'GET',
+            url,
+            {
+                headers,
+                params,
+                responseType: 'json'
+            }
+        );
+    }
+}</code></pre></div>
+
+
+<div class="bash-example">
+    <pre><code class="language-bash">curl --request GET \
+    --get "http://localhost:8000/api/admin/projects/aut/endpoints/quae" \
+    --header "Content-Type: application/json" \
+    --header "Accept: application/json"</code></pre></div>
+
 </span>
 
 <span id="example-responses-GETapi-admin-projects--projectId--endpoints--id-">
             <blockquote>
             <p>Example response (401):</p>
         </blockquote>
-                <details class="annotation">
-            <summary style="cursor: pointer;">
-                <small onclick="textContent = parentElement.parentElement.open ? 'Show headers' : 'Hide headers'">Show headers</small>
-            </summary>
-            <pre><code class="language-json">{
-    cache-control: no-cache, private
-    content-type: application/json
-    x-ratelimit-limit: 2000
-    x-ratelimit-remaining: 1863
-    vary: Origin
-}</code></pre></details>         <pre>
+                    <details class="annotation">
+                <summary style="cursor: pointer;">
+                    <small onclick="textContent = parentElement.parentElement.open ? 'Show headers' : 'Hide headers'">Show headers</small>
+                </summary>
+                <pre>
+                    <code class="language-json">{
+    "cache-control": "no-cache, private",
+    "content-type": "application/json",
+    "x-ratelimit-limit": "2000",
+    "x-ratelimit-remaining": "1723",
+    "vary": "Origin"
+}</code>
+                </pre>
+            </details>
+                    <pre>
 
 <code class="language-json" style="max-height: 300px;">{
     &quot;error&quot;: &quot;Unauthorized.&quot;
@@ -2294,10 +3345,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="projectId"                data-endpoint="GETapi-admin-projects--projectId--endpoints--id-"
-               value="aperiam"
+               value="aut"
                data-component="url">
     <br>
-<p>Example: <code>aperiam</code></p>
+<p>Example: <code>aut</code></p>
             </div>
                     <div style="padding-left: 28px; clear: unset;">
                 <b style="line-height: 2;"><code>id</code></b>&nbsp;&nbsp;
@@ -2305,10 +3356,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="id"                data-endpoint="GETapi-admin-projects--projectId--endpoints--id-"
-               value="autem"
+               value="quae"
                data-component="url">
     <br>
-<p>Example: <code>autem</code></p>
+<p>Example: <code>quae</code></p>
             </div>
                     </form>
 
@@ -2324,21 +3375,9 @@ You can check the Dev Tools console for debugging information.</code></pre>
 <blockquote>Example request:</blockquote>
 
 
-<div class="bash-example">
-    <pre><code class="language-bash">curl --request PUT \
-    "http://localhost:8000/api/admin/endpoints/placeat" \
-    --header "Content-Type: application/json" \
-    --header "Accept: application/json" \
-    --data "{
-    \"name\": \"aut\",
-    \"generator\": \"similique\"
-}"
-</code></pre></div>
-
-
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://localhost:8000/api/admin/endpoints/placeat"
+    "http://localhost:8000/api/admin/endpoints/nulla"
 );
 
 const headers = {
@@ -2347,8 +3386,8 @@ const headers = {
 };
 
 let body = {
-    "name": "aut",
-    "generator": "similique"
+    "name": "autem",
+    "generator": "qui"
 };
 
 fetch(url, {
@@ -2356,6 +3395,97 @@ fetch(url, {
     headers,
     body: JSON.stringify(body),
 }).then(response =&gt; response.json());</code></pre></div>
+
+
+<div class="php-example">
+    <pre><code class="language-php">$client = new \GuzzleHttp\Client();
+$url = 'http://localhost:8000/api/admin/endpoints/nulla';
+$response = $client-&gt;put(
+    $url,
+    [
+        'headers' =&gt; [
+            'Content-Type' =&gt; 'application/json',
+            'Accept' =&gt; 'application/json',
+        ],
+        'json' =&gt; [
+            'name' =&gt; 'autem',
+            'generator' =&gt; 'qui',
+        ],
+    ]
+);
+$body = $response-&gt;getBody();
+print_r(json_decode((string) $body));</code></pre></div>
+
+
+<div class="python-example">
+    <pre><code class="language-python">import requests
+import json
+
+url = 'http://localhost:8000/api/admin/endpoints/nulla'
+payload = {
+    "name": "autem",
+    "generator": "qui"
+}
+headers = {
+  'Content-Type': 'application/json',
+  'Accept': 'application/json'
+}
+
+response = requests.request('PUT', url, headers=headers, json=payload)
+response.json()</code></pre></div>
+
+
+<div class="angular-example">
+    <pre><code class="language-typescript">import { Injectable, inject } from '@angular/core';
+import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
+import { Observable } from 'rxjs';
+
+@Injectable({
+    providedIn: 'root'
+})
+export class ApiService {
+
+    private readonly http = inject(HttpClient);
+
+    public request(): Observable&lt;any&gt; {
+        const url = 'http://localhost:8000/api/admin/endpoints/{id}';
+
+        const headers = new HttpHeaders({
+            'Content-Type': 'application/json',
+            'Accept': 'application/json',
+        });
+
+        const params = new HttpParams();
+
+        const body = {
+            'name': 'autem',
+            'generator': 'qui',
+        }
+
+        return this.http.request&lt;any&gt;(
+           'PUT',
+            url,
+            {
+                headers,
+                params,
+                body,
+                responseType: 'json'
+            }
+        );
+    }
+}</code></pre></div>
+
+
+<div class="bash-example">
+    <pre><code class="language-bash">curl --request PUT \
+    "http://localhost:8000/api/admin/endpoints/nulla" \
+    --header "Content-Type: application/json" \
+    --header "Accept: application/json" \
+    --data "{
+    \"name\": \"autem\",
+    \"generator\": \"qui\"
+}"
+</code></pre></div>
 
 </span>
 
@@ -2437,10 +3567,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="id"                data-endpoint="PUTapi-admin-endpoints--id-"
-               value="placeat"
+               value="nulla"
                data-component="url">
     <br>
-<p>Example: <code>placeat</code></p>
+<p>Example: <code>nulla</code></p>
             </div>
                             <h4 class="fancy-heading-panel"><b>Body Parameters</b></h4>
         <div style=" padding-left: 28px;  clear: unset;">
@@ -2449,10 +3579,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="name"                data-endpoint="PUTapi-admin-endpoints--id-"
-               value="aut"
+               value="autem"
                data-component="body">
     <br>
-<p>Example: <code>aut</code></p>
+<p>Example: <code>autem</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>generator</code></b>&nbsp;&nbsp;
@@ -2460,10 +3590,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
 <i>optional</i> &nbsp;
                 <input type="text" style="display: none"
                               name="generator"                data-endpoint="PUTapi-admin-endpoints--id-"
-               value="similique"
+               value="qui"
                data-component="body">
     <br>
-<p>Example: <code>similique</code></p>
+<p>Example: <code>qui</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>endpoints</code></b>&nbsp;&nbsp;
@@ -2501,16 +3631,9 @@ You can check the Dev Tools console for debugging information.</code></pre>
 <blockquote>Example request:</blockquote>
 
 
-<div class="bash-example">
-    <pre><code class="language-bash">curl --request DELETE \
-    "http://localhost:8000/api/admin/endpoints/velit" \
-    --header "Content-Type: application/json" \
-    --header "Accept: application/json"</code></pre></div>
-
-
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://localhost:8000/api/admin/endpoints/velit"
+    "http://localhost:8000/api/admin/endpoints/numquam"
 );
 
 const headers = {
@@ -2522,6 +3645,80 @@ fetch(url, {
     method: "DELETE",
     headers,
 }).then(response =&gt; response.json());</code></pre></div>
+
+
+<div class="php-example">
+    <pre><code class="language-php">$client = new \GuzzleHttp\Client();
+$url = 'http://localhost:8000/api/admin/endpoints/numquam';
+$response = $client-&gt;delete(
+    $url,
+    [
+        'headers' =&gt; [
+            'Content-Type' =&gt; 'application/json',
+            'Accept' =&gt; 'application/json',
+        ],
+    ]
+);
+$body = $response-&gt;getBody();
+print_r(json_decode((string) $body));</code></pre></div>
+
+
+<div class="python-example">
+    <pre><code class="language-python">import requests
+import json
+
+url = 'http://localhost:8000/api/admin/endpoints/numquam'
+headers = {
+  'Content-Type': 'application/json',
+  'Accept': 'application/json'
+}
+
+response = requests.request('DELETE', url, headers=headers)
+response.json()</code></pre></div>
+
+
+<div class="angular-example">
+    <pre><code class="language-typescript">import { Injectable, inject } from '@angular/core';
+import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
+import { Observable } from 'rxjs';
+
+@Injectable({
+    providedIn: 'root'
+})
+export class ApiService {
+
+    private readonly http = inject(HttpClient);
+
+    public request(): Observable&lt;any&gt; {
+        const url = 'http://localhost:8000/api/admin/endpoints/{id}';
+
+        const headers = new HttpHeaders({
+            'Content-Type': 'application/json',
+            'Accept': 'application/json',
+        });
+
+        const params = new HttpParams();
+
+        const body = null;
+
+        return this.http.request&lt;any&gt;(
+           'DELETE',
+            url,
+            {
+                headers,
+                params,
+                responseType: 'json'
+            }
+        );
+    }
+}</code></pre></div>
+
+
+<div class="bash-example">
+    <pre><code class="language-bash">curl --request DELETE \
+    "http://localhost:8000/api/admin/endpoints/numquam" \
+    --header "Content-Type: application/json" \
+    --header "Accept: application/json"</code></pre></div>
 
 </span>
 
@@ -2603,10 +3800,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="id"                data-endpoint="DELETEapi-admin-endpoints--id-"
-               value="velit"
+               value="numquam"
                data-component="url">
     <br>
-<p>Example: <code>velit</code></p>
+<p>Example: <code>numquam</code></p>
             </div>
                     </form>
 
@@ -2627,20 +3824,9 @@ Opcionalmente, envie o parâmetro <code>count</code> no body (padrão 10).</p>
 <blockquote>Example request:</blockquote>
 
 
-<div class="bash-example">
-    <pre><code class="language-bash">curl --request POST \
-    "http://localhost:8000/api/admin/projects/illo/endpoints/et/generate" \
-    --header "Content-Type: application/json" \
-    --header "Accept: application/json" \
-    --data "{
-    \"count\": 2
-}"
-</code></pre></div>
-
-
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://localhost:8000/api/admin/projects/illo/endpoints/et/generate"
+    "http://localhost:8000/api/admin/projects/qui/endpoints/quis/generate"
 );
 
 const headers = {
@@ -2649,7 +3835,7 @@ const headers = {
 };
 
 let body = {
-    "count": 2
+    "count": 14
 };
 
 fetch(url, {
@@ -2657,6 +3843,93 @@ fetch(url, {
     headers,
     body: JSON.stringify(body),
 }).then(response =&gt; response.json());</code></pre></div>
+
+
+<div class="php-example">
+    <pre><code class="language-php">$client = new \GuzzleHttp\Client();
+$url = 'http://localhost:8000/api/admin/projects/qui/endpoints/quis/generate';
+$response = $client-&gt;post(
+    $url,
+    [
+        'headers' =&gt; [
+            'Content-Type' =&gt; 'application/json',
+            'Accept' =&gt; 'application/json',
+        ],
+        'json' =&gt; [
+            'count' =&gt; 14,
+        ],
+    ]
+);
+$body = $response-&gt;getBody();
+print_r(json_decode((string) $body));</code></pre></div>
+
+
+<div class="python-example">
+    <pre><code class="language-python">import requests
+import json
+
+url = 'http://localhost:8000/api/admin/projects/qui/endpoints/quis/generate'
+payload = {
+    "count": 14
+}
+headers = {
+  'Content-Type': 'application/json',
+  'Accept': 'application/json'
+}
+
+response = requests.request('POST', url, headers=headers, json=payload)
+response.json()</code></pre></div>
+
+
+<div class="angular-example">
+    <pre><code class="language-typescript">import { Injectable, inject } from '@angular/core';
+import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
+import { Observable } from 'rxjs';
+
+@Injectable({
+    providedIn: 'root'
+})
+export class ApiService {
+
+    private readonly http = inject(HttpClient);
+
+    public request(): Observable&lt;any&gt; {
+        const url = 'http://localhost:8000/api/admin/projects/{projectId}/endpoints/{id}/generate';
+
+        const headers = new HttpHeaders({
+            'Content-Type': 'application/json',
+            'Accept': 'application/json',
+        });
+
+        const params = new HttpParams();
+
+        const body = {
+            'count': '14',
+        }
+
+        return this.http.request&lt;any&gt;(
+           'POST',
+            url,
+            {
+                headers,
+                params,
+                body,
+                responseType: 'json'
+            }
+        );
+    }
+}</code></pre></div>
+
+
+<div class="bash-example">
+    <pre><code class="language-bash">curl --request POST \
+    "http://localhost:8000/api/admin/projects/qui/endpoints/quis/generate" \
+    --header "Content-Type: application/json" \
+    --header "Accept: application/json" \
+    --data "{
+    \"count\": 14
+}"
+</code></pre></div>
 
 </span>
 
@@ -2738,10 +4011,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="projectId"                data-endpoint="POSTapi-admin-projects--projectId--endpoints--id--generate"
-               value="illo"
+               value="qui"
                data-component="url">
     <br>
-<p>Example: <code>illo</code></p>
+<p>Example: <code>qui</code></p>
             </div>
                     <div style="padding-left: 28px; clear: unset;">
                 <b style="line-height: 2;"><code>id</code></b>&nbsp;&nbsp;
@@ -2749,10 +4022,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="id"                data-endpoint="POSTapi-admin-projects--projectId--endpoints--id--generate"
-               value="et"
+               value="quis"
                data-component="url">
     <br>
-<p>Example: <code>et</code></p>
+<p>Example: <code>quis</code></p>
             </div>
                             <h4 class="fancy-heading-panel"><b>Body Parameters</b></h4>
         <div style=" padding-left: 28px;  clear: unset;">
@@ -2761,10 +4034,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="number" style="display: none"
                step="any"               name="count"                data-endpoint="POSTapi-admin-projects--projectId--endpoints--id--generate"
-               value="2"
+               value="14"
                data-component="body">
     <br>
-<p>Must be at least 0. Must not be greater than 500. Example: <code>2</code></p>
+<p>Must be at least 0. Must not be greater than 500. Example: <code>14</code></p>
         </div>
         </form>
 
@@ -2784,16 +4057,9 @@ You can check the Dev Tools console for debugging information.</code></pre>
 <blockquote>Example request:</blockquote>
 
 
-<div class="bash-example">
-    <pre><code class="language-bash">curl --request GET \
-    --get "http://localhost:8000/api/admin/projects/aliquid/tokens" \
-    --header "Content-Type: application/json" \
-    --header "Accept: application/json"</code></pre></div>
-
-
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://localhost:8000/api/admin/projects/aliquid/tokens"
+    "http://localhost:8000/api/admin/projects/debitis/tokens"
 );
 
 const headers = {
@@ -2806,23 +4072,101 @@ fetch(url, {
     headers,
 }).then(response =&gt; response.json());</code></pre></div>
 
+
+<div class="php-example">
+    <pre><code class="language-php">$client = new \GuzzleHttp\Client();
+$url = 'http://localhost:8000/api/admin/projects/debitis/tokens';
+$response = $client-&gt;get(
+    $url,
+    [
+        'headers' =&gt; [
+            'Content-Type' =&gt; 'application/json',
+            'Accept' =&gt; 'application/json',
+        ],
+    ]
+);
+$body = $response-&gt;getBody();
+print_r(json_decode((string) $body));</code></pre></div>
+
+
+<div class="python-example">
+    <pre><code class="language-python">import requests
+import json
+
+url = 'http://localhost:8000/api/admin/projects/debitis/tokens'
+headers = {
+  'Content-Type': 'application/json',
+  'Accept': 'application/json'
+}
+
+response = requests.request('GET', url, headers=headers)
+response.json()</code></pre></div>
+
+
+<div class="angular-example">
+    <pre><code class="language-typescript">import { Injectable, inject } from '@angular/core';
+import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
+import { Observable } from 'rxjs';
+
+@Injectable({
+    providedIn: 'root'
+})
+export class ApiService {
+
+    private readonly http = inject(HttpClient);
+
+    public request(): Observable&lt;any&gt; {
+        const url = 'http://localhost:8000/api/admin/projects/{projectId}/tokens';
+
+        const headers = new HttpHeaders({
+            'Content-Type': 'application/json',
+            'Accept': 'application/json',
+        });
+
+        const params = new HttpParams();
+
+        const body = null;
+
+        return this.http.request&lt;any&gt;(
+           'GET',
+            url,
+            {
+                headers,
+                params,
+                responseType: 'json'
+            }
+        );
+    }
+}</code></pre></div>
+
+
+<div class="bash-example">
+    <pre><code class="language-bash">curl --request GET \
+    --get "http://localhost:8000/api/admin/projects/debitis/tokens" \
+    --header "Content-Type: application/json" \
+    --header "Accept: application/json"</code></pre></div>
+
 </span>
 
 <span id="example-responses-GETapi-admin-projects--projectId--tokens">
             <blockquote>
             <p>Example response (401):</p>
         </blockquote>
-                <details class="annotation">
-            <summary style="cursor: pointer;">
-                <small onclick="textContent = parentElement.parentElement.open ? 'Show headers' : 'Hide headers'">Show headers</small>
-            </summary>
-            <pre><code class="language-json">{
-    cache-control: no-cache, private
-    content-type: application/json
-    x-ratelimit-limit: 2000
-    x-ratelimit-remaining: 1862
-    vary: Origin
-}</code></pre></details>         <pre>
+                    <details class="annotation">
+                <summary style="cursor: pointer;">
+                    <small onclick="textContent = parentElement.parentElement.open ? 'Show headers' : 'Hide headers'">Show headers</small>
+                </summary>
+                <pre>
+                    <code class="language-json">{
+    "cache-control": "no-cache, private",
+    "content-type": "application/json",
+    "x-ratelimit-limit": "2000",
+    "x-ratelimit-remaining": "1722",
+    "vary": "Origin"
+}</code>
+                </pre>
+            </details>
+                    <pre>
 
 <code class="language-json" style="max-height: 300px;">{
     &quot;error&quot;: &quot;Unauthorized.&quot;
@@ -2905,10 +4249,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="projectId"                data-endpoint="GETapi-admin-projects--projectId--tokens"
-               value="aliquid"
+               value="debitis"
                data-component="url">
     <br>
-<p>Example: <code>aliquid</code></p>
+<p>Example: <code>debitis</code></p>
             </div>
                     </form>
 
@@ -2924,20 +4268,9 @@ You can check the Dev Tools console for debugging information.</code></pre>
 <blockquote>Example request:</blockquote>
 
 
-<div class="bash-example">
-    <pre><code class="language-bash">curl --request POST \
-    "http://localhost:8000/api/admin/projects/temporibus/tokens" \
-    --header "Content-Type: application/json" \
-    --header "Accept: application/json" \
-    --data "{
-    \"name\": \"et\"
-}"
-</code></pre></div>
-
-
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://localhost:8000/api/admin/projects/temporibus/tokens"
+    "http://localhost:8000/api/admin/projects/eius/tokens"
 );
 
 const headers = {
@@ -2946,7 +4279,7 @@ const headers = {
 };
 
 let body = {
-    "name": "et"
+    "name": "odio"
 };
 
 fetch(url, {
@@ -2954,6 +4287,93 @@ fetch(url, {
     headers,
     body: JSON.stringify(body),
 }).then(response =&gt; response.json());</code></pre></div>
+
+
+<div class="php-example">
+    <pre><code class="language-php">$client = new \GuzzleHttp\Client();
+$url = 'http://localhost:8000/api/admin/projects/eius/tokens';
+$response = $client-&gt;post(
+    $url,
+    [
+        'headers' =&gt; [
+            'Content-Type' =&gt; 'application/json',
+            'Accept' =&gt; 'application/json',
+        ],
+        'json' =&gt; [
+            'name' =&gt; 'odio',
+        ],
+    ]
+);
+$body = $response-&gt;getBody();
+print_r(json_decode((string) $body));</code></pre></div>
+
+
+<div class="python-example">
+    <pre><code class="language-python">import requests
+import json
+
+url = 'http://localhost:8000/api/admin/projects/eius/tokens'
+payload = {
+    "name": "odio"
+}
+headers = {
+  'Content-Type': 'application/json',
+  'Accept': 'application/json'
+}
+
+response = requests.request('POST', url, headers=headers, json=payload)
+response.json()</code></pre></div>
+
+
+<div class="angular-example">
+    <pre><code class="language-typescript">import { Injectable, inject } from '@angular/core';
+import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
+import { Observable } from 'rxjs';
+
+@Injectable({
+    providedIn: 'root'
+})
+export class ApiService {
+
+    private readonly http = inject(HttpClient);
+
+    public request(): Observable&lt;any&gt; {
+        const url = 'http://localhost:8000/api/admin/projects/{projectId}/tokens';
+
+        const headers = new HttpHeaders({
+            'Content-Type': 'application/json',
+            'Accept': 'application/json',
+        });
+
+        const params = new HttpParams();
+
+        const body = {
+            'name': 'odio',
+        }
+
+        return this.http.request&lt;any&gt;(
+           'POST',
+            url,
+            {
+                headers,
+                params,
+                body,
+                responseType: 'json'
+            }
+        );
+    }
+}</code></pre></div>
+
+
+<div class="bash-example">
+    <pre><code class="language-bash">curl --request POST \
+    "http://localhost:8000/api/admin/projects/eius/tokens" \
+    --header "Content-Type: application/json" \
+    --header "Accept: application/json" \
+    --data "{
+    \"name\": \"odio\"
+}"
+</code></pre></div>
 
 </span>
 
@@ -3035,10 +4455,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="projectId"                data-endpoint="POSTapi-admin-projects--projectId--tokens"
-               value="temporibus"
+               value="eius"
                data-component="url">
     <br>
-<p>Example: <code>temporibus</code></p>
+<p>Example: <code>eius</code></p>
             </div>
                             <h4 class="fancy-heading-panel"><b>Body Parameters</b></h4>
         <div style=" padding-left: 28px;  clear: unset;">
@@ -3047,10 +4467,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="name"                data-endpoint="POSTapi-admin-projects--projectId--tokens"
-               value="et"
+               value="odio"
                data-component="body">
     <br>
-<p>Example: <code>et</code></p>
+<p>Example: <code>odio</code></p>
         </div>
         </form>
 
@@ -3066,16 +4486,9 @@ You can check the Dev Tools console for debugging information.</code></pre>
 <blockquote>Example request:</blockquote>
 
 
-<div class="bash-example">
-    <pre><code class="language-bash">curl --request DELETE \
-    "http://localhost:8000/api/admin/tokens/eaque" \
-    --header "Content-Type: application/json" \
-    --header "Accept: application/json"</code></pre></div>
-
-
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://localhost:8000/api/admin/tokens/eaque"
+    "http://localhost:8000/api/admin/tokens/eius"
 );
 
 const headers = {
@@ -3087,6 +4500,80 @@ fetch(url, {
     method: "DELETE",
     headers,
 }).then(response =&gt; response.json());</code></pre></div>
+
+
+<div class="php-example">
+    <pre><code class="language-php">$client = new \GuzzleHttp\Client();
+$url = 'http://localhost:8000/api/admin/tokens/eius';
+$response = $client-&gt;delete(
+    $url,
+    [
+        'headers' =&gt; [
+            'Content-Type' =&gt; 'application/json',
+            'Accept' =&gt; 'application/json',
+        ],
+    ]
+);
+$body = $response-&gt;getBody();
+print_r(json_decode((string) $body));</code></pre></div>
+
+
+<div class="python-example">
+    <pre><code class="language-python">import requests
+import json
+
+url = 'http://localhost:8000/api/admin/tokens/eius'
+headers = {
+  'Content-Type': 'application/json',
+  'Accept': 'application/json'
+}
+
+response = requests.request('DELETE', url, headers=headers)
+response.json()</code></pre></div>
+
+
+<div class="angular-example">
+    <pre><code class="language-typescript">import { Injectable, inject } from '@angular/core';
+import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
+import { Observable } from 'rxjs';
+
+@Injectable({
+    providedIn: 'root'
+})
+export class ApiService {
+
+    private readonly http = inject(HttpClient);
+
+    public request(): Observable&lt;any&gt; {
+        const url = 'http://localhost:8000/api/admin/tokens/{id}';
+
+        const headers = new HttpHeaders({
+            'Content-Type': 'application/json',
+            'Accept': 'application/json',
+        });
+
+        const params = new HttpParams();
+
+        const body = null;
+
+        return this.http.request&lt;any&gt;(
+           'DELETE',
+            url,
+            {
+                headers,
+                params,
+                responseType: 'json'
+            }
+        );
+    }
+}</code></pre></div>
+
+
+<div class="bash-example">
+    <pre><code class="language-bash">curl --request DELETE \
+    "http://localhost:8000/api/admin/tokens/eius" \
+    --header "Content-Type: application/json" \
+    --header "Accept: application/json"</code></pre></div>
 
 </span>
 
@@ -3168,10 +4655,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="id"                data-endpoint="DELETEapi-admin-tokens--id-"
-               value="eaque"
+               value="eius"
                data-component="url">
     <br>
-<p>Example: <code>eaque</code></p>
+<p>Example: <code>eius</code></p>
             </div>
                     </form>
 
@@ -3191,13 +4678,6 @@ You can check the Dev Tools console for debugging information.</code></pre>
 <blockquote>Example request:</blockquote>
 
 
-<div class="bash-example">
-    <pre><code class="language-bash">curl --request GET \
-    --get "http://localhost:8000/api/admin/users" \
-    --header "Content-Type: application/json" \
-    --header "Accept: application/json"</code></pre></div>
-
-
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
     "http://localhost:8000/api/admin/users"
@@ -3213,23 +4693,101 @@ fetch(url, {
     headers,
 }).then(response =&gt; response.json());</code></pre></div>
 
+
+<div class="php-example">
+    <pre><code class="language-php">$client = new \GuzzleHttp\Client();
+$url = 'http://localhost:8000/api/admin/users';
+$response = $client-&gt;get(
+    $url,
+    [
+        'headers' =&gt; [
+            'Content-Type' =&gt; 'application/json',
+            'Accept' =&gt; 'application/json',
+        ],
+    ]
+);
+$body = $response-&gt;getBody();
+print_r(json_decode((string) $body));</code></pre></div>
+
+
+<div class="python-example">
+    <pre><code class="language-python">import requests
+import json
+
+url = 'http://localhost:8000/api/admin/users'
+headers = {
+  'Content-Type': 'application/json',
+  'Accept': 'application/json'
+}
+
+response = requests.request('GET', url, headers=headers)
+response.json()</code></pre></div>
+
+
+<div class="angular-example">
+    <pre><code class="language-typescript">import { Injectable, inject } from '@angular/core';
+import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
+import { Observable } from 'rxjs';
+
+@Injectable({
+    providedIn: 'root'
+})
+export class ApiService {
+
+    private readonly http = inject(HttpClient);
+
+    public request(): Observable&lt;any&gt; {
+        const url = 'http://localhost:8000/api/admin/users';
+
+        const headers = new HttpHeaders({
+            'Content-Type': 'application/json',
+            'Accept': 'application/json',
+        });
+
+        const params = new HttpParams();
+
+        const body = null;
+
+        return this.http.request&lt;any&gt;(
+           'GET',
+            url,
+            {
+                headers,
+                params,
+                responseType: 'json'
+            }
+        );
+    }
+}</code></pre></div>
+
+
+<div class="bash-example">
+    <pre><code class="language-bash">curl --request GET \
+    --get "http://localhost:8000/api/admin/users" \
+    --header "Content-Type: application/json" \
+    --header "Accept: application/json"</code></pre></div>
+
 </span>
 
 <span id="example-responses-GETapi-admin-users">
             <blockquote>
             <p>Example response (401):</p>
         </blockquote>
-                <details class="annotation">
-            <summary style="cursor: pointer;">
-                <small onclick="textContent = parentElement.parentElement.open ? 'Show headers' : 'Hide headers'">Show headers</small>
-            </summary>
-            <pre><code class="language-json">{
-    cache-control: no-cache, private
-    content-type: application/json
-    x-ratelimit-limit: 2000
-    x-ratelimit-remaining: 1868
-    vary: Origin
-}</code></pre></details>         <pre>
+                    <details class="annotation">
+                <summary style="cursor: pointer;">
+                    <small onclick="textContent = parentElement.parentElement.open ? 'Show headers' : 'Hide headers'">Show headers</small>
+                </summary>
+                <pre>
+                    <code class="language-json">{
+    "cache-control": "no-cache, private",
+    "content-type": "application/json",
+    "x-ratelimit-limit": "2000",
+    "x-ratelimit-remaining": "1728",
+    "vary": "Origin"
+}</code>
+                </pre>
+            </details>
+                    <pre>
 
 <code class="language-json" style="max-height: 300px;">{
     &quot;error&quot;: &quot;Unauthorized.&quot;
@@ -3319,22 +4877,6 @@ You can check the Dev Tools console for debugging information.</code></pre>
 <blockquote>Example request:</blockquote>
 
 
-<div class="bash-example">
-    <pre><code class="language-bash">curl --request POST \
-    "http://localhost:8000/api/admin/users" \
-    --header "Content-Type: application/json" \
-    --header "Accept: application/json" \
-    --data "{
-    \"name\": \"nnfwxcgofhxyeq\",
-    \"username\": \"ejdvxygvun\",
-    \"email\": \"rath.hertha@example.org\",
-    \"password\": \"o0EGW(G6y3]VTU+\",
-    \"is_admin\": false,
-    \"is_active\": false
-}"
-</code></pre></div>
-
-
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
     "http://localhost:8000/api/admin/users"
@@ -3346,11 +4888,11 @@ const headers = {
 };
 
 let body = {
-    "name": "nnfwxcgofhxyeq",
-    "username": "ejdvxygvun",
-    "email": "rath.hertha@example.org",
-    "password": "o0EGW(G6y3]VTU+",
-    "is_admin": false,
+    "name": "thrbpgsnft",
+    "username": "fyhekvefrymnntrrnja",
+    "email": "citlalli.boehm@example.org",
+    "password": "P&amp;&amp;gaEcdD,Y*H6[c-q,",
+    "is_admin": true,
     "is_active": false
 };
 
@@ -3359,6 +4901,113 @@ fetch(url, {
     headers,
     body: JSON.stringify(body),
 }).then(response =&gt; response.json());</code></pre></div>
+
+
+<div class="php-example">
+    <pre><code class="language-php">$client = new \GuzzleHttp\Client();
+$url = 'http://localhost:8000/api/admin/users';
+$response = $client-&gt;post(
+    $url,
+    [
+        'headers' =&gt; [
+            'Content-Type' =&gt; 'application/json',
+            'Accept' =&gt; 'application/json',
+        ],
+        'json' =&gt; [
+            'name' =&gt; 'thrbpgsnft',
+            'username' =&gt; 'fyhekvefrymnntrrnja',
+            'email' =&gt; 'citlalli.boehm@example.org',
+            'password' =&gt; 'P&amp;&amp;gaEcdD,Y*H6[c-q,',
+            'is_admin' =&gt; true,
+            'is_active' =&gt; false,
+        ],
+    ]
+);
+$body = $response-&gt;getBody();
+print_r(json_decode((string) $body));</code></pre></div>
+
+
+<div class="python-example">
+    <pre><code class="language-python">import requests
+import json
+
+url = 'http://localhost:8000/api/admin/users'
+payload = {
+    "name": "thrbpgsnft",
+    "username": "fyhekvefrymnntrrnja",
+    "email": "citlalli.boehm@example.org",
+    "password": "P&amp;&amp;gaEcdD,Y*H6[c-q,",
+    "is_admin": true,
+    "is_active": false
+}
+headers = {
+  'Content-Type': 'application/json',
+  'Accept': 'application/json'
+}
+
+response = requests.request('POST', url, headers=headers, json=payload)
+response.json()</code></pre></div>
+
+
+<div class="angular-example">
+    <pre><code class="language-typescript">import { Injectable, inject } from '@angular/core';
+import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
+import { Observable } from 'rxjs';
+
+@Injectable({
+    providedIn: 'root'
+})
+export class ApiService {
+
+    private readonly http = inject(HttpClient);
+
+    public request(): Observable&lt;any&gt; {
+        const url = 'http://localhost:8000/api/admin/users';
+
+        const headers = new HttpHeaders({
+            'Content-Type': 'application/json',
+            'Accept': 'application/json',
+        });
+
+        const params = new HttpParams();
+
+        const body = {
+            'name': 'thrbpgsnft',
+            'username': 'fyhekvefrymnntrrnja',
+            'email': 'citlalli.boehm@example.org',
+            'password': 'P&amp;amp;&amp;amp;gaEcdD,Y*H6[c-q,',
+            'is_admin': '1',
+            'is_active': '',
+        }
+
+        return this.http.request&lt;any&gt;(
+           'POST',
+            url,
+            {
+                headers,
+                params,
+                body,
+                responseType: 'json'
+            }
+        );
+    }
+}</code></pre></div>
+
+
+<div class="bash-example">
+    <pre><code class="language-bash">curl --request POST \
+    "http://localhost:8000/api/admin/users" \
+    --header "Content-Type: application/json" \
+    --header "Accept: application/json" \
+    --data "{
+    \"name\": \"thrbpgsnft\",
+    \"username\": \"fyhekvefrymnntrrnja\",
+    \"email\": \"citlalli.boehm@example.org\",
+    \"password\": \"P&amp;&amp;gaEcdD,Y*H6[c-q,\",
+    \"is_admin\": true,
+    \"is_active\": false
+}"
+</code></pre></div>
 
 </span>
 
@@ -3440,10 +5089,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="name"                data-endpoint="POSTapi-admin-users"
-               value="nnfwxcgofhxyeq"
+               value="thrbpgsnft"
                data-component="body">
     <br>
-<p>Must not be greater than 255 characters. Example: <code>nnfwxcgofhxyeq</code></p>
+<p>Must not be greater than 255 characters. Example: <code>thrbpgsnft</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>username</code></b>&nbsp;&nbsp;
@@ -3451,10 +5100,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="username"                data-endpoint="POSTapi-admin-users"
-               value="ejdvxygvun"
+               value="fyhekvefrymnntrrnja"
                data-component="body">
     <br>
-<p>Must not be greater than 255 characters. Example: <code>ejdvxygvun</code></p>
+<p>Must not be greater than 255 characters. Example: <code>fyhekvefrymnntrrnja</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>email</code></b>&nbsp;&nbsp;
@@ -3462,10 +5111,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="email"                data-endpoint="POSTapi-admin-users"
-               value="rath.hertha@example.org"
+               value="citlalli.boehm@example.org"
                data-component="body">
     <br>
-<p>Must be a valid email address. Must not be greater than 255 characters. Example: <code>rath.hertha@example.org</code></p>
+<p>Must be a valid email address. Must not be greater than 255 characters. Example: <code>citlalli.boehm@example.org</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>password</code></b>&nbsp;&nbsp;
@@ -3473,10 +5122,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="password"                data-endpoint="POSTapi-admin-users"
-               value="o0EGW(G6y3]VTU+"
+               value="P&&gaEcdD,Y*H6[c-q,"
                data-component="body">
     <br>
-<p>Must be at least 6 characters. Example: <code>o0EGW(G6y3]VTU+</code></p>
+<p>Must be at least 6 characters. Example: <code>P&amp;&amp;gaEcdD,Y*H6[c-q,</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>is_admin</code></b>&nbsp;&nbsp;
@@ -3497,7 +5146,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
             <code>false</code>
         </label>
     <br>
-<p>Example: <code>false</code></p>
+<p>Example: <code>true</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>is_active</code></b>&nbsp;&nbsp;
@@ -3534,16 +5183,9 @@ You can check the Dev Tools console for debugging information.</code></pre>
 <blockquote>Example request:</blockquote>
 
 
-<div class="bash-example">
-    <pre><code class="language-bash">curl --request GET \
-    --get "http://localhost:8000/api/admin/users/vitae" \
-    --header "Content-Type: application/json" \
-    --header "Accept: application/json"</code></pre></div>
-
-
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://localhost:8000/api/admin/users/vitae"
+    "http://localhost:8000/api/admin/users/autem"
 );
 
 const headers = {
@@ -3556,23 +5198,101 @@ fetch(url, {
     headers,
 }).then(response =&gt; response.json());</code></pre></div>
 
+
+<div class="php-example">
+    <pre><code class="language-php">$client = new \GuzzleHttp\Client();
+$url = 'http://localhost:8000/api/admin/users/autem';
+$response = $client-&gt;get(
+    $url,
+    [
+        'headers' =&gt; [
+            'Content-Type' =&gt; 'application/json',
+            'Accept' =&gt; 'application/json',
+        ],
+    ]
+);
+$body = $response-&gt;getBody();
+print_r(json_decode((string) $body));</code></pre></div>
+
+
+<div class="python-example">
+    <pre><code class="language-python">import requests
+import json
+
+url = 'http://localhost:8000/api/admin/users/autem'
+headers = {
+  'Content-Type': 'application/json',
+  'Accept': 'application/json'
+}
+
+response = requests.request('GET', url, headers=headers)
+response.json()</code></pre></div>
+
+
+<div class="angular-example">
+    <pre><code class="language-typescript">import { Injectable, inject } from '@angular/core';
+import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
+import { Observable } from 'rxjs';
+
+@Injectable({
+    providedIn: 'root'
+})
+export class ApiService {
+
+    private readonly http = inject(HttpClient);
+
+    public request(): Observable&lt;any&gt; {
+        const url = 'http://localhost:8000/api/admin/users/{id}';
+
+        const headers = new HttpHeaders({
+            'Content-Type': 'application/json',
+            'Accept': 'application/json',
+        });
+
+        const params = new HttpParams();
+
+        const body = null;
+
+        return this.http.request&lt;any&gt;(
+           'GET',
+            url,
+            {
+                headers,
+                params,
+                responseType: 'json'
+            }
+        );
+    }
+}</code></pre></div>
+
+
+<div class="bash-example">
+    <pre><code class="language-bash">curl --request GET \
+    --get "http://localhost:8000/api/admin/users/autem" \
+    --header "Content-Type: application/json" \
+    --header "Accept: application/json"</code></pre></div>
+
 </span>
 
 <span id="example-responses-GETapi-admin-users--id-">
             <blockquote>
             <p>Example response (401):</p>
         </blockquote>
-                <details class="annotation">
-            <summary style="cursor: pointer;">
-                <small onclick="textContent = parentElement.parentElement.open ? 'Show headers' : 'Hide headers'">Show headers</small>
-            </summary>
-            <pre><code class="language-json">{
-    cache-control: no-cache, private
-    content-type: application/json
-    x-ratelimit-limit: 2000
-    x-ratelimit-remaining: 1867
-    vary: Origin
-}</code></pre></details>         <pre>
+                    <details class="annotation">
+                <summary style="cursor: pointer;">
+                    <small onclick="textContent = parentElement.parentElement.open ? 'Show headers' : 'Hide headers'">Show headers</small>
+                </summary>
+                <pre>
+                    <code class="language-json">{
+    "cache-control": "no-cache, private",
+    "content-type": "application/json",
+    "x-ratelimit-limit": "2000",
+    "x-ratelimit-remaining": "1727",
+    "vary": "Origin"
+}</code>
+                </pre>
+            </details>
+                    <pre>
 
 <code class="language-json" style="max-height: 300px;">{
     &quot;error&quot;: &quot;Unauthorized.&quot;
@@ -3655,10 +5375,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="id"                data-endpoint="GETapi-admin-users--id-"
-               value="vitae"
+               value="autem"
                data-component="url">
     <br>
-<p>Example: <code>vitae</code></p>
+<p>Example: <code>autem</code></p>
             </div>
                     </form>
 
@@ -3674,22 +5394,9 @@ You can check the Dev Tools console for debugging information.</code></pre>
 <blockquote>Example request:</blockquote>
 
 
-<div class="bash-example">
-    <pre><code class="language-bash">curl --request PUT \
-    "http://localhost:8000/api/admin/users/libero" \
-    --header "Content-Type: application/json" \
-    --header "Accept: application/json" \
-    --data "{
-    \"name\": \"xwwxbrvyyoqxttahjczv\",
-    \"is_admin\": true,
-    \"is_active\": false
-}"
-</code></pre></div>
-
-
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://localhost:8000/api/admin/users/libero"
+    "http://localhost:8000/api/admin/users/eaque"
 );
 
 const headers = {
@@ -3698,8 +5405,8 @@ const headers = {
 };
 
 let body = {
-    "name": "xwwxbrvyyoqxttahjczv",
-    "is_admin": true,
+    "name": "dejrv",
+    "is_admin": false,
     "is_active": false
 };
 
@@ -3708,6 +5415,101 @@ fetch(url, {
     headers,
     body: JSON.stringify(body),
 }).then(response =&gt; response.json());</code></pre></div>
+
+
+<div class="php-example">
+    <pre><code class="language-php">$client = new \GuzzleHttp\Client();
+$url = 'http://localhost:8000/api/admin/users/eaque';
+$response = $client-&gt;put(
+    $url,
+    [
+        'headers' =&gt; [
+            'Content-Type' =&gt; 'application/json',
+            'Accept' =&gt; 'application/json',
+        ],
+        'json' =&gt; [
+            'name' =&gt; 'dejrv',
+            'is_admin' =&gt; false,
+            'is_active' =&gt; false,
+        ],
+    ]
+);
+$body = $response-&gt;getBody();
+print_r(json_decode((string) $body));</code></pre></div>
+
+
+<div class="python-example">
+    <pre><code class="language-python">import requests
+import json
+
+url = 'http://localhost:8000/api/admin/users/eaque'
+payload = {
+    "name": "dejrv",
+    "is_admin": false,
+    "is_active": false
+}
+headers = {
+  'Content-Type': 'application/json',
+  'Accept': 'application/json'
+}
+
+response = requests.request('PUT', url, headers=headers, json=payload)
+response.json()</code></pre></div>
+
+
+<div class="angular-example">
+    <pre><code class="language-typescript">import { Injectable, inject } from '@angular/core';
+import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
+import { Observable } from 'rxjs';
+
+@Injectable({
+    providedIn: 'root'
+})
+export class ApiService {
+
+    private readonly http = inject(HttpClient);
+
+    public request(): Observable&lt;any&gt; {
+        const url = 'http://localhost:8000/api/admin/users/{id}';
+
+        const headers = new HttpHeaders({
+            'Content-Type': 'application/json',
+            'Accept': 'application/json',
+        });
+
+        const params = new HttpParams();
+
+        const body = {
+            'name': 'dejrv',
+            'is_admin': '',
+            'is_active': '',
+        }
+
+        return this.http.request&lt;any&gt;(
+           'PUT',
+            url,
+            {
+                headers,
+                params,
+                body,
+                responseType: 'json'
+            }
+        );
+    }
+}</code></pre></div>
+
+
+<div class="bash-example">
+    <pre><code class="language-bash">curl --request PUT \
+    "http://localhost:8000/api/admin/users/eaque" \
+    --header "Content-Type: application/json" \
+    --header "Accept: application/json" \
+    --data "{
+    \"name\": \"dejrv\",
+    \"is_admin\": false,
+    \"is_active\": false
+}"
+</code></pre></div>
 
 </span>
 
@@ -3789,10 +5591,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="id"                data-endpoint="PUTapi-admin-users--id-"
-               value="libero"
+               value="eaque"
                data-component="url">
     <br>
-<p>Example: <code>libero</code></p>
+<p>Example: <code>eaque</code></p>
             </div>
                             <h4 class="fancy-heading-panel"><b>Body Parameters</b></h4>
         <div style=" padding-left: 28px;  clear: unset;">
@@ -3801,10 +5603,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="name"                data-endpoint="PUTapi-admin-users--id-"
-               value="xwwxbrvyyoqxttahjczv"
+               value="dejrv"
                data-component="body">
     <br>
-<p>Must not be greater than 255 characters. Example: <code>xwwxbrvyyoqxttahjczv</code></p>
+<p>Must not be greater than 255 characters. Example: <code>dejrv</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>username</code></b>&nbsp;&nbsp;
@@ -3847,7 +5649,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
             <code>false</code>
         </label>
     <br>
-<p>Example: <code>true</code></p>
+<p>Example: <code>false</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>is_active</code></b>&nbsp;&nbsp;
@@ -3884,16 +5686,9 @@ You can check the Dev Tools console for debugging information.</code></pre>
 <blockquote>Example request:</blockquote>
 
 
-<div class="bash-example">
-    <pre><code class="language-bash">curl --request DELETE \
-    "http://localhost:8000/api/admin/users/minima" \
-    --header "Content-Type: application/json" \
-    --header "Accept: application/json"</code></pre></div>
-
-
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://localhost:8000/api/admin/users/minima"
+    "http://localhost:8000/api/admin/users/illo"
 );
 
 const headers = {
@@ -3905,6 +5700,80 @@ fetch(url, {
     method: "DELETE",
     headers,
 }).then(response =&gt; response.json());</code></pre></div>
+
+
+<div class="php-example">
+    <pre><code class="language-php">$client = new \GuzzleHttp\Client();
+$url = 'http://localhost:8000/api/admin/users/illo';
+$response = $client-&gt;delete(
+    $url,
+    [
+        'headers' =&gt; [
+            'Content-Type' =&gt; 'application/json',
+            'Accept' =&gt; 'application/json',
+        ],
+    ]
+);
+$body = $response-&gt;getBody();
+print_r(json_decode((string) $body));</code></pre></div>
+
+
+<div class="python-example">
+    <pre><code class="language-python">import requests
+import json
+
+url = 'http://localhost:8000/api/admin/users/illo'
+headers = {
+  'Content-Type': 'application/json',
+  'Accept': 'application/json'
+}
+
+response = requests.request('DELETE', url, headers=headers)
+response.json()</code></pre></div>
+
+
+<div class="angular-example">
+    <pre><code class="language-typescript">import { Injectable, inject } from '@angular/core';
+import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
+import { Observable } from 'rxjs';
+
+@Injectable({
+    providedIn: 'root'
+})
+export class ApiService {
+
+    private readonly http = inject(HttpClient);
+
+    public request(): Observable&lt;any&gt; {
+        const url = 'http://localhost:8000/api/admin/users/{id}';
+
+        const headers = new HttpHeaders({
+            'Content-Type': 'application/json',
+            'Accept': 'application/json',
+        });
+
+        const params = new HttpParams();
+
+        const body = null;
+
+        return this.http.request&lt;any&gt;(
+           'DELETE',
+            url,
+            {
+                headers,
+                params,
+                responseType: 'json'
+            }
+        );
+    }
+}</code></pre></div>
+
+
+<div class="bash-example">
+    <pre><code class="language-bash">curl --request DELETE \
+    "http://localhost:8000/api/admin/users/illo" \
+    --header "Content-Type: application/json" \
+    --header "Accept: application/json"</code></pre></div>
 
 </span>
 
@@ -3986,10 +5855,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="id"                data-endpoint="DELETEapi-admin-users--id-"
-               value="minima"
+               value="illo"
                data-component="url">
     <br>
-<p>Example: <code>minima</code></p>
+<p>Example: <code>illo</code></p>
             </div>
                     </form>
 
@@ -4005,20 +5874,9 @@ You can check the Dev Tools console for debugging information.</code></pre>
 <blockquote>Example request:</blockquote>
 
 
-<div class="bash-example">
-    <pre><code class="language-bash">curl --request PUT \
-    "http://localhost:8000/api/admin/users/aliquid/password" \
-    --header "Content-Type: application/json" \
-    --header "Accept: application/json" \
-    --data "{
-    \"password\": \"Ws\\\\^KI\"
-}"
-</code></pre></div>
-
-
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://localhost:8000/api/admin/users/aliquid/password"
+    "http://localhost:8000/api/admin/users/ab/password"
 );
 
 const headers = {
@@ -4027,7 +5885,7 @@ const headers = {
 };
 
 let body = {
-    "password": "Ws\\^KI"
+    "password": "coABB#~"
 };
 
 fetch(url, {
@@ -4035,6 +5893,93 @@ fetch(url, {
     headers,
     body: JSON.stringify(body),
 }).then(response =&gt; response.json());</code></pre></div>
+
+
+<div class="php-example">
+    <pre><code class="language-php">$client = new \GuzzleHttp\Client();
+$url = 'http://localhost:8000/api/admin/users/ab/password';
+$response = $client-&gt;put(
+    $url,
+    [
+        'headers' =&gt; [
+            'Content-Type' =&gt; 'application/json',
+            'Accept' =&gt; 'application/json',
+        ],
+        'json' =&gt; [
+            'password' =&gt; 'coABB#~',
+        ],
+    ]
+);
+$body = $response-&gt;getBody();
+print_r(json_decode((string) $body));</code></pre></div>
+
+
+<div class="python-example">
+    <pre><code class="language-python">import requests
+import json
+
+url = 'http://localhost:8000/api/admin/users/ab/password'
+payload = {
+    "password": "coABB#~"
+}
+headers = {
+  'Content-Type': 'application/json',
+  'Accept': 'application/json'
+}
+
+response = requests.request('PUT', url, headers=headers, json=payload)
+response.json()</code></pre></div>
+
+
+<div class="angular-example">
+    <pre><code class="language-typescript">import { Injectable, inject } from '@angular/core';
+import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
+import { Observable } from 'rxjs';
+
+@Injectable({
+    providedIn: 'root'
+})
+export class ApiService {
+
+    private readonly http = inject(HttpClient);
+
+    public request(): Observable&lt;any&gt; {
+        const url = 'http://localhost:8000/api/admin/users/{id}/password';
+
+        const headers = new HttpHeaders({
+            'Content-Type': 'application/json',
+            'Accept': 'application/json',
+        });
+
+        const params = new HttpParams();
+
+        const body = {
+            'password': 'coABB#~',
+        }
+
+        return this.http.request&lt;any&gt;(
+           'PUT',
+            url,
+            {
+                headers,
+                params,
+                body,
+                responseType: 'json'
+            }
+        );
+    }
+}</code></pre></div>
+
+
+<div class="bash-example">
+    <pre><code class="language-bash">curl --request PUT \
+    "http://localhost:8000/api/admin/users/ab/password" \
+    --header "Content-Type: application/json" \
+    --header "Accept: application/json" \
+    --data "{
+    \"password\": \"coABB#~\"
+}"
+</code></pre></div>
 
 </span>
 
@@ -4116,10 +6061,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="id"                data-endpoint="PUTapi-admin-users--id--password"
-               value="aliquid"
+               value="ab"
                data-component="url">
     <br>
-<p>Example: <code>aliquid</code></p>
+<p>Example: <code>ab</code></p>
             </div>
                             <h4 class="fancy-heading-panel"><b>Body Parameters</b></h4>
         <div style=" padding-left: 28px;  clear: unset;">
@@ -4128,10 +6073,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="password"                data-endpoint="PUTapi-admin-users--id--password"
-               value="Ws\^KI"
+               value="coABB#~"
                data-component="body">
     <br>
-<p>Must be at least 6 characters. Example: <code>Ws\^KI</code></p>
+<p>Must be at least 6 characters. Example: <code>coABB#~</code></p>
         </div>
         </form>
 
@@ -4152,16 +6097,9 @@ Respondem com status e payload customizados caso as condições batam.</p>
 <blockquote>Example request:</blockquote>
 
 
-<div class="bash-example">
-    <pre><code class="language-bash">curl --request GET \
-    --get "http://localhost:8000/api/admin/endpoints/dolorem/rules" \
-    --header "Content-Type: application/json" \
-    --header "Accept: application/json"</code></pre></div>
-
-
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://localhost:8000/api/admin/endpoints/dolorem/rules"
+    "http://localhost:8000/api/admin/endpoints/nam/rules"
 );
 
 const headers = {
@@ -4174,23 +6112,101 @@ fetch(url, {
     headers,
 }).then(response =&gt; response.json());</code></pre></div>
 
+
+<div class="php-example">
+    <pre><code class="language-php">$client = new \GuzzleHttp\Client();
+$url = 'http://localhost:8000/api/admin/endpoints/nam/rules';
+$response = $client-&gt;get(
+    $url,
+    [
+        'headers' =&gt; [
+            'Content-Type' =&gt; 'application/json',
+            'Accept' =&gt; 'application/json',
+        ],
+    ]
+);
+$body = $response-&gt;getBody();
+print_r(json_decode((string) $body));</code></pre></div>
+
+
+<div class="python-example">
+    <pre><code class="language-python">import requests
+import json
+
+url = 'http://localhost:8000/api/admin/endpoints/nam/rules'
+headers = {
+  'Content-Type': 'application/json',
+  'Accept': 'application/json'
+}
+
+response = requests.request('GET', url, headers=headers)
+response.json()</code></pre></div>
+
+
+<div class="angular-example">
+    <pre><code class="language-typescript">import { Injectable, inject } from '@angular/core';
+import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
+import { Observable } from 'rxjs';
+
+@Injectable({
+    providedIn: 'root'
+})
+export class ApiService {
+
+    private readonly http = inject(HttpClient);
+
+    public request(): Observable&lt;any&gt; {
+        const url = 'http://localhost:8000/api/admin/endpoints/{endpointId}/rules';
+
+        const headers = new HttpHeaders({
+            'Content-Type': 'application/json',
+            'Accept': 'application/json',
+        });
+
+        const params = new HttpParams();
+
+        const body = null;
+
+        return this.http.request&lt;any&gt;(
+           'GET',
+            url,
+            {
+                headers,
+                params,
+                responseType: 'json'
+            }
+        );
+    }
+}</code></pre></div>
+
+
+<div class="bash-example">
+    <pre><code class="language-bash">curl --request GET \
+    --get "http://localhost:8000/api/admin/endpoints/nam/rules" \
+    --header "Content-Type: application/json" \
+    --header "Accept: application/json"</code></pre></div>
+
 </span>
 
 <span id="example-responses-GETapi-admin-endpoints--endpointId--rules">
             <blockquote>
             <p>Example response (401):</p>
         </blockquote>
-                <details class="annotation">
-            <summary style="cursor: pointer;">
-                <small onclick="textContent = parentElement.parentElement.open ? 'Show headers' : 'Hide headers'">Show headers</small>
-            </summary>
-            <pre><code class="language-json">{
-    cache-control: no-cache, private
-    content-type: application/json
-    x-ratelimit-limit: 2000
-    x-ratelimit-remaining: 1861
-    vary: Origin
-}</code></pre></details>         <pre>
+                    <details class="annotation">
+                <summary style="cursor: pointer;">
+                    <small onclick="textContent = parentElement.parentElement.open ? 'Show headers' : 'Hide headers'">Show headers</small>
+                </summary>
+                <pre>
+                    <code class="language-json">{
+    "cache-control": "no-cache, private",
+    "content-type": "application/json",
+    "x-ratelimit-limit": "2000",
+    "x-ratelimit-remaining": "1721",
+    "vary": "Origin"
+}</code>
+                </pre>
+            </details>
+                    <pre>
 
 <code class="language-json" style="max-height: 300px;">{
     &quot;error&quot;: &quot;Unauthorized.&quot;
@@ -4273,10 +6289,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="endpointId"                data-endpoint="GETapi-admin-endpoints--endpointId--rules"
-               value="dolorem"
+               value="nam"
                data-component="url">
     <br>
-<p>Example: <code>dolorem</code></p>
+<p>Example: <code>nam</code></p>
             </div>
                     </form>
 
@@ -4292,24 +6308,9 @@ You can check the Dev Tools console for debugging information.</code></pre>
 <blockquote>Example request:</blockquote>
 
 
-<div class="bash-example">
-    <pre><code class="language-bash">curl --request POST \
-    "http://localhost:8000/api/admin/endpoints/nisi/rules" \
-    --header "Content-Type: application/json" \
-    --header "Accept: application/json" \
-    --data "{
-    \"condition_type\": \"header\",
-    \"condition_key\": \"voluptas\",
-    \"condition_operator\": \"not_equals\",
-    \"condition_value\": \"asperiores\",
-    \"response_status\": 8
-}"
-</code></pre></div>
-
-
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://localhost:8000/api/admin/endpoints/nisi/rules"
+    "http://localhost:8000/api/admin/endpoints/sint/rules"
 );
 
 const headers = {
@@ -4318,11 +6319,11 @@ const headers = {
 };
 
 let body = {
-    "condition_type": "header",
-    "condition_key": "voluptas",
-    "condition_operator": "not_equals",
-    "condition_value": "asperiores",
-    "response_status": 8
+    "condition_type": "query",
+    "condition_key": "saepe",
+    "condition_operator": "equals",
+    "condition_value": "et",
+    "response_status": 3
 };
 
 fetch(url, {
@@ -4330,6 +6331,109 @@ fetch(url, {
     headers,
     body: JSON.stringify(body),
 }).then(response =&gt; response.json());</code></pre></div>
+
+
+<div class="php-example">
+    <pre><code class="language-php">$client = new \GuzzleHttp\Client();
+$url = 'http://localhost:8000/api/admin/endpoints/sint/rules';
+$response = $client-&gt;post(
+    $url,
+    [
+        'headers' =&gt; [
+            'Content-Type' =&gt; 'application/json',
+            'Accept' =&gt; 'application/json',
+        ],
+        'json' =&gt; [
+            'condition_type' =&gt; 'query',
+            'condition_key' =&gt; 'saepe',
+            'condition_operator' =&gt; 'equals',
+            'condition_value' =&gt; 'et',
+            'response_status' =&gt; 3,
+        ],
+    ]
+);
+$body = $response-&gt;getBody();
+print_r(json_decode((string) $body));</code></pre></div>
+
+
+<div class="python-example">
+    <pre><code class="language-python">import requests
+import json
+
+url = 'http://localhost:8000/api/admin/endpoints/sint/rules'
+payload = {
+    "condition_type": "query",
+    "condition_key": "saepe",
+    "condition_operator": "equals",
+    "condition_value": "et",
+    "response_status": 3
+}
+headers = {
+  'Content-Type': 'application/json',
+  'Accept': 'application/json'
+}
+
+response = requests.request('POST', url, headers=headers, json=payload)
+response.json()</code></pre></div>
+
+
+<div class="angular-example">
+    <pre><code class="language-typescript">import { Injectable, inject } from '@angular/core';
+import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
+import { Observable } from 'rxjs';
+
+@Injectable({
+    providedIn: 'root'
+})
+export class ApiService {
+
+    private readonly http = inject(HttpClient);
+
+    public request(): Observable&lt;any&gt; {
+        const url = 'http://localhost:8000/api/admin/endpoints/{endpointId}/rules';
+
+        const headers = new HttpHeaders({
+            'Content-Type': 'application/json',
+            'Accept': 'application/json',
+        });
+
+        const params = new HttpParams();
+
+        const body = {
+            'condition_type': 'query',
+            'condition_key': 'saepe',
+            'condition_operator': 'equals',
+            'condition_value': 'et',
+            'response_status': '3',
+        }
+
+        return this.http.request&lt;any&gt;(
+           'POST',
+            url,
+            {
+                headers,
+                params,
+                body,
+                responseType: 'json'
+            }
+        );
+    }
+}</code></pre></div>
+
+
+<div class="bash-example">
+    <pre><code class="language-bash">curl --request POST \
+    "http://localhost:8000/api/admin/endpoints/sint/rules" \
+    --header "Content-Type: application/json" \
+    --header "Accept: application/json" \
+    --data "{
+    \"condition_type\": \"query\",
+    \"condition_key\": \"saepe\",
+    \"condition_operator\": \"equals\",
+    \"condition_value\": \"et\",
+    \"response_status\": 3
+}"
+</code></pre></div>
 
 </span>
 
@@ -4411,10 +6515,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="endpointId"                data-endpoint="POSTapi-admin-endpoints--endpointId--rules"
-               value="nisi"
+               value="sint"
                data-component="url">
     <br>
-<p>Example: <code>nisi</code></p>
+<p>Example: <code>sint</code></p>
             </div>
                             <h4 class="fancy-heading-panel"><b>Body Parameters</b></h4>
         <div style=" padding-left: 28px;  clear: unset;">
@@ -4423,10 +6527,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="condition_type"                data-endpoint="POSTapi-admin-endpoints--endpointId--rules"
-               value="header"
+               value="query"
                data-component="body">
     <br>
-<p>Example: <code>header</code></p>
+<p>Example: <code>query</code></p>
 Must be one of:
 <ul style="list-style-type: square;"><li><code>header</code></li> <li><code>query</code></li> <li><code>body</code></li></ul>
         </div>
@@ -4436,10 +6540,10 @@ Must be one of:
  &nbsp;
                 <input type="text" style="display: none"
                               name="condition_key"                data-endpoint="POSTapi-admin-endpoints--endpointId--rules"
-               value="voluptas"
+               value="saepe"
                data-component="body">
     <br>
-<p>Example: <code>voluptas</code></p>
+<p>Example: <code>saepe</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>condition_operator</code></b>&nbsp;&nbsp;
@@ -4447,10 +6551,10 @@ Must be one of:
  &nbsp;
                 <input type="text" style="display: none"
                               name="condition_operator"                data-endpoint="POSTapi-admin-endpoints--endpointId--rules"
-               value="not_equals"
+               value="equals"
                data-component="body">
     <br>
-<p>Example: <code>not_equals</code></p>
+<p>Example: <code>equals</code></p>
 Must be one of:
 <ul style="list-style-type: square;"><li><code>equals</code></li> <li><code>not_equals</code></li> <li><code>contains</code></li></ul>
         </div>
@@ -4460,10 +6564,10 @@ Must be one of:
  &nbsp;
                 <input type="text" style="display: none"
                               name="condition_value"                data-endpoint="POSTapi-admin-endpoints--endpointId--rules"
-               value="asperiores"
+               value="et"
                data-component="body">
     <br>
-<p>Example: <code>asperiores</code></p>
+<p>Example: <code>et</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>response_status</code></b>&nbsp;&nbsp;
@@ -4471,10 +6575,10 @@ Must be one of:
  &nbsp;
                 <input type="number" style="display: none"
                step="any"               name="response_status"                data-endpoint="POSTapi-admin-endpoints--endpointId--rules"
-               value="8"
+               value="3"
                data-component="body">
     <br>
-<p>Example: <code>8</code></p>
+<p>Example: <code>3</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>response_body</code></b>&nbsp;&nbsp;
@@ -4501,24 +6605,9 @@ Must be one of:
 <blockquote>Example request:</blockquote>
 
 
-<div class="bash-example">
-    <pre><code class="language-bash">curl --request PUT \
-    "http://localhost:8000/api/admin/rules/sint" \
-    --header "Content-Type: application/json" \
-    --header "Accept: application/json" \
-    --data "{
-    \"condition_type\": \"query\",
-    \"condition_key\": \"officiis\",
-    \"condition_operator\": \"contains\",
-    \"condition_value\": \"qui\",
-    \"response_status\": 4
-}"
-</code></pre></div>
-
-
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://localhost:8000/api/admin/rules/sint"
+    "http://localhost:8000/api/admin/rules/perspiciatis"
 );
 
 const headers = {
@@ -4527,11 +6616,11 @@ const headers = {
 };
 
 let body = {
-    "condition_type": "query",
-    "condition_key": "officiis",
-    "condition_operator": "contains",
-    "condition_value": "qui",
-    "response_status": 4
+    "condition_type": "body",
+    "condition_key": "sequi",
+    "condition_operator": "not_equals",
+    "condition_value": "quo",
+    "response_status": 7
 };
 
 fetch(url, {
@@ -4539,6 +6628,109 @@ fetch(url, {
     headers,
     body: JSON.stringify(body),
 }).then(response =&gt; response.json());</code></pre></div>
+
+
+<div class="php-example">
+    <pre><code class="language-php">$client = new \GuzzleHttp\Client();
+$url = 'http://localhost:8000/api/admin/rules/perspiciatis';
+$response = $client-&gt;put(
+    $url,
+    [
+        'headers' =&gt; [
+            'Content-Type' =&gt; 'application/json',
+            'Accept' =&gt; 'application/json',
+        ],
+        'json' =&gt; [
+            'condition_type' =&gt; 'body',
+            'condition_key' =&gt; 'sequi',
+            'condition_operator' =&gt; 'not_equals',
+            'condition_value' =&gt; 'quo',
+            'response_status' =&gt; 7,
+        ],
+    ]
+);
+$body = $response-&gt;getBody();
+print_r(json_decode((string) $body));</code></pre></div>
+
+
+<div class="python-example">
+    <pre><code class="language-python">import requests
+import json
+
+url = 'http://localhost:8000/api/admin/rules/perspiciatis'
+payload = {
+    "condition_type": "body",
+    "condition_key": "sequi",
+    "condition_operator": "not_equals",
+    "condition_value": "quo",
+    "response_status": 7
+}
+headers = {
+  'Content-Type': 'application/json',
+  'Accept': 'application/json'
+}
+
+response = requests.request('PUT', url, headers=headers, json=payload)
+response.json()</code></pre></div>
+
+
+<div class="angular-example">
+    <pre><code class="language-typescript">import { Injectable, inject } from '@angular/core';
+import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
+import { Observable } from 'rxjs';
+
+@Injectable({
+    providedIn: 'root'
+})
+export class ApiService {
+
+    private readonly http = inject(HttpClient);
+
+    public request(): Observable&lt;any&gt; {
+        const url = 'http://localhost:8000/api/admin/rules/{id}';
+
+        const headers = new HttpHeaders({
+            'Content-Type': 'application/json',
+            'Accept': 'application/json',
+        });
+
+        const params = new HttpParams();
+
+        const body = {
+            'condition_type': 'body',
+            'condition_key': 'sequi',
+            'condition_operator': 'not_equals',
+            'condition_value': 'quo',
+            'response_status': '7',
+        }
+
+        return this.http.request&lt;any&gt;(
+           'PUT',
+            url,
+            {
+                headers,
+                params,
+                body,
+                responseType: 'json'
+            }
+        );
+    }
+}</code></pre></div>
+
+
+<div class="bash-example">
+    <pre><code class="language-bash">curl --request PUT \
+    "http://localhost:8000/api/admin/rules/perspiciatis" \
+    --header "Content-Type: application/json" \
+    --header "Accept: application/json" \
+    --data "{
+    \"condition_type\": \"body\",
+    \"condition_key\": \"sequi\",
+    \"condition_operator\": \"not_equals\",
+    \"condition_value\": \"quo\",
+    \"response_status\": 7
+}"
+</code></pre></div>
 
 </span>
 
@@ -4620,10 +6812,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="id"                data-endpoint="PUTapi-admin-rules--id-"
-               value="sint"
+               value="perspiciatis"
                data-component="url">
     <br>
-<p>Example: <code>sint</code></p>
+<p>Example: <code>perspiciatis</code></p>
             </div>
                             <h4 class="fancy-heading-panel"><b>Body Parameters</b></h4>
         <div style=" padding-left: 28px;  clear: unset;">
@@ -4632,10 +6824,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="condition_type"                data-endpoint="PUTapi-admin-rules--id-"
-               value="query"
+               value="body"
                data-component="body">
     <br>
-<p>Example: <code>query</code></p>
+<p>Example: <code>body</code></p>
 Must be one of:
 <ul style="list-style-type: square;"><li><code>header</code></li> <li><code>query</code></li> <li><code>body</code></li></ul>
         </div>
@@ -4645,10 +6837,10 @@ Must be one of:
  &nbsp;
                 <input type="text" style="display: none"
                               name="condition_key"                data-endpoint="PUTapi-admin-rules--id-"
-               value="officiis"
+               value="sequi"
                data-component="body">
     <br>
-<p>Example: <code>officiis</code></p>
+<p>Example: <code>sequi</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>condition_operator</code></b>&nbsp;&nbsp;
@@ -4656,10 +6848,10 @@ Must be one of:
  &nbsp;
                 <input type="text" style="display: none"
                               name="condition_operator"                data-endpoint="PUTapi-admin-rules--id-"
-               value="contains"
+               value="not_equals"
                data-component="body">
     <br>
-<p>Example: <code>contains</code></p>
+<p>Example: <code>not_equals</code></p>
 Must be one of:
 <ul style="list-style-type: square;"><li><code>equals</code></li> <li><code>not_equals</code></li> <li><code>contains</code></li></ul>
         </div>
@@ -4669,10 +6861,10 @@ Must be one of:
  &nbsp;
                 <input type="text" style="display: none"
                               name="condition_value"                data-endpoint="PUTapi-admin-rules--id-"
-               value="qui"
+               value="quo"
                data-component="body">
     <br>
-<p>Example: <code>qui</code></p>
+<p>Example: <code>quo</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>response_status</code></b>&nbsp;&nbsp;
@@ -4680,10 +6872,10 @@ Must be one of:
  &nbsp;
                 <input type="number" style="display: none"
                step="any"               name="response_status"                data-endpoint="PUTapi-admin-rules--id-"
-               value="4"
+               value="7"
                data-component="body">
     <br>
-<p>Example: <code>4</code></p>
+<p>Example: <code>7</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>response_body</code></b>&nbsp;&nbsp;
@@ -4710,16 +6902,9 @@ Must be one of:
 <blockquote>Example request:</blockquote>
 
 
-<div class="bash-example">
-    <pre><code class="language-bash">curl --request DELETE \
-    "http://localhost:8000/api/admin/rules/et" \
-    --header "Content-Type: application/json" \
-    --header "Accept: application/json"</code></pre></div>
-
-
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://localhost:8000/api/admin/rules/et"
+    "http://localhost:8000/api/admin/rules/atque"
 );
 
 const headers = {
@@ -4731,6 +6916,80 @@ fetch(url, {
     method: "DELETE",
     headers,
 }).then(response =&gt; response.json());</code></pre></div>
+
+
+<div class="php-example">
+    <pre><code class="language-php">$client = new \GuzzleHttp\Client();
+$url = 'http://localhost:8000/api/admin/rules/atque';
+$response = $client-&gt;delete(
+    $url,
+    [
+        'headers' =&gt; [
+            'Content-Type' =&gt; 'application/json',
+            'Accept' =&gt; 'application/json',
+        ],
+    ]
+);
+$body = $response-&gt;getBody();
+print_r(json_decode((string) $body));</code></pre></div>
+
+
+<div class="python-example">
+    <pre><code class="language-python">import requests
+import json
+
+url = 'http://localhost:8000/api/admin/rules/atque'
+headers = {
+  'Content-Type': 'application/json',
+  'Accept': 'application/json'
+}
+
+response = requests.request('DELETE', url, headers=headers)
+response.json()</code></pre></div>
+
+
+<div class="angular-example">
+    <pre><code class="language-typescript">import { Injectable, inject } from '@angular/core';
+import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
+import { Observable } from 'rxjs';
+
+@Injectable({
+    providedIn: 'root'
+})
+export class ApiService {
+
+    private readonly http = inject(HttpClient);
+
+    public request(): Observable&lt;any&gt; {
+        const url = 'http://localhost:8000/api/admin/rules/{id}';
+
+        const headers = new HttpHeaders({
+            'Content-Type': 'application/json',
+            'Accept': 'application/json',
+        });
+
+        const params = new HttpParams();
+
+        const body = null;
+
+        return this.http.request&lt;any&gt;(
+           'DELETE',
+            url,
+            {
+                headers,
+                params,
+                responseType: 'json'
+            }
+        );
+    }
+}</code></pre></div>
+
+
+<div class="bash-example">
+    <pre><code class="language-bash">curl --request DELETE \
+    "http://localhost:8000/api/admin/rules/atque" \
+    --header "Content-Type: application/json" \
+    --header "Accept: application/json"</code></pre></div>
 
 </span>
 
@@ -4812,10 +7071,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="id"                data-endpoint="DELETEapi-admin-rules--id-"
-               value="et"
+               value="atque"
                data-component="url">
     <br>
-<p>Example: <code>et</code></p>
+<p>Example: <code>atque</code></p>
             </div>
                     </form>
 
@@ -4835,16 +7094,9 @@ Todas as requisições devem vir autenticadas pelo Header <code>X-Project-Token<
 <blockquote>Example request:</blockquote>
 
 
-<div class="bash-example">
-    <pre><code class="language-bash">curl --request GET \
-    --get "http://localhost:8000/api/eos/rerum/in" \
-    --header "Content-Type: application/json" \
-    --header "Accept: application/json"</code></pre></div>
-
-
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://localhost:8000/api/eos/rerum/in"
+    "http://localhost:8000/api/ducimus/consequatur/nesciunt"
 );
 
 const headers = {
@@ -4857,23 +7109,101 @@ fetch(url, {
     headers,
 }).then(response =&gt; response.json());</code></pre></div>
 
+
+<div class="php-example">
+    <pre><code class="language-php">$client = new \GuzzleHttp\Client();
+$url = 'http://localhost:8000/api/ducimus/consequatur/nesciunt';
+$response = $client-&gt;get(
+    $url,
+    [
+        'headers' =&gt; [
+            'Content-Type' =&gt; 'application/json',
+            'Accept' =&gt; 'application/json',
+        ],
+    ]
+);
+$body = $response-&gt;getBody();
+print_r(json_decode((string) $body));</code></pre></div>
+
+
+<div class="python-example">
+    <pre><code class="language-python">import requests
+import json
+
+url = 'http://localhost:8000/api/ducimus/consequatur/nesciunt'
+headers = {
+  'Content-Type': 'application/json',
+  'Accept': 'application/json'
+}
+
+response = requests.request('GET', url, headers=headers)
+response.json()</code></pre></div>
+
+
+<div class="angular-example">
+    <pre><code class="language-typescript">import { Injectable, inject } from '@angular/core';
+import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
+import { Observable } from 'rxjs';
+
+@Injectable({
+    providedIn: 'root'
+})
+export class ApiService {
+
+    private readonly http = inject(HttpClient);
+
+    public request(): Observable&lt;any&gt; {
+        const url = 'http://localhost:8000/api/{username}/{projectSlug}/{path:.*}';
+
+        const headers = new HttpHeaders({
+            'Content-Type': 'application/json',
+            'Accept': 'application/json',
+        });
+
+        const params = new HttpParams();
+
+        const body = null;
+
+        return this.http.request&lt;any&gt;(
+           'GET',
+            url,
+            {
+                headers,
+                params,
+                responseType: 'json'
+            }
+        );
+    }
+}</code></pre></div>
+
+
+<div class="bash-example">
+    <pre><code class="language-bash">curl --request GET \
+    --get "http://localhost:8000/api/ducimus/consequatur/nesciunt" \
+    --header "Content-Type: application/json" \
+    --header "Accept: application/json"</code></pre></div>
+
 </span>
 
 <span id="example-responses-GETapi--username---projectSlug---path--*-">
             <blockquote>
             <p>Example response (401):</p>
         </blockquote>
-                <details class="annotation">
-            <summary style="cursor: pointer;">
-                <small onclick="textContent = parentElement.parentElement.open ? 'Show headers' : 'Hide headers'">Show headers</small>
-            </summary>
-            <pre><code class="language-json">{
-    cache-control: no-cache, private
-    content-type: application/json
-    x-ratelimit-limit: 2000
-    x-ratelimit-remaining: 1860
-    vary: Origin
-}</code></pre></details>         <pre>
+                    <details class="annotation">
+                <summary style="cursor: pointer;">
+                    <small onclick="textContent = parentElement.parentElement.open ? 'Show headers' : 'Hide headers'">Show headers</small>
+                </summary>
+                <pre>
+                    <code class="language-json">{
+    "cache-control": "no-cache, private",
+    "content-type": "application/json",
+    "x-ratelimit-limit": "2000",
+    "x-ratelimit-remaining": "1720",
+    "vary": "Origin"
+}</code>
+                </pre>
+            </details>
+                    <pre>
 
 <code class="language-json" style="max-height: 300px;">{
     &quot;error&quot;: &quot;Project token not provided.&quot;
@@ -4956,10 +7286,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="username"                data-endpoint="GETapi--username---projectSlug---path--*-"
-               value="eos"
+               value="ducimus"
                data-component="url">
     <br>
-<p>Example: <code>eos</code></p>
+<p>Example: <code>ducimus</code></p>
             </div>
                     <div style="padding-left: 28px; clear: unset;">
                 <b style="line-height: 2;"><code>projectSlug</code></b>&nbsp;&nbsp;
@@ -4967,10 +7297,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="projectSlug"                data-endpoint="GETapi--username---projectSlug---path--*-"
-               value="rerum"
+               value="consequatur"
                data-component="url">
     <br>
-<p>Example: <code>rerum</code></p>
+<p>Example: <code>consequatur</code></p>
             </div>
                     <div style="padding-left: 28px; clear: unset;">
                 <b style="line-height: 2;"><code>path</code></b>&nbsp;&nbsp;
@@ -4978,10 +7308,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="path"                data-endpoint="GETapi--username---projectSlug---path--*-"
-               value="in"
+               value="nesciunt"
                data-component="url">
     <br>
-<p>Example: <code>in</code></p>
+<p>Example: <code>nesciunt</code></p>
             </div>
                     </form>
 
@@ -4996,16 +7326,9 @@ You can check the Dev Tools console for debugging information.</code></pre>
 <blockquote>Example request:</blockquote>
 
 
-<div class="bash-example">
-    <pre><code class="language-bash">curl --request POST \
-    "http://localhost:8000/api/et/rem/inventore" \
-    --header "Content-Type: application/json" \
-    --header "Accept: application/json"</code></pre></div>
-
-
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://localhost:8000/api/et/rem/inventore"
+    "http://localhost:8000/api/eveniet/corporis/aut"
 );
 
 const headers = {
@@ -5017,6 +7340,80 @@ fetch(url, {
     method: "POST",
     headers,
 }).then(response =&gt; response.json());</code></pre></div>
+
+
+<div class="php-example">
+    <pre><code class="language-php">$client = new \GuzzleHttp\Client();
+$url = 'http://localhost:8000/api/eveniet/corporis/aut';
+$response = $client-&gt;post(
+    $url,
+    [
+        'headers' =&gt; [
+            'Content-Type' =&gt; 'application/json',
+            'Accept' =&gt; 'application/json',
+        ],
+    ]
+);
+$body = $response-&gt;getBody();
+print_r(json_decode((string) $body));</code></pre></div>
+
+
+<div class="python-example">
+    <pre><code class="language-python">import requests
+import json
+
+url = 'http://localhost:8000/api/eveniet/corporis/aut'
+headers = {
+  'Content-Type': 'application/json',
+  'Accept': 'application/json'
+}
+
+response = requests.request('POST', url, headers=headers)
+response.json()</code></pre></div>
+
+
+<div class="angular-example">
+    <pre><code class="language-typescript">import { Injectable, inject } from '@angular/core';
+import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
+import { Observable } from 'rxjs';
+
+@Injectable({
+    providedIn: 'root'
+})
+export class ApiService {
+
+    private readonly http = inject(HttpClient);
+
+    public request(): Observable&lt;any&gt; {
+        const url = 'http://localhost:8000/api/{username}/{projectSlug}/{path:.*}';
+
+        const headers = new HttpHeaders({
+            'Content-Type': 'application/json',
+            'Accept': 'application/json',
+        });
+
+        const params = new HttpParams();
+
+        const body = null;
+
+        return this.http.request&lt;any&gt;(
+           'POST',
+            url,
+            {
+                headers,
+                params,
+                responseType: 'json'
+            }
+        );
+    }
+}</code></pre></div>
+
+
+<div class="bash-example">
+    <pre><code class="language-bash">curl --request POST \
+    "http://localhost:8000/api/eveniet/corporis/aut" \
+    --header "Content-Type: application/json" \
+    --header "Accept: application/json"</code></pre></div>
 
 </span>
 
@@ -5098,10 +7495,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="username"                data-endpoint="POSTapi--username---projectSlug---path--*-"
-               value="et"
+               value="eveniet"
                data-component="url">
     <br>
-<p>Example: <code>et</code></p>
+<p>Example: <code>eveniet</code></p>
             </div>
                     <div style="padding-left: 28px; clear: unset;">
                 <b style="line-height: 2;"><code>projectSlug</code></b>&nbsp;&nbsp;
@@ -5109,10 +7506,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="projectSlug"                data-endpoint="POSTapi--username---projectSlug---path--*-"
-               value="rem"
+               value="corporis"
                data-component="url">
     <br>
-<p>Example: <code>rem</code></p>
+<p>Example: <code>corporis</code></p>
             </div>
                     <div style="padding-left: 28px; clear: unset;">
                 <b style="line-height: 2;"><code>path</code></b>&nbsp;&nbsp;
@@ -5120,10 +7517,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="path"                data-endpoint="POSTapi--username---projectSlug---path--*-"
-               value="inventore"
+               value="aut"
                data-component="url">
     <br>
-<p>Example: <code>inventore</code></p>
+<p>Example: <code>aut</code></p>
             </div>
                     </form>
 
@@ -5138,16 +7535,9 @@ You can check the Dev Tools console for debugging information.</code></pre>
 <blockquote>Example request:</blockquote>
 
 
-<div class="bash-example">
-    <pre><code class="language-bash">curl --request PUT \
-    "http://localhost:8000/api/facilis/deserunt/explicabo" \
-    --header "Content-Type: application/json" \
-    --header "Accept: application/json"</code></pre></div>
-
-
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://localhost:8000/api/facilis/deserunt/explicabo"
+    "http://localhost:8000/api/animi/sit/veritatis"
 );
 
 const headers = {
@@ -5159,6 +7549,80 @@ fetch(url, {
     method: "PUT",
     headers,
 }).then(response =&gt; response.json());</code></pre></div>
+
+
+<div class="php-example">
+    <pre><code class="language-php">$client = new \GuzzleHttp\Client();
+$url = 'http://localhost:8000/api/animi/sit/veritatis';
+$response = $client-&gt;put(
+    $url,
+    [
+        'headers' =&gt; [
+            'Content-Type' =&gt; 'application/json',
+            'Accept' =&gt; 'application/json',
+        ],
+    ]
+);
+$body = $response-&gt;getBody();
+print_r(json_decode((string) $body));</code></pre></div>
+
+
+<div class="python-example">
+    <pre><code class="language-python">import requests
+import json
+
+url = 'http://localhost:8000/api/animi/sit/veritatis'
+headers = {
+  'Content-Type': 'application/json',
+  'Accept': 'application/json'
+}
+
+response = requests.request('PUT', url, headers=headers)
+response.json()</code></pre></div>
+
+
+<div class="angular-example">
+    <pre><code class="language-typescript">import { Injectable, inject } from '@angular/core';
+import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
+import { Observable } from 'rxjs';
+
+@Injectable({
+    providedIn: 'root'
+})
+export class ApiService {
+
+    private readonly http = inject(HttpClient);
+
+    public request(): Observable&lt;any&gt; {
+        const url = 'http://localhost:8000/api/{username}/{projectSlug}/{path:.*}';
+
+        const headers = new HttpHeaders({
+            'Content-Type': 'application/json',
+            'Accept': 'application/json',
+        });
+
+        const params = new HttpParams();
+
+        const body = null;
+
+        return this.http.request&lt;any&gt;(
+           'PUT',
+            url,
+            {
+                headers,
+                params,
+                responseType: 'json'
+            }
+        );
+    }
+}</code></pre></div>
+
+
+<div class="bash-example">
+    <pre><code class="language-bash">curl --request PUT \
+    "http://localhost:8000/api/animi/sit/veritatis" \
+    --header "Content-Type: application/json" \
+    --header "Accept: application/json"</code></pre></div>
 
 </span>
 
@@ -5240,10 +7704,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="username"                data-endpoint="PUTapi--username---projectSlug---path--*-"
-               value="facilis"
+               value="animi"
                data-component="url">
     <br>
-<p>Example: <code>facilis</code></p>
+<p>Example: <code>animi</code></p>
             </div>
                     <div style="padding-left: 28px; clear: unset;">
                 <b style="line-height: 2;"><code>projectSlug</code></b>&nbsp;&nbsp;
@@ -5251,10 +7715,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="projectSlug"                data-endpoint="PUTapi--username---projectSlug---path--*-"
-               value="deserunt"
+               value="sit"
                data-component="url">
     <br>
-<p>Example: <code>deserunt</code></p>
+<p>Example: <code>sit</code></p>
             </div>
                     <div style="padding-left: 28px; clear: unset;">
                 <b style="line-height: 2;"><code>path</code></b>&nbsp;&nbsp;
@@ -5262,10 +7726,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="path"                data-endpoint="PUTapi--username---projectSlug---path--*-"
-               value="explicabo"
+               value="veritatis"
                data-component="url">
     <br>
-<p>Example: <code>explicabo</code></p>
+<p>Example: <code>veritatis</code></p>
             </div>
                     </form>
 
@@ -5280,16 +7744,9 @@ You can check the Dev Tools console for debugging information.</code></pre>
 <blockquote>Example request:</blockquote>
 
 
-<div class="bash-example">
-    <pre><code class="language-bash">curl --request PATCH \
-    "http://localhost:8000/api/officia/vel/sint" \
-    --header "Content-Type: application/json" \
-    --header "Accept: application/json"</code></pre></div>
-
-
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://localhost:8000/api/officia/vel/sint"
+    "http://localhost:8000/api/est/blanditiis/ipsam"
 );
 
 const headers = {
@@ -5301,6 +7758,80 @@ fetch(url, {
     method: "PATCH",
     headers,
 }).then(response =&gt; response.json());</code></pre></div>
+
+
+<div class="php-example">
+    <pre><code class="language-php">$client = new \GuzzleHttp\Client();
+$url = 'http://localhost:8000/api/est/blanditiis/ipsam';
+$response = $client-&gt;patch(
+    $url,
+    [
+        'headers' =&gt; [
+            'Content-Type' =&gt; 'application/json',
+            'Accept' =&gt; 'application/json',
+        ],
+    ]
+);
+$body = $response-&gt;getBody();
+print_r(json_decode((string) $body));</code></pre></div>
+
+
+<div class="python-example">
+    <pre><code class="language-python">import requests
+import json
+
+url = 'http://localhost:8000/api/est/blanditiis/ipsam'
+headers = {
+  'Content-Type': 'application/json',
+  'Accept': 'application/json'
+}
+
+response = requests.request('PATCH', url, headers=headers)
+response.json()</code></pre></div>
+
+
+<div class="angular-example">
+    <pre><code class="language-typescript">import { Injectable, inject } from '@angular/core';
+import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
+import { Observable } from 'rxjs';
+
+@Injectable({
+    providedIn: 'root'
+})
+export class ApiService {
+
+    private readonly http = inject(HttpClient);
+
+    public request(): Observable&lt;any&gt; {
+        const url = 'http://localhost:8000/api/{username}/{projectSlug}/{path:.*}';
+
+        const headers = new HttpHeaders({
+            'Content-Type': 'application/json',
+            'Accept': 'application/json',
+        });
+
+        const params = new HttpParams();
+
+        const body = null;
+
+        return this.http.request&lt;any&gt;(
+           'PATCH',
+            url,
+            {
+                headers,
+                params,
+                responseType: 'json'
+            }
+        );
+    }
+}</code></pre></div>
+
+
+<div class="bash-example">
+    <pre><code class="language-bash">curl --request PATCH \
+    "http://localhost:8000/api/est/blanditiis/ipsam" \
+    --header "Content-Type: application/json" \
+    --header "Accept: application/json"</code></pre></div>
 
 </span>
 
@@ -5382,10 +7913,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="username"                data-endpoint="PATCHapi--username---projectSlug---path--*-"
-               value="officia"
+               value="est"
                data-component="url">
     <br>
-<p>Example: <code>officia</code></p>
+<p>Example: <code>est</code></p>
             </div>
                     <div style="padding-left: 28px; clear: unset;">
                 <b style="line-height: 2;"><code>projectSlug</code></b>&nbsp;&nbsp;
@@ -5393,10 +7924,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="projectSlug"                data-endpoint="PATCHapi--username---projectSlug---path--*-"
-               value="vel"
+               value="blanditiis"
                data-component="url">
     <br>
-<p>Example: <code>vel</code></p>
+<p>Example: <code>blanditiis</code></p>
             </div>
                     <div style="padding-left: 28px; clear: unset;">
                 <b style="line-height: 2;"><code>path</code></b>&nbsp;&nbsp;
@@ -5404,10 +7935,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="path"                data-endpoint="PATCHapi--username---projectSlug---path--*-"
-               value="sint"
+               value="ipsam"
                data-component="url">
     <br>
-<p>Example: <code>sint</code></p>
+<p>Example: <code>ipsam</code></p>
             </div>
                     </form>
 
@@ -5422,16 +7953,9 @@ You can check the Dev Tools console for debugging information.</code></pre>
 <blockquote>Example request:</blockquote>
 
 
-<div class="bash-example">
-    <pre><code class="language-bash">curl --request DELETE \
-    "http://localhost:8000/api/deleniti/a/animi" \
-    --header "Content-Type: application/json" \
-    --header "Accept: application/json"</code></pre></div>
-
-
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://localhost:8000/api/deleniti/a/animi"
+    "http://localhost:8000/api/ea/asperiores/ducimus"
 );
 
 const headers = {
@@ -5443,6 +7967,80 @@ fetch(url, {
     method: "DELETE",
     headers,
 }).then(response =&gt; response.json());</code></pre></div>
+
+
+<div class="php-example">
+    <pre><code class="language-php">$client = new \GuzzleHttp\Client();
+$url = 'http://localhost:8000/api/ea/asperiores/ducimus';
+$response = $client-&gt;delete(
+    $url,
+    [
+        'headers' =&gt; [
+            'Content-Type' =&gt; 'application/json',
+            'Accept' =&gt; 'application/json',
+        ],
+    ]
+);
+$body = $response-&gt;getBody();
+print_r(json_decode((string) $body));</code></pre></div>
+
+
+<div class="python-example">
+    <pre><code class="language-python">import requests
+import json
+
+url = 'http://localhost:8000/api/ea/asperiores/ducimus'
+headers = {
+  'Content-Type': 'application/json',
+  'Accept': 'application/json'
+}
+
+response = requests.request('DELETE', url, headers=headers)
+response.json()</code></pre></div>
+
+
+<div class="angular-example">
+    <pre><code class="language-typescript">import { Injectable, inject } from '@angular/core';
+import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
+import { Observable } from 'rxjs';
+
+@Injectable({
+    providedIn: 'root'
+})
+export class ApiService {
+
+    private readonly http = inject(HttpClient);
+
+    public request(): Observable&lt;any&gt; {
+        const url = 'http://localhost:8000/api/{username}/{projectSlug}/{path:.*}';
+
+        const headers = new HttpHeaders({
+            'Content-Type': 'application/json',
+            'Accept': 'application/json',
+        });
+
+        const params = new HttpParams();
+
+        const body = null;
+
+        return this.http.request&lt;any&gt;(
+           'DELETE',
+            url,
+            {
+                headers,
+                params,
+                responseType: 'json'
+            }
+        );
+    }
+}</code></pre></div>
+
+
+<div class="bash-example">
+    <pre><code class="language-bash">curl --request DELETE \
+    "http://localhost:8000/api/ea/asperiores/ducimus" \
+    --header "Content-Type: application/json" \
+    --header "Accept: application/json"</code></pre></div>
 
 </span>
 
@@ -5524,10 +8122,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="username"                data-endpoint="DELETEapi--username---projectSlug---path--*-"
-               value="deleniti"
+               value="ea"
                data-component="url">
     <br>
-<p>Example: <code>deleniti</code></p>
+<p>Example: <code>ea</code></p>
             </div>
                     <div style="padding-left: 28px; clear: unset;">
                 <b style="line-height: 2;"><code>projectSlug</code></b>&nbsp;&nbsp;
@@ -5535,10 +8133,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="projectSlug"                data-endpoint="DELETEapi--username---projectSlug---path--*-"
-               value="a"
+               value="asperiores"
                data-component="url">
     <br>
-<p>Example: <code>a</code></p>
+<p>Example: <code>asperiores</code></p>
             </div>
                     <div style="padding-left: 28px; clear: unset;">
                 <b style="line-height: 2;"><code>path</code></b>&nbsp;&nbsp;
@@ -5546,10 +8144,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="path"                data-endpoint="DELETEapi--username---projectSlug---path--*-"
-               value="animi"
+               value="ducimus"
                data-component="url">
     <br>
-<p>Example: <code>animi</code></p>
+<p>Example: <code>ducimus</code></p>
             </div>
                     </form>
 
@@ -5569,13 +8167,6 @@ You can check the Dev Tools console for debugging information.</code></pre>
 <blockquote>Example request:</blockquote>
 
 
-<div class="bash-example">
-    <pre><code class="language-bash">curl --request GET \
-    --get "http://localhost:8000/api/admin/dashboard/metrics" \
-    --header "Content-Type: application/json" \
-    --header "Accept: application/json"</code></pre></div>
-
-
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
     "http://localhost:8000/api/admin/dashboard/metrics"
@@ -5591,23 +8182,101 @@ fetch(url, {
     headers,
 }).then(response =&gt; response.json());</code></pre></div>
 
+
+<div class="php-example">
+    <pre><code class="language-php">$client = new \GuzzleHttp\Client();
+$url = 'http://localhost:8000/api/admin/dashboard/metrics';
+$response = $client-&gt;get(
+    $url,
+    [
+        'headers' =&gt; [
+            'Content-Type' =&gt; 'application/json',
+            'Accept' =&gt; 'application/json',
+        ],
+    ]
+);
+$body = $response-&gt;getBody();
+print_r(json_decode((string) $body));</code></pre></div>
+
+
+<div class="python-example">
+    <pre><code class="language-python">import requests
+import json
+
+url = 'http://localhost:8000/api/admin/dashboard/metrics'
+headers = {
+  'Content-Type': 'application/json',
+  'Accept': 'application/json'
+}
+
+response = requests.request('GET', url, headers=headers)
+response.json()</code></pre></div>
+
+
+<div class="angular-example">
+    <pre><code class="language-typescript">import { Injectable, inject } from '@angular/core';
+import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
+import { Observable } from 'rxjs';
+
+@Injectable({
+    providedIn: 'root'
+})
+export class ApiService {
+
+    private readonly http = inject(HttpClient);
+
+    public request(): Observable&lt;any&gt; {
+        const url = 'http://localhost:8000/api/admin/dashboard/metrics';
+
+        const headers = new HttpHeaders({
+            'Content-Type': 'application/json',
+            'Accept': 'application/json',
+        });
+
+        const params = new HttpParams();
+
+        const body = null;
+
+        return this.http.request&lt;any&gt;(
+           'GET',
+            url,
+            {
+                headers,
+                params,
+                responseType: 'json'
+            }
+        );
+    }
+}</code></pre></div>
+
+
+<div class="bash-example">
+    <pre><code class="language-bash">curl --request GET \
+    --get "http://localhost:8000/api/admin/dashboard/metrics" \
+    --header "Content-Type: application/json" \
+    --header "Accept: application/json"</code></pre></div>
+
 </span>
 
 <span id="example-responses-GETapi-admin-dashboard-metrics">
             <blockquote>
             <p>Example response (401):</p>
         </blockquote>
-                <details class="annotation">
-            <summary style="cursor: pointer;">
-                <small onclick="textContent = parentElement.parentElement.open ? 'Show headers' : 'Hide headers'">Show headers</small>
-            </summary>
-            <pre><code class="language-json">{
-    cache-control: no-cache, private
-    content-type: application/json
-    x-ratelimit-limit: 2000
-    x-ratelimit-remaining: 1870
-    vary: Origin
-}</code></pre></details>         <pre>
+                    <details class="annotation">
+                <summary style="cursor: pointer;">
+                    <small onclick="textContent = parentElement.parentElement.open ? 'Show headers' : 'Hide headers'">Show headers</small>
+                </summary>
+                <pre>
+                    <code class="language-json">{
+    "cache-control": "no-cache, private",
+    "content-type": "application/json",
+    "x-ratelimit-limit": "2000",
+    "x-ratelimit-remaining": "1730",
+    "vary": "Origin"
+}</code>
+                </pre>
+            </details>
+                    <pre>
 
 <code class="language-json" style="max-height: 300px;">{
     &quot;error&quot;: &quot;Unauthorized.&quot;
@@ -5697,23 +8366,16 @@ You can check the Dev Tools console for debugging information.</code></pre>
 <blockquote>Example request:</blockquote>
 
 
-<div class="bash-example">
-    <pre><code class="language-bash">curl --request GET \
-    --get "http://localhost:8000/api/admin/dashboard/chart?start=perferendis&amp;end=nostrum&amp;groupby=in&amp;endpoint_id=8" \
-    --header "Content-Type: application/json" \
-    --header "Accept: application/json"</code></pre></div>
-
-
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
     "http://localhost:8000/api/admin/dashboard/chart"
 );
 
 const params = {
-    "start": "perferendis",
-    "end": "nostrum",
-    "groupby": "in",
-    "endpoint_id": "8",
+    "start": "2023-01-01",
+    "end": "2023-01-31",
+    "groupby": "day",
+    "endpoint_id": "1",
 };
 Object.keys(params)
     .forEach(key =&gt; url.searchParams.append(key, params[key]));
@@ -5728,23 +8390,118 @@ fetch(url, {
     headers,
 }).then(response =&gt; response.json());</code></pre></div>
 
+
+<div class="php-example">
+    <pre><code class="language-php">$client = new \GuzzleHttp\Client();
+$url = 'http://localhost:8000/api/admin/dashboard/chart';
+$response = $client-&gt;get(
+    $url,
+    [
+        'headers' =&gt; [
+            'Content-Type' =&gt; 'application/json',
+            'Accept' =&gt; 'application/json',
+        ],
+        'query' =&gt; [
+            'start' =&gt; '2023-01-01',
+            'end' =&gt; '2023-01-31',
+            'groupby' =&gt; 'day',
+            'endpoint_id' =&gt; '1',
+        ],
+    ]
+);
+$body = $response-&gt;getBody();
+print_r(json_decode((string) $body));</code></pre></div>
+
+
+<div class="python-example">
+    <pre><code class="language-python">import requests
+import json
+
+url = 'http://localhost:8000/api/admin/dashboard/chart'
+params = {
+  'start': '2023-01-01',
+  'end': '2023-01-31',
+  'groupby': 'day',
+  'endpoint_id': '1',
+}
+headers = {
+  'Content-Type': 'application/json',
+  'Accept': 'application/json'
+}
+
+response = requests.request('GET', url, headers=headers, params=params)
+response.json()</code></pre></div>
+
+
+<div class="angular-example">
+    <pre><code class="language-typescript">import { Injectable, inject } from '@angular/core';
+import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
+import { Observable } from 'rxjs';
+
+@Injectable({
+    providedIn: 'root'
+})
+export class ApiService {
+
+    private readonly http = inject(HttpClient);
+
+    public request(): Observable&lt;any&gt; {
+        const url = 'http://localhost:8000/api/admin/dashboard/chart';
+
+        const headers = new HttpHeaders({
+            'Content-Type': 'application/json',
+            'Accept': 'application/json',
+        });
+
+        const params = new HttpParams({
+            'start': '2023-01-01',
+            'end': '2023-01-31',
+            'groupby': 'day',
+            'endpoint_id': '1',
+        });
+
+        const body = null;
+
+        return this.http.request&lt;any&gt;(
+           'GET',
+            url,
+            {
+                headers,
+                params,
+                responseType: 'json'
+            }
+        );
+    }
+}</code></pre></div>
+
+
+<div class="bash-example">
+    <pre><code class="language-bash">curl --request GET \
+    --get "http://localhost:8000/api/admin/dashboard/chart?start=2023-01-01&amp;end=2023-01-31&amp;groupby=day&amp;endpoint_id=1" \
+    --header "Content-Type: application/json" \
+    --header "Accept: application/json"</code></pre></div>
+
 </span>
 
 <span id="example-responses-GETapi-admin-dashboard-chart">
             <blockquote>
             <p>Example response (401):</p>
         </blockquote>
-                <details class="annotation">
-            <summary style="cursor: pointer;">
-                <small onclick="textContent = parentElement.parentElement.open ? 'Show headers' : 'Hide headers'">Show headers</small>
-            </summary>
-            <pre><code class="language-json">{
-    cache-control: no-cache, private
-    content-type: application/json
-    x-ratelimit-limit: 2000
-    x-ratelimit-remaining: 1869
-    vary: Origin
-}</code></pre></details>         <pre>
+                    <details class="annotation">
+                <summary style="cursor: pointer;">
+                    <small onclick="textContent = parentElement.parentElement.open ? 'Show headers' : 'Hide headers'">Show headers</small>
+                </summary>
+                <pre>
+                    <code class="language-json">{
+    "cache-control": "no-cache, private",
+    "content-type": "application/json",
+    "x-ratelimit-limit": "2000",
+    "x-ratelimit-remaining": "1729",
+    "vary": "Origin"
+}</code>
+                </pre>
+            </details>
+                    <pre>
 
 <code class="language-json" style="max-height: 300px;">{
     &quot;error&quot;: &quot;Unauthorized.&quot;
@@ -5824,24 +8581,24 @@ You can check the Dev Tools console for debugging information.</code></pre>
                                     <div style="padding-left: 28px; clear: unset;">
                 <b style="line-height: 2;"><code>start</code></b>&nbsp;&nbsp;
 <small>string</small>&nbsp;
-<i>optional</i> &nbsp;
+ &nbsp;
                 <input type="text" style="display: none"
                               name="start"                data-endpoint="GETapi-admin-dashboard-chart"
-               value="perferendis"
+               value="2023-01-01"
                data-component="query">
     <br>
-<p>Data inicial (formato YYYY-MM-DD HH:MM:SS). Opcional (Padrão: 7 dias atrás). Example: <code>perferendis</code></p>
+<p>Data inicial (formato YYYY-MM-DD HH:MM:SS) Example: <code>2023-01-01</code></p>
             </div>
                                     <div style="padding-left: 28px; clear: unset;">
                 <b style="line-height: 2;"><code>end</code></b>&nbsp;&nbsp;
 <small>string</small>&nbsp;
-<i>optional</i> &nbsp;
+ &nbsp;
                 <input type="text" style="display: none"
                               name="end"                data-endpoint="GETapi-admin-dashboard-chart"
-               value="nostrum"
+               value="2023-01-31"
                data-component="query">
     <br>
-<p>Data final (formato YYYY-MM-DD HH:MM:SS). Opcional (Padrão: agora). Example: <code>nostrum</code></p>
+<p>Data final (formato YYYY-MM-DD HH:MM:SS) Example: <code>2023-01-31</code></p>
             </div>
                                     <div style="padding-left: 28px; clear: unset;">
                 <b style="line-height: 2;"><code>groupby</code></b>&nbsp;&nbsp;
@@ -5849,10 +8606,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
 <i>optional</i> &nbsp;
                 <input type="text" style="display: none"
                               name="groupby"                data-endpoint="GETapi-admin-dashboard-chart"
-               value="in"
+               value="day"
                data-component="query">
     <br>
-<p>Agrupamento dos dados (hour, day, month). Opcional (Padrão: day). Example: <code>in</code></p>
+<p>Agrupamento dos dados (hour, day, month) Example: <code>day</code></p>
             </div>
                                     <div style="padding-left: 28px; clear: unset;">
                 <b style="line-height: 2;"><code>endpoint_id</code></b>&nbsp;&nbsp;
@@ -5860,10 +8617,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
 <i>optional</i> &nbsp;
                 <input type="number" style="display: none"
                step="any"               name="endpoint_id"                data-endpoint="GETapi-admin-dashboard-chart"
-               value="8"
+               value="1"
                data-component="query">
     <br>
-<p>ID do endpoint para filtrar. Opcional. Example: <code>8</code></p>
+<p>ID do endpoint para filtrar Example: <code>1</code></p>
             </div>
                 </form>
 
@@ -5882,13 +8639,6 @@ You can check the Dev Tools console for debugging information.</code></pre>
 <blockquote>Example request:</blockquote>
 
 
-<div class="bash-example">
-    <pre><code class="language-bash">curl --request GET \
-    --get "http://localhost:8000/api/health" \
-    --header "Content-Type: application/json" \
-    --header "Accept: application/json"</code></pre></div>
-
-
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
     "http://localhost:8000/api/health"
@@ -5904,28 +8654,106 @@ fetch(url, {
     headers,
 }).then(response =&gt; response.json());</code></pre></div>
 
+
+<div class="php-example">
+    <pre><code class="language-php">$client = new \GuzzleHttp\Client();
+$url = 'http://localhost:8000/api/health';
+$response = $client-&gt;get(
+    $url,
+    [
+        'headers' =&gt; [
+            'Content-Type' =&gt; 'application/json',
+            'Accept' =&gt; 'application/json',
+        ],
+    ]
+);
+$body = $response-&gt;getBody();
+print_r(json_decode((string) $body));</code></pre></div>
+
+
+<div class="python-example">
+    <pre><code class="language-python">import requests
+import json
+
+url = 'http://localhost:8000/api/health'
+headers = {
+  'Content-Type': 'application/json',
+  'Accept': 'application/json'
+}
+
+response = requests.request('GET', url, headers=headers)
+response.json()</code></pre></div>
+
+
+<div class="angular-example">
+    <pre><code class="language-typescript">import { Injectable, inject } from '@angular/core';
+import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
+import { Observable } from 'rxjs';
+
+@Injectable({
+    providedIn: 'root'
+})
+export class ApiService {
+
+    private readonly http = inject(HttpClient);
+
+    public request(): Observable&lt;any&gt; {
+        const url = 'http://localhost:8000/api/health';
+
+        const headers = new HttpHeaders({
+            'Content-Type': 'application/json',
+            'Accept': 'application/json',
+        });
+
+        const params = new HttpParams();
+
+        const body = null;
+
+        return this.http.request&lt;any&gt;(
+           'GET',
+            url,
+            {
+                headers,
+                params,
+                responseType: 'json'
+            }
+        );
+    }
+}</code></pre></div>
+
+
+<div class="bash-example">
+    <pre><code class="language-bash">curl --request GET \
+    --get "http://localhost:8000/api/health" \
+    --header "Content-Type: application/json" \
+    --header "Accept: application/json"</code></pre></div>
+
 </span>
 
 <span id="example-responses-GETapi-health">
             <blockquote>
             <p>Example response (200):</p>
         </blockquote>
-                <details class="annotation">
-            <summary style="cursor: pointer;">
-                <small onclick="textContent = parentElement.parentElement.open ? 'Show headers' : 'Hide headers'">Show headers</small>
-            </summary>
-            <pre><code class="language-json">{
-    cache-control: no-cache, private
-    content-type: application/json
-    x-ratelimit-limit: 2000
-    x-ratelimit-remaining: 1873
-    vary: Origin
-}</code></pre></details>         <pre>
+                    <details class="annotation">
+                <summary style="cursor: pointer;">
+                    <small onclick="textContent = parentElement.parentElement.open ? 'Show headers' : 'Hide headers'">Show headers</small>
+                </summary>
+                <pre>
+                    <code class="language-json">{
+    "cache-control": "no-cache, private",
+    "content-type": "application/json",
+    "x-ratelimit-limit": "2000",
+    "x-ratelimit-remaining": "1733",
+    "vary": "Origin"
+}</code>
+                </pre>
+            </details>
+                    <pre>
 
 <code class="language-json" style="max-height: 300px;">{
     &quot;status&quot;: &quot;ok&quot;,
     &quot;message&quot;: &quot;System is healthy&quot;,
-    &quot;timestamp&quot;: 1782154070
+    &quot;timestamp&quot;: 1782158341
 }</code>
  </pre>
     </span>
@@ -6011,13 +8839,6 @@ You can check the Dev Tools console for debugging information.</code></pre>
 <blockquote>Example request:</blockquote>
 
 
-<div class="bash-example">
-    <pre><code class="language-bash">curl --request GET \
-    --get "http://localhost:8000/api/health/database" \
-    --header "Content-Type: application/json" \
-    --header "Accept: application/json"</code></pre></div>
-
-
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
     "http://localhost:8000/api/health/database"
@@ -6033,23 +8854,101 @@ fetch(url, {
     headers,
 }).then(response =&gt; response.json());</code></pre></div>
 
+
+<div class="php-example">
+    <pre><code class="language-php">$client = new \GuzzleHttp\Client();
+$url = 'http://localhost:8000/api/health/database';
+$response = $client-&gt;get(
+    $url,
+    [
+        'headers' =&gt; [
+            'Content-Type' =&gt; 'application/json',
+            'Accept' =&gt; 'application/json',
+        ],
+    ]
+);
+$body = $response-&gt;getBody();
+print_r(json_decode((string) $body));</code></pre></div>
+
+
+<div class="python-example">
+    <pre><code class="language-python">import requests
+import json
+
+url = 'http://localhost:8000/api/health/database'
+headers = {
+  'Content-Type': 'application/json',
+  'Accept': 'application/json'
+}
+
+response = requests.request('GET', url, headers=headers)
+response.json()</code></pre></div>
+
+
+<div class="angular-example">
+    <pre><code class="language-typescript">import { Injectable, inject } from '@angular/core';
+import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
+import { Observable } from 'rxjs';
+
+@Injectable({
+    providedIn: 'root'
+})
+export class ApiService {
+
+    private readonly http = inject(HttpClient);
+
+    public request(): Observable&lt;any&gt; {
+        const url = 'http://localhost:8000/api/health/database';
+
+        const headers = new HttpHeaders({
+            'Content-Type': 'application/json',
+            'Accept': 'application/json',
+        });
+
+        const params = new HttpParams();
+
+        const body = null;
+
+        return this.http.request&lt;any&gt;(
+           'GET',
+            url,
+            {
+                headers,
+                params,
+                responseType: 'json'
+            }
+        );
+    }
+}</code></pre></div>
+
+
+<div class="bash-example">
+    <pre><code class="language-bash">curl --request GET \
+    --get "http://localhost:8000/api/health/database" \
+    --header "Content-Type: application/json" \
+    --header "Accept: application/json"</code></pre></div>
+
 </span>
 
 <span id="example-responses-GETapi-health-database">
             <blockquote>
             <p>Example response (200):</p>
         </blockquote>
-                <details class="annotation">
-            <summary style="cursor: pointer;">
-                <small onclick="textContent = parentElement.parentElement.open ? 'Show headers' : 'Hide headers'">Show headers</small>
-            </summary>
-            <pre><code class="language-json">{
-    cache-control: no-cache, private
-    content-type: application/json
-    x-ratelimit-limit: 2000
-    x-ratelimit-remaining: 1872
-    vary: Origin
-}</code></pre></details>         <pre>
+                    <details class="annotation">
+                <summary style="cursor: pointer;">
+                    <small onclick="textContent = parentElement.parentElement.open ? 'Show headers' : 'Hide headers'">Show headers</small>
+                </summary>
+                <pre>
+                    <code class="language-json">{
+    "cache-control": "no-cache, private",
+    "content-type": "application/json",
+    "x-ratelimit-limit": "2000",
+    "x-ratelimit-remaining": "1732",
+    "vary": "Origin"
+}</code>
+                </pre>
+            </details>
+                    <pre>
 
 <code class="language-json" style="max-height: 300px;">{
     &quot;status&quot;: &quot;ok&quot;,
@@ -6131,35 +9030,43 @@ You can check the Dev Tools console for debugging information.</code></pre>
             
 
         
-        <button id="scrollTopBtn">⬆️ Topo</button>
+        <button id="scrollTopBtn">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-arrow-up-circle-fill" viewBox="0 0 16 16">
+                <path d="M16 8A8 8 0 1 0 0 8a8 8 0 0 0 16 0m-7.5 3.5a.5.5 0 0 1-1 0V5.707L5.354 7.854a.5.5 0 1 1-.708-.708l3-3a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1-.708.708L8.5 5.707z"></path>
+            </svg>
+        </button>
     </div>
     <div class="dark-box">
                     <div class="lang-selector">
-                                                        <button type="button" class="lang-button" data-language-name="bash">bash</button>
                                                         <button type="button" class="lang-button" data-language-name="javascript">javascript</button>
+                                                        <button type="button" class="lang-button" data-language-name="php">php</button>
+                                                        <button type="button" class="lang-button" data-language-name="python">python</button>
+                                                        <button type="button" class="lang-button" data-language-name="angular">angular</button>
+                                                        <button type="button" class="lang-button" data-language-name="bash">bash</button>
                             </div>
             </div>
 </div>
 <script>
     document.addEventListener("DOMContentLoaded", function() {
         const button = document.getElementById("scrollTopBtn");
+        if (window.scrollY > 300) {
+            button.classList.add("show");
+        } else {
+            button.classList.remove("show");
+        }
 
         if (button) {
-            // 1. Escuta a rolagem da janela global (window)
             window.addEventListener("scroll", function() {
-                // Verifica se a página rodou mais de 300px para baixo
                 if (window.scrollY > 300) {
                     button.classList.add("show");
                 } else {
                     button.classList.remove("show");
                 }
             });
-
-            // 2. Faz a janela inteira subir de forma suave
             button.addEventListener("click", function() {
                 window.scrollTo({
                     top: 0,
-                    behavior: "smooth" // Rolagem suave nativa do navegador
+                    behavior: "smooth"
                 });
             });
         }

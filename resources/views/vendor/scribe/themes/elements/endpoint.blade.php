@@ -236,10 +236,9 @@
                                                         Headers
                                                     </small>
                                                 </summary>
-                                                <pre><code class="language-json">{
-@foreach($response->headers as $header => $value)
-    {{ $header }} : {{ is_array($value) ? implode('; ', $value) : $value }}
-@endforeach}</code></pre>
+                                                <pre>
+                                                    <code class="language-json">{!! json_encode($response->headers, JSON_PRETTY_PRINT | JSON_UNESCAPED_SLASHES) !!}</code>
+                                                </pre>
                                             </details>
                                         @endif
                                         @if(is_string($response->content) && Str::startsWith($response->content, "<<binary>>"))

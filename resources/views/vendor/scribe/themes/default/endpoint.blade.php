@@ -31,14 +31,15 @@
             <p>{{ u::trans("scribe::endpoint.example_response") }} ({{ $response->fullDescription() }}):</p>
         </blockquote>
         @if(count($response->headers))
-        <details class="annotation">
-            <summary style="cursor: pointer;">
-                <small onclick="textContent = parentElement.parentElement.open ? 'Show headers' : 'Hide headers'">Show headers</small>
-            </summary>
-            <pre><code class="language-json">{
-@foreach($response->headers as $header => $value)
-    {{ $header }}: {{ is_array($value) ? implode('; ', $value) : $value }}
-@endforeach}</code></pre></details> @endif
+            <details class="annotation">
+                <summary style="cursor: pointer;">
+                    <small onclick="textContent = parentElement.parentElement.open ? 'Show headers' : 'Hide headers'">Show headers</small>
+                </summary>
+                <pre>
+                    <code class="language-json">{!! json_encode($response->headers, JSON_PRETTY_PRINT | JSON_UNESCAPED_SLASHES) !!}</code>
+                </pre>
+            </details>
+            @endif
         <pre>
 @if(is_string($response->content) && Str::startsWith($response->content, "<<binary>>"))
 <code>{!! u::trans("scribe::endpoint.responses.binary") !!} - {{ htmlentities(str_replace("<<binary>>", "", $response->content)) }}</code>

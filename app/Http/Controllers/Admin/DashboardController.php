@@ -3,12 +3,12 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;
-use Carbon\Carbon;
-use App\Models\Project;
 use App\Models\Endpoint;
 use App\Models\EndpointCall;
+use Carbon\Carbon;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Knuckles\Scribe\Attributes\QueryParam;
 
 /**
  * @group 7. Dashboard Analytics
@@ -49,7 +49,7 @@ class DashboardController extends Controller
         $errorCalls = EndpointCall::whereIn('endpoint_id', $endpointIds)
             ->where('status_code', '>=', 400)
             ->count();
-        
+
         $errorRatePercentage = $totalCalls > 0 ? round(($errorCalls / $totalCalls) * 100, 2) : 0;
 
         // Top 5 Endpoints Mais Acessados
@@ -83,12 +83,12 @@ class DashboardController extends Controller
      *
      * Retorna o histórico de acessos (hits) agrupados por hora, dia ou mês.
      * @authenticated
-     * 
-     * @queryParam start string Data inicial (formato YYYY-MM-DD HH:MM:SS). Opcional (Padrão: 7 dias atrás).
-     * @queryParam end string Data final (formato YYYY-MM-DD HH:MM:SS). Opcional (Padrão: agora).
-     * @queryParam groupby string Agrupamento dos dados (hour, day, month). Opcional (Padrão: day).
-     * @queryParam endpoint_id int ID do endpoint para filtrar. Opcional.
+     *
      */
+    #[QueryParam("start", "string", "Data inicial (formato YYYY-MM-DD HH:MM:SS)", example: "2023-01-01")]
+    #[QueryParam("end", "string", "Data final (formato YYYY-MM-DD HH:MM:SS)", example: "2023-01-31")]
+    #[QueryParam("groupby", "string", "Agrupamento dos dados (hour, day, month)", required: false, example: "day")]
+    #[QueryParam("endpoint_id", "int", "ID do endpoint para filtrar", required: false, example: 1)]
     public function chart(Request $request)
     {
         $user = $request->user();
@@ -139,9 +139,9 @@ class DashboardController extends Controller
 
         // Preencher buracos vazios no intervalo de datas
         $chartData = [];
-        
+
         $currentDate = $start->copy();
-        
+
         // Ajuste inicial para alinhar com o formato
         if ($groupby === 'hour') {
             $currentDate->minute(0)->second(0);
@@ -153,7 +153,7 @@ class DashboardController extends Controller
 
         while ($currentDate <= $end) {
             $dateStr = $currentDate->format($phpFormat);
-            
+
             $chartData[] = [
                 'date' => $dateStr,
                 'hits' => $dbHits->has($dateStr) ? $dbHits[$dateStr]->hits : 0
