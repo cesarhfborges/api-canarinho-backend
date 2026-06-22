@@ -2,6 +2,7 @@
     use Knuckles\Scribe\Tools\WritingUtils as u;
 @endphp
 <!doctype html>
+<!--suppress ALL -->
 <html lang="en">
 <head>
     <meta charset="utf-8">
