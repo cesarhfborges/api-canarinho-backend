@@ -66,8 +66,6 @@ services:
   db:
     image: mariadb:11
     restart: unless-stopped
-    labels:
-      - coolify.application.subType=database
     environment:
       - 'MARIADB_ROOT_PASSWORD=${SERVICE_PASSWORD_MARIADBROOT}'
       - 'MARIADB_USER=${SERVICE_USER_MARIADB}'
