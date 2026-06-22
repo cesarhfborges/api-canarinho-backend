@@ -33,6 +33,7 @@ $router->group(['prefix' => 'api/admin', 'namespace' => 'Admin'], function () us
 
         // Dashboard & Analytics
         $router->get('dashboard/metrics', 'DashboardController@metrics');
+        $router->get('dashboard/chart', 'DashboardController@chart');
 
         // Gestão de Usuários (Apenas Admins)
         $router->get('users', 'UserController@index');

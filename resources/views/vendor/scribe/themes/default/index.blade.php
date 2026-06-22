@@ -53,7 +53,7 @@
     <div class="dark-box"></div>
     <div class="content">
         <div>
-            <h1>Bem-vindo à Mock API Dinâmica</h1>
+            <h1>Bem-vindo à {{ config('app.name') }}</h1>
             <p>
                 Este sistema atua como um <strong>Mock Server Inteligente</strong>. Ele é dividido em duas partes principais:
             </p>

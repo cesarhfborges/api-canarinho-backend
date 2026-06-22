@@ -84,7 +84,7 @@ return [
 
         // The base URL for the API tester to use (for example, you can set this to your staging URL).
         // Leave as null to use the current app URL when generating (config("app.url")).
-        'base_url' => null,
+        'base_url' => config("app.url"),
 
         // [Laravel Sanctum] Fetch a CSRF token before each request, and add it as an X-XSRF-TOKEN header.
         'use_csrf' => false,
@@ -177,7 +177,7 @@ INTRO
     // For example, if your logo is in public/img:
     // - 'logo' => '../img/logo.png' // for `static` type (output folder is public/docs)
     // - 'logo' => 'img/logo.png' // for `laravel` type
-    'logo' => false,
+    'logo' => '../imgs/logotipo.png',
 
     // Customize the "Last updated" value displayed in the docs by specifying tokens and formats.
     // Examples:
@@ -186,7 +186,7 @@ INTRO
     // Available tokens are `{date:<format>}` and `{git:<format>}`.
     // The format you pass to `date` will be passed to PHP's `date()` function.
     // The format you pass to `git` can be either "short" or "long".
-    'last_updated' => 'Last updated: {date:F j, Y}',
+    'last_updated' => 'Últ atualização: {date:d/m/Y \à\s H:i}',
 
     'examples' => [
         // Set this to any number (e.g. 1234) to generate the same example values for parameters on each run,

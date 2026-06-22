@@ -68,38 +68,100 @@ class DashboardController extends Controller
                 ];
             });
 
-        // Gráfico dos últimos 7 dias
-        $last7Days = collect([]);
-        for ($i = 6; $i >= 0; $i--) {
-            $date = Carbon::today()->subDays($i);
-            $last7Days->push([
-                'date' => $date->format('Y-m-d'),
-                'hits' => 0
-            ]);
-        }
-
-        $dailyHits = EndpointCall::select(DB::raw('DATE(created_at) as date'), DB::raw('count(*) as hits'))
-            ->whereIn('endpoint_id', $endpointIds)
-            ->where('created_at', '>=', Carbon::today()->subDays(6))
-            ->groupBy('date')
-            ->get()
-            ->keyBy('date');
-
-        $chartLast7Days = $last7Days->map(function ($item) use ($dailyHits) {
-            if ($dailyHits->has($item['date'])) {
-                $item['hits'] = $dailyHits[$item['date']]->hits;
-            }
-            return $item;
-        });
-
         return response()->json([
             'total_projects' => $totalProjects,
             'total_endpoints' => $totalEndpoints,
             'total_calls' => $totalCalls,
             'calls_today' => $callsToday,
             'error_rate_percentage' => $errorRatePercentage,
-            'top_endpoints' => $topEndpoints,
-            'chart_last_7_days' => $chartLast7Days
+            'top_endpoints' => $topEndpoints
         ]);
+    }
+
+    /**
+     * Obter Dados do Gráfico (Histórico)
+     *
+     * Retorna o histórico de acessos (hits) agrupados por hora, dia ou mês.
+     * @authenticated
+     * 
+     * @queryParam start string Data inicial (formato YYYY-MM-DD HH:MM:SS). Opcional (Padrão: 7 dias atrás).
+     * @queryParam end string Data final (formato YYYY-MM-DD HH:MM:SS). Opcional (Padrão: agora).
+     * @queryParam groupby string Agrupamento dos dados (hour, day, month). Opcional (Padrão: day).
+     * @queryParam endpoint_id int ID do endpoint para filtrar. Opcional.
+     */
+    public function chart(Request $request)
+    {
+        $user = $request->user();
+
+        // Obter projetos e endpoints do usuário
+        $projectIds = $user->projects()->pluck('id');
+        $userEndpointIds = Endpoint::whereIn('project_id', $projectIds)->pluck('id');
+
+        // Filtro por endpoint_id específico
+        if ($request->has('endpoint_id')) {
+            if (!$userEndpointIds->contains($request->endpoint_id)) {
+                return response()->json(['error' => 'Endpoint not found or not owned by user.'], 403);
+            }
+            $endpointIds = collect([$request->endpoint_id]);
+        } else {
+            $endpointIds = $userEndpointIds;
+        }
+
+        $groupby = $request->input('groupby', 'day'); // hour, day, month
+        $start = $request->has('start') ? Carbon::parse($request->start) : Carbon::today()->subDays(6);
+        $end = $request->has('end') ? Carbon::parse($request->end) : Carbon::now();
+
+        // Determinar o formato SQL para o agrupamento
+        // MySQL DATE_FORMAT
+        if ($groupby === 'hour') {
+            $sqlFormat = '%Y-%m-%d %H:00:00';
+            $phpFormat = 'Y-m-d H:00:00';
+            $interval = 'addHour';
+        } elseif ($groupby === 'month') {
+            $sqlFormat = '%Y-%m';
+            $phpFormat = 'Y-m';
+            $interval = 'addMonth';
+        } else { // day
+            $sqlFormat = '%Y-%m-%d';
+            $phpFormat = 'Y-m-d';
+            $interval = 'addDay';
+        }
+
+        // Fazer a query no banco agrupando
+        $dbHits = EndpointCall::select(DB::raw("DATE_FORMAT(created_at, '{$sqlFormat}') as date_group"), DB::raw('count(*) as hits'))
+            ->whereIn('endpoint_id', $endpointIds)
+            ->where('created_at', '>=', $start)
+            ->where('created_at', '<=', $end)
+            ->groupBy('date_group')
+            ->orderBy('date_group', 'asc')
+            ->get()
+            ->keyBy('date_group');
+
+        // Preencher buracos vazios no intervalo de datas
+        $chartData = [];
+        
+        $currentDate = $start->copy();
+        
+        // Ajuste inicial para alinhar com o formato
+        if ($groupby === 'hour') {
+            $currentDate->minute(0)->second(0);
+        } elseif ($groupby === 'day') {
+            $currentDate->startOfDay();
+        } elseif ($groupby === 'month') {
+            $currentDate->startOfMonth();
+        }
+
+        while ($currentDate <= $end) {
+            $dateStr = $currentDate->format($phpFormat);
+            
+            $chartData[] = [
+                'date' => $dateStr,
+                'hits' => $dbHits->has($dateStr) ? $dbHits[$dateStr]->hits : 0
+            ];
+
+            $currentDate->$interval();
+        }
+
+        return response()->json($chartData);
     }
 }
