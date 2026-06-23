@@ -164,4 +164,35 @@ class DashboardController extends Controller
 
         return response()->json($chartData);
     }
+
+    /**
+     * Obter Rate Limit Atual
+     *
+     * Retorna o uso atual do limite de requisições baseado nas chamadas dos endpoints do usuário.
+     * @authenticated
+     */
+    public function rateLimit(Request $request)
+    {
+        $user = $request->user();
+        
+        $limit = (int) env('RATE_LIMIT_REQUESTS', 2000);
+        $timeWindow = (int) env('RATE_LIMIT_TIME', 60);
+
+        // Obter projetos e endpoints do usuário
+        $projectIds = $user->projects()->pluck('id');
+        $endpointIds = Endpoint::whereIn('project_id', $projectIds)->pluck('id');
+
+        // Count chamadas na janela de tempo
+        $since = Carbon::now()->subMinutes($timeWindow);
+        $currentUsage = EndpointCall::whereIn('endpoint_id', $endpointIds)
+            ->where('created_at', '>=', $since)
+            ->count();
+
+        return response()->json([
+            'limit' => $limit,
+            'current_usage' => $currentUsage,
+            'time_window_minutes' => $timeWindow,
+            'remaining' => max(0, $limit - $currentUsage)
+        ]);
+    }
 }
