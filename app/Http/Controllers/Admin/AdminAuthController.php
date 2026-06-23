@@ -131,10 +131,12 @@ class AdminAuthController extends Controller
         $this->validate($request, [
             'name' => 'sometimes|required|string|max:255',
             'email' => 'sometimes|required|string|email|max:255|unique:users,email,' . $user->id,
+            'theme_color_scheme' => 'sometimes|nullable|string|in:light,dark,auto',
         ]);
 
         if ($request->has('name')) $user->name = $request->name;
         if ($request->has('email')) $user->email = $request->email;
+        if ($request->has('theme_color_scheme')) $user->theme_color_scheme = $request->theme_color_scheme;
 
         $user->save();
 
