@@ -98,6 +98,8 @@ $app->routeMiddleware([
 
 $app->register(App\Providers\AppServiceProvider::class);
 $app->register(App\Providers\AuthServiceProvider::class);
+$app->instance('path.lang', $app->basePath('lang'));
+$app->register(Illuminate\Translation\TranslationServiceProvider::class);
 // $app->register(App\Providers\EventServiceProvider::class);
 if (class_exists(\Knuckles\Scribe\ScribeServiceProvider::class)) {
     $app->register(\Knuckles\Scribe\ScribeServiceProvider::class);
