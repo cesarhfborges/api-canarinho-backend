@@ -95,8 +95,11 @@ class AdminAuthController extends Controller
      */
     public function register(Request $request)
     {
-        if (env('ALLOW_REGISTRATION', false) != true && env('ALLOW_REGISTRATION', 'false') !== 'true') {
-            return response()->json(['error' => 'Registration is currently disabled.'], 403);
+        if (\App\Models\Config::getValue('allow_register', false) !== true) {
+            return response()->json([
+                'success' => false,
+                'error' => 'Registration is currently disabled.'
+            ], 403);
         }
 
         $this->validate($request, [
@@ -115,7 +118,15 @@ class AdminAuthController extends Controller
             'is_active' => true
         ]);
 
-        return response()->json($user, 201);
+        return response()->json([
+            'success' => true,
+            'message' => 'Usuário registrado com sucesso.',
+            'user' => [
+                'name' => $user->name,
+                'username' => $user->username,
+                'email' => $user->email
+            ]
+        ], 201);
     }
 
     /**

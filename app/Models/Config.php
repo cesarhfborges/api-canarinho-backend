@@ -17,10 +17,10 @@ class Config extends Model
      * Get a configuration value with caching.
      *
      * @param string $key
-     * @param mixed $default
+     * @param mixed|null $default
      * @return mixed
      */
-    public static function getValue(string $key, $default = null)
+    public static function getValue(string $key, mixed $default = null): mixed
     {
         return Cache::rememberForever("config_{$key}", function () use ($key, $default) {
             $config = self::find($key);
@@ -40,7 +40,7 @@ class Config extends Model
      * @param mixed $value
      * @return void
      */
-    public static function setValue(string $key, $value)
+    public static function setValue(string $key, mixed $value): void
     {
         self::updateOrCreate(
             ['key' => $key],
