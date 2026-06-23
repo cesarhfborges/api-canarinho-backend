@@ -39,7 +39,10 @@ class ConfigController extends Controller
             'allow_register' => 'sometimes|boolean',
             'rate_limit_requests' => 'sometimes|integer|min:1',
             'rate_limit_time' => 'sometimes|integer|min:1',
-            // 'background_login' => 'sometimes|string',
+            'theme_preset' => 'sometimes|string',
+            'theme_primary' => 'sometimes|string',
+            'theme_surface' => 'sometimes|nullable|string',
+            'theme_menuMode' => 'sometimes|string',
         ]);
 
         if ($validator->fails()) {
