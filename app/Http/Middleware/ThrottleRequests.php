@@ -27,8 +27,8 @@ class ThrottleRequests
      */
     public function handle($request, Closure $next)
     {
-        $maxAttempts = (int) env('RATE_LIMIT_REQUESTS', 2000);
-        $decayMinutes = (int) env('RATE_LIMIT_TIME', 60);
+        $maxAttempts = (int) \App\Models\Config::getValue('rate_limit_requests', 2000);
+        $decayMinutes = (int) \App\Models\Config::getValue('rate_limit_time', 60);
         
         // Rate limit por IP do usuário (se estiver logado, poderia ser pelo user_id, mas IP protege contra bruteforce global)
         $key = 'rate_limit:' . $request->ip();

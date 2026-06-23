@@ -18,6 +18,11 @@ $router->group(['prefix' => 'api/health'], function () use ($router) {
     });
 });
 
+// System Public Routes
+$router->group(['prefix' => 'api/system', 'namespace' => 'Admin'], function () use ($router) {
+    $router->get('config', 'ConfigController@index');
+});
+
 // Admin Routes
 $router->group(['prefix' => 'api/admin', 'namespace' => 'Admin'], function () use ($router) {
     // Auth & Registration
@@ -35,6 +40,10 @@ $router->group(['prefix' => 'api/admin', 'namespace' => 'Admin'], function () us
         $router->get('dashboard/metrics', 'DashboardController@metrics');
         $router->get('dashboard/chart', 'DashboardController@chart');
         $router->get('dashboard/rate-limit', 'DashboardController@rateLimit');
+
+        // Configurações do Sistema e Cache
+        $router->put('config', 'ConfigController@update');
+        $router->post('cache/clear', 'ConfigController@clearCache');
 
         // Gestão de Usuários (Apenas Admins)
         $router->get('users', 'UserController@index');
