@@ -45,7 +45,7 @@ class MockGeneratorController extends Controller
         $endpoint->mockData()->delete();
 
         $mockDataService = new \App\Services\MockDataService();
-        $generatedData = $mockDataService->generateForEndpoint($endpoint, $count);
+        $mockDataService->generateForEndpoint($endpoint, $count);
 
         return response()->json([
             'message' => "Generated {$count} records successfully."
