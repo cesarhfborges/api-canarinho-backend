@@ -56,12 +56,6 @@ RUN composer install \
     --prefer-dist \
     --optimize-autoloader
 
-
-# ============================
-# Gera a documentação
-# ============================
-RUN php artisan scribe:generate
-
 # ============================
 # Permissões (Laravel/Lumen)
 # ============================
