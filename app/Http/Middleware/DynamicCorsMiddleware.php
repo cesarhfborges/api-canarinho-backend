@@ -10,11 +10,11 @@ class DynamicCorsMiddleware
     /**
      * Handle an incoming request.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \Closure  $next
+     * @param Request $request
+     * @param Closure $next
      * @return mixed
      */
-    public function handle(Request $request, Closure $next)
+    public function handle(Request $request, Closure $next): mixed
     {
         // A rota dinâmica de mocks agora está explicitamente isolada sob api/mock/
         if ($request->is('api/mock/*')) {
