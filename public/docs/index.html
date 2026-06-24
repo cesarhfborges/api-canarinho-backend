@@ -254,20 +254,20 @@
                     <a href="#6-api-mocks-dinamicos">6. API Mocks Dinâmicos</a>
                 </li>
                                     <ul id="tocify-subheader-6-api-mocks-dinamicos" class="tocify-subheader">
-                                                    <li class="tocify-item level-2" data-unique="6-api-mocks-dinamicos-GETapi--username---projectSlug---path--*-">
-                                <a href="#6-api-mocks-dinamicos-GETapi--username---projectSlug---path--*-">GET api/{username}/{projectSlug}/{path:.*}</a>
+                                                    <li class="tocify-item level-2" data-unique="6-api-mocks-dinamicos-GETapi-mock--username---projectSlug---path--*-">
+                                <a href="#6-api-mocks-dinamicos-GETapi-mock--username---projectSlug---path--*-">GET api/mock/{username}/{projectSlug}/{path:.*}</a>
                             </li>
-                                                                                <li class="tocify-item level-2" data-unique="6-api-mocks-dinamicos-POSTapi--username---projectSlug---path--*-">
-                                <a href="#6-api-mocks-dinamicos-POSTapi--username---projectSlug---path--*-">POST api/{username}/{projectSlug}/{path:.*}</a>
+                                                                                <li class="tocify-item level-2" data-unique="6-api-mocks-dinamicos-POSTapi-mock--username---projectSlug---path--*-">
+                                <a href="#6-api-mocks-dinamicos-POSTapi-mock--username---projectSlug---path--*-">POST api/mock/{username}/{projectSlug}/{path:.*}</a>
                             </li>
-                                                                                <li class="tocify-item level-2" data-unique="6-api-mocks-dinamicos-PUTapi--username---projectSlug---path--*-">
-                                <a href="#6-api-mocks-dinamicos-PUTapi--username---projectSlug---path--*-">PUT api/{username}/{projectSlug}/{path:.*}</a>
+                                                                                <li class="tocify-item level-2" data-unique="6-api-mocks-dinamicos-PUTapi-mock--username---projectSlug---path--*-">
+                                <a href="#6-api-mocks-dinamicos-PUTapi-mock--username---projectSlug---path--*-">PUT api/mock/{username}/{projectSlug}/{path:.*}</a>
                             </li>
-                                                                                <li class="tocify-item level-2" data-unique="6-api-mocks-dinamicos-PATCHapi--username---projectSlug---path--*-">
-                                <a href="#6-api-mocks-dinamicos-PATCHapi--username---projectSlug---path--*-">PATCH api/{username}/{projectSlug}/{path:.*}</a>
+                                                                                <li class="tocify-item level-2" data-unique="6-api-mocks-dinamicos-PATCHapi-mock--username---projectSlug---path--*-">
+                                <a href="#6-api-mocks-dinamicos-PATCHapi-mock--username---projectSlug---path--*-">PATCH api/mock/{username}/{projectSlug}/{path:.*}</a>
                             </li>
-                                                                                <li class="tocify-item level-2" data-unique="6-api-mocks-dinamicos-DELETEapi--username---projectSlug---path--*-">
-                                <a href="#6-api-mocks-dinamicos-DELETEapi--username---projectSlug---path--*-">DELETE api/{username}/{projectSlug}/{path:.*}</a>
+                                                                                <li class="tocify-item level-2" data-unique="6-api-mocks-dinamicos-DELETEapi-mock--username---projectSlug---path--*-">
+                                <a href="#6-api-mocks-dinamicos-DELETEapi-mock--username---projectSlug---path--*-">DELETE api/mock/{username}/{projectSlug}/{path:.*}</a>
                             </li>
                                                                         </ul>
                             </ul>
@@ -282,6 +282,9 @@
                                                                                 <li class="tocify-item level-2" data-unique="7-dashboard-analytics-GETapi-admin-dashboard-chart">
                                 <a href="#7-dashboard-analytics-GETapi-admin-dashboard-chart">Obter Dados do Gráfico (Histórico)</a>
                             </li>
+                                                                                <li class="tocify-item level-2" data-unique="7-dashboard-analytics-GETapi-admin-dashboard-rate-limit">
+                                <a href="#7-dashboard-analytics-GETapi-admin-dashboard-rate-limit">Obter Rate Limit Atual</a>
+                            </li>
                                                                         </ul>
                             </ul>
                     <ul id="tocify-header-endpoints" class="tocify-header">
@@ -295,6 +298,15 @@
                                                                                 <li class="tocify-item level-2" data-unique="endpoints-GETapi-health-database">
                                 <a href="#endpoints-GETapi-health-database">GET api/health/database</a>
                             </li>
+                                                                                <li class="tocify-item level-2" data-unique="endpoints-GETapi-system-config">
+                                <a href="#endpoints-GETapi-system-config">Get all system configurations.</a>
+                            </li>
+                                                                                <li class="tocify-item level-2" data-unique="endpoints-PUTapi-admin-config">
+                                <a href="#endpoints-PUTapi-admin-config">Update multiple configuration values.</a>
+                            </li>
+                                                                                <li class="tocify-item level-2" data-unique="endpoints-POSTapi-admin-cache-clear">
+                                <a href="#endpoints-POSTapi-admin-cache-clear">Clear application cache.</a>
+                            </li>
                                                                         </ul>
                             </ul>
             </div>
@@ -306,7 +318,7 @@
     </ul>
 
     <ul class="toc-footer" id="last-updated">
-        <li>Últ atualização: 22/06/2026 às 16:59</li>
+        <li>Últ atualização: 24/06/2026 às 13:46</li>
     </ul>
 </div>
 
@@ -362,8 +374,8 @@ const headers = {
 };
 
 let body = {
-    "username": "dolore",
-    "password": "quos"
+    "username": "veniam",
+    "password": "eum"
 };
 
 fetch(url, {
@@ -384,8 +396,8 @@ $response = $client-&gt;post(
             'Accept' =&gt; 'application/json',
         ],
         'json' =&gt; [
-            'username' =&gt; 'dolore',
-            'password' =&gt; 'quos',
+            'username' =&gt; 'veniam',
+            'password' =&gt; 'eum',
         ],
     ]
 );
@@ -399,8 +411,8 @@ import json
 
 url = 'http://localhost:8000/api/admin/login'
 payload = {
-    "username": "dolore",
-    "password": "quos"
+    "username": "veniam",
+    "password": "eum"
 }
 headers = {
   'Content-Type': 'application/json',
@@ -434,8 +446,8 @@ export class ApiService {
         const params = new HttpParams();
 
         const body = {
-            'username': 'dolore',
-            'password': 'quos',
+            'username': 'veniam',
+            'password': 'eum',
         }
 
         return this.http.request&lt;any&gt;(
@@ -458,8 +470,8 @@ export class ApiService {
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
     --data "{
-    \"username\": \"dolore\",
-    \"password\": \"quos\"
+    \"username\": \"veniam\",
+    \"password\": \"eum\"
 }"
 </code></pre></div>
 
@@ -543,10 +555,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="username"                data-endpoint="POSTapi-admin-login"
-               value="dolore"
+               value="veniam"
                data-component="body">
     <br>
-<p>Example: <code>dolore</code></p>
+<p>Example: <code>veniam</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>password</code></b>&nbsp;&nbsp;
@@ -554,10 +566,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="password"                data-endpoint="POSTapi-admin-login"
-               value="quos"
+               value="eum"
                data-component="body">
     <br>
-<p>Example: <code>quos</code></p>
+<p>Example: <code>eum</code></p>
         </div>
         </form>
 
@@ -583,10 +595,10 @@ const headers = {
 };
 
 let body = {
-    "name": "xqovulwkikdgcsjp",
-    "username": "oq",
-    "email": "thora.schuster@example.net",
-    "password": "&amp;J)\/!y:^"
+    "name": "znmzheszxwt",
+    "username": "d",
+    "email": "dee.bins@example.com",
+    "password": "0RHpwmzn$:Cdlu+\\os&gt;"
 };
 
 fetch(url, {
@@ -607,10 +619,10 @@ $response = $client-&gt;post(
             'Accept' =&gt; 'application/json',
         ],
         'json' =&gt; [
-            'name' =&gt; 'xqovulwkikdgcsjp',
-            'username' =&gt; 'oq',
-            'email' =&gt; 'thora.schuster@example.net',
-            'password' =&gt; '&amp;J)/!y:^',
+            'name' =&gt; 'znmzheszxwt',
+            'username' =&gt; 'd',
+            'email' =&gt; 'dee.bins@example.com',
+            'password' =&gt; '0RHpwmzn$:Cdlu+\\os&gt;',
         ],
     ]
 );
@@ -624,10 +636,10 @@ import json
 
 url = 'http://localhost:8000/api/admin/register'
 payload = {
-    "name": "xqovulwkikdgcsjp",
-    "username": "oq",
-    "email": "thora.schuster@example.net",
-    "password": "&amp;J)\/!y:^"
+    "name": "znmzheszxwt",
+    "username": "d",
+    "email": "dee.bins@example.com",
+    "password": "0RHpwmzn$:Cdlu+\\os&gt;"
 }
 headers = {
   'Content-Type': 'application/json',
@@ -661,10 +673,10 @@ export class ApiService {
         const params = new HttpParams();
 
         const body = {
-            'name': 'xqovulwkikdgcsjp',
-            'username': 'oq',
-            'email': 'thora.schuster@example.net',
-            'password': '&amp;amp;J)/!y:^',
+            'name': 'znmzheszxwt',
+            'username': 'd',
+            'email': 'dee.bins@example.com',
+            'password': '0RHpwmzn$:Cdlu+\os&amp;gt;',
         }
 
         return this.http.request&lt;any&gt;(
@@ -687,10 +699,10 @@ export class ApiService {
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
     --data "{
-    \"name\": \"xqovulwkikdgcsjp\",
-    \"username\": \"oq\",
-    \"email\": \"thora.schuster@example.net\",
-    \"password\": \"&amp;J)\\/!y:^\"
+    \"name\": \"znmzheszxwt\",
+    \"username\": \"d\",
+    \"email\": \"dee.bins@example.com\",
+    \"password\": \"0RHpwmzn$:Cdlu+\\\\os&gt;\"
 }"
 </code></pre></div>
 
@@ -774,10 +786,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="name"                data-endpoint="POSTapi-admin-register"
-               value="xqovulwkikdgcsjp"
+               value="znmzheszxwt"
                data-component="body">
     <br>
-<p>Must not be greater than 255 characters. Example: <code>xqovulwkikdgcsjp</code></p>
+<p>O campo value não pode ser superior a 255 caracteres. Example: <code>znmzheszxwt</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>username</code></b>&nbsp;&nbsp;
@@ -785,10 +797,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="username"                data-endpoint="POSTapi-admin-register"
-               value="oq"
+               value="d"
                data-component="body">
     <br>
-<p>Must not be greater than 255 characters. Example: <code>oq</code></p>
+<p>Must not be one of <code>admin</code>, <code>api</code>, <code>mock</code>, <code>system</code>, or <code>health</code> O campo value não pode ser superior a 255 caracteres. Example: <code>d</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>email</code></b>&nbsp;&nbsp;
@@ -796,10 +808,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="email"                data-endpoint="POSTapi-admin-register"
-               value="thora.schuster@example.net"
+               value="dee.bins@example.com"
                data-component="body">
     <br>
-<p>Must be a valid email address. Must not be greater than 255 characters. Example: <code>thora.schuster@example.net</code></p>
+<p>O campo value deve ser um endereço de e-mail válido. O campo value não pode ser superior a 255 caracteres. Example: <code>dee.bins@example.com</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>password</code></b>&nbsp;&nbsp;
@@ -807,10 +819,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="password"                data-endpoint="POSTapi-admin-register"
-               value="&J)/!y:^"
+               value="0RHpwmzn$:Cdlu+\os>"
                data-component="body">
     <br>
-<p>Must be at least 6 characters. Example: <code>&amp;J)/!y:^</code></p>
+<p>O campo value deve ter pelo menos 6 caracteres. Example: <code>0RHpwmzn$:Cdlu+\os&gt;</code></p>
         </div>
         </form>
 
@@ -1106,7 +1118,7 @@ export class ApiService {
     "cache-control": "no-cache, private",
     "content-type": "application/json",
     "x-ratelimit-limit": "2000",
-    "x-ratelimit-remaining": "1731",
+    "x-ratelimit-remaining": "1980",
     "vary": "Origin"
 }</code>
                 </pre>
@@ -1212,7 +1224,8 @@ const headers = {
 };
 
 let body = {
-    "name": "zz"
+    "name": "swmsfsrdwcsikhnbdfwogqwma",
+    "theme_color_scheme": "light"
 };
 
 fetch(url, {
@@ -1233,7 +1246,8 @@ $response = $client-&gt;put(
             'Accept' =&gt; 'application/json',
         ],
         'json' =&gt; [
-            'name' =&gt; 'zz',
+            'name' =&gt; 'swmsfsrdwcsikhnbdfwogqwma',
+            'theme_color_scheme' =&gt; 'light',
         ],
     ]
 );
@@ -1247,7 +1261,8 @@ import json
 
 url = 'http://localhost:8000/api/admin/me'
 payload = {
-    "name": "zz"
+    "name": "swmsfsrdwcsikhnbdfwogqwma",
+    "theme_color_scheme": "light"
 }
 headers = {
   'Content-Type': 'application/json',
@@ -1281,7 +1296,8 @@ export class ApiService {
         const params = new HttpParams();
 
         const body = {
-            'name': 'zz',
+            'name': 'swmsfsrdwcsikhnbdfwogqwma',
+            'theme_color_scheme': 'light',
         }
 
         return this.http.request&lt;any&gt;(
@@ -1304,7 +1320,8 @@ export class ApiService {
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
     --data "{
-    \"name\": \"zz\"
+    \"name\": \"swmsfsrdwcsikhnbdfwogqwma\",
+    \"theme_color_scheme\": \"light\"
 }"
 </code></pre></div>
 
@@ -1388,10 +1405,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="name"                data-endpoint="PUTapi-admin-me"
-               value="zz"
+               value="swmsfsrdwcsikhnbdfwogqwma"
                data-component="body">
     <br>
-<p>Must not be greater than 255 characters. Example: <code>zz</code></p>
+<p>O campo value não pode ser superior a 255 caracteres. Example: <code>swmsfsrdwcsikhnbdfwogqwma</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>email</code></b>&nbsp;&nbsp;
@@ -1403,6 +1420,19 @@ You can check the Dev Tools console for debugging information.</code></pre>
                data-component="body">
     <br>
 
+        </div>
+                <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>theme_color_scheme</code></b>&nbsp;&nbsp;
+<small>string</small>&nbsp;
+<i>optional</i> &nbsp;
+                <input type="text" style="display: none"
+                              name="theme_color_scheme"                data-endpoint="PUTapi-admin-me"
+               value="light"
+               data-component="body">
+    <br>
+<p>Example: <code>light</code></p>
+Must be one of:
+<ul style="list-style-type: square;"><li><code>light</code></li> <li><code>dark</code></li> <li><code>auto</code></li></ul>
         </div>
         </form>
 
@@ -1429,7 +1459,7 @@ const headers = {
 };
 
 let body = {
-    "password": ":*0g@n|yyhU*:&gt;'DXR*\\"
+    "password": "Q`(Ow\\T]z}@"
 };
 
 fetch(url, {
@@ -1450,7 +1480,7 @@ $response = $client-&gt;put(
             'Accept' =&gt; 'application/json',
         ],
         'json' =&gt; [
-            'password' =&gt; ':*0g@n|yyhU*:&gt;\'DXR*\\',
+            'password' =&gt; 'Q`(Ow\\T]z}@',
         ],
     ]
 );
@@ -1464,7 +1494,7 @@ import json
 
 url = 'http://localhost:8000/api/admin/me/password'
 payload = {
-    "password": ":*0g@n|yyhU*:&gt;'DXR*\\"
+    "password": "Q`(Ow\\T]z}@"
 }
 headers = {
   'Content-Type': 'application/json',
@@ -1498,7 +1528,7 @@ export class ApiService {
         const params = new HttpParams();
 
         const body = {
-            'password': ':*0g@n|yyhU*:&amp;gt;&amp;#039;DXR*\',
+            'password': 'Q`(Ow\T]z}@',
         }
 
         return this.http.request&lt;any&gt;(
@@ -1521,7 +1551,7 @@ export class ApiService {
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
     --data "{
-    \"password\": \":*0g@n|yyhU*:&gt;\'DXR*\\\\\"
+    \"password\": \"Q`(Ow\\\\T]z}@\"
 }"
 </code></pre></div>
 
@@ -1605,10 +1635,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="password"                data-endpoint="PUTapi-admin-me-password"
-               value=":*0g@n|yyhU*:>'DXR*\"
+               value="Q`(Ow\T]z}@"
                data-component="body">
     <br>
-<p>Must be at least 6 characters. Example: <code>:*0g@n|yyhU*:&gt;'DXR*\</code></p>
+<p>O campo value deve ter pelo menos 6 caracteres. Example: <code>Q</code>(Ow\T]z}@`</p>
         </div>
         </form>
 
@@ -1732,7 +1762,7 @@ export class ApiService {
     "cache-control": "no-cache, private",
     "content-type": "application/json",
     "x-ratelimit-limit": "2000",
-    "x-ratelimit-remaining": "1726",
+    "x-ratelimit-remaining": "1974",
     "vary": "Origin"
 }</code>
                 </pre>
@@ -1838,8 +1868,8 @@ const headers = {
 };
 
 let body = {
-    "name": "b",
-    "slug": "bizhvbenhsbr"
+    "name": "mymqqzvhelbyrnus",
+    "slug": "noaytzsyrmbxghbj"
 };
 
 fetch(url, {
@@ -1860,8 +1890,8 @@ $response = $client-&gt;post(
             'Accept' =&gt; 'application/json',
         ],
         'json' =&gt; [
-            'name' =&gt; 'b',
-            'slug' =&gt; 'bizhvbenhsbr',
+            'name' =&gt; 'mymqqzvhelbyrnus',
+            'slug' =&gt; 'noaytzsyrmbxghbj',
         ],
     ]
 );
@@ -1875,8 +1905,8 @@ import json
 
 url = 'http://localhost:8000/api/admin/projects'
 payload = {
-    "name": "b",
-    "slug": "bizhvbenhsbr"
+    "name": "mymqqzvhelbyrnus",
+    "slug": "noaytzsyrmbxghbj"
 }
 headers = {
   'Content-Type': 'application/json',
@@ -1910,8 +1940,8 @@ export class ApiService {
         const params = new HttpParams();
 
         const body = {
-            'name': 'b',
-            'slug': 'bizhvbenhsbr',
+            'name': 'mymqqzvhelbyrnus',
+            'slug': 'noaytzsyrmbxghbj',
         }
 
         return this.http.request&lt;any&gt;(
@@ -1934,8 +1964,8 @@ export class ApiService {
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
     --data "{
-    \"name\": \"b\",
-    \"slug\": \"bizhvbenhsbr\"
+    \"name\": \"mymqqzvhelbyrnus\",
+    \"slug\": \"noaytzsyrmbxghbj\"
 }"
 </code></pre></div>
 
@@ -2019,10 +2049,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="name"                data-endpoint="POSTapi-admin-projects"
-               value="b"
+               value="mymqqzvhelbyrnus"
                data-component="body">
     <br>
-<p>Must not be greater than 255 characters. Example: <code>b</code></p>
+<p>O campo value não pode ser superior a 255 caracteres. Example: <code>mymqqzvhelbyrnus</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>slug</code></b>&nbsp;&nbsp;
@@ -2030,10 +2060,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="slug"                data-endpoint="POSTapi-admin-projects"
-               value="bizhvbenhsbr"
+               value="noaytzsyrmbxghbj"
                data-component="body">
     <br>
-<p>Must not be greater than 255 characters. Example: <code>bizhvbenhsbr</code></p>
+<p>O campo value não pode ser superior a 255 caracteres. Example: <code>noaytzsyrmbxghbj</code></p>
         </div>
         </form>
 
@@ -2051,7 +2081,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://localhost:8000/api/admin/projects/molestiae"
+    "http://localhost:8000/api/admin/projects/sed"
 );
 
 const headers = {
@@ -2067,7 +2097,7 @@ fetch(url, {
 
 <div class="php-example">
     <pre><code class="language-php">$client = new \GuzzleHttp\Client();
-$url = 'http://localhost:8000/api/admin/projects/molestiae';
+$url = 'http://localhost:8000/api/admin/projects/sed';
 $response = $client-&gt;get(
     $url,
     [
@@ -2085,7 +2115,7 @@ print_r(json_decode((string) $body));</code></pre></div>
     <pre><code class="language-python">import requests
 import json
 
-url = 'http://localhost:8000/api/admin/projects/molestiae'
+url = 'http://localhost:8000/api/admin/projects/sed'
 headers = {
   'Content-Type': 'application/json',
   'Accept': 'application/json'
@@ -2134,7 +2164,7 @@ export class ApiService {
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request GET \
-    --get "http://localhost:8000/api/admin/projects/molestiae" \
+    --get "http://localhost:8000/api/admin/projects/sed" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json"</code></pre></div>
 
@@ -2153,7 +2183,7 @@ export class ApiService {
     "cache-control": "no-cache, private",
     "content-type": "application/json",
     "x-ratelimit-limit": "2000",
-    "x-ratelimit-remaining": "1725",
+    "x-ratelimit-remaining": "1973",
     "vary": "Origin"
 }</code>
                 </pre>
@@ -2241,10 +2271,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="id"                data-endpoint="GETapi-admin-projects--id-"
-               value="molestiae"
+               value="sed"
                data-component="url">
     <br>
-<p>Example: <code>molestiae</code></p>
+<p>Example: <code>sed</code></p>
             </div>
                     </form>
 
@@ -2262,7 +2292,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://localhost:8000/api/admin/projects/dolor"
+    "http://localhost:8000/api/admin/projects/nisi"
 );
 
 const headers = {
@@ -2271,8 +2301,8 @@ const headers = {
 };
 
 let body = {
-    "name": "nbu",
-    "slug": "akcj"
+    "name": "d",
+    "slug": "xluxpzgsrxb"
 };
 
 fetch(url, {
@@ -2284,7 +2314,7 @@ fetch(url, {
 
 <div class="php-example">
     <pre><code class="language-php">$client = new \GuzzleHttp\Client();
-$url = 'http://localhost:8000/api/admin/projects/dolor';
+$url = 'http://localhost:8000/api/admin/projects/nisi';
 $response = $client-&gt;put(
     $url,
     [
@@ -2293,8 +2323,8 @@ $response = $client-&gt;put(
             'Accept' =&gt; 'application/json',
         ],
         'json' =&gt; [
-            'name' =&gt; 'nbu',
-            'slug' =&gt; 'akcj',
+            'name' =&gt; 'd',
+            'slug' =&gt; 'xluxpzgsrxb',
         ],
     ]
 );
@@ -2306,10 +2336,10 @@ print_r(json_decode((string) $body));</code></pre></div>
     <pre><code class="language-python">import requests
 import json
 
-url = 'http://localhost:8000/api/admin/projects/dolor'
+url = 'http://localhost:8000/api/admin/projects/nisi'
 payload = {
-    "name": "nbu",
-    "slug": "akcj"
+    "name": "d",
+    "slug": "xluxpzgsrxb"
 }
 headers = {
   'Content-Type': 'application/json',
@@ -2343,8 +2373,8 @@ export class ApiService {
         const params = new HttpParams();
 
         const body = {
-            'name': 'nbu',
-            'slug': 'akcj',
+            'name': 'd',
+            'slug': 'xluxpzgsrxb',
         }
 
         return this.http.request&lt;any&gt;(
@@ -2363,12 +2393,12 @@ export class ApiService {
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request PUT \
-    "http://localhost:8000/api/admin/projects/dolor" \
+    "http://localhost:8000/api/admin/projects/nisi" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
     --data "{
-    \"name\": \"nbu\",
-    \"slug\": \"akcj\"
+    \"name\": \"d\",
+    \"slug\": \"xluxpzgsrxb\"
 }"
 </code></pre></div>
 
@@ -2452,10 +2482,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="id"                data-endpoint="PUTapi-admin-projects--id-"
-               value="dolor"
+               value="nisi"
                data-component="url">
     <br>
-<p>Example: <code>dolor</code></p>
+<p>Example: <code>nisi</code></p>
             </div>
                             <h4 class="fancy-heading-panel"><b>Body Parameters</b></h4>
         <div style=" padding-left: 28px;  clear: unset;">
@@ -2464,10 +2494,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="name"                data-endpoint="PUTapi-admin-projects--id-"
-               value="nbu"
+               value="d"
                data-component="body">
     <br>
-<p>Must not be greater than 255 characters. Example: <code>nbu</code></p>
+<p>O campo value não pode ser superior a 255 caracteres. Example: <code>d</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>slug</code></b>&nbsp;&nbsp;
@@ -2475,10 +2505,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="slug"                data-endpoint="PUTapi-admin-projects--id-"
-               value="akcj"
+               value="xluxpzgsrxb"
                data-component="body">
     <br>
-<p>Must not be greater than 255 characters. Example: <code>akcj</code></p>
+<p>O campo value não pode ser superior a 255 caracteres. Example: <code>xluxpzgsrxb</code></p>
         </div>
         </form>
 
@@ -2496,7 +2526,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://localhost:8000/api/admin/projects/voluptas"
+    "http://localhost:8000/api/admin/projects/est"
 );
 
 const headers = {
@@ -2512,7 +2542,7 @@ fetch(url, {
 
 <div class="php-example">
     <pre><code class="language-php">$client = new \GuzzleHttp\Client();
-$url = 'http://localhost:8000/api/admin/projects/voluptas';
+$url = 'http://localhost:8000/api/admin/projects/est';
 $response = $client-&gt;delete(
     $url,
     [
@@ -2530,7 +2560,7 @@ print_r(json_decode((string) $body));</code></pre></div>
     <pre><code class="language-python">import requests
 import json
 
-url = 'http://localhost:8000/api/admin/projects/voluptas'
+url = 'http://localhost:8000/api/admin/projects/est'
 headers = {
   'Content-Type': 'application/json',
   'Accept': 'application/json'
@@ -2579,7 +2609,7 @@ export class ApiService {
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request DELETE \
-    "http://localhost:8000/api/admin/projects/voluptas" \
+    "http://localhost:8000/api/admin/projects/est" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json"</code></pre></div>
 
@@ -2663,10 +2693,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="id"                data-endpoint="DELETEapi-admin-projects--id-"
-               value="voluptas"
+               value="est"
                data-component="url">
     <br>
-<p>Example: <code>voluptas</code></p>
+<p>Example: <code>est</code></p>
             </div>
                     </form>
 
@@ -2688,7 +2718,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://localhost:8000/api/admin/projects/ullam/endpoints"
+    "http://localhost:8000/api/admin/projects/architecto/endpoints"
 );
 
 const headers = {
@@ -2704,7 +2734,7 @@ fetch(url, {
 
 <div class="php-example">
     <pre><code class="language-php">$client = new \GuzzleHttp\Client();
-$url = 'http://localhost:8000/api/admin/projects/ullam/endpoints';
+$url = 'http://localhost:8000/api/admin/projects/architecto/endpoints';
 $response = $client-&gt;get(
     $url,
     [
@@ -2722,7 +2752,7 @@ print_r(json_decode((string) $body));</code></pre></div>
     <pre><code class="language-python">import requests
 import json
 
-url = 'http://localhost:8000/api/admin/projects/ullam/endpoints'
+url = 'http://localhost:8000/api/admin/projects/architecto/endpoints'
 headers = {
   'Content-Type': 'application/json',
   'Accept': 'application/json'
@@ -2771,7 +2801,7 @@ export class ApiService {
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request GET \
-    --get "http://localhost:8000/api/admin/projects/ullam/endpoints" \
+    --get "http://localhost:8000/api/admin/projects/architecto/endpoints" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json"</code></pre></div>
 
@@ -2790,7 +2820,7 @@ export class ApiService {
     "cache-control": "no-cache, private",
     "content-type": "application/json",
     "x-ratelimit-limit": "2000",
-    "x-ratelimit-remaining": "1724",
+    "x-ratelimit-remaining": "1972",
     "vary": "Origin"
 }</code>
                 </pre>
@@ -2878,10 +2908,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="projectId"                data-endpoint="GETapi-admin-projects--projectId--endpoints"
-               value="ullam"
+               value="architecto"
                data-component="url">
     <br>
-<p>Example: <code>ullam</code></p>
+<p>Example: <code>architecto</code></p>
             </div>
                     </form>
 
@@ -2899,7 +2929,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://localhost:8000/api/admin/projects/ex/endpoints"
+    "http://localhost:8000/api/admin/projects/dicta/endpoints"
 );
 
 const headers = {
@@ -2908,8 +2938,8 @@ const headers = {
 };
 
 let body = {
-    "name": "natus",
-    "generator": "voluptate"
+    "name": "non",
+    "generator": "expedita"
 };
 
 fetch(url, {
@@ -2921,7 +2951,7 @@ fetch(url, {
 
 <div class="php-example">
     <pre><code class="language-php">$client = new \GuzzleHttp\Client();
-$url = 'http://localhost:8000/api/admin/projects/ex/endpoints';
+$url = 'http://localhost:8000/api/admin/projects/dicta/endpoints';
 $response = $client-&gt;post(
     $url,
     [
@@ -2930,8 +2960,8 @@ $response = $client-&gt;post(
             'Accept' =&gt; 'application/json',
         ],
         'json' =&gt; [
-            'name' =&gt; 'natus',
-            'generator' =&gt; 'voluptate',
+            'name' =&gt; 'non',
+            'generator' =&gt; 'expedita',
         ],
     ]
 );
@@ -2943,10 +2973,10 @@ print_r(json_decode((string) $body));</code></pre></div>
     <pre><code class="language-python">import requests
 import json
 
-url = 'http://localhost:8000/api/admin/projects/ex/endpoints'
+url = 'http://localhost:8000/api/admin/projects/dicta/endpoints'
 payload = {
-    "name": "natus",
-    "generator": "voluptate"
+    "name": "non",
+    "generator": "expedita"
 }
 headers = {
   'Content-Type': 'application/json',
@@ -2980,8 +3010,8 @@ export class ApiService {
         const params = new HttpParams();
 
         const body = {
-            'name': 'natus',
-            'generator': 'voluptate',
+            'name': 'non',
+            'generator': 'expedita',
         }
 
         return this.http.request&lt;any&gt;(
@@ -3000,12 +3030,12 @@ export class ApiService {
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request POST \
-    "http://localhost:8000/api/admin/projects/ex/endpoints" \
+    "http://localhost:8000/api/admin/projects/dicta/endpoints" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
     --data "{
-    \"name\": \"natus\",
-    \"generator\": \"voluptate\"
+    \"name\": \"non\",
+    \"generator\": \"expedita\"
 }"
 </code></pre></div>
 
@@ -3089,10 +3119,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="projectId"                data-endpoint="POSTapi-admin-projects--projectId--endpoints"
-               value="ex"
+               value="dicta"
                data-component="url">
     <br>
-<p>Example: <code>ex</code></p>
+<p>Example: <code>dicta</code></p>
             </div>
                             <h4 class="fancy-heading-panel"><b>Body Parameters</b></h4>
         <div style=" padding-left: 28px;  clear: unset;">
@@ -3101,10 +3131,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="name"                data-endpoint="POSTapi-admin-projects--projectId--endpoints"
-               value="natus"
+               value="non"
                data-component="body">
     <br>
-<p>Example: <code>natus</code></p>
+<p>Example: <code>non</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>generator</code></b>&nbsp;&nbsp;
@@ -3112,10 +3142,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
 <i>optional</i> &nbsp;
                 <input type="text" style="display: none"
                               name="generator"                data-endpoint="POSTapi-admin-projects--projectId--endpoints"
-               value="voluptate"
+               value="expedita"
                data-component="body">
     <br>
-<p>Example: <code>voluptate</code></p>
+<p>Example: <code>expedita</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>endpoints</code></b>&nbsp;&nbsp;
@@ -3155,7 +3185,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://localhost:8000/api/admin/projects/aut/endpoints/quae"
+    "http://localhost:8000/api/admin/projects/qui/endpoints/molestiae"
 );
 
 const headers = {
@@ -3171,7 +3201,7 @@ fetch(url, {
 
 <div class="php-example">
     <pre><code class="language-php">$client = new \GuzzleHttp\Client();
-$url = 'http://localhost:8000/api/admin/projects/aut/endpoints/quae';
+$url = 'http://localhost:8000/api/admin/projects/qui/endpoints/molestiae';
 $response = $client-&gt;get(
     $url,
     [
@@ -3189,7 +3219,7 @@ print_r(json_decode((string) $body));</code></pre></div>
     <pre><code class="language-python">import requests
 import json
 
-url = 'http://localhost:8000/api/admin/projects/aut/endpoints/quae'
+url = 'http://localhost:8000/api/admin/projects/qui/endpoints/molestiae'
 headers = {
   'Content-Type': 'application/json',
   'Accept': 'application/json'
@@ -3238,7 +3268,7 @@ export class ApiService {
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request GET \
-    --get "http://localhost:8000/api/admin/projects/aut/endpoints/quae" \
+    --get "http://localhost:8000/api/admin/projects/qui/endpoints/molestiae" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json"</code></pre></div>
 
@@ -3257,7 +3287,7 @@ export class ApiService {
     "cache-control": "no-cache, private",
     "content-type": "application/json",
     "x-ratelimit-limit": "2000",
-    "x-ratelimit-remaining": "1723",
+    "x-ratelimit-remaining": "1971",
     "vary": "Origin"
 }</code>
                 </pre>
@@ -3345,10 +3375,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="projectId"                data-endpoint="GETapi-admin-projects--projectId--endpoints--id-"
-               value="aut"
+               value="qui"
                data-component="url">
     <br>
-<p>Example: <code>aut</code></p>
+<p>Example: <code>qui</code></p>
             </div>
                     <div style="padding-left: 28px; clear: unset;">
                 <b style="line-height: 2;"><code>id</code></b>&nbsp;&nbsp;
@@ -3356,10 +3386,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="id"                data-endpoint="GETapi-admin-projects--projectId--endpoints--id-"
-               value="quae"
+               value="molestiae"
                data-component="url">
     <br>
-<p>Example: <code>quae</code></p>
+<p>Example: <code>molestiae</code></p>
             </div>
                     </form>
 
@@ -3377,7 +3407,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://localhost:8000/api/admin/endpoints/nulla"
+    "http://localhost:8000/api/admin/endpoints/et"
 );
 
 const headers = {
@@ -3386,8 +3416,8 @@ const headers = {
 };
 
 let body = {
-    "name": "autem",
-    "generator": "qui"
+    "name": "voluptatem",
+    "generator": "modi"
 };
 
 fetch(url, {
@@ -3399,7 +3429,7 @@ fetch(url, {
 
 <div class="php-example">
     <pre><code class="language-php">$client = new \GuzzleHttp\Client();
-$url = 'http://localhost:8000/api/admin/endpoints/nulla';
+$url = 'http://localhost:8000/api/admin/endpoints/et';
 $response = $client-&gt;put(
     $url,
     [
@@ -3408,8 +3438,8 @@ $response = $client-&gt;put(
             'Accept' =&gt; 'application/json',
         ],
         'json' =&gt; [
-            'name' =&gt; 'autem',
-            'generator' =&gt; 'qui',
+            'name' =&gt; 'voluptatem',
+            'generator' =&gt; 'modi',
         ],
     ]
 );
@@ -3421,10 +3451,10 @@ print_r(json_decode((string) $body));</code></pre></div>
     <pre><code class="language-python">import requests
 import json
 
-url = 'http://localhost:8000/api/admin/endpoints/nulla'
+url = 'http://localhost:8000/api/admin/endpoints/et'
 payload = {
-    "name": "autem",
-    "generator": "qui"
+    "name": "voluptatem",
+    "generator": "modi"
 }
 headers = {
   'Content-Type': 'application/json',
@@ -3458,8 +3488,8 @@ export class ApiService {
         const params = new HttpParams();
 
         const body = {
-            'name': 'autem',
-            'generator': 'qui',
+            'name': 'voluptatem',
+            'generator': 'modi',
         }
 
         return this.http.request&lt;any&gt;(
@@ -3478,12 +3508,12 @@ export class ApiService {
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request PUT \
-    "http://localhost:8000/api/admin/endpoints/nulla" \
+    "http://localhost:8000/api/admin/endpoints/et" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
     --data "{
-    \"name\": \"autem\",
-    \"generator\": \"qui\"
+    \"name\": \"voluptatem\",
+    \"generator\": \"modi\"
 }"
 </code></pre></div>
 
@@ -3567,10 +3597,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="id"                data-endpoint="PUTapi-admin-endpoints--id-"
-               value="nulla"
+               value="et"
                data-component="url">
     <br>
-<p>Example: <code>nulla</code></p>
+<p>Example: <code>et</code></p>
             </div>
                             <h4 class="fancy-heading-panel"><b>Body Parameters</b></h4>
         <div style=" padding-left: 28px;  clear: unset;">
@@ -3579,10 +3609,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="name"                data-endpoint="PUTapi-admin-endpoints--id-"
-               value="autem"
+               value="voluptatem"
                data-component="body">
     <br>
-<p>Example: <code>autem</code></p>
+<p>Example: <code>voluptatem</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>generator</code></b>&nbsp;&nbsp;
@@ -3590,10 +3620,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
 <i>optional</i> &nbsp;
                 <input type="text" style="display: none"
                               name="generator"                data-endpoint="PUTapi-admin-endpoints--id-"
-               value="qui"
+               value="modi"
                data-component="body">
     <br>
-<p>Example: <code>qui</code></p>
+<p>Example: <code>modi</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>endpoints</code></b>&nbsp;&nbsp;
@@ -3633,7 +3663,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://localhost:8000/api/admin/endpoints/numquam"
+    "http://localhost:8000/api/admin/endpoints/ut"
 );
 
 const headers = {
@@ -3649,7 +3679,7 @@ fetch(url, {
 
 <div class="php-example">
     <pre><code class="language-php">$client = new \GuzzleHttp\Client();
-$url = 'http://localhost:8000/api/admin/endpoints/numquam';
+$url = 'http://localhost:8000/api/admin/endpoints/ut';
 $response = $client-&gt;delete(
     $url,
     [
@@ -3667,7 +3697,7 @@ print_r(json_decode((string) $body));</code></pre></div>
     <pre><code class="language-python">import requests
 import json
 
-url = 'http://localhost:8000/api/admin/endpoints/numquam'
+url = 'http://localhost:8000/api/admin/endpoints/ut'
 headers = {
   'Content-Type': 'application/json',
   'Accept': 'application/json'
@@ -3716,7 +3746,7 @@ export class ApiService {
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request DELETE \
-    "http://localhost:8000/api/admin/endpoints/numquam" \
+    "http://localhost:8000/api/admin/endpoints/ut" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json"</code></pre></div>
 
@@ -3800,10 +3830,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="id"                data-endpoint="DELETEapi-admin-endpoints--id-"
-               value="numquam"
+               value="ut"
                data-component="url">
     <br>
-<p>Example: <code>numquam</code></p>
+<p>Example: <code>ut</code></p>
             </div>
                     </form>
 
@@ -3826,7 +3856,7 @@ Opcionalmente, envie o parâmetro <code>count</code> no body (padrão 10).</p>
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://localhost:8000/api/admin/projects/qui/endpoints/quis/generate"
+    "http://localhost:8000/api/admin/projects/quibusdam/endpoints/autem/generate"
 );
 
 const headers = {
@@ -3835,7 +3865,7 @@ const headers = {
 };
 
 let body = {
-    "count": 14
+    "count": 17
 };
 
 fetch(url, {
@@ -3847,7 +3877,7 @@ fetch(url, {
 
 <div class="php-example">
     <pre><code class="language-php">$client = new \GuzzleHttp\Client();
-$url = 'http://localhost:8000/api/admin/projects/qui/endpoints/quis/generate';
+$url = 'http://localhost:8000/api/admin/projects/quibusdam/endpoints/autem/generate';
 $response = $client-&gt;post(
     $url,
     [
@@ -3856,7 +3886,7 @@ $response = $client-&gt;post(
             'Accept' =&gt; 'application/json',
         ],
         'json' =&gt; [
-            'count' =&gt; 14,
+            'count' =&gt; 17,
         ],
     ]
 );
@@ -3868,9 +3898,9 @@ print_r(json_decode((string) $body));</code></pre></div>
     <pre><code class="language-python">import requests
 import json
 
-url = 'http://localhost:8000/api/admin/projects/qui/endpoints/quis/generate'
+url = 'http://localhost:8000/api/admin/projects/quibusdam/endpoints/autem/generate'
 payload = {
-    "count": 14
+    "count": 17
 }
 headers = {
   'Content-Type': 'application/json',
@@ -3904,7 +3934,7 @@ export class ApiService {
         const params = new HttpParams();
 
         const body = {
-            'count': '14',
+            'count': '17',
         }
 
         return this.http.request&lt;any&gt;(
@@ -3923,11 +3953,11 @@ export class ApiService {
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request POST \
-    "http://localhost:8000/api/admin/projects/qui/endpoints/quis/generate" \
+    "http://localhost:8000/api/admin/projects/quibusdam/endpoints/autem/generate" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
     --data "{
-    \"count\": 14
+    \"count\": 17
 }"
 </code></pre></div>
 
@@ -4011,10 +4041,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="projectId"                data-endpoint="POSTapi-admin-projects--projectId--endpoints--id--generate"
-               value="qui"
+               value="quibusdam"
                data-component="url">
     <br>
-<p>Example: <code>qui</code></p>
+<p>Example: <code>quibusdam</code></p>
             </div>
                     <div style="padding-left: 28px; clear: unset;">
                 <b style="line-height: 2;"><code>id</code></b>&nbsp;&nbsp;
@@ -4022,10 +4052,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="id"                data-endpoint="POSTapi-admin-projects--projectId--endpoints--id--generate"
-               value="quis"
+               value="autem"
                data-component="url">
     <br>
-<p>Example: <code>quis</code></p>
+<p>Example: <code>autem</code></p>
             </div>
                             <h4 class="fancy-heading-panel"><b>Body Parameters</b></h4>
         <div style=" padding-left: 28px;  clear: unset;">
@@ -4034,10 +4064,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="number" style="display: none"
                step="any"               name="count"                data-endpoint="POSTapi-admin-projects--projectId--endpoints--id--generate"
-               value="14"
+               value="17"
                data-component="body">
     <br>
-<p>Must be at least 0. Must not be greater than 500. Example: <code>14</code></p>
+<p>O campo value deve ser pelo menos 0. O campo value não pode ser superior a 500. Example: <code>17</code></p>
         </div>
         </form>
 
@@ -4059,7 +4089,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://localhost:8000/api/admin/projects/debitis/tokens"
+    "http://localhost:8000/api/admin/projects/ea/tokens"
 );
 
 const headers = {
@@ -4075,7 +4105,7 @@ fetch(url, {
 
 <div class="php-example">
     <pre><code class="language-php">$client = new \GuzzleHttp\Client();
-$url = 'http://localhost:8000/api/admin/projects/debitis/tokens';
+$url = 'http://localhost:8000/api/admin/projects/ea/tokens';
 $response = $client-&gt;get(
     $url,
     [
@@ -4093,7 +4123,7 @@ print_r(json_decode((string) $body));</code></pre></div>
     <pre><code class="language-python">import requests
 import json
 
-url = 'http://localhost:8000/api/admin/projects/debitis/tokens'
+url = 'http://localhost:8000/api/admin/projects/ea/tokens'
 headers = {
   'Content-Type': 'application/json',
   'Accept': 'application/json'
@@ -4142,7 +4172,7 @@ export class ApiService {
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request GET \
-    --get "http://localhost:8000/api/admin/projects/debitis/tokens" \
+    --get "http://localhost:8000/api/admin/projects/ea/tokens" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json"</code></pre></div>
 
@@ -4161,7 +4191,7 @@ export class ApiService {
     "cache-control": "no-cache, private",
     "content-type": "application/json",
     "x-ratelimit-limit": "2000",
-    "x-ratelimit-remaining": "1722",
+    "x-ratelimit-remaining": "1970",
     "vary": "Origin"
 }</code>
                 </pre>
@@ -4249,10 +4279,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="projectId"                data-endpoint="GETapi-admin-projects--projectId--tokens"
-               value="debitis"
+               value="ea"
                data-component="url">
     <br>
-<p>Example: <code>debitis</code></p>
+<p>Example: <code>ea</code></p>
             </div>
                     </form>
 
@@ -4270,7 +4300,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://localhost:8000/api/admin/projects/eius/tokens"
+    "http://localhost:8000/api/admin/projects/et/tokens"
 );
 
 const headers = {
@@ -4279,7 +4309,7 @@ const headers = {
 };
 
 let body = {
-    "name": "odio"
+    "name": "earum"
 };
 
 fetch(url, {
@@ -4291,7 +4321,7 @@ fetch(url, {
 
 <div class="php-example">
     <pre><code class="language-php">$client = new \GuzzleHttp\Client();
-$url = 'http://localhost:8000/api/admin/projects/eius/tokens';
+$url = 'http://localhost:8000/api/admin/projects/et/tokens';
 $response = $client-&gt;post(
     $url,
     [
@@ -4300,7 +4330,7 @@ $response = $client-&gt;post(
             'Accept' =&gt; 'application/json',
         ],
         'json' =&gt; [
-            'name' =&gt; 'odio',
+            'name' =&gt; 'earum',
         ],
     ]
 );
@@ -4312,9 +4342,9 @@ print_r(json_decode((string) $body));</code></pre></div>
     <pre><code class="language-python">import requests
 import json
 
-url = 'http://localhost:8000/api/admin/projects/eius/tokens'
+url = 'http://localhost:8000/api/admin/projects/et/tokens'
 payload = {
-    "name": "odio"
+    "name": "earum"
 }
 headers = {
   'Content-Type': 'application/json',
@@ -4348,7 +4378,7 @@ export class ApiService {
         const params = new HttpParams();
 
         const body = {
-            'name': 'odio',
+            'name': 'earum',
         }
 
         return this.http.request&lt;any&gt;(
@@ -4367,11 +4397,11 @@ export class ApiService {
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request POST \
-    "http://localhost:8000/api/admin/projects/eius/tokens" \
+    "http://localhost:8000/api/admin/projects/et/tokens" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
     --data "{
-    \"name\": \"odio\"
+    \"name\": \"earum\"
 }"
 </code></pre></div>
 
@@ -4455,10 +4485,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="projectId"                data-endpoint="POSTapi-admin-projects--projectId--tokens"
-               value="eius"
+               value="et"
                data-component="url">
     <br>
-<p>Example: <code>eius</code></p>
+<p>Example: <code>et</code></p>
             </div>
                             <h4 class="fancy-heading-panel"><b>Body Parameters</b></h4>
         <div style=" padding-left: 28px;  clear: unset;">
@@ -4467,10 +4497,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="name"                data-endpoint="POSTapi-admin-projects--projectId--tokens"
-               value="odio"
+               value="earum"
                data-component="body">
     <br>
-<p>Example: <code>odio</code></p>
+<p>Example: <code>earum</code></p>
         </div>
         </form>
 
@@ -4488,7 +4518,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://localhost:8000/api/admin/tokens/eius"
+    "http://localhost:8000/api/admin/tokens/velit"
 );
 
 const headers = {
@@ -4504,7 +4534,7 @@ fetch(url, {
 
 <div class="php-example">
     <pre><code class="language-php">$client = new \GuzzleHttp\Client();
-$url = 'http://localhost:8000/api/admin/tokens/eius';
+$url = 'http://localhost:8000/api/admin/tokens/velit';
 $response = $client-&gt;delete(
     $url,
     [
@@ -4522,7 +4552,7 @@ print_r(json_decode((string) $body));</code></pre></div>
     <pre><code class="language-python">import requests
 import json
 
-url = 'http://localhost:8000/api/admin/tokens/eius'
+url = 'http://localhost:8000/api/admin/tokens/velit'
 headers = {
   'Content-Type': 'application/json',
   'Accept': 'application/json'
@@ -4571,7 +4601,7 @@ export class ApiService {
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request DELETE \
-    "http://localhost:8000/api/admin/tokens/eius" \
+    "http://localhost:8000/api/admin/tokens/velit" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json"</code></pre></div>
 
@@ -4655,10 +4685,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="id"                data-endpoint="DELETEapi-admin-tokens--id-"
-               value="eius"
+               value="velit"
                data-component="url">
     <br>
-<p>Example: <code>eius</code></p>
+<p>Example: <code>velit</code></p>
             </div>
                     </form>
 
@@ -4782,7 +4812,7 @@ export class ApiService {
     "cache-control": "no-cache, private",
     "content-type": "application/json",
     "x-ratelimit-limit": "2000",
-    "x-ratelimit-remaining": "1728",
+    "x-ratelimit-remaining": "1976",
     "vary": "Origin"
 }</code>
                 </pre>
@@ -4888,10 +4918,10 @@ const headers = {
 };
 
 let body = {
-    "name": "thrbpgsnft",
-    "username": "fyhekvefrymnntrrnja",
-    "email": "citlalli.boehm@example.org",
-    "password": "P&amp;&amp;gaEcdD,Y*H6[c-q,",
+    "name": "ysblinwaduqunuivxrzyud",
+    "username": "mi",
+    "email": "jan75@example.org",
+    "password": "DPd9ONR60zH\"nw\"",
     "is_admin": true,
     "is_active": false
 };
@@ -4914,10 +4944,10 @@ $response = $client-&gt;post(
             'Accept' =&gt; 'application/json',
         ],
         'json' =&gt; [
-            'name' =&gt; 'thrbpgsnft',
-            'username' =&gt; 'fyhekvefrymnntrrnja',
-            'email' =&gt; 'citlalli.boehm@example.org',
-            'password' =&gt; 'P&amp;&amp;gaEcdD,Y*H6[c-q,',
+            'name' =&gt; 'ysblinwaduqunuivxrzyud',
+            'username' =&gt; 'mi',
+            'email' =&gt; 'jan75@example.org',
+            'password' =&gt; 'DPd9ONR60zH"nw"',
             'is_admin' =&gt; true,
             'is_active' =&gt; false,
         ],
@@ -4933,10 +4963,10 @@ import json
 
 url = 'http://localhost:8000/api/admin/users'
 payload = {
-    "name": "thrbpgsnft",
-    "username": "fyhekvefrymnntrrnja",
-    "email": "citlalli.boehm@example.org",
-    "password": "P&amp;&amp;gaEcdD,Y*H6[c-q,",
+    "name": "ysblinwaduqunuivxrzyud",
+    "username": "mi",
+    "email": "jan75@example.org",
+    "password": "DPd9ONR60zH\"nw\"",
     "is_admin": true,
     "is_active": false
 }
@@ -4972,10 +5002,10 @@ export class ApiService {
         const params = new HttpParams();
 
         const body = {
-            'name': 'thrbpgsnft',
-            'username': 'fyhekvefrymnntrrnja',
-            'email': 'citlalli.boehm@example.org',
-            'password': 'P&amp;amp;&amp;amp;gaEcdD,Y*H6[c-q,',
+            'name': 'ysblinwaduqunuivxrzyud',
+            'username': 'mi',
+            'email': 'jan75@example.org',
+            'password': 'DPd9ONR60zH&amp;quot;nw&amp;quot;',
             'is_admin': '1',
             'is_active': '',
         }
@@ -5000,10 +5030,10 @@ export class ApiService {
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
     --data "{
-    \"name\": \"thrbpgsnft\",
-    \"username\": \"fyhekvefrymnntrrnja\",
-    \"email\": \"citlalli.boehm@example.org\",
-    \"password\": \"P&amp;&amp;gaEcdD,Y*H6[c-q,\",
+    \"name\": \"ysblinwaduqunuivxrzyud\",
+    \"username\": \"mi\",
+    \"email\": \"jan75@example.org\",
+    \"password\": \"DPd9ONR60zH\\\"nw\\\"\",
     \"is_admin\": true,
     \"is_active\": false
 }"
@@ -5089,10 +5119,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="name"                data-endpoint="POSTapi-admin-users"
-               value="thrbpgsnft"
+               value="ysblinwaduqunuivxrzyud"
                data-component="body">
     <br>
-<p>Must not be greater than 255 characters. Example: <code>thrbpgsnft</code></p>
+<p>O campo value não pode ser superior a 255 caracteres. Example: <code>ysblinwaduqunuivxrzyud</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>username</code></b>&nbsp;&nbsp;
@@ -5100,10 +5130,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="username"                data-endpoint="POSTapi-admin-users"
-               value="fyhekvefrymnntrrnja"
+               value="mi"
                data-component="body">
     <br>
-<p>Must not be greater than 255 characters. Example: <code>fyhekvefrymnntrrnja</code></p>
+<p>Must not be one of <code>admin</code>, <code>api</code>, <code>mock</code>, <code>system</code>, or <code>health</code> O campo value não pode ser superior a 255 caracteres. Example: <code>mi</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>email</code></b>&nbsp;&nbsp;
@@ -5111,10 +5141,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="email"                data-endpoint="POSTapi-admin-users"
-               value="citlalli.boehm@example.org"
+               value="jan75@example.org"
                data-component="body">
     <br>
-<p>Must be a valid email address. Must not be greater than 255 characters. Example: <code>citlalli.boehm@example.org</code></p>
+<p>O campo value deve ser um endereço de e-mail válido. O campo value não pode ser superior a 255 caracteres. Example: <code>jan75@example.org</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>password</code></b>&nbsp;&nbsp;
@@ -5122,10 +5152,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="password"                data-endpoint="POSTapi-admin-users"
-               value="P&&gaEcdD,Y*H6[c-q,"
+               value="DPd9ONR60zH"nw""
                data-component="body">
     <br>
-<p>Must be at least 6 characters. Example: <code>P&amp;&amp;gaEcdD,Y*H6[c-q,</code></p>
+<p>O campo value deve ter pelo menos 6 caracteres. Example: <code>DPd9ONR60zH"nw"</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>is_admin</code></b>&nbsp;&nbsp;
@@ -5185,7 +5215,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://localhost:8000/api/admin/users/autem"
+    "http://localhost:8000/api/admin/users/perferendis"
 );
 
 const headers = {
@@ -5201,7 +5231,7 @@ fetch(url, {
 
 <div class="php-example">
     <pre><code class="language-php">$client = new \GuzzleHttp\Client();
-$url = 'http://localhost:8000/api/admin/users/autem';
+$url = 'http://localhost:8000/api/admin/users/perferendis';
 $response = $client-&gt;get(
     $url,
     [
@@ -5219,7 +5249,7 @@ print_r(json_decode((string) $body));</code></pre></div>
     <pre><code class="language-python">import requests
 import json
 
-url = 'http://localhost:8000/api/admin/users/autem'
+url = 'http://localhost:8000/api/admin/users/perferendis'
 headers = {
   'Content-Type': 'application/json',
   'Accept': 'application/json'
@@ -5268,7 +5298,7 @@ export class ApiService {
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request GET \
-    --get "http://localhost:8000/api/admin/users/autem" \
+    --get "http://localhost:8000/api/admin/users/perferendis" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json"</code></pre></div>
 
@@ -5287,7 +5317,7 @@ export class ApiService {
     "cache-control": "no-cache, private",
     "content-type": "application/json",
     "x-ratelimit-limit": "2000",
-    "x-ratelimit-remaining": "1727",
+    "x-ratelimit-remaining": "1975",
     "vary": "Origin"
 }</code>
                 </pre>
@@ -5375,10 +5405,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="id"                data-endpoint="GETapi-admin-users--id-"
-               value="autem"
+               value="perferendis"
                data-component="url">
     <br>
-<p>Example: <code>autem</code></p>
+<p>Example: <code>perferendis</code></p>
             </div>
                     </form>
 
@@ -5396,7 +5426,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://localhost:8000/api/admin/users/eaque"
+    "http://localhost:8000/api/admin/users/perferendis"
 );
 
 const headers = {
@@ -5405,8 +5435,8 @@ const headers = {
 };
 
 let body = {
-    "name": "dejrv",
-    "is_admin": false,
+    "name": "qrfctnmmsevkxaq",
+    "is_admin": true,
     "is_active": false
 };
 
@@ -5419,7 +5449,7 @@ fetch(url, {
 
 <div class="php-example">
     <pre><code class="language-php">$client = new \GuzzleHttp\Client();
-$url = 'http://localhost:8000/api/admin/users/eaque';
+$url = 'http://localhost:8000/api/admin/users/perferendis';
 $response = $client-&gt;put(
     $url,
     [
@@ -5428,8 +5458,8 @@ $response = $client-&gt;put(
             'Accept' =&gt; 'application/json',
         ],
         'json' =&gt; [
-            'name' =&gt; 'dejrv',
-            'is_admin' =&gt; false,
+            'name' =&gt; 'qrfctnmmsevkxaq',
+            'is_admin' =&gt; true,
             'is_active' =&gt; false,
         ],
     ]
@@ -5442,10 +5472,10 @@ print_r(json_decode((string) $body));</code></pre></div>
     <pre><code class="language-python">import requests
 import json
 
-url = 'http://localhost:8000/api/admin/users/eaque'
+url = 'http://localhost:8000/api/admin/users/perferendis'
 payload = {
-    "name": "dejrv",
-    "is_admin": false,
+    "name": "qrfctnmmsevkxaq",
+    "is_admin": true,
     "is_active": false
 }
 headers = {
@@ -5480,8 +5510,8 @@ export class ApiService {
         const params = new HttpParams();
 
         const body = {
-            'name': 'dejrv',
-            'is_admin': '',
+            'name': 'qrfctnmmsevkxaq',
+            'is_admin': '1',
             'is_active': '',
         }
 
@@ -5501,12 +5531,12 @@ export class ApiService {
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request PUT \
-    "http://localhost:8000/api/admin/users/eaque" \
+    "http://localhost:8000/api/admin/users/perferendis" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
     --data "{
-    \"name\": \"dejrv\",
-    \"is_admin\": false,
+    \"name\": \"qrfctnmmsevkxaq\",
+    \"is_admin\": true,
     \"is_active\": false
 }"
 </code></pre></div>
@@ -5591,10 +5621,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="id"                data-endpoint="PUTapi-admin-users--id-"
-               value="eaque"
+               value="perferendis"
                data-component="url">
     <br>
-<p>Example: <code>eaque</code></p>
+<p>Example: <code>perferendis</code></p>
             </div>
                             <h4 class="fancy-heading-panel"><b>Body Parameters</b></h4>
         <div style=" padding-left: 28px;  clear: unset;">
@@ -5603,10 +5633,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="name"                data-endpoint="PUTapi-admin-users--id-"
-               value="dejrv"
+               value="qrfctnmmsevkxaq"
                data-component="body">
     <br>
-<p>Must not be greater than 255 characters. Example: <code>dejrv</code></p>
+<p>O campo value não pode ser superior a 255 caracteres. Example: <code>qrfctnmmsevkxaq</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>username</code></b>&nbsp;&nbsp;
@@ -5649,7 +5679,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
             <code>false</code>
         </label>
     <br>
-<p>Example: <code>false</code></p>
+<p>Example: <code>true</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>is_active</code></b>&nbsp;&nbsp;
@@ -5688,7 +5718,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://localhost:8000/api/admin/users/illo"
+    "http://localhost:8000/api/admin/users/nisi"
 );
 
 const headers = {
@@ -5704,7 +5734,7 @@ fetch(url, {
 
 <div class="php-example">
     <pre><code class="language-php">$client = new \GuzzleHttp\Client();
-$url = 'http://localhost:8000/api/admin/users/illo';
+$url = 'http://localhost:8000/api/admin/users/nisi';
 $response = $client-&gt;delete(
     $url,
     [
@@ -5722,7 +5752,7 @@ print_r(json_decode((string) $body));</code></pre></div>
     <pre><code class="language-python">import requests
 import json
 
-url = 'http://localhost:8000/api/admin/users/illo'
+url = 'http://localhost:8000/api/admin/users/nisi'
 headers = {
   'Content-Type': 'application/json',
   'Accept': 'application/json'
@@ -5771,7 +5801,7 @@ export class ApiService {
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request DELETE \
-    "http://localhost:8000/api/admin/users/illo" \
+    "http://localhost:8000/api/admin/users/nisi" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json"</code></pre></div>
 
@@ -5855,10 +5885,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="id"                data-endpoint="DELETEapi-admin-users--id-"
-               value="illo"
+               value="nisi"
                data-component="url">
     <br>
-<p>Example: <code>illo</code></p>
+<p>Example: <code>nisi</code></p>
             </div>
                     </form>
 
@@ -5876,7 +5906,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://localhost:8000/api/admin/users/ab/password"
+    "http://localhost:8000/api/admin/users/voluptates/password"
 );
 
 const headers = {
@@ -5885,7 +5915,7 @@ const headers = {
 };
 
 let body = {
-    "password": "coABB#~"
+    "password": "1&lt;M.\/|V?1Gk.KD-R`&lt;"
 };
 
 fetch(url, {
@@ -5897,7 +5927,7 @@ fetch(url, {
 
 <div class="php-example">
     <pre><code class="language-php">$client = new \GuzzleHttp\Client();
-$url = 'http://localhost:8000/api/admin/users/ab/password';
+$url = 'http://localhost:8000/api/admin/users/voluptates/password';
 $response = $client-&gt;put(
     $url,
     [
@@ -5906,7 +5936,7 @@ $response = $client-&gt;put(
             'Accept' =&gt; 'application/json',
         ],
         'json' =&gt; [
-            'password' =&gt; 'coABB#~',
+            'password' =&gt; '1&lt;M./|V?1Gk.KD-R`&lt;',
         ],
     ]
 );
@@ -5918,9 +5948,9 @@ print_r(json_decode((string) $body));</code></pre></div>
     <pre><code class="language-python">import requests
 import json
 
-url = 'http://localhost:8000/api/admin/users/ab/password'
+url = 'http://localhost:8000/api/admin/users/voluptates/password'
 payload = {
-    "password": "coABB#~"
+    "password": "1&lt;M.\/|V?1Gk.KD-R`&lt;"
 }
 headers = {
   'Content-Type': 'application/json',
@@ -5954,7 +5984,7 @@ export class ApiService {
         const params = new HttpParams();
 
         const body = {
-            'password': 'coABB#~',
+            'password': '1&amp;lt;M./|V?1Gk.KD-R`&amp;lt;',
         }
 
         return this.http.request&lt;any&gt;(
@@ -5973,11 +6003,11 @@ export class ApiService {
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request PUT \
-    "http://localhost:8000/api/admin/users/ab/password" \
+    "http://localhost:8000/api/admin/users/voluptates/password" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
     --data "{
-    \"password\": \"coABB#~\"
+    \"password\": \"1&lt;M.\\/|V?1Gk.KD-R`&lt;\"
 }"
 </code></pre></div>
 
@@ -6061,10 +6091,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="id"                data-endpoint="PUTapi-admin-users--id--password"
-               value="ab"
+               value="voluptates"
                data-component="url">
     <br>
-<p>Example: <code>ab</code></p>
+<p>Example: <code>voluptates</code></p>
             </div>
                             <h4 class="fancy-heading-panel"><b>Body Parameters</b></h4>
         <div style=" padding-left: 28px;  clear: unset;">
@@ -6073,10 +6103,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="password"                data-endpoint="PUTapi-admin-users--id--password"
-               value="coABB#~"
+               value="1<M./|V?1Gk.KD-R`<"
                data-component="body">
     <br>
-<p>Must be at least 6 characters. Example: <code>coABB#~</code></p>
+<p>O campo value deve ter pelo menos 6 caracteres. Example: <code>1&lt;M./|V?1Gk.KD-R</code>&lt;`</p>
         </div>
         </form>
 
@@ -6099,7 +6129,7 @@ Respondem com status e payload customizados caso as condições batam.</p>
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://localhost:8000/api/admin/endpoints/nam/rules"
+    "http://localhost:8000/api/admin/endpoints/molestiae/rules"
 );
 
 const headers = {
@@ -6115,7 +6145,7 @@ fetch(url, {
 
 <div class="php-example">
     <pre><code class="language-php">$client = new \GuzzleHttp\Client();
-$url = 'http://localhost:8000/api/admin/endpoints/nam/rules';
+$url = 'http://localhost:8000/api/admin/endpoints/molestiae/rules';
 $response = $client-&gt;get(
     $url,
     [
@@ -6133,7 +6163,7 @@ print_r(json_decode((string) $body));</code></pre></div>
     <pre><code class="language-python">import requests
 import json
 
-url = 'http://localhost:8000/api/admin/endpoints/nam/rules'
+url = 'http://localhost:8000/api/admin/endpoints/molestiae/rules'
 headers = {
   'Content-Type': 'application/json',
   'Accept': 'application/json'
@@ -6182,7 +6212,7 @@ export class ApiService {
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request GET \
-    --get "http://localhost:8000/api/admin/endpoints/nam/rules" \
+    --get "http://localhost:8000/api/admin/endpoints/molestiae/rules" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json"</code></pre></div>
 
@@ -6201,7 +6231,7 @@ export class ApiService {
     "cache-control": "no-cache, private",
     "content-type": "application/json",
     "x-ratelimit-limit": "2000",
-    "x-ratelimit-remaining": "1721",
+    "x-ratelimit-remaining": "1969",
     "vary": "Origin"
 }</code>
                 </pre>
@@ -6289,10 +6319,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="endpointId"                data-endpoint="GETapi-admin-endpoints--endpointId--rules"
-               value="nam"
+               value="molestiae"
                data-component="url">
     <br>
-<p>Example: <code>nam</code></p>
+<p>Example: <code>molestiae</code></p>
             </div>
                     </form>
 
@@ -6310,7 +6340,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://localhost:8000/api/admin/endpoints/sint/rules"
+    "http://localhost:8000/api/admin/endpoints/est/rules"
 );
 
 const headers = {
@@ -6319,11 +6349,11 @@ const headers = {
 };
 
 let body = {
-    "condition_type": "query",
-    "condition_key": "saepe",
-    "condition_operator": "equals",
+    "condition_type": "body",
+    "condition_key": "placeat",
+    "condition_operator": "not_equals",
     "condition_value": "et",
-    "response_status": 3
+    "response_status": 19
 };
 
 fetch(url, {
@@ -6335,7 +6365,7 @@ fetch(url, {
 
 <div class="php-example">
     <pre><code class="language-php">$client = new \GuzzleHttp\Client();
-$url = 'http://localhost:8000/api/admin/endpoints/sint/rules';
+$url = 'http://localhost:8000/api/admin/endpoints/est/rules';
 $response = $client-&gt;post(
     $url,
     [
@@ -6344,11 +6374,11 @@ $response = $client-&gt;post(
             'Accept' =&gt; 'application/json',
         ],
         'json' =&gt; [
-            'condition_type' =&gt; 'query',
-            'condition_key' =&gt; 'saepe',
-            'condition_operator' =&gt; 'equals',
+            'condition_type' =&gt; 'body',
+            'condition_key' =&gt; 'placeat',
+            'condition_operator' =&gt; 'not_equals',
             'condition_value' =&gt; 'et',
-            'response_status' =&gt; 3,
+            'response_status' =&gt; 19,
         ],
     ]
 );
@@ -6360,13 +6390,13 @@ print_r(json_decode((string) $body));</code></pre></div>
     <pre><code class="language-python">import requests
 import json
 
-url = 'http://localhost:8000/api/admin/endpoints/sint/rules'
+url = 'http://localhost:8000/api/admin/endpoints/est/rules'
 payload = {
-    "condition_type": "query",
-    "condition_key": "saepe",
-    "condition_operator": "equals",
+    "condition_type": "body",
+    "condition_key": "placeat",
+    "condition_operator": "not_equals",
     "condition_value": "et",
-    "response_status": 3
+    "response_status": 19
 }
 headers = {
   'Content-Type': 'application/json',
@@ -6400,11 +6430,11 @@ export class ApiService {
         const params = new HttpParams();
 
         const body = {
-            'condition_type': 'query',
-            'condition_key': 'saepe',
-            'condition_operator': 'equals',
+            'condition_type': 'body',
+            'condition_key': 'placeat',
+            'condition_operator': 'not_equals',
             'condition_value': 'et',
-            'response_status': '3',
+            'response_status': '19',
         }
 
         return this.http.request&lt;any&gt;(
@@ -6423,15 +6453,15 @@ export class ApiService {
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request POST \
-    "http://localhost:8000/api/admin/endpoints/sint/rules" \
+    "http://localhost:8000/api/admin/endpoints/est/rules" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
     --data "{
-    \"condition_type\": \"query\",
-    \"condition_key\": \"saepe\",
-    \"condition_operator\": \"equals\",
+    \"condition_type\": \"body\",
+    \"condition_key\": \"placeat\",
+    \"condition_operator\": \"not_equals\",
     \"condition_value\": \"et\",
-    \"response_status\": 3
+    \"response_status\": 19
 }"
 </code></pre></div>
 
@@ -6515,10 +6545,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="endpointId"                data-endpoint="POSTapi-admin-endpoints--endpointId--rules"
-               value="sint"
+               value="est"
                data-component="url">
     <br>
-<p>Example: <code>sint</code></p>
+<p>Example: <code>est</code></p>
             </div>
                             <h4 class="fancy-heading-panel"><b>Body Parameters</b></h4>
         <div style=" padding-left: 28px;  clear: unset;">
@@ -6527,10 +6557,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="condition_type"                data-endpoint="POSTapi-admin-endpoints--endpointId--rules"
-               value="query"
+               value="body"
                data-component="body">
     <br>
-<p>Example: <code>query</code></p>
+<p>Example: <code>body</code></p>
 Must be one of:
 <ul style="list-style-type: square;"><li><code>header</code></li> <li><code>query</code></li> <li><code>body</code></li></ul>
         </div>
@@ -6540,10 +6570,10 @@ Must be one of:
  &nbsp;
                 <input type="text" style="display: none"
                               name="condition_key"                data-endpoint="POSTapi-admin-endpoints--endpointId--rules"
-               value="saepe"
+               value="placeat"
                data-component="body">
     <br>
-<p>Example: <code>saepe</code></p>
+<p>Example: <code>placeat</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>condition_operator</code></b>&nbsp;&nbsp;
@@ -6551,10 +6581,10 @@ Must be one of:
  &nbsp;
                 <input type="text" style="display: none"
                               name="condition_operator"                data-endpoint="POSTapi-admin-endpoints--endpointId--rules"
-               value="equals"
+               value="not_equals"
                data-component="body">
     <br>
-<p>Example: <code>equals</code></p>
+<p>Example: <code>not_equals</code></p>
 Must be one of:
 <ul style="list-style-type: square;"><li><code>equals</code></li> <li><code>not_equals</code></li> <li><code>contains</code></li></ul>
         </div>
@@ -6575,10 +6605,10 @@ Must be one of:
  &nbsp;
                 <input type="number" style="display: none"
                step="any"               name="response_status"                data-endpoint="POSTapi-admin-endpoints--endpointId--rules"
-               value="3"
+               value="19"
                data-component="body">
     <br>
-<p>Example: <code>3</code></p>
+<p>Example: <code>19</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>response_body</code></b>&nbsp;&nbsp;
@@ -6607,7 +6637,7 @@ Must be one of:
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://localhost:8000/api/admin/rules/perspiciatis"
+    "http://localhost:8000/api/admin/rules/repudiandae"
 );
 
 const headers = {
@@ -6617,10 +6647,10 @@ const headers = {
 
 let body = {
     "condition_type": "body",
-    "condition_key": "sequi",
-    "condition_operator": "not_equals",
-    "condition_value": "quo",
-    "response_status": 7
+    "condition_key": "voluptatum",
+    "condition_operator": "contains",
+    "condition_value": "non",
+    "response_status": 1
 };
 
 fetch(url, {
@@ -6632,7 +6662,7 @@ fetch(url, {
 
 <div class="php-example">
     <pre><code class="language-php">$client = new \GuzzleHttp\Client();
-$url = 'http://localhost:8000/api/admin/rules/perspiciatis';
+$url = 'http://localhost:8000/api/admin/rules/repudiandae';
 $response = $client-&gt;put(
     $url,
     [
@@ -6642,10 +6672,10 @@ $response = $client-&gt;put(
         ],
         'json' =&gt; [
             'condition_type' =&gt; 'body',
-            'condition_key' =&gt; 'sequi',
-            'condition_operator' =&gt; 'not_equals',
-            'condition_value' =&gt; 'quo',
-            'response_status' =&gt; 7,
+            'condition_key' =&gt; 'voluptatum',
+            'condition_operator' =&gt; 'contains',
+            'condition_value' =&gt; 'non',
+            'response_status' =&gt; 1,
         ],
     ]
 );
@@ -6657,13 +6687,13 @@ print_r(json_decode((string) $body));</code></pre></div>
     <pre><code class="language-python">import requests
 import json
 
-url = 'http://localhost:8000/api/admin/rules/perspiciatis'
+url = 'http://localhost:8000/api/admin/rules/repudiandae'
 payload = {
     "condition_type": "body",
-    "condition_key": "sequi",
-    "condition_operator": "not_equals",
-    "condition_value": "quo",
-    "response_status": 7
+    "condition_key": "voluptatum",
+    "condition_operator": "contains",
+    "condition_value": "non",
+    "response_status": 1
 }
 headers = {
   'Content-Type': 'application/json',
@@ -6698,10 +6728,10 @@ export class ApiService {
 
         const body = {
             'condition_type': 'body',
-            'condition_key': 'sequi',
-            'condition_operator': 'not_equals',
-            'condition_value': 'quo',
-            'response_status': '7',
+            'condition_key': 'voluptatum',
+            'condition_operator': 'contains',
+            'condition_value': 'non',
+            'response_status': '1',
         }
 
         return this.http.request&lt;any&gt;(
@@ -6720,15 +6750,15 @@ export class ApiService {
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request PUT \
-    "http://localhost:8000/api/admin/rules/perspiciatis" \
+    "http://localhost:8000/api/admin/rules/repudiandae" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
     --data "{
     \"condition_type\": \"body\",
-    \"condition_key\": \"sequi\",
-    \"condition_operator\": \"not_equals\",
-    \"condition_value\": \"quo\",
-    \"response_status\": 7
+    \"condition_key\": \"voluptatum\",
+    \"condition_operator\": \"contains\",
+    \"condition_value\": \"non\",
+    \"response_status\": 1
 }"
 </code></pre></div>
 
@@ -6812,10 +6842,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="id"                data-endpoint="PUTapi-admin-rules--id-"
-               value="perspiciatis"
+               value="repudiandae"
                data-component="url">
     <br>
-<p>Example: <code>perspiciatis</code></p>
+<p>Example: <code>repudiandae</code></p>
             </div>
                             <h4 class="fancy-heading-panel"><b>Body Parameters</b></h4>
         <div style=" padding-left: 28px;  clear: unset;">
@@ -6837,10 +6867,10 @@ Must be one of:
  &nbsp;
                 <input type="text" style="display: none"
                               name="condition_key"                data-endpoint="PUTapi-admin-rules--id-"
-               value="sequi"
+               value="voluptatum"
                data-component="body">
     <br>
-<p>Example: <code>sequi</code></p>
+<p>Example: <code>voluptatum</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>condition_operator</code></b>&nbsp;&nbsp;
@@ -6848,10 +6878,10 @@ Must be one of:
  &nbsp;
                 <input type="text" style="display: none"
                               name="condition_operator"                data-endpoint="PUTapi-admin-rules--id-"
-               value="not_equals"
+               value="contains"
                data-component="body">
     <br>
-<p>Example: <code>not_equals</code></p>
+<p>Example: <code>contains</code></p>
 Must be one of:
 <ul style="list-style-type: square;"><li><code>equals</code></li> <li><code>not_equals</code></li> <li><code>contains</code></li></ul>
         </div>
@@ -6861,10 +6891,10 @@ Must be one of:
  &nbsp;
                 <input type="text" style="display: none"
                               name="condition_value"                data-endpoint="PUTapi-admin-rules--id-"
-               value="quo"
+               value="non"
                data-component="body">
     <br>
-<p>Example: <code>quo</code></p>
+<p>Example: <code>non</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>response_status</code></b>&nbsp;&nbsp;
@@ -6872,10 +6902,10 @@ Must be one of:
  &nbsp;
                 <input type="number" style="display: none"
                step="any"               name="response_status"                data-endpoint="PUTapi-admin-rules--id-"
-               value="7"
+               value="1"
                data-component="body">
     <br>
-<p>Example: <code>7</code></p>
+<p>Example: <code>1</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>response_body</code></b>&nbsp;&nbsp;
@@ -6904,7 +6934,7 @@ Must be one of:
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://localhost:8000/api/admin/rules/atque"
+    "http://localhost:8000/api/admin/rules/ullam"
 );
 
 const headers = {
@@ -6920,7 +6950,7 @@ fetch(url, {
 
 <div class="php-example">
     <pre><code class="language-php">$client = new \GuzzleHttp\Client();
-$url = 'http://localhost:8000/api/admin/rules/atque';
+$url = 'http://localhost:8000/api/admin/rules/ullam';
 $response = $client-&gt;delete(
     $url,
     [
@@ -6938,7 +6968,7 @@ print_r(json_decode((string) $body));</code></pre></div>
     <pre><code class="language-python">import requests
 import json
 
-url = 'http://localhost:8000/api/admin/rules/atque'
+url = 'http://localhost:8000/api/admin/rules/ullam'
 headers = {
   'Content-Type': 'application/json',
   'Accept': 'application/json'
@@ -6987,7 +7017,7 @@ export class ApiService {
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request DELETE \
-    "http://localhost:8000/api/admin/rules/atque" \
+    "http://localhost:8000/api/admin/rules/ullam" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json"</code></pre></div>
 
@@ -7071,10 +7101,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="id"                data-endpoint="DELETEapi-admin-rules--id-"
-               value="atque"
+               value="ullam"
                data-component="url">
     <br>
-<p>Example: <code>atque</code></p>
+<p>Example: <code>ullam</code></p>
             </div>
                     </form>
 
@@ -7083,20 +7113,20 @@ You can check the Dev Tools console for debugging information.</code></pre>
     <p>O Endpoint Coringa responsável por responder aos Mocks configurados no painel.
 Todas as requisições devem vir autenticadas pelo Header <code>X-Project-Token</code> ou Bearer Token.</p>
 
-                                <h2 id="6-api-mocks-dinamicos-GETapi--username---projectSlug---path--*-">GET api/{username}/{projectSlug}/{path:.*}</h2>
+                                <h2 id="6-api-mocks-dinamicos-GETapi-mock--username---projectSlug---path--*-">GET api/mock/{username}/{projectSlug}/{path:.*}</h2>
 
 <p>
 </p>
 
 
 
-<span id="example-requests-GETapi--username---projectSlug---path--*-">
+<span id="example-requests-GETapi-mock--username---projectSlug---path--*-">
 <blockquote>Example request:</blockquote>
 
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://localhost:8000/api/ducimus/consequatur/nesciunt"
+    "http://localhost:8000/api/mock/possimus/tempora/molestiae"
 );
 
 const headers = {
@@ -7112,7 +7142,7 @@ fetch(url, {
 
 <div class="php-example">
     <pre><code class="language-php">$client = new \GuzzleHttp\Client();
-$url = 'http://localhost:8000/api/ducimus/consequatur/nesciunt';
+$url = 'http://localhost:8000/api/mock/possimus/tempora/molestiae';
 $response = $client-&gt;get(
     $url,
     [
@@ -7130,7 +7160,7 @@ print_r(json_decode((string) $body));</code></pre></div>
     <pre><code class="language-python">import requests
 import json
 
-url = 'http://localhost:8000/api/ducimus/consequatur/nesciunt'
+url = 'http://localhost:8000/api/mock/possimus/tempora/molestiae'
 headers = {
   'Content-Type': 'application/json',
   'Accept': 'application/json'
@@ -7153,7 +7183,7 @@ export class ApiService {
     private readonly http = inject(HttpClient);
 
     public request(): Observable&lt;any&gt; {
-        const url = 'http://localhost:8000/api/{username}/{projectSlug}/{path:.*}';
+        const url = 'http://localhost:8000/api/mock/{username}/{projectSlug}/{path:.*}';
 
         const headers = new HttpHeaders({
             'Content-Type': 'application/json',
@@ -7179,13 +7209,13 @@ export class ApiService {
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request GET \
-    --get "http://localhost:8000/api/ducimus/consequatur/nesciunt" \
+    --get "http://localhost:8000/api/mock/possimus/tempora/molestiae" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json"</code></pre></div>
 
 </span>
 
-<span id="example-responses-GETapi--username---projectSlug---path--*-">
+<span id="example-responses-GETapi-mock--username---projectSlug---path--*-">
             <blockquote>
             <p>Example response (401):</p>
         </blockquote>
@@ -7198,8 +7228,12 @@ export class ApiService {
     "cache-control": "no-cache, private",
     "content-type": "application/json",
     "x-ratelimit-limit": "2000",
-    "x-ratelimit-remaining": "1720",
-    "vary": "Origin"
+    "x-ratelimit-remaining": "1968",
+    "vary": "Origin",
+    "access-control-allow-origin": "*",
+    "access-control-allow-methods": "GET, POST, PUT, PATCH, DELETE, OPTIONS",
+    "access-control-allow-headers": "Content-Type, Authorization, X-Requested-With, X-Project-Token, Accept",
+    "access-control-allow-credentials": "true"
 }</code>
                 </pre>
             </details>
@@ -7210,43 +7244,43 @@ export class ApiService {
 }</code>
  </pre>
     </span>
-<span id="execution-results-GETapi--username---projectSlug---path--*-" hidden>
+<span id="execution-results-GETapi-mock--username---projectSlug---path--*-" hidden>
     <blockquote>Received response<span
-                id="execution-response-status-GETapi--username---projectSlug---path--*-"></span>:
+                id="execution-response-status-GETapi-mock--username---projectSlug---path--*-"></span>:
     </blockquote>
-    <pre class="json"><code id="execution-response-content-GETapi--username---projectSlug---path--*-"
+    <pre class="json"><code id="execution-response-content-GETapi-mock--username---projectSlug---path--*-"
       data-empty-response-text="<Empty response>" style="max-height: 400px;"></code></pre>
 </span>
-<span id="execution-error-GETapi--username---projectSlug---path--*-" hidden>
+<span id="execution-error-GETapi-mock--username---projectSlug---path--*-" hidden>
     <blockquote>Request failed with error:</blockquote>
-    <pre><code id="execution-error-message-GETapi--username---projectSlug---path--*-">
+    <pre><code id="execution-error-message-GETapi-mock--username---projectSlug---path--*-">
 
 Tip: Check that you&#039;re properly connected to the network.
 If you&#039;re a maintainer of ths API, verify that your API is running and you&#039;ve enabled CORS.
 You can check the Dev Tools console for debugging information.</code></pre>
 </span>
-<form id="form-GETapi--username---projectSlug---path--*-" data-method="GET"
-      data-path="api/{username}/{projectSlug}/{path:.*}"
+<form id="form-GETapi-mock--username---projectSlug---path--*-" data-method="GET"
+      data-path="api/mock/{username}/{projectSlug}/{path:.*}"
       data-authed="0"
       data-hasfiles="0"
       data-isarraybody="0"
       autocomplete="off"
-      onsubmit="event.preventDefault(); executeTryOut('GETapi--username---projectSlug---path--*-', this);">
+      onsubmit="event.preventDefault(); executeTryOut('GETapi-mock--username---projectSlug---path--*-', this);">
     <h3>
         Request&nbsp;&nbsp;&nbsp;
                     <button type="button"
                     style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;"
-                    id="btn-tryout-GETapi--username---projectSlug---path--*-"
-                    onclick="tryItOut('GETapi--username---projectSlug---path--*-');">Try it out ⚡
+                    id="btn-tryout-GETapi-mock--username---projectSlug---path--*-"
+                    onclick="tryItOut('GETapi-mock--username---projectSlug---path--*-');">Try it out ⚡
             </button>
             <button type="button"
                     style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;"
-                    id="btn-canceltryout-GETapi--username---projectSlug---path--*-"
-                    onclick="cancelTryOut('GETapi--username---projectSlug---path--*-');" hidden>Cancel 🛑
+                    id="btn-canceltryout-GETapi-mock--username---projectSlug---path--*-"
+                    onclick="cancelTryOut('GETapi-mock--username---projectSlug---path--*-');" hidden>Cancel 🛑
             </button>&nbsp;&nbsp;
             <button type="submit"
                     style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;"
-                    id="btn-executetryout-GETapi--username---projectSlug---path--*-"
+                    id="btn-executetryout-GETapi-mock--username---projectSlug---path--*-"
                     data-initial-text="Send Request 💥"
                     data-loading-text="⏱ Sending..."
                     hidden>Send Request 💥
@@ -7254,7 +7288,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
             </h3>
             <p>
             <small class="badge badge-green">GET</small>
-            <b><code>api/{username}/{projectSlug}/{path:.*}</code></b>
+            <b><code>api/mock/{username}/{projectSlug}/{path:.*}</code></b>
         </p>
                 <h4 class="fancy-heading-panel"><b>Headers</b></h4>
                                 <div style="padding-left: 28px; clear: unset;">
@@ -7262,7 +7296,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 &nbsp;
  &nbsp;
                 <input type="text" style="display: none"
-                              name="Content-Type"                data-endpoint="GETapi--username---projectSlug---path--*-"
+                              name="Content-Type"                data-endpoint="GETapi-mock--username---projectSlug---path--*-"
                value="application/json"
                data-component="header">
     <br>
@@ -7273,7 +7307,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 &nbsp;
  &nbsp;
                 <input type="text" style="display: none"
-                              name="Accept"                data-endpoint="GETapi--username---projectSlug---path--*-"
+                              name="Accept"                data-endpoint="GETapi-mock--username---projectSlug---path--*-"
                value="application/json"
                data-component="header">
     <br>
@@ -7285,50 +7319,50 @@ You can check the Dev Tools console for debugging information.</code></pre>
 <small>string</small>&nbsp;
  &nbsp;
                 <input type="text" style="display: none"
-                              name="username"                data-endpoint="GETapi--username---projectSlug---path--*-"
-               value="ducimus"
+                              name="username"                data-endpoint="GETapi-mock--username---projectSlug---path--*-"
+               value="possimus"
                data-component="url">
     <br>
-<p>Example: <code>ducimus</code></p>
+<p>Example: <code>possimus</code></p>
             </div>
                     <div style="padding-left: 28px; clear: unset;">
                 <b style="line-height: 2;"><code>projectSlug</code></b>&nbsp;&nbsp;
 <small>string</small>&nbsp;
  &nbsp;
                 <input type="text" style="display: none"
-                              name="projectSlug"                data-endpoint="GETapi--username---projectSlug---path--*-"
-               value="consequatur"
+                              name="projectSlug"                data-endpoint="GETapi-mock--username---projectSlug---path--*-"
+               value="tempora"
                data-component="url">
     <br>
-<p>Example: <code>consequatur</code></p>
+<p>Example: <code>tempora</code></p>
             </div>
                     <div style="padding-left: 28px; clear: unset;">
                 <b style="line-height: 2;"><code>path</code></b>&nbsp;&nbsp;
 <small>string</small>&nbsp;
  &nbsp;
                 <input type="text" style="display: none"
-                              name="path"                data-endpoint="GETapi--username---projectSlug---path--*-"
-               value="nesciunt"
+                              name="path"                data-endpoint="GETapi-mock--username---projectSlug---path--*-"
+               value="molestiae"
                data-component="url">
     <br>
-<p>Example: <code>nesciunt</code></p>
+<p>Example: <code>molestiae</code></p>
             </div>
                     </form>
 
-                    <h2 id="6-api-mocks-dinamicos-POSTapi--username---projectSlug---path--*-">POST api/{username}/{projectSlug}/{path:.*}</h2>
+                    <h2 id="6-api-mocks-dinamicos-POSTapi-mock--username---projectSlug---path--*-">POST api/mock/{username}/{projectSlug}/{path:.*}</h2>
 
 <p>
 </p>
 
 
 
-<span id="example-requests-POSTapi--username---projectSlug---path--*-">
+<span id="example-requests-POSTapi-mock--username---projectSlug---path--*-">
 <blockquote>Example request:</blockquote>
 
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://localhost:8000/api/eveniet/corporis/aut"
+    "http://localhost:8000/api/mock/ducimus/sed/esse"
 );
 
 const headers = {
@@ -7344,7 +7378,7 @@ fetch(url, {
 
 <div class="php-example">
     <pre><code class="language-php">$client = new \GuzzleHttp\Client();
-$url = 'http://localhost:8000/api/eveniet/corporis/aut';
+$url = 'http://localhost:8000/api/mock/ducimus/sed/esse';
 $response = $client-&gt;post(
     $url,
     [
@@ -7362,7 +7396,7 @@ print_r(json_decode((string) $body));</code></pre></div>
     <pre><code class="language-python">import requests
 import json
 
-url = 'http://localhost:8000/api/eveniet/corporis/aut'
+url = 'http://localhost:8000/api/mock/ducimus/sed/esse'
 headers = {
   'Content-Type': 'application/json',
   'Accept': 'application/json'
@@ -7385,7 +7419,7 @@ export class ApiService {
     private readonly http = inject(HttpClient);
 
     public request(): Observable&lt;any&gt; {
-        const url = 'http://localhost:8000/api/{username}/{projectSlug}/{path:.*}';
+        const url = 'http://localhost:8000/api/mock/{username}/{projectSlug}/{path:.*}';
 
         const headers = new HttpHeaders({
             'Content-Type': 'application/json',
@@ -7411,51 +7445,51 @@ export class ApiService {
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request POST \
-    "http://localhost:8000/api/eveniet/corporis/aut" \
+    "http://localhost:8000/api/mock/ducimus/sed/esse" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json"</code></pre></div>
 
 </span>
 
-<span id="example-responses-POSTapi--username---projectSlug---path--*-">
+<span id="example-responses-POSTapi-mock--username---projectSlug---path--*-">
 </span>
-<span id="execution-results-POSTapi--username---projectSlug---path--*-" hidden>
+<span id="execution-results-POSTapi-mock--username---projectSlug---path--*-" hidden>
     <blockquote>Received response<span
-                id="execution-response-status-POSTapi--username---projectSlug---path--*-"></span>:
+                id="execution-response-status-POSTapi-mock--username---projectSlug---path--*-"></span>:
     </blockquote>
-    <pre class="json"><code id="execution-response-content-POSTapi--username---projectSlug---path--*-"
+    <pre class="json"><code id="execution-response-content-POSTapi-mock--username---projectSlug---path--*-"
       data-empty-response-text="<Empty response>" style="max-height: 400px;"></code></pre>
 </span>
-<span id="execution-error-POSTapi--username---projectSlug---path--*-" hidden>
+<span id="execution-error-POSTapi-mock--username---projectSlug---path--*-" hidden>
     <blockquote>Request failed with error:</blockquote>
-    <pre><code id="execution-error-message-POSTapi--username---projectSlug---path--*-">
+    <pre><code id="execution-error-message-POSTapi-mock--username---projectSlug---path--*-">
 
 Tip: Check that you&#039;re properly connected to the network.
 If you&#039;re a maintainer of ths API, verify that your API is running and you&#039;ve enabled CORS.
 You can check the Dev Tools console for debugging information.</code></pre>
 </span>
-<form id="form-POSTapi--username---projectSlug---path--*-" data-method="POST"
-      data-path="api/{username}/{projectSlug}/{path:.*}"
+<form id="form-POSTapi-mock--username---projectSlug---path--*-" data-method="POST"
+      data-path="api/mock/{username}/{projectSlug}/{path:.*}"
       data-authed="0"
       data-hasfiles="0"
       data-isarraybody="0"
       autocomplete="off"
-      onsubmit="event.preventDefault(); executeTryOut('POSTapi--username---projectSlug---path--*-', this);">
+      onsubmit="event.preventDefault(); executeTryOut('POSTapi-mock--username---projectSlug---path--*-', this);">
     <h3>
         Request&nbsp;&nbsp;&nbsp;
                     <button type="button"
                     style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;"
-                    id="btn-tryout-POSTapi--username---projectSlug---path--*-"
-                    onclick="tryItOut('POSTapi--username---projectSlug---path--*-');">Try it out ⚡
+                    id="btn-tryout-POSTapi-mock--username---projectSlug---path--*-"
+                    onclick="tryItOut('POSTapi-mock--username---projectSlug---path--*-');">Try it out ⚡
             </button>
             <button type="button"
                     style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;"
-                    id="btn-canceltryout-POSTapi--username---projectSlug---path--*-"
-                    onclick="cancelTryOut('POSTapi--username---projectSlug---path--*-');" hidden>Cancel 🛑
+                    id="btn-canceltryout-POSTapi-mock--username---projectSlug---path--*-"
+                    onclick="cancelTryOut('POSTapi-mock--username---projectSlug---path--*-');" hidden>Cancel 🛑
             </button>&nbsp;&nbsp;
             <button type="submit"
                     style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;"
-                    id="btn-executetryout-POSTapi--username---projectSlug---path--*-"
+                    id="btn-executetryout-POSTapi-mock--username---projectSlug---path--*-"
                     data-initial-text="Send Request 💥"
                     data-loading-text="⏱ Sending..."
                     hidden>Send Request 💥
@@ -7463,7 +7497,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
             </h3>
             <p>
             <small class="badge badge-black">POST</small>
-            <b><code>api/{username}/{projectSlug}/{path:.*}</code></b>
+            <b><code>api/mock/{username}/{projectSlug}/{path:.*}</code></b>
         </p>
                 <h4 class="fancy-heading-panel"><b>Headers</b></h4>
                                 <div style="padding-left: 28px; clear: unset;">
@@ -7471,7 +7505,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 &nbsp;
  &nbsp;
                 <input type="text" style="display: none"
-                              name="Content-Type"                data-endpoint="POSTapi--username---projectSlug---path--*-"
+                              name="Content-Type"                data-endpoint="POSTapi-mock--username---projectSlug---path--*-"
                value="application/json"
                data-component="header">
     <br>
@@ -7482,7 +7516,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 &nbsp;
  &nbsp;
                 <input type="text" style="display: none"
-                              name="Accept"                data-endpoint="POSTapi--username---projectSlug---path--*-"
+                              name="Accept"                data-endpoint="POSTapi-mock--username---projectSlug---path--*-"
                value="application/json"
                data-component="header">
     <br>
@@ -7494,50 +7528,50 @@ You can check the Dev Tools console for debugging information.</code></pre>
 <small>string</small>&nbsp;
  &nbsp;
                 <input type="text" style="display: none"
-                              name="username"                data-endpoint="POSTapi--username---projectSlug---path--*-"
-               value="eveniet"
+                              name="username"                data-endpoint="POSTapi-mock--username---projectSlug---path--*-"
+               value="ducimus"
                data-component="url">
     <br>
-<p>Example: <code>eveniet</code></p>
+<p>Example: <code>ducimus</code></p>
             </div>
                     <div style="padding-left: 28px; clear: unset;">
                 <b style="line-height: 2;"><code>projectSlug</code></b>&nbsp;&nbsp;
 <small>string</small>&nbsp;
  &nbsp;
                 <input type="text" style="display: none"
-                              name="projectSlug"                data-endpoint="POSTapi--username---projectSlug---path--*-"
-               value="corporis"
+                              name="projectSlug"                data-endpoint="POSTapi-mock--username---projectSlug---path--*-"
+               value="sed"
                data-component="url">
     <br>
-<p>Example: <code>corporis</code></p>
+<p>Example: <code>sed</code></p>
             </div>
                     <div style="padding-left: 28px; clear: unset;">
                 <b style="line-height: 2;"><code>path</code></b>&nbsp;&nbsp;
 <small>string</small>&nbsp;
  &nbsp;
                 <input type="text" style="display: none"
-                              name="path"                data-endpoint="POSTapi--username---projectSlug---path--*-"
-               value="aut"
+                              name="path"                data-endpoint="POSTapi-mock--username---projectSlug---path--*-"
+               value="esse"
                data-component="url">
     <br>
-<p>Example: <code>aut</code></p>
+<p>Example: <code>esse</code></p>
             </div>
                     </form>
 
-                    <h2 id="6-api-mocks-dinamicos-PUTapi--username---projectSlug---path--*-">PUT api/{username}/{projectSlug}/{path:.*}</h2>
+                    <h2 id="6-api-mocks-dinamicos-PUTapi-mock--username---projectSlug---path--*-">PUT api/mock/{username}/{projectSlug}/{path:.*}</h2>
 
 <p>
 </p>
 
 
 
-<span id="example-requests-PUTapi--username---projectSlug---path--*-">
+<span id="example-requests-PUTapi-mock--username---projectSlug---path--*-">
 <blockquote>Example request:</blockquote>
 
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://localhost:8000/api/animi/sit/veritatis"
+    "http://localhost:8000/api/mock/veniam/quo/ullam"
 );
 
 const headers = {
@@ -7553,7 +7587,7 @@ fetch(url, {
 
 <div class="php-example">
     <pre><code class="language-php">$client = new \GuzzleHttp\Client();
-$url = 'http://localhost:8000/api/animi/sit/veritatis';
+$url = 'http://localhost:8000/api/mock/veniam/quo/ullam';
 $response = $client-&gt;put(
     $url,
     [
@@ -7571,7 +7605,7 @@ print_r(json_decode((string) $body));</code></pre></div>
     <pre><code class="language-python">import requests
 import json
 
-url = 'http://localhost:8000/api/animi/sit/veritatis'
+url = 'http://localhost:8000/api/mock/veniam/quo/ullam'
 headers = {
   'Content-Type': 'application/json',
   'Accept': 'application/json'
@@ -7594,7 +7628,7 @@ export class ApiService {
     private readonly http = inject(HttpClient);
 
     public request(): Observable&lt;any&gt; {
-        const url = 'http://localhost:8000/api/{username}/{projectSlug}/{path:.*}';
+        const url = 'http://localhost:8000/api/mock/{username}/{projectSlug}/{path:.*}';
 
         const headers = new HttpHeaders({
             'Content-Type': 'application/json',
@@ -7620,51 +7654,51 @@ export class ApiService {
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request PUT \
-    "http://localhost:8000/api/animi/sit/veritatis" \
+    "http://localhost:8000/api/mock/veniam/quo/ullam" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json"</code></pre></div>
 
 </span>
 
-<span id="example-responses-PUTapi--username---projectSlug---path--*-">
+<span id="example-responses-PUTapi-mock--username---projectSlug---path--*-">
 </span>
-<span id="execution-results-PUTapi--username---projectSlug---path--*-" hidden>
+<span id="execution-results-PUTapi-mock--username---projectSlug---path--*-" hidden>
     <blockquote>Received response<span
-                id="execution-response-status-PUTapi--username---projectSlug---path--*-"></span>:
+                id="execution-response-status-PUTapi-mock--username---projectSlug---path--*-"></span>:
     </blockquote>
-    <pre class="json"><code id="execution-response-content-PUTapi--username---projectSlug---path--*-"
+    <pre class="json"><code id="execution-response-content-PUTapi-mock--username---projectSlug---path--*-"
       data-empty-response-text="<Empty response>" style="max-height: 400px;"></code></pre>
 </span>
-<span id="execution-error-PUTapi--username---projectSlug---path--*-" hidden>
+<span id="execution-error-PUTapi-mock--username---projectSlug---path--*-" hidden>
     <blockquote>Request failed with error:</blockquote>
-    <pre><code id="execution-error-message-PUTapi--username---projectSlug---path--*-">
+    <pre><code id="execution-error-message-PUTapi-mock--username---projectSlug---path--*-">
 
 Tip: Check that you&#039;re properly connected to the network.
 If you&#039;re a maintainer of ths API, verify that your API is running and you&#039;ve enabled CORS.
 You can check the Dev Tools console for debugging information.</code></pre>
 </span>
-<form id="form-PUTapi--username---projectSlug---path--*-" data-method="PUT"
-      data-path="api/{username}/{projectSlug}/{path:.*}"
+<form id="form-PUTapi-mock--username---projectSlug---path--*-" data-method="PUT"
+      data-path="api/mock/{username}/{projectSlug}/{path:.*}"
       data-authed="0"
       data-hasfiles="0"
       data-isarraybody="0"
       autocomplete="off"
-      onsubmit="event.preventDefault(); executeTryOut('PUTapi--username---projectSlug---path--*-', this);">
+      onsubmit="event.preventDefault(); executeTryOut('PUTapi-mock--username---projectSlug---path--*-', this);">
     <h3>
         Request&nbsp;&nbsp;&nbsp;
                     <button type="button"
                     style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;"
-                    id="btn-tryout-PUTapi--username---projectSlug---path--*-"
-                    onclick="tryItOut('PUTapi--username---projectSlug---path--*-');">Try it out ⚡
+                    id="btn-tryout-PUTapi-mock--username---projectSlug---path--*-"
+                    onclick="tryItOut('PUTapi-mock--username---projectSlug---path--*-');">Try it out ⚡
             </button>
             <button type="button"
                     style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;"
-                    id="btn-canceltryout-PUTapi--username---projectSlug---path--*-"
-                    onclick="cancelTryOut('PUTapi--username---projectSlug---path--*-');" hidden>Cancel 🛑
+                    id="btn-canceltryout-PUTapi-mock--username---projectSlug---path--*-"
+                    onclick="cancelTryOut('PUTapi-mock--username---projectSlug---path--*-');" hidden>Cancel 🛑
             </button>&nbsp;&nbsp;
             <button type="submit"
                     style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;"
-                    id="btn-executetryout-PUTapi--username---projectSlug---path--*-"
+                    id="btn-executetryout-PUTapi-mock--username---projectSlug---path--*-"
                     data-initial-text="Send Request 💥"
                     data-loading-text="⏱ Sending..."
                     hidden>Send Request 💥
@@ -7672,7 +7706,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
             </h3>
             <p>
             <small class="badge badge-darkblue">PUT</small>
-            <b><code>api/{username}/{projectSlug}/{path:.*}</code></b>
+            <b><code>api/mock/{username}/{projectSlug}/{path:.*}</code></b>
         </p>
                 <h4 class="fancy-heading-panel"><b>Headers</b></h4>
                                 <div style="padding-left: 28px; clear: unset;">
@@ -7680,7 +7714,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 &nbsp;
  &nbsp;
                 <input type="text" style="display: none"
-                              name="Content-Type"                data-endpoint="PUTapi--username---projectSlug---path--*-"
+                              name="Content-Type"                data-endpoint="PUTapi-mock--username---projectSlug---path--*-"
                value="application/json"
                data-component="header">
     <br>
@@ -7691,7 +7725,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 &nbsp;
  &nbsp;
                 <input type="text" style="display: none"
-                              name="Accept"                data-endpoint="PUTapi--username---projectSlug---path--*-"
+                              name="Accept"                data-endpoint="PUTapi-mock--username---projectSlug---path--*-"
                value="application/json"
                data-component="header">
     <br>
@@ -7703,50 +7737,50 @@ You can check the Dev Tools console for debugging information.</code></pre>
 <small>string</small>&nbsp;
  &nbsp;
                 <input type="text" style="display: none"
-                              name="username"                data-endpoint="PUTapi--username---projectSlug---path--*-"
-               value="animi"
+                              name="username"                data-endpoint="PUTapi-mock--username---projectSlug---path--*-"
+               value="veniam"
                data-component="url">
     <br>
-<p>Example: <code>animi</code></p>
+<p>Example: <code>veniam</code></p>
             </div>
                     <div style="padding-left: 28px; clear: unset;">
                 <b style="line-height: 2;"><code>projectSlug</code></b>&nbsp;&nbsp;
 <small>string</small>&nbsp;
  &nbsp;
                 <input type="text" style="display: none"
-                              name="projectSlug"                data-endpoint="PUTapi--username---projectSlug---path--*-"
-               value="sit"
+                              name="projectSlug"                data-endpoint="PUTapi-mock--username---projectSlug---path--*-"
+               value="quo"
                data-component="url">
     <br>
-<p>Example: <code>sit</code></p>
+<p>Example: <code>quo</code></p>
             </div>
                     <div style="padding-left: 28px; clear: unset;">
                 <b style="line-height: 2;"><code>path</code></b>&nbsp;&nbsp;
 <small>string</small>&nbsp;
  &nbsp;
                 <input type="text" style="display: none"
-                              name="path"                data-endpoint="PUTapi--username---projectSlug---path--*-"
-               value="veritatis"
+                              name="path"                data-endpoint="PUTapi-mock--username---projectSlug---path--*-"
+               value="ullam"
                data-component="url">
     <br>
-<p>Example: <code>veritatis</code></p>
+<p>Example: <code>ullam</code></p>
             </div>
                     </form>
 
-                    <h2 id="6-api-mocks-dinamicos-PATCHapi--username---projectSlug---path--*-">PATCH api/{username}/{projectSlug}/{path:.*}</h2>
+                    <h2 id="6-api-mocks-dinamicos-PATCHapi-mock--username---projectSlug---path--*-">PATCH api/mock/{username}/{projectSlug}/{path:.*}</h2>
 
 <p>
 </p>
 
 
 
-<span id="example-requests-PATCHapi--username---projectSlug---path--*-">
+<span id="example-requests-PATCHapi-mock--username---projectSlug---path--*-">
 <blockquote>Example request:</blockquote>
 
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://localhost:8000/api/est/blanditiis/ipsam"
+    "http://localhost:8000/api/mock/porro/facere/ex"
 );
 
 const headers = {
@@ -7762,7 +7796,7 @@ fetch(url, {
 
 <div class="php-example">
     <pre><code class="language-php">$client = new \GuzzleHttp\Client();
-$url = 'http://localhost:8000/api/est/blanditiis/ipsam';
+$url = 'http://localhost:8000/api/mock/porro/facere/ex';
 $response = $client-&gt;patch(
     $url,
     [
@@ -7780,7 +7814,7 @@ print_r(json_decode((string) $body));</code></pre></div>
     <pre><code class="language-python">import requests
 import json
 
-url = 'http://localhost:8000/api/est/blanditiis/ipsam'
+url = 'http://localhost:8000/api/mock/porro/facere/ex'
 headers = {
   'Content-Type': 'application/json',
   'Accept': 'application/json'
@@ -7803,7 +7837,7 @@ export class ApiService {
     private readonly http = inject(HttpClient);
 
     public request(): Observable&lt;any&gt; {
-        const url = 'http://localhost:8000/api/{username}/{projectSlug}/{path:.*}';
+        const url = 'http://localhost:8000/api/mock/{username}/{projectSlug}/{path:.*}';
 
         const headers = new HttpHeaders({
             'Content-Type': 'application/json',
@@ -7829,51 +7863,51 @@ export class ApiService {
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request PATCH \
-    "http://localhost:8000/api/est/blanditiis/ipsam" \
+    "http://localhost:8000/api/mock/porro/facere/ex" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json"</code></pre></div>
 
 </span>
 
-<span id="example-responses-PATCHapi--username---projectSlug---path--*-">
+<span id="example-responses-PATCHapi-mock--username---projectSlug---path--*-">
 </span>
-<span id="execution-results-PATCHapi--username---projectSlug---path--*-" hidden>
+<span id="execution-results-PATCHapi-mock--username---projectSlug---path--*-" hidden>
     <blockquote>Received response<span
-                id="execution-response-status-PATCHapi--username---projectSlug---path--*-"></span>:
+                id="execution-response-status-PATCHapi-mock--username---projectSlug---path--*-"></span>:
     </blockquote>
-    <pre class="json"><code id="execution-response-content-PATCHapi--username---projectSlug---path--*-"
+    <pre class="json"><code id="execution-response-content-PATCHapi-mock--username---projectSlug---path--*-"
       data-empty-response-text="<Empty response>" style="max-height: 400px;"></code></pre>
 </span>
-<span id="execution-error-PATCHapi--username---projectSlug---path--*-" hidden>
+<span id="execution-error-PATCHapi-mock--username---projectSlug---path--*-" hidden>
     <blockquote>Request failed with error:</blockquote>
-    <pre><code id="execution-error-message-PATCHapi--username---projectSlug---path--*-">
+    <pre><code id="execution-error-message-PATCHapi-mock--username---projectSlug---path--*-">
 
 Tip: Check that you&#039;re properly connected to the network.
 If you&#039;re a maintainer of ths API, verify that your API is running and you&#039;ve enabled CORS.
 You can check the Dev Tools console for debugging information.</code></pre>
 </span>
-<form id="form-PATCHapi--username---projectSlug---path--*-" data-method="PATCH"
-      data-path="api/{username}/{projectSlug}/{path:.*}"
+<form id="form-PATCHapi-mock--username---projectSlug---path--*-" data-method="PATCH"
+      data-path="api/mock/{username}/{projectSlug}/{path:.*}"
       data-authed="0"
       data-hasfiles="0"
       data-isarraybody="0"
       autocomplete="off"
-      onsubmit="event.preventDefault(); executeTryOut('PATCHapi--username---projectSlug---path--*-', this);">
+      onsubmit="event.preventDefault(); executeTryOut('PATCHapi-mock--username---projectSlug---path--*-', this);">
     <h3>
         Request&nbsp;&nbsp;&nbsp;
                     <button type="button"
                     style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;"
-                    id="btn-tryout-PATCHapi--username---projectSlug---path--*-"
-                    onclick="tryItOut('PATCHapi--username---projectSlug---path--*-');">Try it out ⚡
+                    id="btn-tryout-PATCHapi-mock--username---projectSlug---path--*-"
+                    onclick="tryItOut('PATCHapi-mock--username---projectSlug---path--*-');">Try it out ⚡
             </button>
             <button type="button"
                     style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;"
-                    id="btn-canceltryout-PATCHapi--username---projectSlug---path--*-"
-                    onclick="cancelTryOut('PATCHapi--username---projectSlug---path--*-');" hidden>Cancel 🛑
+                    id="btn-canceltryout-PATCHapi-mock--username---projectSlug---path--*-"
+                    onclick="cancelTryOut('PATCHapi-mock--username---projectSlug---path--*-');" hidden>Cancel 🛑
             </button>&nbsp;&nbsp;
             <button type="submit"
                     style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;"
-                    id="btn-executetryout-PATCHapi--username---projectSlug---path--*-"
+                    id="btn-executetryout-PATCHapi-mock--username---projectSlug---path--*-"
                     data-initial-text="Send Request 💥"
                     data-loading-text="⏱ Sending..."
                     hidden>Send Request 💥
@@ -7881,7 +7915,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
             </h3>
             <p>
             <small class="badge badge-purple">PATCH</small>
-            <b><code>api/{username}/{projectSlug}/{path:.*}</code></b>
+            <b><code>api/mock/{username}/{projectSlug}/{path:.*}</code></b>
         </p>
                 <h4 class="fancy-heading-panel"><b>Headers</b></h4>
                                 <div style="padding-left: 28px; clear: unset;">
@@ -7889,7 +7923,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 &nbsp;
  &nbsp;
                 <input type="text" style="display: none"
-                              name="Content-Type"                data-endpoint="PATCHapi--username---projectSlug---path--*-"
+                              name="Content-Type"                data-endpoint="PATCHapi-mock--username---projectSlug---path--*-"
                value="application/json"
                data-component="header">
     <br>
@@ -7900,7 +7934,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 &nbsp;
  &nbsp;
                 <input type="text" style="display: none"
-                              name="Accept"                data-endpoint="PATCHapi--username---projectSlug---path--*-"
+                              name="Accept"                data-endpoint="PATCHapi-mock--username---projectSlug---path--*-"
                value="application/json"
                data-component="header">
     <br>
@@ -7912,50 +7946,50 @@ You can check the Dev Tools console for debugging information.</code></pre>
 <small>string</small>&nbsp;
  &nbsp;
                 <input type="text" style="display: none"
-                              name="username"                data-endpoint="PATCHapi--username---projectSlug---path--*-"
-               value="est"
+                              name="username"                data-endpoint="PATCHapi-mock--username---projectSlug---path--*-"
+               value="porro"
                data-component="url">
     <br>
-<p>Example: <code>est</code></p>
+<p>Example: <code>porro</code></p>
             </div>
                     <div style="padding-left: 28px; clear: unset;">
                 <b style="line-height: 2;"><code>projectSlug</code></b>&nbsp;&nbsp;
 <small>string</small>&nbsp;
  &nbsp;
                 <input type="text" style="display: none"
-                              name="projectSlug"                data-endpoint="PATCHapi--username---projectSlug---path--*-"
-               value="blanditiis"
+                              name="projectSlug"                data-endpoint="PATCHapi-mock--username---projectSlug---path--*-"
+               value="facere"
                data-component="url">
     <br>
-<p>Example: <code>blanditiis</code></p>
+<p>Example: <code>facere</code></p>
             </div>
                     <div style="padding-left: 28px; clear: unset;">
                 <b style="line-height: 2;"><code>path</code></b>&nbsp;&nbsp;
 <small>string</small>&nbsp;
  &nbsp;
                 <input type="text" style="display: none"
-                              name="path"                data-endpoint="PATCHapi--username---projectSlug---path--*-"
-               value="ipsam"
+                              name="path"                data-endpoint="PATCHapi-mock--username---projectSlug---path--*-"
+               value="ex"
                data-component="url">
     <br>
-<p>Example: <code>ipsam</code></p>
+<p>Example: <code>ex</code></p>
             </div>
                     </form>
 
-                    <h2 id="6-api-mocks-dinamicos-DELETEapi--username---projectSlug---path--*-">DELETE api/{username}/{projectSlug}/{path:.*}</h2>
+                    <h2 id="6-api-mocks-dinamicos-DELETEapi-mock--username---projectSlug---path--*-">DELETE api/mock/{username}/{projectSlug}/{path:.*}</h2>
 
 <p>
 </p>
 
 
 
-<span id="example-requests-DELETEapi--username---projectSlug---path--*-">
+<span id="example-requests-DELETEapi-mock--username---projectSlug---path--*-">
 <blockquote>Example request:</blockquote>
 
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://localhost:8000/api/ea/asperiores/ducimus"
+    "http://localhost:8000/api/mock/blanditiis/cumque/cum"
 );
 
 const headers = {
@@ -7971,7 +8005,7 @@ fetch(url, {
 
 <div class="php-example">
     <pre><code class="language-php">$client = new \GuzzleHttp\Client();
-$url = 'http://localhost:8000/api/ea/asperiores/ducimus';
+$url = 'http://localhost:8000/api/mock/blanditiis/cumque/cum';
 $response = $client-&gt;delete(
     $url,
     [
@@ -7989,7 +8023,7 @@ print_r(json_decode((string) $body));</code></pre></div>
     <pre><code class="language-python">import requests
 import json
 
-url = 'http://localhost:8000/api/ea/asperiores/ducimus'
+url = 'http://localhost:8000/api/mock/blanditiis/cumque/cum'
 headers = {
   'Content-Type': 'application/json',
   'Accept': 'application/json'
@@ -8012,7 +8046,7 @@ export class ApiService {
     private readonly http = inject(HttpClient);
 
     public request(): Observable&lt;any&gt; {
-        const url = 'http://localhost:8000/api/{username}/{projectSlug}/{path:.*}';
+        const url = 'http://localhost:8000/api/mock/{username}/{projectSlug}/{path:.*}';
 
         const headers = new HttpHeaders({
             'Content-Type': 'application/json',
@@ -8038,51 +8072,51 @@ export class ApiService {
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request DELETE \
-    "http://localhost:8000/api/ea/asperiores/ducimus" \
+    "http://localhost:8000/api/mock/blanditiis/cumque/cum" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json"</code></pre></div>
 
 </span>
 
-<span id="example-responses-DELETEapi--username---projectSlug---path--*-">
+<span id="example-responses-DELETEapi-mock--username---projectSlug---path--*-">
 </span>
-<span id="execution-results-DELETEapi--username---projectSlug---path--*-" hidden>
+<span id="execution-results-DELETEapi-mock--username---projectSlug---path--*-" hidden>
     <blockquote>Received response<span
-                id="execution-response-status-DELETEapi--username---projectSlug---path--*-"></span>:
+                id="execution-response-status-DELETEapi-mock--username---projectSlug---path--*-"></span>:
     </blockquote>
-    <pre class="json"><code id="execution-response-content-DELETEapi--username---projectSlug---path--*-"
+    <pre class="json"><code id="execution-response-content-DELETEapi-mock--username---projectSlug---path--*-"
       data-empty-response-text="<Empty response>" style="max-height: 400px;"></code></pre>
 </span>
-<span id="execution-error-DELETEapi--username---projectSlug---path--*-" hidden>
+<span id="execution-error-DELETEapi-mock--username---projectSlug---path--*-" hidden>
     <blockquote>Request failed with error:</blockquote>
-    <pre><code id="execution-error-message-DELETEapi--username---projectSlug---path--*-">
+    <pre><code id="execution-error-message-DELETEapi-mock--username---projectSlug---path--*-">
 
 Tip: Check that you&#039;re properly connected to the network.
 If you&#039;re a maintainer of ths API, verify that your API is running and you&#039;ve enabled CORS.
 You can check the Dev Tools console for debugging information.</code></pre>
 </span>
-<form id="form-DELETEapi--username---projectSlug---path--*-" data-method="DELETE"
-      data-path="api/{username}/{projectSlug}/{path:.*}"
+<form id="form-DELETEapi-mock--username---projectSlug---path--*-" data-method="DELETE"
+      data-path="api/mock/{username}/{projectSlug}/{path:.*}"
       data-authed="0"
       data-hasfiles="0"
       data-isarraybody="0"
       autocomplete="off"
-      onsubmit="event.preventDefault(); executeTryOut('DELETEapi--username---projectSlug---path--*-', this);">
+      onsubmit="event.preventDefault(); executeTryOut('DELETEapi-mock--username---projectSlug---path--*-', this);">
     <h3>
         Request&nbsp;&nbsp;&nbsp;
                     <button type="button"
                     style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;"
-                    id="btn-tryout-DELETEapi--username---projectSlug---path--*-"
-                    onclick="tryItOut('DELETEapi--username---projectSlug---path--*-');">Try it out ⚡
+                    id="btn-tryout-DELETEapi-mock--username---projectSlug---path--*-"
+                    onclick="tryItOut('DELETEapi-mock--username---projectSlug---path--*-');">Try it out ⚡
             </button>
             <button type="button"
                     style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;"
-                    id="btn-canceltryout-DELETEapi--username---projectSlug---path--*-"
-                    onclick="cancelTryOut('DELETEapi--username---projectSlug---path--*-');" hidden>Cancel 🛑
+                    id="btn-canceltryout-DELETEapi-mock--username---projectSlug---path--*-"
+                    onclick="cancelTryOut('DELETEapi-mock--username---projectSlug---path--*-');" hidden>Cancel 🛑
             </button>&nbsp;&nbsp;
             <button type="submit"
                     style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;"
-                    id="btn-executetryout-DELETEapi--username---projectSlug---path--*-"
+                    id="btn-executetryout-DELETEapi-mock--username---projectSlug---path--*-"
                     data-initial-text="Send Request 💥"
                     data-loading-text="⏱ Sending..."
                     hidden>Send Request 💥
@@ -8090,7 +8124,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
             </h3>
             <p>
             <small class="badge badge-red">DELETE</small>
-            <b><code>api/{username}/{projectSlug}/{path:.*}</code></b>
+            <b><code>api/mock/{username}/{projectSlug}/{path:.*}</code></b>
         </p>
                 <h4 class="fancy-heading-panel"><b>Headers</b></h4>
                                 <div style="padding-left: 28px; clear: unset;">
@@ -8098,7 +8132,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 &nbsp;
  &nbsp;
                 <input type="text" style="display: none"
-                              name="Content-Type"                data-endpoint="DELETEapi--username---projectSlug---path--*-"
+                              name="Content-Type"                data-endpoint="DELETEapi-mock--username---projectSlug---path--*-"
                value="application/json"
                data-component="header">
     <br>
@@ -8109,7 +8143,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 &nbsp;
  &nbsp;
                 <input type="text" style="display: none"
-                              name="Accept"                data-endpoint="DELETEapi--username---projectSlug---path--*-"
+                              name="Accept"                data-endpoint="DELETEapi-mock--username---projectSlug---path--*-"
                value="application/json"
                data-component="header">
     <br>
@@ -8121,33 +8155,33 @@ You can check the Dev Tools console for debugging information.</code></pre>
 <small>string</small>&nbsp;
  &nbsp;
                 <input type="text" style="display: none"
-                              name="username"                data-endpoint="DELETEapi--username---projectSlug---path--*-"
-               value="ea"
+                              name="username"                data-endpoint="DELETEapi-mock--username---projectSlug---path--*-"
+               value="blanditiis"
                data-component="url">
     <br>
-<p>Example: <code>ea</code></p>
+<p>Example: <code>blanditiis</code></p>
             </div>
                     <div style="padding-left: 28px; clear: unset;">
                 <b style="line-height: 2;"><code>projectSlug</code></b>&nbsp;&nbsp;
 <small>string</small>&nbsp;
  &nbsp;
                 <input type="text" style="display: none"
-                              name="projectSlug"                data-endpoint="DELETEapi--username---projectSlug---path--*-"
-               value="asperiores"
+                              name="projectSlug"                data-endpoint="DELETEapi-mock--username---projectSlug---path--*-"
+               value="cumque"
                data-component="url">
     <br>
-<p>Example: <code>asperiores</code></p>
+<p>Example: <code>cumque</code></p>
             </div>
                     <div style="padding-left: 28px; clear: unset;">
                 <b style="line-height: 2;"><code>path</code></b>&nbsp;&nbsp;
 <small>string</small>&nbsp;
  &nbsp;
                 <input type="text" style="display: none"
-                              name="path"                data-endpoint="DELETEapi--username---projectSlug---path--*-"
-               value="ducimus"
+                              name="path"                data-endpoint="DELETEapi-mock--username---projectSlug---path--*-"
+               value="cum"
                data-component="url">
     <br>
-<p>Example: <code>ducimus</code></p>
+<p>Example: <code>cum</code></p>
             </div>
                     </form>
 
@@ -8271,7 +8305,7 @@ export class ApiService {
     "cache-control": "no-cache, private",
     "content-type": "application/json",
     "x-ratelimit-limit": "2000",
-    "x-ratelimit-remaining": "1730",
+    "x-ratelimit-remaining": "1979",
     "vary": "Origin"
 }</code>
                 </pre>
@@ -8496,7 +8530,7 @@ export class ApiService {
     "cache-control": "no-cache, private",
     "content-type": "application/json",
     "x-ratelimit-limit": "2000",
-    "x-ratelimit-remaining": "1729",
+    "x-ratelimit-remaining": "1978",
     "vary": "Origin"
 }</code>
                 </pre>
@@ -8624,6 +8658,205 @@ You can check the Dev Tools console for debugging information.</code></pre>
             </div>
                 </form>
 
+                    <h2 id="7-dashboard-analytics-GETapi-admin-dashboard-rate-limit">Obter Rate Limit Atual</h2>
+
+<p>
+<small class="badge badge-darkred">requires authentication</small>
+</p>
+
+<p>Retorna o uso atual do limite de requisições baseado nas chamadas dos endpoints do usuário.</p>
+
+<span id="example-requests-GETapi-admin-dashboard-rate-limit">
+<blockquote>Example request:</blockquote>
+
+
+<div class="javascript-example">
+    <pre><code class="language-javascript">const url = new URL(
+    "http://localhost:8000/api/admin/dashboard/rate-limit"
+);
+
+const headers = {
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+fetch(url, {
+    method: "GET",
+    headers,
+}).then(response =&gt; response.json());</code></pre></div>
+
+
+<div class="php-example">
+    <pre><code class="language-php">$client = new \GuzzleHttp\Client();
+$url = 'http://localhost:8000/api/admin/dashboard/rate-limit';
+$response = $client-&gt;get(
+    $url,
+    [
+        'headers' =&gt; [
+            'Content-Type' =&gt; 'application/json',
+            'Accept' =&gt; 'application/json',
+        ],
+    ]
+);
+$body = $response-&gt;getBody();
+print_r(json_decode((string) $body));</code></pre></div>
+
+
+<div class="python-example">
+    <pre><code class="language-python">import requests
+import json
+
+url = 'http://localhost:8000/api/admin/dashboard/rate-limit'
+headers = {
+  'Content-Type': 'application/json',
+  'Accept': 'application/json'
+}
+
+response = requests.request('GET', url, headers=headers)
+response.json()</code></pre></div>
+
+
+<div class="angular-example">
+    <pre><code class="language-typescript">import { Injectable, inject } from '@angular/core';
+import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
+import { Observable } from 'rxjs';
+
+@Injectable({
+    providedIn: 'root'
+})
+export class ApiService {
+
+    private readonly http = inject(HttpClient);
+
+    public request(): Observable&lt;any&gt; {
+        const url = 'http://localhost:8000/api/admin/dashboard/rate-limit';
+
+        const headers = new HttpHeaders({
+            'Content-Type': 'application/json',
+            'Accept': 'application/json',
+        });
+
+        const params = new HttpParams();
+
+        const body = null;
+
+        return this.http.request&lt;any&gt;(
+           'GET',
+            url,
+            {
+                headers,
+                params,
+                responseType: 'json'
+            }
+        );
+    }
+}</code></pre></div>
+
+
+<div class="bash-example">
+    <pre><code class="language-bash">curl --request GET \
+    --get "http://localhost:8000/api/admin/dashboard/rate-limit" \
+    --header "Content-Type: application/json" \
+    --header "Accept: application/json"</code></pre></div>
+
+</span>
+
+<span id="example-responses-GETapi-admin-dashboard-rate-limit">
+            <blockquote>
+            <p>Example response (401):</p>
+        </blockquote>
+                    <details class="annotation">
+                <summary style="cursor: pointer;">
+                    <small onclick="textContent = parentElement.parentElement.open ? 'Show headers' : 'Hide headers'">Show headers</small>
+                </summary>
+                <pre>
+                    <code class="language-json">{
+    "cache-control": "no-cache, private",
+    "content-type": "application/json",
+    "x-ratelimit-limit": "2000",
+    "x-ratelimit-remaining": "1977",
+    "vary": "Origin"
+}</code>
+                </pre>
+            </details>
+                    <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;error&quot;: &quot;Unauthorized.&quot;
+}</code>
+ </pre>
+    </span>
+<span id="execution-results-GETapi-admin-dashboard-rate-limit" hidden>
+    <blockquote>Received response<span
+                id="execution-response-status-GETapi-admin-dashboard-rate-limit"></span>:
+    </blockquote>
+    <pre class="json"><code id="execution-response-content-GETapi-admin-dashboard-rate-limit"
+      data-empty-response-text="<Empty response>" style="max-height: 400px;"></code></pre>
+</span>
+<span id="execution-error-GETapi-admin-dashboard-rate-limit" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-GETapi-admin-dashboard-rate-limit">
+
+Tip: Check that you&#039;re properly connected to the network.
+If you&#039;re a maintainer of ths API, verify that your API is running and you&#039;ve enabled CORS.
+You can check the Dev Tools console for debugging information.</code></pre>
+</span>
+<form id="form-GETapi-admin-dashboard-rate-limit" data-method="GET"
+      data-path="api/admin/dashboard/rate-limit"
+      data-authed="1"
+      data-hasfiles="0"
+      data-isarraybody="0"
+      autocomplete="off"
+      onsubmit="event.preventDefault(); executeTryOut('GETapi-admin-dashboard-rate-limit', this);">
+    <h3>
+        Request&nbsp;&nbsp;&nbsp;
+                    <button type="button"
+                    style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-tryout-GETapi-admin-dashboard-rate-limit"
+                    onclick="tryItOut('GETapi-admin-dashboard-rate-limit');">Try it out ⚡
+            </button>
+            <button type="button"
+                    style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-canceltryout-GETapi-admin-dashboard-rate-limit"
+                    onclick="cancelTryOut('GETapi-admin-dashboard-rate-limit');" hidden>Cancel 🛑
+            </button>&nbsp;&nbsp;
+            <button type="submit"
+                    style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-executetryout-GETapi-admin-dashboard-rate-limit"
+                    data-initial-text="Send Request 💥"
+                    data-loading-text="⏱ Sending..."
+                    hidden>Send Request 💥
+            </button>
+            </h3>
+            <p>
+            <small class="badge badge-green">GET</small>
+            <b><code>api/admin/dashboard/rate-limit</code></b>
+        </p>
+                <h4 class="fancy-heading-panel"><b>Headers</b></h4>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Content-Type</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Content-Type"                data-endpoint="GETapi-admin-dashboard-rate-limit"
+               value="application/json"
+               data-component="header">
+    <br>
+<p>Example: <code>application/json</code></p>
+            </div>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Accept</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Accept"                data-endpoint="GETapi-admin-dashboard-rate-limit"
+               value="application/json"
+               data-component="header">
+    <br>
+<p>Example: <code>application/json</code></p>
+            </div>
+                        </form>
+
                 <h1 id="endpoints">Endpoints</h1>
 
     
@@ -8743,8 +8976,12 @@ export class ApiService {
     "cache-control": "no-cache, private",
     "content-type": "application/json",
     "x-ratelimit-limit": "2000",
-    "x-ratelimit-remaining": "1733",
-    "vary": "Origin"
+    "x-ratelimit-remaining": "1983",
+    "vary": "Origin",
+    "access-control-allow-origin": "*",
+    "access-control-allow-methods": "GET, POST, PUT, PATCH, DELETE, OPTIONS",
+    "access-control-allow-headers": "Content-Type, Authorization, X-Requested-With, X-Project-Token, Accept",
+    "access-control-allow-credentials": "true"
 }</code>
                 </pre>
             </details>
@@ -8753,7 +8990,7 @@ export class ApiService {
 <code class="language-json" style="max-height: 300px;">{
     &quot;status&quot;: &quot;ok&quot;,
     &quot;message&quot;: &quot;System is healthy&quot;,
-    &quot;timestamp&quot;: 1782158341
+    &quot;timestamp&quot;: 1782319566
 }</code>
  </pre>
     </span>
@@ -8943,7 +9180,7 @@ export class ApiService {
     "cache-control": "no-cache, private",
     "content-type": "application/json",
     "x-ratelimit-limit": "2000",
-    "x-ratelimit-remaining": "1732",
+    "x-ratelimit-remaining": "1982",
     "vary": "Origin"
 }</code>
                 </pre>
@@ -9020,6 +9257,721 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="Accept"                data-endpoint="GETapi-health-database"
+               value="application/json"
+               data-component="header">
+    <br>
+<p>Example: <code>application/json</code></p>
+            </div>
+                        </form>
+
+                    <h2 id="endpoints-GETapi-system-config">Get all system configurations.</h2>
+
+<p>
+</p>
+
+
+
+<span id="example-requests-GETapi-system-config">
+<blockquote>Example request:</blockquote>
+
+
+<div class="javascript-example">
+    <pre><code class="language-javascript">const url = new URL(
+    "http://localhost:8000/api/system/config"
+);
+
+const headers = {
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+fetch(url, {
+    method: "GET",
+    headers,
+}).then(response =&gt; response.json());</code></pre></div>
+
+
+<div class="php-example">
+    <pre><code class="language-php">$client = new \GuzzleHttp\Client();
+$url = 'http://localhost:8000/api/system/config';
+$response = $client-&gt;get(
+    $url,
+    [
+        'headers' =&gt; [
+            'Content-Type' =&gt; 'application/json',
+            'Accept' =&gt; 'application/json',
+        ],
+    ]
+);
+$body = $response-&gt;getBody();
+print_r(json_decode((string) $body));</code></pre></div>
+
+
+<div class="python-example">
+    <pre><code class="language-python">import requests
+import json
+
+url = 'http://localhost:8000/api/system/config'
+headers = {
+  'Content-Type': 'application/json',
+  'Accept': 'application/json'
+}
+
+response = requests.request('GET', url, headers=headers)
+response.json()</code></pre></div>
+
+
+<div class="angular-example">
+    <pre><code class="language-typescript">import { Injectable, inject } from '@angular/core';
+import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
+import { Observable } from 'rxjs';
+
+@Injectable({
+    providedIn: 'root'
+})
+export class ApiService {
+
+    private readonly http = inject(HttpClient);
+
+    public request(): Observable&lt;any&gt; {
+        const url = 'http://localhost:8000/api/system/config';
+
+        const headers = new HttpHeaders({
+            'Content-Type': 'application/json',
+            'Accept': 'application/json',
+        });
+
+        const params = new HttpParams();
+
+        const body = null;
+
+        return this.http.request&lt;any&gt;(
+           'GET',
+            url,
+            {
+                headers,
+                params,
+                responseType: 'json'
+            }
+        );
+    }
+}</code></pre></div>
+
+
+<div class="bash-example">
+    <pre><code class="language-bash">curl --request GET \
+    --get "http://localhost:8000/api/system/config" \
+    --header "Content-Type: application/json" \
+    --header "Accept: application/json"</code></pre></div>
+
+</span>
+
+<span id="example-responses-GETapi-system-config">
+            <blockquote>
+            <p>Example response (200):</p>
+        </blockquote>
+                    <details class="annotation">
+                <summary style="cursor: pointer;">
+                    <small onclick="textContent = parentElement.parentElement.open ? 'Show headers' : 'Hide headers'">Show headers</small>
+                </summary>
+                <pre>
+                    <code class="language-json">{
+    "cache-control": "no-cache, private",
+    "content-type": "application/json",
+    "x-ratelimit-limit": "2000",
+    "x-ratelimit-remaining": "1981",
+    "vary": "Origin"
+}</code>
+                </pre>
+            </details>
+                    <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;allow_register&quot;: true,
+    &quot;rate_limit_requests&quot;: &quot;2000&quot;,
+    &quot;rate_limit_time&quot;: &quot;60&quot;,
+    &quot;theme_color_scheme&quot;: &quot;auto&quot;,
+    &quot;theme_menuMode&quot;: &quot;static&quot;,
+    &quot;theme_preset&quot;: &quot;Aura&quot;,
+    &quot;theme_primary&quot;: &quot;emerald&quot;,
+    &quot;theme_surface&quot;: null
+}</code>
+ </pre>
+    </span>
+<span id="execution-results-GETapi-system-config" hidden>
+    <blockquote>Received response<span
+                id="execution-response-status-GETapi-system-config"></span>:
+    </blockquote>
+    <pre class="json"><code id="execution-response-content-GETapi-system-config"
+      data-empty-response-text="<Empty response>" style="max-height: 400px;"></code></pre>
+</span>
+<span id="execution-error-GETapi-system-config" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-GETapi-system-config">
+
+Tip: Check that you&#039;re properly connected to the network.
+If you&#039;re a maintainer of ths API, verify that your API is running and you&#039;ve enabled CORS.
+You can check the Dev Tools console for debugging information.</code></pre>
+</span>
+<form id="form-GETapi-system-config" data-method="GET"
+      data-path="api/system/config"
+      data-authed="0"
+      data-hasfiles="0"
+      data-isarraybody="0"
+      autocomplete="off"
+      onsubmit="event.preventDefault(); executeTryOut('GETapi-system-config', this);">
+    <h3>
+        Request&nbsp;&nbsp;&nbsp;
+                    <button type="button"
+                    style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-tryout-GETapi-system-config"
+                    onclick="tryItOut('GETapi-system-config');">Try it out ⚡
+            </button>
+            <button type="button"
+                    style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-canceltryout-GETapi-system-config"
+                    onclick="cancelTryOut('GETapi-system-config');" hidden>Cancel 🛑
+            </button>&nbsp;&nbsp;
+            <button type="submit"
+                    style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-executetryout-GETapi-system-config"
+                    data-initial-text="Send Request 💥"
+                    data-loading-text="⏱ Sending..."
+                    hidden>Send Request 💥
+            </button>
+            </h3>
+            <p>
+            <small class="badge badge-green">GET</small>
+            <b><code>api/system/config</code></b>
+        </p>
+                <h4 class="fancy-heading-panel"><b>Headers</b></h4>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Content-Type</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Content-Type"                data-endpoint="GETapi-system-config"
+               value="application/json"
+               data-component="header">
+    <br>
+<p>Example: <code>application/json</code></p>
+            </div>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Accept</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Accept"                data-endpoint="GETapi-system-config"
+               value="application/json"
+               data-component="header">
+    <br>
+<p>Example: <code>application/json</code></p>
+            </div>
+                        </form>
+
+                    <h2 id="endpoints-PUTapi-admin-config">Update multiple configuration values.</h2>
+
+<p>
+</p>
+
+
+
+<span id="example-requests-PUTapi-admin-config">
+<blockquote>Example request:</blockquote>
+
+
+<div class="javascript-example">
+    <pre><code class="language-javascript">const url = new URL(
+    "http://localhost:8000/api/admin/config"
+);
+
+const headers = {
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+let body = {
+    "allow_register": true,
+    "rate_limit_requests": 62,
+    "rate_limit_time": 6,
+    "theme_preset": "Aura",
+    "theme_primary": "repellendus",
+    "theme_surface": "neutral",
+    "theme_menuMode": "overlay",
+    "theme_color_scheme": "light"
+};
+
+fetch(url, {
+    method: "PUT",
+    headers,
+    body: JSON.stringify(body),
+}).then(response =&gt; response.json());</code></pre></div>
+
+
+<div class="php-example">
+    <pre><code class="language-php">$client = new \GuzzleHttp\Client();
+$url = 'http://localhost:8000/api/admin/config';
+$response = $client-&gt;put(
+    $url,
+    [
+        'headers' =&gt; [
+            'Content-Type' =&gt; 'application/json',
+            'Accept' =&gt; 'application/json',
+        ],
+        'json' =&gt; [
+            'allow_register' =&gt; true,
+            'rate_limit_requests' =&gt; 62,
+            'rate_limit_time' =&gt; 6,
+            'theme_preset' =&gt; 'Aura',
+            'theme_primary' =&gt; 'repellendus',
+            'theme_surface' =&gt; 'neutral',
+            'theme_menuMode' =&gt; 'overlay',
+            'theme_color_scheme' =&gt; 'light',
+        ],
+    ]
+);
+$body = $response-&gt;getBody();
+print_r(json_decode((string) $body));</code></pre></div>
+
+
+<div class="python-example">
+    <pre><code class="language-python">import requests
+import json
+
+url = 'http://localhost:8000/api/admin/config'
+payload = {
+    "allow_register": true,
+    "rate_limit_requests": 62,
+    "rate_limit_time": 6,
+    "theme_preset": "Aura",
+    "theme_primary": "repellendus",
+    "theme_surface": "neutral",
+    "theme_menuMode": "overlay",
+    "theme_color_scheme": "light"
+}
+headers = {
+  'Content-Type': 'application/json',
+  'Accept': 'application/json'
+}
+
+response = requests.request('PUT', url, headers=headers, json=payload)
+response.json()</code></pre></div>
+
+
+<div class="angular-example">
+    <pre><code class="language-typescript">import { Injectable, inject } from '@angular/core';
+import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
+import { Observable } from 'rxjs';
+
+@Injectable({
+    providedIn: 'root'
+})
+export class ApiService {
+
+    private readonly http = inject(HttpClient);
+
+    public request(): Observable&lt;any&gt; {
+        const url = 'http://localhost:8000/api/admin/config';
+
+        const headers = new HttpHeaders({
+            'Content-Type': 'application/json',
+            'Accept': 'application/json',
+        });
+
+        const params = new HttpParams();
+
+        const body = {
+            'allow_register': '1',
+            'rate_limit_requests': '62',
+            'rate_limit_time': '6',
+            'theme_preset': 'Aura',
+            'theme_primary': 'repellendus',
+            'theme_surface': 'neutral',
+            'theme_menuMode': 'overlay',
+            'theme_color_scheme': 'light',
+        }
+
+        return this.http.request&lt;any&gt;(
+           'PUT',
+            url,
+            {
+                headers,
+                params,
+                body,
+                responseType: 'json'
+            }
+        );
+    }
+}</code></pre></div>
+
+
+<div class="bash-example">
+    <pre><code class="language-bash">curl --request PUT \
+    "http://localhost:8000/api/admin/config" \
+    --header "Content-Type: application/json" \
+    --header "Accept: application/json" \
+    --data "{
+    \"allow_register\": true,
+    \"rate_limit_requests\": 62,
+    \"rate_limit_time\": 6,
+    \"theme_preset\": \"Aura\",
+    \"theme_primary\": \"repellendus\",
+    \"theme_surface\": \"neutral\",
+    \"theme_menuMode\": \"overlay\",
+    \"theme_color_scheme\": \"light\"
+}"
+</code></pre></div>
+
+</span>
+
+<span id="example-responses-PUTapi-admin-config">
+</span>
+<span id="execution-results-PUTapi-admin-config" hidden>
+    <blockquote>Received response<span
+                id="execution-response-status-PUTapi-admin-config"></span>:
+    </blockquote>
+    <pre class="json"><code id="execution-response-content-PUTapi-admin-config"
+      data-empty-response-text="<Empty response>" style="max-height: 400px;"></code></pre>
+</span>
+<span id="execution-error-PUTapi-admin-config" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-PUTapi-admin-config">
+
+Tip: Check that you&#039;re properly connected to the network.
+If you&#039;re a maintainer of ths API, verify that your API is running and you&#039;ve enabled CORS.
+You can check the Dev Tools console for debugging information.</code></pre>
+</span>
+<form id="form-PUTapi-admin-config" data-method="PUT"
+      data-path="api/admin/config"
+      data-authed="0"
+      data-hasfiles="0"
+      data-isarraybody="0"
+      autocomplete="off"
+      onsubmit="event.preventDefault(); executeTryOut('PUTapi-admin-config', this);">
+    <h3>
+        Request&nbsp;&nbsp;&nbsp;
+                    <button type="button"
+                    style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-tryout-PUTapi-admin-config"
+                    onclick="tryItOut('PUTapi-admin-config');">Try it out ⚡
+            </button>
+            <button type="button"
+                    style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-canceltryout-PUTapi-admin-config"
+                    onclick="cancelTryOut('PUTapi-admin-config');" hidden>Cancel 🛑
+            </button>&nbsp;&nbsp;
+            <button type="submit"
+                    style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-executetryout-PUTapi-admin-config"
+                    data-initial-text="Send Request 💥"
+                    data-loading-text="⏱ Sending..."
+                    hidden>Send Request 💥
+            </button>
+            </h3>
+            <p>
+            <small class="badge badge-darkblue">PUT</small>
+            <b><code>api/admin/config</code></b>
+        </p>
+                <h4 class="fancy-heading-panel"><b>Headers</b></h4>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Content-Type</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Content-Type"                data-endpoint="PUTapi-admin-config"
+               value="application/json"
+               data-component="header">
+    <br>
+<p>Example: <code>application/json</code></p>
+            </div>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Accept</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Accept"                data-endpoint="PUTapi-admin-config"
+               value="application/json"
+               data-component="header">
+    <br>
+<p>Example: <code>application/json</code></p>
+            </div>
+                                <h4 class="fancy-heading-panel"><b>Body Parameters</b></h4>
+        <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>allow_register</code></b>&nbsp;&nbsp;
+<small>boolean</small>&nbsp;
+<i>optional</i> &nbsp;
+                <label data-endpoint="PUTapi-admin-config" style="display: none">
+            <input type="radio" name="allow_register"
+                   value="true"
+                   data-endpoint="PUTapi-admin-config"
+                   data-component="body"             >
+            <code>true</code>
+        </label>
+        <label data-endpoint="PUTapi-admin-config" style="display: none">
+            <input type="radio" name="allow_register"
+                   value="false"
+                   data-endpoint="PUTapi-admin-config"
+                   data-component="body"             >
+            <code>false</code>
+        </label>
+    <br>
+<p>Example: <code>true</code></p>
+        </div>
+                <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>rate_limit_requests</code></b>&nbsp;&nbsp;
+<small>integer</small>&nbsp;
+<i>optional</i> &nbsp;
+                <input type="number" style="display: none"
+               step="any"               name="rate_limit_requests"                data-endpoint="PUTapi-admin-config"
+               value="62"
+               data-component="body">
+    <br>
+<p>O campo value deve ser pelo menos 1. Example: <code>62</code></p>
+        </div>
+                <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>rate_limit_time</code></b>&nbsp;&nbsp;
+<small>integer</small>&nbsp;
+<i>optional</i> &nbsp;
+                <input type="number" style="display: none"
+               step="any"               name="rate_limit_time"                data-endpoint="PUTapi-admin-config"
+               value="6"
+               data-component="body">
+    <br>
+<p>O campo value deve ser pelo menos 1. Example: <code>6</code></p>
+        </div>
+                <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>theme_preset</code></b>&nbsp;&nbsp;
+<small>string</small>&nbsp;
+<i>optional</i> &nbsp;
+                <input type="text" style="display: none"
+                              name="theme_preset"                data-endpoint="PUTapi-admin-config"
+               value="Aura"
+               data-component="body">
+    <br>
+<p>Example: <code>Aura</code></p>
+Must be one of:
+<ul style="list-style-type: square;"><li><code>Aura</code></li> <li><code>Lara</code></li> <li><code>Nora</code></li></ul>
+        </div>
+                <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>theme_primary</code></b>&nbsp;&nbsp;
+<small>string</small>&nbsp;
+<i>optional</i> &nbsp;
+                <input type="text" style="display: none"
+                              name="theme_primary"                data-endpoint="PUTapi-admin-config"
+               value="repellendus"
+               data-component="body">
+    <br>
+<p>Example: <code>repellendus</code></p>
+        </div>
+                <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>theme_surface</code></b>&nbsp;&nbsp;
+<small>string</small>&nbsp;
+<i>optional</i> &nbsp;
+                <input type="text" style="display: none"
+                              name="theme_surface"                data-endpoint="PUTapi-admin-config"
+               value="neutral"
+               data-component="body">
+    <br>
+<p>Example: <code>neutral</code></p>
+Must be one of:
+<ul style="list-style-type: square;"><li><code>slate</code></li> <li><code>gray</code></li> <li><code>zinc</code></li> <li><code>neutral</code></li> <li><code>stone</code></li></ul>
+        </div>
+                <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>theme_menuMode</code></b>&nbsp;&nbsp;
+<small>string</small>&nbsp;
+<i>optional</i> &nbsp;
+                <input type="text" style="display: none"
+                              name="theme_menuMode"                data-endpoint="PUTapi-admin-config"
+               value="overlay"
+               data-component="body">
+    <br>
+<p>Example: <code>overlay</code></p>
+Must be one of:
+<ul style="list-style-type: square;"><li><code>static</code></li> <li><code>overlay</code></li></ul>
+        </div>
+                <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>theme_color_scheme</code></b>&nbsp;&nbsp;
+<small>string</small>&nbsp;
+<i>optional</i> &nbsp;
+                <input type="text" style="display: none"
+                              name="theme_color_scheme"                data-endpoint="PUTapi-admin-config"
+               value="light"
+               data-component="body">
+    <br>
+<p>Example: <code>light</code></p>
+Must be one of:
+<ul style="list-style-type: square;"><li><code>light</code></li> <li><code>dark</code></li> <li><code>auto</code></li></ul>
+        </div>
+        </form>
+
+                    <h2 id="endpoints-POSTapi-admin-cache-clear">Clear application cache.</h2>
+
+<p>
+</p>
+
+
+
+<span id="example-requests-POSTapi-admin-cache-clear">
+<blockquote>Example request:</blockquote>
+
+
+<div class="javascript-example">
+    <pre><code class="language-javascript">const url = new URL(
+    "http://localhost:8000/api/admin/cache/clear"
+);
+
+const headers = {
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+fetch(url, {
+    method: "POST",
+    headers,
+}).then(response =&gt; response.json());</code></pre></div>
+
+
+<div class="php-example">
+    <pre><code class="language-php">$client = new \GuzzleHttp\Client();
+$url = 'http://localhost:8000/api/admin/cache/clear';
+$response = $client-&gt;post(
+    $url,
+    [
+        'headers' =&gt; [
+            'Content-Type' =&gt; 'application/json',
+            'Accept' =&gt; 'application/json',
+        ],
+    ]
+);
+$body = $response-&gt;getBody();
+print_r(json_decode((string) $body));</code></pre></div>
+
+
+<div class="python-example">
+    <pre><code class="language-python">import requests
+import json
+
+url = 'http://localhost:8000/api/admin/cache/clear'
+headers = {
+  'Content-Type': 'application/json',
+  'Accept': 'application/json'
+}
+
+response = requests.request('POST', url, headers=headers)
+response.json()</code></pre></div>
+
+
+<div class="angular-example">
+    <pre><code class="language-typescript">import { Injectable, inject } from '@angular/core';
+import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
+import { Observable } from 'rxjs';
+
+@Injectable({
+    providedIn: 'root'
+})
+export class ApiService {
+
+    private readonly http = inject(HttpClient);
+
+    public request(): Observable&lt;any&gt; {
+        const url = 'http://localhost:8000/api/admin/cache/clear';
+
+        const headers = new HttpHeaders({
+            'Content-Type': 'application/json',
+            'Accept': 'application/json',
+        });
+
+        const params = new HttpParams();
+
+        const body = null;
+
+        return this.http.request&lt;any&gt;(
+           'POST',
+            url,
+            {
+                headers,
+                params,
+                responseType: 'json'
+            }
+        );
+    }
+}</code></pre></div>
+
+
+<div class="bash-example">
+    <pre><code class="language-bash">curl --request POST \
+    "http://localhost:8000/api/admin/cache/clear" \
+    --header "Content-Type: application/json" \
+    --header "Accept: application/json"</code></pre></div>
+
+</span>
+
+<span id="example-responses-POSTapi-admin-cache-clear">
+</span>
+<span id="execution-results-POSTapi-admin-cache-clear" hidden>
+    <blockquote>Received response<span
+                id="execution-response-status-POSTapi-admin-cache-clear"></span>:
+    </blockquote>
+    <pre class="json"><code id="execution-response-content-POSTapi-admin-cache-clear"
+      data-empty-response-text="<Empty response>" style="max-height: 400px;"></code></pre>
+</span>
+<span id="execution-error-POSTapi-admin-cache-clear" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-POSTapi-admin-cache-clear">
+
+Tip: Check that you&#039;re properly connected to the network.
+If you&#039;re a maintainer of ths API, verify that your API is running and you&#039;ve enabled CORS.
+You can check the Dev Tools console for debugging information.</code></pre>
+</span>
+<form id="form-POSTapi-admin-cache-clear" data-method="POST"
+      data-path="api/admin/cache/clear"
+      data-authed="0"
+      data-hasfiles="0"
+      data-isarraybody="0"
+      autocomplete="off"
+      onsubmit="event.preventDefault(); executeTryOut('POSTapi-admin-cache-clear', this);">
+    <h3>
+        Request&nbsp;&nbsp;&nbsp;
+                    <button type="button"
+                    style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-tryout-POSTapi-admin-cache-clear"
+                    onclick="tryItOut('POSTapi-admin-cache-clear');">Try it out ⚡
+            </button>
+            <button type="button"
+                    style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-canceltryout-POSTapi-admin-cache-clear"
+                    onclick="cancelTryOut('POSTapi-admin-cache-clear');" hidden>Cancel 🛑
+            </button>&nbsp;&nbsp;
+            <button type="submit"
+                    style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-executetryout-POSTapi-admin-cache-clear"
+                    data-initial-text="Send Request 💥"
+                    data-loading-text="⏱ Sending..."
+                    hidden>Send Request 💥
+            </button>
+            </h3>
+            <p>
+            <small class="badge badge-black">POST</small>
+            <b><code>api/admin/cache/clear</code></b>
+        </p>
+                <h4 class="fancy-heading-panel"><b>Headers</b></h4>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Content-Type</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Content-Type"                data-endpoint="POSTapi-admin-cache-clear"
+               value="application/json"
+               data-component="header">
+    <br>
+<p>Example: <code>application/json</code></p>
+            </div>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Accept</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Accept"                data-endpoint="POSTapi-admin-cache-clear"
                value="application/json"
                data-component="header">
     <br>

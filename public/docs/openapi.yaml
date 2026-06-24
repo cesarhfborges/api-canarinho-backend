@@ -26,12 +26,12 @@ paths:
                 username:
                   type: string
                   description: ''
-                  example: dolore
+                  example: veniam
                   nullable: false
                 password:
                   type: string
                   description: ''
-                  example: quos
+                  example: eum
                   nullable: false
               required:
                 - username
@@ -55,23 +55,23 @@ paths:
               properties:
                 name:
                   type: string
-                  description: 'Must not be greater than 255 characters.'
-                  example: xqovulwkikdgcsjp
+                  description: 'O campo value não pode ser superior a 255 caracteres.'
+                  example: znmzheszxwt
                   nullable: false
                 username:
                   type: string
-                  description: 'Must not be greater than 255 characters.'
-                  example: oq
+                  description: 'Must not be one of <code>admin</code>, <code>api</code>, <code>mock</code>, <code>system</code>, or <code>health</code> O campo value não pode ser superior a 255 caracteres.'
+                  example: d
                   nullable: false
                 email:
                   type: string
-                  description: 'Must be a valid email address. Must not be greater than 255 characters.'
-                  example: thora.schuster@example.net
+                  description: 'O campo value deve ser um endereço de e-mail válido. O campo value não pode ser superior a 255 caracteres.'
+                  example: dee.bins@example.com
                   nullable: false
                 password:
                   type: string
-                  description: 'Must be at least 6 characters.'
-                  example: '&J)/!y:^'
+                  description: 'O campo value deve ter pelo menos 6 caracteres.'
+                  example: '0RHpwmzn$:Cdlu+\os>'
                   nullable: false
               required:
                 - name
@@ -126,14 +126,23 @@ paths:
               properties:
                 name:
                   type: string
-                  description: 'Must not be greater than 255 characters.'
-                  example: zz
+                  description: 'O campo value não pode ser superior a 255 caracteres.'
+                  example: swmsfsrdwcsikhnbdfwogqwma
                   nullable: false
                 email:
                   type: string
                   description: ''
                   example: null
                   nullable: false
+                theme_color_scheme:
+                  type: string
+                  description: ''
+                  example: light
+                  nullable: true
+                  enum:
+                    - light
+                    - dark
+                    - auto
               required:
                 - name
   /api/admin/me/password:
@@ -154,8 +163,8 @@ paths:
               properties:
                 password:
                   type: string
-                  description: 'Must be at least 6 characters.'
-                  example: ':*0g@n|yyhU*:>''DXR*\'
+                  description: 'O campo value deve ter pelo menos 6 caracteres.'
+                  example: 'Q`(Ow\T]z}@'
                   nullable: false
               required:
                 - password
@@ -197,13 +206,13 @@ paths:
               properties:
                 name:
                   type: string
-                  description: 'Must not be greater than 255 characters.'
-                  example: b
+                  description: 'O campo value não pode ser superior a 255 caracteres.'
+                  example: mymqqzvhelbyrnus
                   nullable: false
                 slug:
                   type: string
-                  description: 'Must not be greater than 255 characters.'
-                  example: bizhvbenhsbr
+                  description: 'O campo value não pode ser superior a 255 caracteres.'
+                  example: noaytzsyrmbxghbj
                   nullable: false
               required:
                 - name
@@ -246,13 +255,13 @@ paths:
               properties:
                 name:
                   type: string
-                  description: 'Must not be greater than 255 characters.'
-                  example: nbu
+                  description: 'O campo value não pode ser superior a 255 caracteres.'
+                  example: d
                   nullable: false
                 slug:
                   type: string
-                  description: 'Must not be greater than 255 characters.'
-                  example: akcj
+                  description: 'O campo value não pode ser superior a 255 caracteres.'
+                  example: xluxpzgsrxb
                   nullable: false
               required:
                 - name
@@ -270,7 +279,7 @@ paths:
         in: path
         name: id
         description: ''
-        example: molestiae
+        example: sed
         required: true
         schema:
           type: string
@@ -313,12 +322,12 @@ paths:
                 name:
                   type: string
                   description: ''
-                  example: natus
+                  example: non
                   nullable: false
                 generator:
                   type: string
                   description: ''
-                  example: voluptate
+                  example: expedita
                   nullable: true
                 endpoints:
                   type: object
@@ -339,7 +348,7 @@ paths:
         in: path
         name: projectId
         description: ''
-        example: ullam
+        example: architecto
         required: true
         schema:
           type: string
@@ -369,7 +378,7 @@ paths:
         in: path
         name: projectId
         description: ''
-        example: aut
+        example: qui
         required: true
         schema:
           type: string
@@ -377,7 +386,7 @@ paths:
         in: path
         name: id
         description: ''
-        example: quae
+        example: molestiae
         required: true
         schema:
           type: string
@@ -400,12 +409,12 @@ paths:
                 name:
                   type: string
                   description: ''
-                  example: autem
+                  example: voluptatem
                   nullable: false
                 generator:
                   type: string
                   description: ''
-                  example: qui
+                  example: modi
                   nullable: true
                 endpoints:
                   type: object
@@ -434,7 +443,7 @@ paths:
         in: path
         name: id
         description: ''
-        example: nulla
+        example: et
         required: true
         schema:
           type: string
@@ -456,8 +465,8 @@ paths:
               properties:
                 count:
                   type: integer
-                  description: 'Must be at least 0. Must not be greater than 500.'
-                  example: 14
+                  description: 'O campo value deve ser pelo menos 0. O campo value não pode ser superior a 500.'
+                  example: 17
                   nullable: false
               required:
                 - count
@@ -466,7 +475,7 @@ paths:
         in: path
         name: projectId
         description: ''
-        example: qui
+        example: quibusdam
         required: true
         schema:
           type: string
@@ -474,7 +483,7 @@ paths:
         in: path
         name: id
         description: ''
-        example: quis
+        example: autem
         required: true
         schema:
           type: string
@@ -517,7 +526,7 @@ paths:
                 name:
                   type: string
                   description: ''
-                  example: odio
+                  example: earum
                   nullable: false
               required:
                 - name
@@ -526,7 +535,7 @@ paths:
         in: path
         name: projectId
         description: ''
-        example: debitis
+        example: ea
         required: true
         schema:
           type: string
@@ -544,7 +553,7 @@ paths:
         in: path
         name: id
         description: ''
-        example: eius
+        example: velit
         required: true
         schema:
           type: string
@@ -586,23 +595,23 @@ paths:
               properties:
                 name:
                   type: string
-                  description: 'Must not be greater than 255 characters.'
-                  example: thrbpgsnft
+                  description: 'O campo value não pode ser superior a 255 caracteres.'
+                  example: ysblinwaduqunuivxrzyud
                   nullable: false
                 username:
                   type: string
-                  description: 'Must not be greater than 255 characters.'
-                  example: fyhekvefrymnntrrnja
+                  description: 'Must not be one of <code>admin</code>, <code>api</code>, <code>mock</code>, <code>system</code>, or <code>health</code> O campo value não pode ser superior a 255 caracteres.'
+                  example: mi
                   nullable: false
                 email:
                   type: string
-                  description: 'Must be a valid email address. Must not be greater than 255 characters.'
-                  example: citlalli.boehm@example.org
+                  description: 'O campo value deve ser um endereço de e-mail válido. O campo value não pode ser superior a 255 caracteres.'
+                  example: jan75@example.org
                   nullable: false
                 password:
                   type: string
-                  description: 'Must be at least 6 characters.'
-                  example: 'P&&gaEcdD,Y*H6[c-q,'
+                  description: 'O campo value deve ter pelo menos 6 caracteres.'
+                  example: 'DPd9ONR60zH"nw"'
                   nullable: false
                 is_admin:
                   type: boolean
@@ -657,8 +666,8 @@ paths:
               properties:
                 name:
                   type: string
-                  description: 'Must not be greater than 255 characters.'
-                  example: dejrv
+                  description: 'O campo value não pode ser superior a 255 caracteres.'
+                  example: qrfctnmmsevkxaq
                   nullable: false
                 username:
                   type: string
@@ -673,7 +682,7 @@ paths:
                 is_admin:
                   type: boolean
                   description: ''
-                  example: false
+                  example: true
                   nullable: false
                 is_active:
                   type: boolean
@@ -695,7 +704,7 @@ paths:
         in: path
         name: id
         description: ''
-        example: autem
+        example: perferendis
         required: true
         schema:
           type: string
@@ -717,8 +726,8 @@ paths:
               properties:
                 password:
                   type: string
-                  description: 'Must be at least 6 characters.'
-                  example: 'coABB#~'
+                  description: 'O campo value deve ter pelo menos 6 caracteres.'
+                  example: '1<M./|V?1Gk.KD-R`<'
                   nullable: false
               required:
                 - password
@@ -727,7 +736,7 @@ paths:
         in: path
         name: id
         description: ''
-        example: ab
+        example: voluptates
         required: true
         schema:
           type: string
@@ -770,7 +779,7 @@ paths:
                 condition_type:
                   type: string
                   description: ''
-                  example: query
+                  example: body
                   nullable: false
                   enum:
                     - header
@@ -779,12 +788,12 @@ paths:
                 condition_key:
                   type: string
                   description: ''
-                  example: saepe
+                  example: placeat
                   nullable: false
                 condition_operator:
                   type: string
                   description: ''
-                  example: equals
+                  example: not_equals
                   nullable: false
                   enum:
                     - equals
@@ -798,7 +807,7 @@ paths:
                 response_status:
                   type: integer
                   description: ''
-                  example: 3
+                  example: 19
                   nullable: false
                 response_body:
                   type: object
@@ -817,7 +826,7 @@ paths:
         in: path
         name: endpointId
         description: ''
-        example: nam
+        example: molestiae
         required: true
         schema:
           type: string
@@ -849,12 +858,12 @@ paths:
                 condition_key:
                   type: string
                   description: ''
-                  example: sequi
+                  example: voluptatum
                   nullable: false
                 condition_operator:
                   type: string
                   description: ''
-                  example: not_equals
+                  example: contains
                   nullable: false
                   enum:
                     - equals
@@ -863,12 +872,12 @@ paths:
                 condition_value:
                   type: string
                   description: ''
-                  example: quo
+                  example: non
                   nullable: false
                 response_status:
                   type: integer
                   description: ''
-                  example: 7
+                  example: 1
                   nullable: false
                 response_body:
                   type: object
@@ -895,14 +904,14 @@ paths:
         in: path
         name: id
         description: ''
-        example: perspiciatis
+        example: repudiandae
         required: true
         schema:
           type: string
-  '/api/{username}/{projectSlug}/{path:.*}':
+  '/api/mock/{username}/{projectSlug}/{path:.*}':
     get:
       summary: ''
-      operationId: getApiUsernameProjectSlugPath
+      operationId: getApiMockUsernameProjectSlugPath
       description: ''
       parameters: []
       responses:
@@ -923,7 +932,7 @@ paths:
       security: []
     post:
       summary: ''
-      operationId: postApiUsernameProjectSlugPath
+      operationId: postApiMockUsernameProjectSlugPath
       description: ''
       parameters: []
       responses: {  }
@@ -932,7 +941,7 @@ paths:
       security: []
     put:
       summary: ''
-      operationId: putApiUsernameProjectSlugPath
+      operationId: putApiMockUsernameProjectSlugPath
       description: ''
       parameters: []
       responses: {  }
@@ -941,7 +950,7 @@ paths:
       security: []
     patch:
       summary: ''
-      operationId: patchApiUsernameProjectSlugPath
+      operationId: patchApiMockUsernameProjectSlugPath
       description: ''
       parameters: []
       responses: {  }
@@ -950,7 +959,7 @@ paths:
       security: []
     delete:
       summary: ''
-      operationId: deleteApiUsernameProjectSlugPath
+      operationId: deleteApiMockUsernameProjectSlugPath
       description: ''
       parameters: []
       responses: {  }
@@ -962,7 +971,7 @@ paths:
         in: path
         name: username
         description: ''
-        example: ducimus
+        example: possimus
         required: true
         schema:
           type: string
@@ -970,7 +979,7 @@ paths:
         in: path
         name: projectSlug
         description: ''
-        example: consequatur
+        example: tempora
         required: true
         schema:
           type: string
@@ -978,7 +987,7 @@ paths:
         in: path
         name: path
         description: ''
-        example: nesciunt
+        example: molestiae
         required: true
         schema:
           type: string
@@ -1068,6 +1077,27 @@ paths:
                     example: Unauthorized.
       tags:
         - '7. Dashboard Analytics'
+  /api/admin/dashboard/rate-limit:
+    get:
+      summary: 'Obter Rate Limit Atual'
+      operationId: obterRateLimitAtual
+      description: 'Retorna o uso atual do limite de requisições baseado nas chamadas dos endpoints do usuário.'
+      parameters: []
+      responses:
+        401:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  error: Unauthorized.
+                properties:
+                  error:
+                    type: string
+                    example: Unauthorized.
+      tags:
+        - '7. Dashboard Analytics'
   /api/health:
     get:
       summary: ''
@@ -1084,7 +1114,7 @@ paths:
                 example:
                   status: ok
                   message: 'System is healthy'
-                  timestamp: 1782158341
+                  timestamp: 1782319566
                 properties:
                   status:
                     type: string
@@ -1094,7 +1124,7 @@ paths:
                     example: 'System is healthy'
                   timestamp:
                     type: integer
-                    example: 1782158341
+                    example: 1782319566
       tags:
         - Endpoints
       security: []
@@ -1121,6 +1151,140 @@ paths:
                   message:
                     type: string
                     example: 'Database connection is established'
+      tags:
+        - Endpoints
+      security: []
+  /api/system/config:
+    get:
+      summary: 'Get all system configurations.'
+      operationId: getAllSystemConfigurations
+      description: ''
+      parameters: []
+      responses:
+        200:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  allow_register: true
+                  rate_limit_requests: '2000'
+                  rate_limit_time: '60'
+                  theme_color_scheme: auto
+                  theme_menuMode: static
+                  theme_preset: Aura
+                  theme_primary: emerald
+                  theme_surface: null
+                properties:
+                  allow_register:
+                    type: boolean
+                    example: true
+                  rate_limit_requests:
+                    type: string
+                    example: '2000'
+                  rate_limit_time:
+                    type: string
+                    example: '60'
+                  theme_color_scheme:
+                    type: string
+                    example: auto
+                  theme_menuMode:
+                    type: string
+                    example: static
+                  theme_preset:
+                    type: string
+                    example: Aura
+                  theme_primary:
+                    type: string
+                    example: emerald
+                  theme_surface:
+                    type: string
+                    example: null
+      tags:
+        - Endpoints
+      security: []
+  /api/admin/config:
+    put:
+      summary: 'Update multiple configuration values.'
+      operationId: updateMultipleConfigurationValues
+      description: ''
+      parameters: []
+      responses: {  }
+      tags:
+        - Endpoints
+      requestBody:
+        required: false
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                allow_register:
+                  type: boolean
+                  description: ''
+                  example: true
+                  nullable: false
+                rate_limit_requests:
+                  type: integer
+                  description: 'O campo value deve ser pelo menos 1.'
+                  example: 62
+                  nullable: false
+                rate_limit_time:
+                  type: integer
+                  description: 'O campo value deve ser pelo menos 1.'
+                  example: 6
+                  nullable: false
+                theme_preset:
+                  type: string
+                  description: ''
+                  example: Aura
+                  nullable: true
+                  enum:
+                    - Aura
+                    - Lara
+                    - Nora
+                theme_primary:
+                  type: string
+                  description: ''
+                  example: repellendus
+                  nullable: true
+                theme_surface:
+                  type: string
+                  description: ''
+                  example: neutral
+                  nullable: true
+                  enum:
+                    - slate
+                    - gray
+                    - zinc
+                    - neutral
+                    - stone
+                theme_menuMode:
+                  type: string
+                  description: ''
+                  example: overlay
+                  nullable: true
+                  enum:
+                    - static
+                    - overlay
+                theme_color_scheme:
+                  type: string
+                  description: ''
+                  example: light
+                  nullable: true
+                  enum:
+                    - light
+                    - dark
+                    - auto
+      security: []
+  /api/admin/cache/clear:
+    post:
+      summary: 'Clear application cache.'
+      operationId: clearApplicationCache
+      description: ''
+      parameters: []
+      responses: {  }
       tags:
         - Endpoints
       security: []

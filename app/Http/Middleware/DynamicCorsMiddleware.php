@@ -16,33 +16,8 @@ class DynamicCorsMiddleware
      */
     public function handle(Request $request, Closure $next)
     {
-        // Lista de rotas administrativas reais
-        $adminPrefixes = [
-            'api/admin/login',
-            'api/admin/register',
-            'api/admin/logout',
-            'api/admin/me',
-            'api/admin/dashboard',
-            'api/admin/config',
-            'api/admin/cache',
-            'api/admin/users',
-            'api/admin/projects',
-            'api/admin/endpoints',
-            'api/admin/tokens',
-            'api/admin/rules'
-        ];
-
-        $isRealAdmin = false;
-        foreach ($adminPrefixes as $prefix) {
-            if ($request->is($prefix) || $request->is($prefix . '/*')) {
-                $isRealAdmin = true;
-                break;
-            }
-        }
-
-        // Se for API, mas não for uma rota administrativa real, nem health/system, é uma rota dinâmica (mesmo que o usuário se chame 'admin')
-        if ($request->is('api/*') && !$isRealAdmin && !$request->is('api/health/*') && !$request->is('api/system/*')) {
-            
+        // A rota dinâmica de mocks agora está explicitamente isolada sob api/mock/
+        if ($request->is('api/mock/*')) {
             $origin = $request->header('Origin') ?: '*';
 
             // Intercepta requisições OPTIONS (preflight)

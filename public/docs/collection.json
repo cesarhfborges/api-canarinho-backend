@@ -10,7 +10,7 @@
     ],
     "info": {
         "name": "API Canarinho",
-        "_postman_id": "a53f788a-7682-416a-866a-982e5ea1b470",
+        "_postman_id": "f9ba53f2-d187-4cb5-b577-042c4eeefcd4",
         "description": "TESTE",
         "schema": "https:\/\/schema.getpostman.com\/json\/collection\/v2.1.0\/collection.json",
         "version": "2.0.0"
@@ -42,7 +42,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"username\":\"dolore\",\"password\":\"quos\"}"
+                            "raw": "{\"username\":\"veniam\",\"password\":\"eum\"}"
                         },
                         "description": "Realiza a autentica\u00e7\u00e3o e retorna um Cookie HttpOnly.",
                         "auth": {
@@ -73,7 +73,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"name\":\"xqovulwkikdgcsjp\",\"username\":\"oq\",\"email\":\"thora.schuster@example.net\",\"password\":\"&J)\\\/!y:^\"}"
+                            "raw": "{\"name\":\"znmzheszxwt\",\"username\":\"d\",\"email\":\"dee.bins@example.com\",\"password\":\"0RHpwmzn$:Cdlu+\\\\os>\"}"
                         },
                         "description": "Cria um novo usu\u00e1rio comum, caso a configura\u00e7\u00e3o ALLOW_REGISTRATION esteja ativa.",
                         "auth": {
@@ -147,7 +147,7 @@
                                 },
                                 {
                                     "key": "x-ratelimit-remaining",
-                                    "value": "1731"
+                                    "value": "1980"
                                 },
                                 {
                                     "key": "vary",
@@ -182,7 +182,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"name\":\"zz\"}"
+                            "raw": "{\"name\":\"swmsfsrdwcsikhnbdfwogqwma\",\"theme_color_scheme\":\"light\"}"
                         },
                         "description": "Atualiza os dados b\u00e1sicos do pr\u00f3prio usu\u00e1rio logado."
                     },
@@ -210,7 +210,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"password\":\":*0g@n|yyhU*:>'DXR*\\\\\"}"
+                            "raw": "{\"password\":\"Q`(Ow\\\\T]z}@\"}"
                         },
                         "description": "Atualiza a senha do pr\u00f3prio usu\u00e1rio logado."
                     },
@@ -262,7 +262,7 @@
                                 },
                                 {
                                     "key": "x-ratelimit-remaining",
-                                    "value": "1726"
+                                    "value": "1974"
                                 },
                                 {
                                     "key": "vary",
@@ -297,7 +297,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"name\":\"b\",\"slug\":\"bizhvbenhsbr\"}"
+                            "raw": "{\"name\":\"mymqqzvhelbyrnus\",\"slug\":\"noaytzsyrmbxghbj\"}"
                         },
                         "description": "Cria um novo projeto e gera seu slug."
                     },
@@ -315,7 +315,7 @@
                                 {
                                     "id": "id",
                                     "key": "id",
-                                    "value": "molestiae",
+                                    "value": "sed",
                                     "description": ""
                                 }
                             ]
@@ -351,7 +351,7 @@
                                 },
                                 {
                                     "key": "x-ratelimit-remaining",
-                                    "value": "1725"
+                                    "value": "1973"
                                 },
                                 {
                                     "key": "vary",
@@ -376,7 +376,7 @@
                                 {
                                     "id": "id",
                                     "key": "id",
-                                    "value": "dolor",
+                                    "value": "nisi",
                                     "description": ""
                                 }
                             ]
@@ -394,7 +394,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"name\":\"nbu\",\"slug\":\"akcj\"}"
+                            "raw": "{\"name\":\"d\",\"slug\":\"xluxpzgsrxb\"}"
                         },
                         "description": "Atualiza os dados de um projeto existente."
                     },
@@ -412,7 +412,7 @@
                                 {
                                     "id": "id",
                                     "key": "id",
-                                    "value": "voluptas",
+                                    "value": "est",
                                     "description": ""
                                 }
                             ]
@@ -451,7 +451,7 @@
                                 {
                                     "id": "projectId",
                                     "key": "projectId",
-                                    "value": "ullam",
+                                    "value": "architecto",
                                     "description": ""
                                 }
                             ]
@@ -487,7 +487,7 @@
                                 },
                                 {
                                     "key": "x-ratelimit-remaining",
-                                    "value": "1724"
+                                    "value": "1972"
                                 },
                                 {
                                     "key": "vary",
@@ -512,7 +512,7 @@
                                 {
                                     "id": "projectId",
                                     "key": "projectId",
-                                    "value": "ex",
+                                    "value": "dicta",
                                     "description": ""
                                 }
                             ]
@@ -530,7 +530,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"name\":\"natus\",\"generator\":\"voluptate\"}"
+                            "raw": "{\"name\":\"non\",\"generator\":\"expedita\"}"
                         },
                         "description": "Adiciona um novo endpoint ao projeto especificando as configura\u00e7\u00f5es de CRUD."
                     },
@@ -548,13 +548,13 @@
                                 {
                                     "id": "projectId",
                                     "key": "projectId",
-                                    "value": "aut",
+                                    "value": "qui",
                                     "description": ""
                                 },
                                 {
                                     "id": "id",
                                     "key": "id",
-                                    "value": "quae",
+                                    "value": "molestiae",
                                     "description": ""
                                 }
                             ]
@@ -590,7 +590,7 @@
                                 },
                                 {
                                     "key": "x-ratelimit-remaining",
-                                    "value": "1723"
+                                    "value": "1971"
                                 },
                                 {
                                     "key": "vary",
@@ -615,7 +615,7 @@
                                 {
                                     "id": "id",
                                     "key": "id",
-                                    "value": "nulla",
+                                    "value": "et",
                                     "description": ""
                                 }
                             ]
@@ -633,7 +633,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"name\":\"autem\",\"generator\":\"qui\"}"
+                            "raw": "{\"name\":\"voluptatem\",\"generator\":\"modi\"}"
                         },
                         "description": "Altera as configura\u00e7\u00f5es e permiss\u00f5es de um endpoint existente."
                     },
@@ -651,7 +651,7 @@
                                 {
                                     "id": "id",
                                     "key": "id",
-                                    "value": "numquam",
+                                    "value": "ut",
                                     "description": ""
                                 }
                             ]
@@ -690,13 +690,13 @@
                                 {
                                     "id": "projectId",
                                     "key": "projectId",
-                                    "value": "qui",
+                                    "value": "quibusdam",
                                     "description": ""
                                 },
                                 {
                                     "id": "id",
                                     "key": "id",
-                                    "value": "quis",
+                                    "value": "autem",
                                     "description": ""
                                 }
                             ]
@@ -714,7 +714,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"count\":14}"
+                            "raw": "{\"count\":17}"
                         },
                         "description": "Gera e armazena registros falsos baseados no `resourceSchema` do Endpoint.\nOpcionalmente, envie o par\u00e2metro `count` no body (padr\u00e3o 10)."
                     },
@@ -738,7 +738,7 @@
                                 {
                                     "id": "projectId",
                                     "key": "projectId",
-                                    "value": "debitis",
+                                    "value": "ea",
                                     "description": ""
                                 }
                             ]
@@ -774,7 +774,7 @@
                                 },
                                 {
                                     "key": "x-ratelimit-remaining",
-                                    "value": "1722"
+                                    "value": "1970"
                                 },
                                 {
                                     "key": "vary",
@@ -799,7 +799,7 @@
                                 {
                                     "id": "projectId",
                                     "key": "projectId",
-                                    "value": "eius",
+                                    "value": "et",
                                     "description": ""
                                 }
                             ]
@@ -817,7 +817,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"name\":\"odio\"}"
+                            "raw": "{\"name\":\"earum\"}"
                         },
                         "description": "Gera um novo token para acesso \u00e0 Mock API Din\u00e2mica."
                     },
@@ -835,7 +835,7 @@
                                 {
                                     "id": "id",
                                     "key": "id",
-                                    "value": "eius",
+                                    "value": "velit",
                                     "description": ""
                                 }
                             ]
@@ -902,7 +902,7 @@
                                 },
                                 {
                                     "key": "x-ratelimit-remaining",
-                                    "value": "1728"
+                                    "value": "1976"
                                 },
                                 {
                                     "key": "vary",
@@ -937,7 +937,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"name\":\"thrbpgsnft\",\"username\":\"fyhekvefrymnntrrnja\",\"email\":\"citlalli.boehm@example.org\",\"password\":\"P&&gaEcdD,Y*H6[c-q,\",\"is_admin\":true,\"is_active\":false}"
+                            "raw": "{\"name\":\"ysblinwaduqunuivxrzyud\",\"username\":\"mi\",\"email\":\"jan75@example.org\",\"password\":\"DPd9ONR60zH\\\"nw\\\"\",\"is_admin\":true,\"is_active\":false}"
                         },
                         "description": ""
                     },
@@ -955,7 +955,7 @@
                                 {
                                     "id": "id",
                                     "key": "id",
-                                    "value": "autem",
+                                    "value": "perferendis",
                                     "description": ""
                                 }
                             ]
@@ -991,7 +991,7 @@
                                 },
                                 {
                                     "key": "x-ratelimit-remaining",
-                                    "value": "1727"
+                                    "value": "1975"
                                 },
                                 {
                                     "key": "vary",
@@ -1016,7 +1016,7 @@
                                 {
                                     "id": "id",
                                     "key": "id",
-                                    "value": "eaque",
+                                    "value": "perferendis",
                                     "description": ""
                                 }
                             ]
@@ -1034,7 +1034,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"name\":\"dejrv\",\"is_admin\":false,\"is_active\":false}"
+                            "raw": "{\"name\":\"qrfctnmmsevkxaq\",\"is_admin\":true,\"is_active\":false}"
                         },
                         "description": ""
                     },
@@ -1052,7 +1052,7 @@
                                 {
                                     "id": "id",
                                     "key": "id",
-                                    "value": "illo",
+                                    "value": "nisi",
                                     "description": ""
                                 }
                             ]
@@ -1085,7 +1085,7 @@
                                 {
                                     "id": "id",
                                     "key": "id",
-                                    "value": "ab",
+                                    "value": "voluptates",
                                     "description": ""
                                 }
                             ]
@@ -1103,7 +1103,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"password\":\"coABB#~\"}"
+                            "raw": "{\"password\":\"1<M.\\\/|V?1Gk.KD-R`<\"}"
                         },
                         "description": ""
                     },
@@ -1127,7 +1127,7 @@
                                 {
                                     "id": "endpointId",
                                     "key": "endpointId",
-                                    "value": "nam",
+                                    "value": "molestiae",
                                     "description": ""
                                 }
                             ]
@@ -1163,7 +1163,7 @@
                                 },
                                 {
                                     "key": "x-ratelimit-remaining",
-                                    "value": "1721"
+                                    "value": "1969"
                                 },
                                 {
                                     "key": "vary",
@@ -1188,7 +1188,7 @@
                                 {
                                     "id": "endpointId",
                                     "key": "endpointId",
-                                    "value": "sint",
+                                    "value": "est",
                                     "description": ""
                                 }
                             ]
@@ -1206,7 +1206,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"condition_type\":\"query\",\"condition_key\":\"saepe\",\"condition_operator\":\"equals\",\"condition_value\":\"et\",\"response_status\":3}"
+                            "raw": "{\"condition_type\":\"body\",\"condition_key\":\"placeat\",\"condition_operator\":\"not_equals\",\"condition_value\":\"et\",\"response_status\":19}"
                         },
                         "description": "Adiciona uma nova condi\u00e7\u00e3o (Header, Query ou Body) que altera a resposta do endpoint."
                     },
@@ -1224,7 +1224,7 @@
                                 {
                                     "id": "id",
                                     "key": "id",
-                                    "value": "perspiciatis",
+                                    "value": "repudiandae",
                                     "description": ""
                                 }
                             ]
@@ -1242,7 +1242,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"condition_type\":\"body\",\"condition_key\":\"sequi\",\"condition_operator\":\"not_equals\",\"condition_value\":\"quo\",\"response_status\":7}"
+                            "raw": "{\"condition_type\":\"body\",\"condition_key\":\"voluptatum\",\"condition_operator\":\"contains\",\"condition_value\":\"non\",\"response_status\":1}"
                         },
                         "description": "Altera as propriedades de uma regra din\u00e2mica existente."
                     },
@@ -1260,7 +1260,7 @@
                                 {
                                     "id": "id",
                                     "key": "id",
-                                    "value": "atque",
+                                    "value": "ullam",
                                     "description": ""
                                 }
                             ]
@@ -1288,30 +1288,30 @@
             "description": "\nO Endpoint Coringa respons\u00e1vel por responder aos Mocks configurados no painel.\nTodas as requisi\u00e7\u00f5es devem vir autenticadas pelo Header `X-Project-Token` ou Bearer Token.",
             "item": [
                 {
-                    "name": "GET api\/{username}\/{projectSlug}\/{path:.*}",
+                    "name": "GET api\/mock\/{username}\/{projectSlug}\/{path:.*}",
                     "request": {
                         "url": {
                             "host": "{{baseUrl}}",
-                            "path": "api\/:username\/:projectSlug\/{path:.*}",
+                            "path": "api\/mock\/:username\/:projectSlug\/{path:.*}",
                             "query": [],
-                            "raw": "{{baseUrl}}\/api\/:username\/:projectSlug\/{path:.*}",
+                            "raw": "{{baseUrl}}\/api\/mock\/:username\/:projectSlug\/{path:.*}",
                             "variable": [
                                 {
                                     "id": "username",
                                     "key": "username",
-                                    "value": "ducimus",
+                                    "value": "possimus",
                                     "description": ""
                                 },
                                 {
                                     "id": "projectSlug",
                                     "key": "projectSlug",
-                                    "value": "consequatur",
+                                    "value": "tempora",
                                     "description": ""
                                 },
                                 {
                                     "id": "path",
                                     "key": "path",
-                                    "value": "nesciunt",
+                                    "value": "molestiae",
                                     "description": ""
                                 }
                             ]
@@ -1350,11 +1350,27 @@
                                 },
                                 {
                                     "key": "x-ratelimit-remaining",
-                                    "value": "1720"
+                                    "value": "1968"
                                 },
                                 {
                                     "key": "vary",
                                     "value": "Origin"
+                                },
+                                {
+                                    "key": "access-control-allow-origin",
+                                    "value": "*"
+                                },
+                                {
+                                    "key": "access-control-allow-methods",
+                                    "value": "GET, POST, PUT, PATCH, DELETE, OPTIONS"
+                                },
+                                {
+                                    "key": "access-control-allow-headers",
+                                    "value": "Content-Type, Authorization, X-Requested-With, X-Project-Token, Accept"
+                                },
+                                {
+                                    "key": "access-control-allow-credentials",
+                                    "value": "true"
                                 }
                             ],
                             "code": 401,
@@ -1364,30 +1380,30 @@
                     ]
                 },
                 {
-                    "name": "POST api\/{username}\/{projectSlug}\/{path:.*}",
+                    "name": "POST api\/mock\/{username}\/{projectSlug}\/{path:.*}",
                     "request": {
                         "url": {
                             "host": "{{baseUrl}}",
-                            "path": "api\/:username\/:projectSlug\/{path:.*}",
+                            "path": "api\/mock\/:username\/:projectSlug\/{path:.*}",
                             "query": [],
-                            "raw": "{{baseUrl}}\/api\/:username\/:projectSlug\/{path:.*}",
+                            "raw": "{{baseUrl}}\/api\/mock\/:username\/:projectSlug\/{path:.*}",
                             "variable": [
                                 {
                                     "id": "username",
                                     "key": "username",
-                                    "value": "eveniet",
+                                    "value": "ducimus",
                                     "description": ""
                                 },
                                 {
                                     "id": "projectSlug",
                                     "key": "projectSlug",
-                                    "value": "corporis",
+                                    "value": "sed",
                                     "description": ""
                                 },
                                 {
                                     "id": "path",
                                     "key": "path",
-                                    "value": "aut",
+                                    "value": "esse",
                                     "description": ""
                                 }
                             ]
@@ -1412,30 +1428,30 @@
                     "response": []
                 },
                 {
-                    "name": "PUT api\/{username}\/{projectSlug}\/{path:.*}",
+                    "name": "PUT api\/mock\/{username}\/{projectSlug}\/{path:.*}",
                     "request": {
                         "url": {
                             "host": "{{baseUrl}}",
-                            "path": "api\/:username\/:projectSlug\/{path:.*}",
+                            "path": "api\/mock\/:username\/:projectSlug\/{path:.*}",
                             "query": [],
-                            "raw": "{{baseUrl}}\/api\/:username\/:projectSlug\/{path:.*}",
+                            "raw": "{{baseUrl}}\/api\/mock\/:username\/:projectSlug\/{path:.*}",
                             "variable": [
                                 {
                                     "id": "username",
                                     "key": "username",
-                                    "value": "animi",
+                                    "value": "veniam",
                                     "description": ""
                                 },
                                 {
                                     "id": "projectSlug",
                                     "key": "projectSlug",
-                                    "value": "sit",
+                                    "value": "quo",
                                     "description": ""
                                 },
                                 {
                                     "id": "path",
                                     "key": "path",
-                                    "value": "veritatis",
+                                    "value": "ullam",
                                     "description": ""
                                 }
                             ]
@@ -1460,30 +1476,30 @@
                     "response": []
                 },
                 {
-                    "name": "PATCH api\/{username}\/{projectSlug}\/{path:.*}",
+                    "name": "PATCH api\/mock\/{username}\/{projectSlug}\/{path:.*}",
                     "request": {
                         "url": {
                             "host": "{{baseUrl}}",
-                            "path": "api\/:username\/:projectSlug\/{path:.*}",
+                            "path": "api\/mock\/:username\/:projectSlug\/{path:.*}",
                             "query": [],
-                            "raw": "{{baseUrl}}\/api\/:username\/:projectSlug\/{path:.*}",
+                            "raw": "{{baseUrl}}\/api\/mock\/:username\/:projectSlug\/{path:.*}",
                             "variable": [
                                 {
                                     "id": "username",
                                     "key": "username",
-                                    "value": "est",
+                                    "value": "porro",
                                     "description": ""
                                 },
                                 {
                                     "id": "projectSlug",
                                     "key": "projectSlug",
-                                    "value": "blanditiis",
+                                    "value": "facere",
                                     "description": ""
                                 },
                                 {
                                     "id": "path",
                                     "key": "path",
-                                    "value": "ipsam",
+                                    "value": "ex",
                                     "description": ""
                                 }
                             ]
@@ -1508,30 +1524,30 @@
                     "response": []
                 },
                 {
-                    "name": "DELETE api\/{username}\/{projectSlug}\/{path:.*}",
+                    "name": "DELETE api\/mock\/{username}\/{projectSlug}\/{path:.*}",
                     "request": {
                         "url": {
                             "host": "{{baseUrl}}",
-                            "path": "api\/:username\/:projectSlug\/{path:.*}",
+                            "path": "api\/mock\/:username\/:projectSlug\/{path:.*}",
                             "query": [],
-                            "raw": "{{baseUrl}}\/api\/:username\/:projectSlug\/{path:.*}",
+                            "raw": "{{baseUrl}}\/api\/mock\/:username\/:projectSlug\/{path:.*}",
                             "variable": [
                                 {
                                     "id": "username",
                                     "key": "username",
-                                    "value": "ea",
+                                    "value": "blanditiis",
                                     "description": ""
                                 },
                                 {
                                     "id": "projectSlug",
                                     "key": "projectSlug",
-                                    "value": "asperiores",
+                                    "value": "cumque",
                                     "description": ""
                                 },
                                 {
                                     "id": "path",
                                     "key": "path",
-                                    "value": "ducimus",
+                                    "value": "cum",
                                     "description": ""
                                 }
                             ]
@@ -1601,7 +1617,7 @@
                                 },
                                 {
                                     "key": "x-ratelimit-remaining",
-                                    "value": "1730"
+                                    "value": "1979"
                                 },
                                 {
                                     "key": "vary",
@@ -1679,7 +1695,60 @@
                                 },
                                 {
                                     "key": "x-ratelimit-remaining",
-                                    "value": "1729"
+                                    "value": "1978"
+                                },
+                                {
+                                    "key": "vary",
+                                    "value": "Origin"
+                                }
+                            ],
+                            "code": 401,
+                            "body": "{\"error\":\"Unauthorized.\"}",
+                            "name": ""
+                        }
+                    ]
+                },
+                {
+                    "name": "Obter Rate Limit Atual",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/admin\/dashboard\/rate-limit",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/admin\/dashboard\/rate-limit"
+                        },
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": null,
+                        "description": "Retorna o uso atual do limite de requisi\u00e7\u00f5es baseado nas chamadas dos endpoints do usu\u00e1rio."
+                    },
+                    "response": [
+                        {
+                            "header": [
+                                {
+                                    "key": "cache-control",
+                                    "value": "no-cache, private"
+                                },
+                                {
+                                    "key": "content-type",
+                                    "value": "application\/json"
+                                },
+                                {
+                                    "key": "x-ratelimit-limit",
+                                    "value": "2000"
+                                },
+                                {
+                                    "key": "x-ratelimit-remaining",
+                                    "value": "1977"
                                 },
                                 {
                                     "key": "vary",
@@ -1741,15 +1810,31 @@
                                 },
                                 {
                                     "key": "x-ratelimit-remaining",
-                                    "value": "1733"
+                                    "value": "1983"
                                 },
                                 {
                                     "key": "vary",
                                     "value": "Origin"
+                                },
+                                {
+                                    "key": "access-control-allow-origin",
+                                    "value": "*"
+                                },
+                                {
+                                    "key": "access-control-allow-methods",
+                                    "value": "GET, POST, PUT, PATCH, DELETE, OPTIONS"
+                                },
+                                {
+                                    "key": "access-control-allow-headers",
+                                    "value": "Content-Type, Authorization, X-Requested-With, X-Project-Token, Accept"
+                                },
+                                {
+                                    "key": "access-control-allow-credentials",
+                                    "value": "true"
                                 }
                             ],
                             "code": 200,
-                            "body": "{\"status\":\"ok\",\"message\":\"System is healthy\",\"timestamp\":1782158341}",
+                            "body": "{\"status\":\"ok\",\"message\":\"System is healthy\",\"timestamp\":1782319566}",
                             "name": ""
                         }
                     ]
@@ -1797,7 +1882,7 @@
                                 },
                                 {
                                     "key": "x-ratelimit-remaining",
-                                    "value": "1732"
+                                    "value": "1982"
                                 },
                                 {
                                     "key": "vary",
@@ -1809,6 +1894,121 @@
                             "name": ""
                         }
                     ]
+                },
+                {
+                    "name": "Get all system configurations.",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/system\/config",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/system\/config"
+                        },
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": null,
+                        "description": "",
+                        "auth": {
+                            "type": "noauth"
+                        }
+                    },
+                    "response": [
+                        {
+                            "header": [
+                                {
+                                    "key": "cache-control",
+                                    "value": "no-cache, private"
+                                },
+                                {
+                                    "key": "content-type",
+                                    "value": "application\/json"
+                                },
+                                {
+                                    "key": "x-ratelimit-limit",
+                                    "value": "2000"
+                                },
+                                {
+                                    "key": "x-ratelimit-remaining",
+                                    "value": "1981"
+                                },
+                                {
+                                    "key": "vary",
+                                    "value": "Origin"
+                                }
+                            ],
+                            "code": 200,
+                            "body": "{\"allow_register\":true,\"rate_limit_requests\":\"2000\",\"rate_limit_time\":\"60\",\"theme_color_scheme\":\"auto\",\"theme_menuMode\":\"static\",\"theme_preset\":\"Aura\",\"theme_primary\":\"emerald\",\"theme_surface\":null}",
+                            "name": ""
+                        }
+                    ]
+                },
+                {
+                    "name": "Update multiple configuration values.",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/admin\/config",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/admin\/config"
+                        },
+                        "method": "PUT",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\"allow_register\":true,\"rate_limit_requests\":62,\"rate_limit_time\":6,\"theme_preset\":\"Aura\",\"theme_primary\":\"repellendus\",\"theme_surface\":\"neutral\",\"theme_menuMode\":\"overlay\",\"theme_color_scheme\":\"light\"}"
+                        },
+                        "description": "",
+                        "auth": {
+                            "type": "noauth"
+                        }
+                    },
+                    "response": []
+                },
+                {
+                    "name": "Clear application cache.",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/admin\/cache\/clear",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/admin\/cache\/clear"
+                        },
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": null,
+                        "description": "",
+                        "auth": {
+                            "type": "noauth"
+                        }
+                    },
+                    "response": []
                 }
             ]
         }

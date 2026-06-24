@@ -78,7 +78,7 @@ class UserController extends Controller
 
         $this->validate($request, [
             'name' => 'required|string|max:255',
-            'username' => 'required|string|max:255|unique:users',
+            'username' => 'required|string|max:255|unique:users|not_in:admin,api,mock,system,health',
             'email' => 'required|string|email|max:255|unique:users',
             'password' => 'required|string|min:6',
             'is_admin' => 'boolean',
@@ -109,7 +109,7 @@ class UserController extends Controller
 
         $this->validate($request, [
             'name' => 'sometimes|required|string|max:255',
-            'username' => 'sometimes|required|string|max:255|unique:users,username,' . $user->id,
+            'username' => 'sometimes|required|string|max:255|unique:users,username,' . $user->id . '|not_in:admin,api,mock,system,health',
             'email' => 'sometimes|required|string|email|max:255|unique:users,email,' . $user->id,
             'is_admin' => 'boolean',
             'is_active' => 'boolean'

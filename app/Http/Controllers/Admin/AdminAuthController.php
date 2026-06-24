@@ -104,7 +104,7 @@ class AdminAuthController extends Controller
 
         $this->validate($request, [
             'name' => 'required|string|max:255',
-            'username' => 'required|string|max:255|unique:users',
+            'username' => 'required|string|max:255|unique:users|not_in:admin,api,mock,system,health',
             'email' => 'required|string|email|max:255|unique:users',
             'password' => 'required|string|min:6|confirmed',
         ]);
