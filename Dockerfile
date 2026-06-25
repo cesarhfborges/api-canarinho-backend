@@ -48,21 +48,20 @@ RUN rm -f /etc/nginx/sites-enabled/default
 # ============================
 COPY --from=composer:2 /usr/bin/composer /usr/bin/composer
 
-#USER www-data
-
 # ============================
 # Copia o projeto
 # ============================
-COPY . .
+COPY --chown=www-data:www-data . .
 
 # ============================
 # Instala dependências PHP
 # ============================
-RUN composer install \
+RUN su www-data -s /bin/sh -c "\
+composer install \
     --no-dev \
     --no-interaction \
     --prefer-dist \
-    --optimize-autoloader
+    --optimize-autoloader"
 
 # ============================
 # Permissões (Laravel/Lumen)
