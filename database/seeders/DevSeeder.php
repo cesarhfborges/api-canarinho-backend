@@ -46,7 +46,7 @@ class DevSeeder extends Seeder
                     ['name' => 'nome', 'type' => 'Faker.js', 'value' => '[person.fullName]'],
                     ['name' => 'email', 'type' => 'Faker.js', 'value' => '[internet.email]'],
                     ['name' => 'cidade', 'type' => 'Faker.js', 'value' => '[location.city]'],
-                    ['name' => 'ativo', 'type' => 'Boolean']
+                    ['name' => 'ativo', 'type' => 'Boolean', 'value' => false],
                 ]
             ],
             [
@@ -54,7 +54,7 @@ class DevSeeder extends Seeder
                 'schema' => [
                     ['name' => 'id', 'type' => 'Object.ID'],
                     ['name' => 'titulo', 'type' => 'Faker.js', 'value' => '[word.words]'],
-                    ['name' => 'preco', 'type' => 'Number'],
+                    ['name' => 'preco', 'type' => 'Number', 'value' => 0],
                     ['name' => 'descricao', 'type' => 'Faker.js', 'value' => '[word.sentence]']
                 ]
             ],
@@ -62,8 +62,8 @@ class DevSeeder extends Seeder
                 'name' => 'pedidos',
                 'schema' => [
                     ['name' => 'id', 'type' => 'Object.ID'],
-                    ['name' => 'id_usuario', 'type' => 'Object.ID'], // Simulate relation
-                    ['name' => 'total', 'type' => 'Number'],
+                    ['name' => 'id_usuario', 'type' => 'Object.ID'],
+                    ['name' => 'total', 'type' => 'Number', 'value' => 0],
                     ['name' => 'data', 'type' => 'Faker.js', 'value' => '[date.recent]']
                 ]
             ],

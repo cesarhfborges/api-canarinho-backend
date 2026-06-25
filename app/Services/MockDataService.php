@@ -300,20 +300,33 @@ class MockDataService
         } elseif ($type === 'Faker.js') {
             $fakerValue = $field['value'] ?? '[word.word]';
             return $this->mapFakerValue($faker, $fakerValue);
+        } elseif ($type === 'Array') {
+            $valueString = $field['value'] ?? '';
+            if ($valueString === '') {
+                return null;
+            }
+
+            // Transforma a string em array dividindo por vírgula e remove espaços extras do começo e fim de cada item
+            $items = array_map('trim', explode(',', $valueString));
+
+            // Remove possíveis itens vazios caso o usuário digite algo como "cesar, , lucas"
+            $items = array_filter($items, fn($item) => $item !== '');
+
+            // Pega um item aleatório do array
+            return !empty($items) ? $faker->randomElement(array_values($items)) : null;
         } else {
             if (isset($field['value']) && $field['value'] !== '') {
                 return $field['value'];
             } else {
-                if ($type === 'String') {
-                    return Str::random(10);
-                } elseif ($type === 'Number') {
-                    return $faker->randomNumber();
-                } elseif ($type === 'Boolean') {
-                    return $faker->boolean();
-                } elseif ($type === 'Date') {
-                    return Carbon::now()->toDateTimeString();
-                } else {
-                    return null;
+                switch ($type) {
+                    case 'String':
+                        return Str::random(10);
+                    case 'Number':
+                        return $faker->randomNumber();
+                    case 'Boolean':
+                        return $faker->boolean();
+                    default:
+                        return null;
                 }
             }
         }
