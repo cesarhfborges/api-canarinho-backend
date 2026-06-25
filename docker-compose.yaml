@@ -10,7 +10,7 @@ services:
       - 'APP_NAME=${APP_NAME:-CANARINHO}'
       - 'APP_DEBUG=${APP_DEBUG:-false}'
       - 'APP_KEY=${SERVICE_BASE64_64_KEY}'
-      - 'APP_URL=${SERVICE_URL_NGINX}'
+      - 'APP_URL=${SERVICE_URL_APP}'
       - 'APP_TIMEZONE=${APP_TIMEZONE:-America/Sao_Paulo}'
       - 'APP_LOCALE=${APP_LOCALE:-pt-BR}'
       - 'RATE_LIMIT_REQUESTS=${RATE_LIMIT_REQUESTS:-2000}'
