@@ -1,33 +1,12 @@
 services:
-  nginx:
-    image: nginx:1.25-alpine
-    restart: unless-stopped
-    labels:
-      - coolify.application.subType=service
-    environment:
-      - SERVICE_URL_NGINX_80
-    volumes:
-      - ./docker/nginx/default.conf:/etc/nginx/conf.d/default.conf:ro
-    healthcheck:
-      test: [ "CMD", "curl", "--fail", "http://127.0.0.1:80" ]
-      interval: 1m
-      timeout: 5s
-      retries: 5
-      start_period: 30s
-    depends_on:
-      app:
-        condition: service_healthy
-    networks:
-      - lumen_net
   app:
     build: .
     restart: unless-stopped
     working_dir: /var/www/html
-    labels:
-      - coolify.application.subType=application
     volumes:
       - app_storage:/var/www/html/storage
     environment:
+      - SERVICE_URL_APP_80
       - 'APP_NAME=${APP_NAME:-CANARINHO}'
       - 'APP_DEBUG=${APP_DEBUG:-false}'
       - 'APP_KEY=${SERVICE_BASE64_64_KEY}'
@@ -53,7 +32,7 @@ services:
       - 'CACHE_DRIVER=${CACHE_DRIVER:-file}'
       - 'QUEUE_CONNECTION=${QUEUE_CONNECTION:-database}'
     healthcheck:
-      test: [ "CMD", "pgrep", "-f", "php-fpm" ]
+      test: [ "CMD", "curl", "--fail", "http://127.0.0.1:80" ]
       interval: 30s
       timeout: 5s
       retries: 3

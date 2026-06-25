@@ -6,9 +6,12 @@ WORKDIR /var/www/html
 # Dependências do sistema
 # ============================
 RUN apt-get update && apt-get install -y \
+    nginx \
+    supervisor \
     git \
     unzip \
     procps \
+    curl \
     libzip-dev \
     libpng-dev \
     libjpeg-dev \
@@ -31,9 +34,14 @@ RUN docker-php-ext-configure gd --with-freetype --with-jpeg \
 
 
 # ============================
-# Config OPCACHE
+# Configurações
 # ============================
 COPY docker/php/opcache.ini /usr/local/etc/php/conf.d/opcache.ini
+COPY docker/nginx/default.conf /etc/nginx/conf.d/default.conf
+COPY docker/supervisor/supervisord.conf /etc/supervisor/conf.d/supervisord.conf
+
+# Remove configuração padrão do nginx
+RUN rm -f /etc/nginx/sites-enabled/default
 
 # ============================
 # Composer (oficial)
@@ -66,6 +74,6 @@ RUN mkdir -p \
     && chown -R www-data:www-data storage \
     && chmod -R 775 storage storage/logs storage/framework/cache storage/framework/views storage/app
 
-EXPOSE 9000
+EXPOSE 80
 
-CMD ["php-fpm"]
+CMD ["/usr/bin/supervisord","-n","-c","/etc/supervisor/conf.d/supervisord.conf"]
