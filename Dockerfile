@@ -48,12 +48,12 @@ RUN rm -f /etc/nginx/sites-enabled/default
 # ============================
 COPY --from=composer:2 /usr/bin/composer /usr/bin/composer
 
-USER www-data
+#USER www-data
 
 # ============================
 # Copia o projeto
 # ============================
-COPY --chown=www-data:www-data . .
+COPY . .
 
 # ============================
 # Instala dependências PHP
@@ -71,8 +71,13 @@ RUN mkdir -p \
     storage/logs \
     storage/framework/cache \
     storage/framework/views \
-    && chown -R www-data:www-data storage \
-    && chmod -R 775 storage storage/logs storage/framework/cache storage/framework/views storage/app
+    storage/app \
+    bootstrap/cache \
+ && chown -R www-data:www-data \
+    /var/www/html \
+ && chmod -R 775 \
+    storage \
+    bootstrap/cache
 
 EXPOSE 80
 
