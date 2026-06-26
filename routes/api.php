@@ -29,6 +29,10 @@ $router->group(['prefix' => 'api/admin', 'namespace' => 'Admin'], function () us
     $router->post('login', 'AdminAuthController@login');
     $router->post('register', 'AdminAuthController@register');
     $router->post('logout', 'AdminAuthController@logout');
+    
+    // Password Reset
+    $router->post('password/reset-request', 'AdminAuthController@resetPasswordRequest');
+    $router->post('password/change', 'AdminAuthController@changePassword');
 
     // Protected Admin Routes
     $router->group(['middleware' => 'auth'], function () use ($router) {

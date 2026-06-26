@@ -7,7 +7,9 @@
     "require": {
         "php": "^8.1",
         "fakerphp/faker": "^1.24",
-        "laravel/lumen-framework": "^10.0",
+        "guzzlehttp/guzzle": "^7.8",
+        "illuminate/mail": "^10.0",
+        "laravel/lumen-framework": "~10.0",
         "lucascudo/laravel-pt-br-localization": "^3.0"
     },
     "require-dev": {
@@ -32,11 +34,15 @@
             "@php -r \"file_exists('.env') || copy('.env.example', '.env');\""
         ]
     },
+    "prefer-stable": true,
     "config": {
         "optimize-autoloader": true,
         "preferred-install": "dist",
-        "sort-packages": true
-    },
-    "minimum-stability": "stable",
-    "prefer-stable": true
+        "sort-packages": true,
+        "audit": {
+            "ignore": {
+                "illuminate/mail": "PKSA-zwc5-qtrz-zm1n"
+            }
+        }
+    }
 }
