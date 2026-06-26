@@ -31,6 +31,8 @@ services:
 
       - 'CACHE_DRIVER=${CACHE_DRIVER:-file}'
       - 'QUEUE_CONNECTION=${QUEUE_CONNECTION:-database}'
+      - 'BREVO_API_KEY=${BREVO_API_KEY:?}'
+      - 'BREVO_SENDER_EMAIL=${BREVO_SENDER_EMAIL:notificacao@chfb.com.br}'
     healthcheck:
       test: [ "CMD", "curl", "--fail", "http://127.0.0.1:80" ]
       interval: 30s

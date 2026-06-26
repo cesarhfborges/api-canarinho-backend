@@ -4,11 +4,15 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 
+use App\Jobs\SendBrevoEmailJob;
+use App\Mail\ResetPassword;
+use App\Models\PasswordReset;
 use App\Models\PersonalAccessToken;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Str;
+use Carbon\Carbon;
 
 /**
  * @group 1. Autenticação Admin
@@ -172,5 +176,73 @@ class AdminAuthController extends Controller
         $user->save();
 
         return response()->json(['message' => 'Password updated successfully']);
+    }
+
+    /**
+     * Solicitar Redefinição de Senha
+     */
+    public function resetPasswordRequest(Request $request)
+    {
+        $this->validate($request, [
+            'username_or_email' => 'required|string'
+        ]);
+
+        $login = $request->input('username_or_email');
+        $user = User::where('email', $login)->orWhere('username', $login)->first();
+
+        if ($user) {
+            $token = bin2hex(random_bytes(69));
+
+            // Soft-delete any existing reset tokens for this user
+            PasswordReset::where('user_id', $user->id)->delete();
+
+            PasswordReset::create([
+                'user_id' => $user->id,
+                'token' => $token,
+                'used' => false,
+                'expires_at' => Carbon::now()->addHours(2)
+            ]);
+
+            $email = new ResetPassword($user, $token);
+            dispatch(new SendBrevoEmailJob($email));
+            
+            return response()->json(['message' => 'Se o usuário existir, um e-mail de recuperação será enviado.'], 200);
+        }
+
+        return response()->json(['message' => 'Se o usuário existir, um e-mail de recuperação será enviado.'], 200);
+    }
+
+    /**
+     * Alterar Senha com Token
+     */
+    public function changePassword(Request $request)
+    {
+        $this->validate($request, [
+            'token' => 'required|string',
+            'password' => 'required|string|min:6|confirmed'
+        ]);
+
+        $resetRecord = PasswordReset::where('token', $request->token)
+            ->where('used', false)
+            ->where('expires_at', '>', Carbon::now())
+            ->first();
+
+        if (!$resetRecord) {
+            return response()->json(['message' => 'Token inválido ou expirado.'], 400);
+        }
+
+        $user = $resetRecord->user;
+        if (!$user) {
+            return response()->json(['message' => 'Usuário não encontrado.'], 404);
+        }
+
+        $user->password = Hash::make($request->password);
+        $user->save();
+
+        $resetRecord->used = true;
+        $resetRecord->save();
+        $resetRecord->delete();
+
+        return response()->json(['message' => 'Senha alterada com sucesso.'], 200);
     }
 }
