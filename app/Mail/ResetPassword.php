@@ -27,7 +27,7 @@ class ResetPassword extends Mailable
     {
         $this->name = $usuario->name;
         $this->email = $usuario->email;
-        $this->link = env('FRONT_URL', 'http://localhost:4200') . "/alterar-senha?token={$token}";
+        $this->link = env('FRONTEND_URL', 'http://localhost:4200') . "/alterar-senha?token={$token}";
     }
 
     public function params(): array
