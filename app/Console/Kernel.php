@@ -13,7 +13,7 @@ class Kernel extends ConsoleKernel
      * @var array
      */
     protected $commands = [
-        //
+        \App\Console\Commands\ClearExpiredPasswordResetTokens::class,
     ];
 
     /**
@@ -22,8 +22,8 @@ class Kernel extends ConsoleKernel
      * @param  \Illuminate\Console\Scheduling\Schedule  $schedule
      * @return void
      */
-    protected function schedule(Schedule $schedule)
+    protected function schedule(Schedule $schedule): void
     {
-        //
+        $schedule->command('auth:clear-expired-tokens')->everyMinute();
     }
 }

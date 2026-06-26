@@ -193,6 +193,9 @@ class AdminAuthController extends Controller
         if ($user) {
             $token = bin2hex(random_bytes(69));
 
+            // Soft-delete any existing reset tokens for this user
+            PasswordReset::where('user_id', $user->id)->delete();
+
             PasswordReset::create([
                 'user_id' => $user->id,
                 'token' => $token,
@@ -238,6 +241,7 @@ class AdminAuthController extends Controller
 
         $resetRecord->used = true;
         $resetRecord->save();
+        $resetRecord->delete();
 
         return response()->json(['message' => 'Senha alterada com sucesso.'], 200);
     }
