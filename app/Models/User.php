@@ -25,6 +25,7 @@ class User extends Model implements AuthenticatableContract, AuthorizableContrac
         'password',
         'is_active',
         'is_admin',
+        'last_login',
         'theme_color_scheme'
     ];
 
@@ -42,6 +43,7 @@ class User extends Model implements AuthenticatableContract, AuthorizableContrac
         'is_admin' => 'boolean',
         'created_at' => 'date:Y-m-d\TH:i:s',
         'updated_at' => 'date:Y-m-d\TH:i:s',
+        'last_login' => 'date:Y-m-d\TH:i:s',
     ];
 
 

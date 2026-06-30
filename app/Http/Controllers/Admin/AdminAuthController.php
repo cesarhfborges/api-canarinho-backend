@@ -13,6 +13,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Str;
 use Carbon\Carbon;
+use Symfony\Component\HttpFoundation\Cookie;
 
 /**
  * @group 1. Autenticação Admin
@@ -36,7 +37,9 @@ class AdminAuthController extends Controller
         $user = User::where('username', $request->username)->first();
 
         if (!$user || !Hash::check($request->password, $user->password)) {
-            return response()->json(['error' => 'Unauthorized'], 401);
+            return response()->json([
+                'error' => 'Usuário e/ou senha inválido(s), verifique as credenciais e tente novamente!.',
+            ], 401);
         }
 
         if (!$user->is_active) {
@@ -46,15 +49,24 @@ class AdminAuthController extends Controller
         $plainTextToken = Str::random(40);
         $hashedToken = hash('sha256', $plainTextToken);
 
+        $expires = Carbon::now()->addHours(8);
+
+        if (isset($request->password) && $request->password) {
+            $expires = Carbon::now()->addDays(30);
+        }
+
         PersonalAccessToken::create([
             'tokenable_type' => User::class,
             'tokenable_id' => $user->id,
             'name' => 'admin_session',
             'token' => $hashedToken,
-            'expires_at' => \Carbon\Carbon::now()->addDays(30)
+            'expires_at' => $expires
         ]);
 
-        $cookie = new \Symfony\Component\HttpFoundation\Cookie('admin_token', $plainTextToken, \Carbon\Carbon::now()->addDays(30), '/', null, false, true);
+        $cookie = new Cookie('admin_token', $plainTextToken, $expires, '/', null, false, true);
+
+        $user->last_login = Carbon::now();
+        $user->save();
 
         return response()->json([
             'success' => true,
@@ -87,7 +99,7 @@ class AdminAuthController extends Controller
             PersonalAccessToken::where('token', hash('sha256', $token))->delete();
         }
 
-        $cookie = new \Symfony\Component\HttpFoundation\Cookie('admin_token', null, \Carbon\Carbon::now()->subYears(5), '/', null, false, true);
+        $cookie = new Cookie('admin_token', null, \Carbon\Carbon::now()->subYears(5), '/', null, false, true);
 
         return response()->json(['message' => 'Logged out successfully'])->withCookie($cookie);
     }
@@ -205,7 +217,7 @@ class AdminAuthController extends Controller
 
             $email = new ResetPassword($user, $token);
             dispatch(new SendBrevoEmailJob($email));
-            
+
             return response()->json(['message' => 'Se o usuário existir, um e-mail de recuperação será enviado.'], 200);
         }
 
