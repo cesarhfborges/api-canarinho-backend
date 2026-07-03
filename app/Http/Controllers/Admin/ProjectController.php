@@ -53,7 +53,8 @@ class ProjectController extends Controller
     {
         $this->validate($request, [
             'name' => 'required|string|max:255',
-            'slug' => 'required|string|max:255'
+            'slug' => 'required|string|max:255',
+            'custom_headers' => 'nullable|array'
         ]);
 
         // Check if slug is unique for this user
@@ -63,7 +64,8 @@ class ProjectController extends Controller
 
         $project = $request->user()->projects()->create([
             'name' => $request->name,
-            'slug' => Str::slug($request->slug)
+            'slug' => Str::slug($request->slug),
+            'custom_headers' => $request->custom_headers ?? []
         ]);
 
         return response()->json($project, 201);
@@ -94,7 +96,8 @@ class ProjectController extends Controller
 
         $this->validate($request, [
             'name' => 'sometimes|required|string|max:255',
-            'slug' => 'sometimes|required|string|max:255'
+            'slug' => 'sometimes|required|string|max:255',
+            'custom_headers' => 'nullable|array'
         ]);
 
         if ($request->has('slug') && $request->slug !== $project->slug) {
@@ -105,6 +108,7 @@ class ProjectController extends Controller
         }
 
         if ($request->has('name')) $project->name = $request->name;
+        if ($request->has('custom_headers')) $project->custom_headers = $request->custom_headers;
 
         $project->save();
         return response()->json($project);

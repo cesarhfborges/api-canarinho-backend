@@ -60,7 +60,8 @@ class EndpointController extends Controller
             'name' => 'required|string',
             'generator' => 'nullable|string',
             'endpoints' => 'nullable|array',
-            'resourceSchema' => 'nullable|array'
+            'resourceSchema' => 'nullable|array',
+            'custom_headers' => 'nullable|array'
         ]);
 
         if ($project->endpoints()->where('name', $request->name)->exists()) {
@@ -77,7 +78,8 @@ class EndpointController extends Controller
             'name' => $request->name,
             'generator' => $request->generator,
             'endpoints_config' => $endpoints,
-            'resource_schema' => $resourceSchema
+            'resource_schema' => $resourceSchema,
+            'custom_headers' => $request->custom_headers ?? []
         ]);
 
         return response()->json($endpoint, 201);
@@ -116,7 +118,8 @@ class EndpointController extends Controller
             'name' => 'sometimes|required|string',
             'generator' => 'nullable|string',
             'endpoints' => 'sometimes|nullable|array',
-            'resourceSchema' => 'sometimes|nullable|array'
+            'resourceSchema' => 'sometimes|nullable|array',
+            'custom_headers' => 'nullable|array'
         ]);
 
         if ($request->has('name') && $request->name !== $endpoint->name) {
@@ -139,6 +142,7 @@ class EndpointController extends Controller
 
         if ($request->has('name')) $endpoint->name = $request->name;
         if ($request->has('generator')) $endpoint->generator = $request->generator;
+        if ($request->has('custom_headers')) $endpoint->custom_headers = $request->custom_headers;
         
         $endpoint->endpoints_config = $formattedEndpoints;
         
