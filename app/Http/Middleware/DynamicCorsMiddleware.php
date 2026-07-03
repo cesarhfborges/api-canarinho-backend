@@ -7,6 +7,24 @@ use Illuminate\Http\Request;
 
 class DynamicCorsMiddleware
 {
+    private $allowedHeaders = [
+        'Content-Type',
+        'Authorization',
+        'X-Requested-With',
+        'X-Project-Token',
+        'Accept',
+        'X-Origin'
+    ];
+
+    private array $allowedMethods = [
+        'GET',
+        'POST',
+        'PUT',
+        'PATCH',
+        'DELETE',
+        'OPTIONS'
+    ];
+
     /**
      * Handle an incoming request.
      *
@@ -16,26 +34,25 @@ class DynamicCorsMiddleware
      */
     public function handle(Request $request, Closure $next): mixed
     {
-        // A rota dinâmica de mocks agora está explicitamente isolada sob api/mock/
         if ($request->is('api/mock/*')) {
-            $origin = $request->header('Origin') ?: '*';
+            $origin = $request->header('Origin')
+                ?: $request->header('X-Origin')
+                    ?: '*';
 
-            // Intercepta requisições OPTIONS (preflight)
             if ($request->isMethod('OPTIONS')) {
                 return response('', 200)
                     ->header('Access-Control-Allow-Origin', $origin)
-                    ->header('Access-Control-Allow-Methods', 'GET, POST, PUT, PATCH, DELETE, OPTIONS')
-                    ->header('Access-Control-Allow-Headers', 'Content-Type, Authorization, X-Requested-With, X-Project-Token, Accept')
+                    ->header('Access-Control-Allow-Methods', implode(', ', $this->allowedHeaders))
+                    ->header('Access-Control-Allow-Headers', implode(', ', $this->allowedHeaders))
                     ->header('Access-Control-Allow-Credentials', 'true');
             }
 
-            // Para outras requisições, prossegue normalmente e adiciona os cabeçalhos na resposta
             $response = $next($request);
 
             if (method_exists($response, 'header')) {
                 $response->header('Access-Control-Allow-Origin', $origin)
-                    ->header('Access-Control-Allow-Methods', 'GET, POST, PUT, PATCH, DELETE, OPTIONS')
-                    ->header('Access-Control-Allow-Headers', 'Content-Type, Authorization, X-Requested-With, X-Project-Token, Accept')
+                    ->header('Access-Control-Allow-Methods', implode(', ', $this->allowedHeaders))
+                    ->header('Access-Control-Allow-Headers', implode(', ', $this->allowedHeaders))
                     ->header('Access-Control-Allow-Credentials', 'true');
             }
 

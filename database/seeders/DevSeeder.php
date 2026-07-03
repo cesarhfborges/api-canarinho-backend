@@ -11,7 +11,7 @@ use Illuminate\Support\Str;
 
 class DevSeeder extends Seeder
 {
-    public function run()
+    public function run(): void
     {
         $admin = User::where('username', 'admin')->first();
         if (!$admin) {
@@ -62,9 +62,9 @@ class DevSeeder extends Seeder
                 'name' => 'pedidos',
                 'schema' => [
                     ['name' => 'id', 'type' => 'Object.ID'],
-                    ['name' => 'id_usuario', 'type' => 'Object.ID'],
+                    ['name' => 'id_usuario', 'type' => 'Number', 'value' => 0],
                     ['name' => 'total', 'type' => 'Number', 'value' => 0],
-                    ['name' => 'data', 'type' => 'Faker.js', 'value' => '[date.recent]']
+                    ['name' => 'data', 'type' => 'Faker.js', 'value' => '[date.date_now]']
                 ]
             ],
             [
@@ -79,7 +79,7 @@ class DevSeeder extends Seeder
                 'name' => 'pagamentos',
                 'schema' => [
                     ['name' => 'id', 'type' => 'Object.ID'],
-                    ['name' => 'id_pedido', 'type' => 'Object.ID'],
+                    ['name' => 'id_pedido', 'type' => 'Faker.js', 'value' => '[number.int]'],
                     ['name' => 'metodo', 'type' => 'Faker.js', 'value' => '[word.word]'],
                     ['name' => 'status', 'type' => 'String', 'value' => 'Aprovado']
                 ]
