@@ -281,13 +281,13 @@ class MockDataService
             $name = $field['name'] ?? null;
             if (!$name) continue;
 
-            $record[$name] = $this->generateFieldValue($field, $faker);
+            $record[$name] = $this->generateFieldValue($field, $faker, $record);
         }
 
         return $record;
     }
 
-    public function generateFieldValue(array $field, Generator $faker)
+    public function generateFieldValue(array $field, Generator $faker, array $currentRecord = [])
     {
         $name = $field['name'] ?? null;
         $type = $field['type'] ?? 'String';
@@ -297,6 +297,56 @@ class MockDataService
                 return (string)Str::uuid();
             }
             return null; // id is managed by DB
+        } elseif ($type === 'Conditional') {
+            $valueData = $field['value'] ?? [];
+            if (is_string($valueData)) {
+                $valueData = json_decode($valueData, true);
+            }
+            if (!is_array($valueData)) $valueData = [];
+
+            $dependsOn = $valueData['dependsOn'] ?? null;
+            $conditions = $valueData['conditions'] ?? [];
+            $defaultResultType = $valueData['defaultResultType'] ?? 'String';
+            $defaultResultValue = $valueData['defaultResultValue'] ?? '';
+
+            $baseValue = $currentRecord[$dependsOn] ?? null;
+
+            foreach ($conditions as $cond) {
+                $operator = $cond['operator'] ?? '==';
+                $compareValue = $cond['compareValue'] ?? '';
+
+                $match = false;
+                switch ($operator) {
+                    case '==': $match = $baseValue == $compareValue; break;
+                    case '!=': $match = $baseValue != $compareValue; break;
+                    case '>': $match = $baseValue > $compareValue; break;
+                    case '<': $match = $baseValue < $compareValue; break;
+                    case '>=': $match = $baseValue >= $compareValue; break;
+                    case '<=': $match = $baseValue <= $compareValue; break;
+                    case 'contains':
+                        if (is_array($baseValue)) {
+                            $match = in_array($compareValue, $baseValue);
+                        } else {
+                            $match = str_contains((string)$baseValue, (string)$compareValue);
+                        }
+                        break;
+                }
+
+                if ($match) {
+                    return $this->generateFieldValue([
+                        'name' => $name,
+                        'type' => $cond['resultType'] ?? 'String',
+                        'value' => $cond['resultValue'] ?? ''
+                    ], $faker, $currentRecord);
+                }
+            }
+
+            // Fallback
+            return $this->generateFieldValue([
+                'name' => $name,
+                'type' => $defaultResultType,
+                'value' => $defaultResultValue
+            ], $faker, $currentRecord);
         } elseif ($type === 'Faker.js') {
             $fakerValue = $field['value'] ?? '[word.word]';
             return $this->mapFakerValue($faker, $fakerValue);
@@ -711,7 +761,7 @@ class MockDataService
                     $newData[$name] = $oldData[$name];
                 } else {
                     // Field was added
-                    $newData[$name] = $this->generateFieldValue($field, $faker);
+                    $newData[$name] = $this->generateFieldValue($field, $faker, $newData);
                 }
             }
 
