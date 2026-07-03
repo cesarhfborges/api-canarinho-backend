@@ -92,7 +92,7 @@ class DynamicApiController extends Controller
             }
 
             if ($matched) {
-                return response()->json($rule->response_body, $rule->response_status);
+                return $this->applyCustomHeaders(response()->json($rule->response_body, $rule->response_status), $project, $matchedEndpoint);
             }
         }
 
@@ -102,9 +102,9 @@ class DynamicApiController extends Controller
         if ($responseConfig !== '$mockData') {
             $parsed = json_decode((string)$responseConfig, true);
             if (json_last_error() === JSON_ERROR_NONE) {
-                return response()->json($parsed, 200);
+                return $this->applyCustomHeaders(response()->json($parsed, 200), $project, $matchedEndpoint);
             }
-            return response($responseConfig, 200);
+            return $this->applyCustomHeaders(response($responseConfig, 200), $project, $matchedEndpoint);
         }
 
         // 7. Configurar a Query Base (Filtros e Ordenação via MySQL JSON)
@@ -139,7 +139,7 @@ class DynamicApiController extends Controller
                     
                     $response = $data->json_data;
                     $response['id'] = $data->id;
-                    return response()->json($response, 200);
+                    return $this->applyCustomHeaders(response()->json($response, 200), $project, $matchedEndpoint);
                 } else {
                     $shouldPaginate = !empty($matchedConfig['paginate']) && !$isSingleItemRequest;
                     
@@ -151,20 +151,20 @@ class DynamicApiController extends Controller
                             $item['id'] = $d->id;
                             return $item;
                         });
-                        return response()->json([
+                        return $this->applyCustomHeaders(response()->json([
                             'data' => $items,
                             'current_page' => $paginator->currentPage(),
                             'last_page' => $paginator->lastPage(),
                             'per_page' => $paginator->perPage(),
                             'total' => $paginator->total()
-                        ], 200);
+                        ], 200), $project, $matchedEndpoint);
                     } else {
                         $items = $query->get()->map(function($d) {
                             $item = $d->json_data;
                             $item['id'] = $d->id;
                             return $item;
                         });
-                        return response()->json($items, 200);
+                        return $this->applyCustomHeaders(response()->json($items, 200), $project, $matchedEndpoint);
                     }
                 }
 
@@ -172,7 +172,7 @@ class DynamicApiController extends Controller
                 $data = $matchedEndpoint->mockData()->create(['json_data' => $request->all()]);
                 $response = $data->json_data;
                 $response['id'] = $data->id;
-                return response()->json($response, 201);
+                return $this->applyCustomHeaders(response()->json($response, 201), $project, $matchedEndpoint);
 
             case 'put':
             case 'patch':
@@ -185,7 +185,7 @@ class DynamicApiController extends Controller
                 $data->update(['json_data' => $newData]);
                 $response = $data->json_data;
                 $response['id'] = $data->id;
-                return response()->json($response, 200);
+                return $this->applyCustomHeaders(response()->json($response, 200), $project, $matchedEndpoint);
 
             case 'delete':
                 if (!$targetId) return response()->json(['error' => 'ID required for delete'], 400);
@@ -193,9 +193,45 @@ class DynamicApiController extends Controller
                 if (!$data) return response()->json(['error' => 'Mock record not found'], 404);
                 
                 $data->delete();
-                return response()->json(null, 204);
+                return $this->applyCustomHeaders(response()->json(null, 204), $project, $matchedEndpoint);
         }
 
         return response()->json(['error' => 'Unknown method'], 405);
+    }
+    private function applyCustomHeaders($response, $project, $endpoint)
+    {
+        $forbiddenHeaders = [
+            'access-control-allow-origin', 'content-type', 'content-length', 
+            'authorization', 'host', 'connection', 'server', 'date', 
+            'x-powered-by', 'x-origin', 'access-control-allow-methods',
+            'access-control-allow-headers', 'access-control-allow-credentials',
+            'x-project-token'
+        ];
+
+        $headers = [];
+
+        // Apply Project Headers
+        $projectHeaders = $project->custom_headers ?? [];
+        foreach ($projectHeaders as $header) {
+            if (!empty($header['active']) && !empty($header['key'])) {
+                $key = strtolower(trim($header['key']));
+                if (!in_array($key, $forbiddenHeaders)) {
+                    $headers[$header['key']] = $header['value'];
+                }
+            }
+        }
+
+        // Apply Endpoint Headers (overrides Project Headers)
+        $endpointHeaders = $endpoint->custom_headers ?? [];
+        foreach ($endpointHeaders as $header) {
+            if (!empty($header['active']) && !empty($header['key'])) {
+                $key = strtolower(trim($header['key']));
+                if (!in_array($key, $forbiddenHeaders)) {
+                    $headers[$header['key']] = $header['value'];
+                }
+            }
+        }
+
+        return $response->withHeaders($headers);
     }
 }

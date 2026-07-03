@@ -7,12 +7,13 @@ use Illuminate\Database\Eloquent\Model;
 class Endpoint extends Model
 {
     protected $fillable = [
-        'project_id', 'name', 'generator', 'endpoints_config', 'resource_schema'
+        'project_id', 'name', 'generator', 'endpoints_config', 'resource_schema', 'custom_headers'
     ];
 
     protected $casts = [
         'endpoints_config' => 'array',
         'resource_schema' => 'array',
+        'custom_headers' => 'array',
         'created_at' => 'date:Y-m-d\TH:i:s',
         'updated_at' => 'date:Y-m-d\TH:i:s',
     ];
