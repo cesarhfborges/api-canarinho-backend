@@ -39,11 +39,14 @@ class DynamicCorsMiddleware
                 ?: $request->header('X-Origin')
                     ?: '*';
 
+            $requestHeaders = $request->header('Access-Control-Request-Headers')
+                ?: implode(', ', $this->allowedHeaders);
+
             if ($request->isMethod('OPTIONS')) {
                 return response('', 200)
                     ->header('Access-Control-Allow-Origin', $origin)
                     ->header('Access-Control-Allow-Methods', implode(', ', $this->allowedMethods))
-                    ->header('Access-Control-Allow-Headers', implode(', ', $this->allowedHeaders))
+                    ->header('Access-Control-Allow-Headers', $requestHeaders)
                     ->header('Access-Control-Allow-Credentials', 'true');
             }
 
@@ -52,7 +55,7 @@ class DynamicCorsMiddleware
             if (method_exists($response, 'header')) {
                 $response->header('Access-Control-Allow-Origin', $origin)
                     ->header('Access-Control-Allow-Methods', implode(', ', $this->allowedMethods))
-                    ->header('Access-Control-Allow-Headers', implode(', ', $this->allowedHeaders))
+                    ->header('Access-Control-Allow-Headers', $requestHeaders)
                     ->header('Access-Control-Allow-Credentials', 'true');
             }
 

@@ -75,8 +75,8 @@ $app->configure('database');
 */
 
 $app->middleware([
-    Illuminate\Http\Middleware\HandleCors::class,
     App\Http\Middleware\DynamicCorsMiddleware::class,
+    Illuminate\Http\Middleware\HandleCors::class,
     App\Http\Middleware\ThrottleRequests::class,
 ]);
 
