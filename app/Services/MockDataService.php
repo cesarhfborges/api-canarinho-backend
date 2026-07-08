@@ -3,7 +3,6 @@
 namespace App\Services;
 
 use App\Models\Endpoint;
-use Carbon\Carbon;
 use Exception;
 use Faker\Factory as Faker;
 use Faker\Generator;
@@ -317,12 +316,24 @@ class MockDataService
 
                 $match = false;
                 switch ($operator) {
-                    case '==': $match = $baseValue == $compareValue; break;
-                    case '!=': $match = $baseValue != $compareValue; break;
-                    case '>': $match = $baseValue > $compareValue; break;
-                    case '<': $match = $baseValue < $compareValue; break;
-                    case '>=': $match = $baseValue >= $compareValue; break;
-                    case '<=': $match = $baseValue <= $compareValue; break;
+                    case '==':
+                        $match = $baseValue == $compareValue;
+                        break;
+                    case '!=':
+                        $match = $baseValue != $compareValue;
+                        break;
+                    case '>':
+                        $match = $baseValue > $compareValue;
+                        break;
+                    case '<':
+                        $match = $baseValue < $compareValue;
+                        break;
+                    case '>=':
+                        $match = $baseValue >= $compareValue;
+                        break;
+                    case '<=':
+                        $match = $baseValue <= $compareValue;
+                        break;
                     case 'contains':
                         if (is_array($baseValue)) {
                             $match = in_array($compareValue, $baseValue);
@@ -368,16 +379,12 @@ class MockDataService
             if (isset($field['value']) && $field['value'] !== '') {
                 return $field['value'];
             } else {
-                switch ($type) {
-                    case 'String':
-                        return Str::random(10);
-                    case 'Number':
-                        return $faker->randomNumber();
-                    case 'Boolean':
-                        return $faker->boolean();
-                    default:
-                        return null;
-                }
+                return match ($type) {
+                    'String' => Str::random(10),
+                    'Number' => $faker->randomNumber(),
+                    'Boolean' => $faker->boolean(),
+                    default => null,
+                };
             }
         }
     }
@@ -433,6 +440,10 @@ class MockDataService
                 return $faker->ipv6();
 
             // Endereço
+            case 'location.place':
+                return $faker->streetName();
+            case 'location.number':
+                return $faker->buildingNumber();
             case 'location.city':
                 return $faker->city();
             case 'location.state':
