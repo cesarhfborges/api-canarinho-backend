@@ -16,7 +16,9 @@ class DatabaseSeeder extends Seeder
     {
         $this->call(SystemSeeder::class);
 
-        if (app()->environment() !== 'production') {
+        if (env('RUN_LOAD_TEST_SEEDER', false)) {
+            $this->call(LoadTestSeeder::class);
+        } elseif (app()->environment() !== 'production') {
             $this->call(DevSeeder::class);
         }
     }
