@@ -108,4 +108,6 @@ return [
 
     'cipher' => 'AES-256-CBC',
 
+    'run_load_test_seeder' => env('RUN_LOAD_TEST_SEEDER', false),
+    'load_test_users_count' => env('LOAD_TEST_USERS_COUNT', 0),
 ];

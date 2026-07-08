@@ -15,7 +15,7 @@ class LoadTestSeeder extends Seeder
 {
     public function run(): void
     {
-        $usersCount = (int) env('LOAD_TEST_USERS_COUNT', 30);
+        $usersCount = (int) config('load_test_users_count');
         $this->command->info("Creating {$usersCount} users for load testing...");
 
         $faker = Faker::create('pt_BR');
@@ -96,7 +96,7 @@ class LoadTestSeeder extends Seeder
                 }
             }
         }
-        
+
         $this->command->info("Load test data generated successfully.");
     }
 }

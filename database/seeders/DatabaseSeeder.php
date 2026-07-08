@@ -12,11 +12,11 @@ class DatabaseSeeder extends Seeder
      *
      * @return void
      */
-    public function run()
+    public function run(): void
     {
         $this->call(SystemSeeder::class);
 
-        if (env('RUN_LOAD_TEST_SEEDER', false)) {
+        if (config('run_load_test_seeder')) {
             $this->call(LoadTestSeeder::class);
         } elseif (app()->environment() !== 'production') {
             $this->call(DevSeeder::class);
