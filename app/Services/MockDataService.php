@@ -262,11 +262,12 @@ class MockDataService
             foreach ($parentRecords as $parentRecord) {
                 for ($i = 0; $i < $count; $i++) {
                     $record = $this->generateRecord($schema, $faker);
-                    $record['parent_id'] = $parentRecord->id; // Still put it in json just in case
+                    $record['parent_id'] = $parentRecord->mock_id; // Expose parent's mock_id in json instead of db id
 
                     $batch[] = [
                         'endpoint_id' => $endpoint->id,
                         'parent_id' => $parentRecord->id,
+                        'mock_id' => $i + 1,
                         'json_data' => json_encode($record),
                         'created_at' => $now,
                         'updated_at' => $now
@@ -286,6 +287,7 @@ class MockDataService
                 $batch[] = [
                     'endpoint_id' => $endpoint->id,
                     'parent_id' => null,
+                    'mock_id' => $i + 1,
                     'json_data' => json_encode($record),
                     'created_at' => $now,
                     'updated_at' => $now

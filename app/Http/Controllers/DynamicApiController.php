@@ -69,20 +69,50 @@ class DynamicApiController extends Controller
         $method = strtolower($request->method());
         
         $targetId = null;
-        $parentId = null;
 
         if ($isSingleItemRequest && $method !== 'post') {
             if (count($extractedParams) > 0) {
                 $targetId = array_pop($extractedParams);
             }
-            if (count($extractedParams) > 0) {
-                $parentId = array_pop($extractedParams);
-            }
-        } else {
-            if (count($extractedParams) > 0) {
-                $parentId = array_pop($extractedParams);
-            }
         }
+
+        // Resolvendo hierarquia
+        $endpointChain = [];
+        $current = $matchedEndpoint;
+        while ($current) {
+            array_unshift($endpointChain, $current);
+            $current = $current->parent;
+        }
+
+        // Removendo o alvo final (pois o $extractedParams agora só tem os ids dos pais)
+        array_pop($endpointChain);
+
+        // Map parent IDs
+        $currentDbParentId = null;
+
+        foreach ($endpointChain as $index => $chainEp) {
+            $mockIdToFind = $extractedParams[$index] ?? null;
+            if (!$mockIdToFind) {
+                return response()->json(['error' => 'Missing parent ID parameter'], 400);
+            }
+
+            $query = $chainEp->mockData()->where('mock_id', $mockIdToFind);
+            if ($currentDbParentId) {
+                $query->where('parent_id', $currentDbParentId);
+            } else {
+                $query->whereNull('parent_id');
+            }
+            
+            $parentMockData = $query->first();
+
+            if (!$parentMockData) {
+                return response()->json(['error' => "Parent mock record not found for endpoint '{$chainEp->name}' with id '{$mockIdToFind}'"], 404);
+            }
+
+            $currentDbParentId = $parentMockData->id;
+        }
+
+        $parentId = $currentDbParentId;
 
         // 5. Check Dynamic Rules (Headers, Body, Query)
         foreach ($matchedEndpoint->rules as $rule) {
@@ -122,13 +152,15 @@ class DynamicApiController extends Controller
 
         if ($matchedEndpoint->parent_id && $parentId) {
             $query->where('parent_id', $parentId);
+        } elseif (!$matchedEndpoint->parent_id) {
+            $query->whereNull('parent_id');
         }
         
         $filterBy = $request->query('filterBy');
         $filterValue = $request->query('filter');
         if ($filterBy && $filterValue) {
             if ($filterBy === 'id') {
-                $query->where('id', 'like', "%{$filterValue}%");
+                $query->where('mock_id', 'like', "%{$filterValue}%");
             } else {
                 $query->where("json_data->{$filterBy}", 'like', "%{$filterValue}%");
             }
@@ -138,7 +170,7 @@ class DynamicApiController extends Controller
         $sortOrder = $request->query('sort_order', 'asc');
         if ($sortBy) {
             if ($sortBy === 'id') {
-                $query->orderBy('id', strtolower($sortOrder) === 'desc' ? 'desc' : 'asc');
+                $query->orderBy('mock_id', strtolower($sortOrder) === 'desc' ? 'desc' : 'asc');
             } else {
                 $query->orderBy("json_data->{$sortBy}", strtolower($sortOrder) === 'desc' ? 'desc' : 'asc');
             }
@@ -148,11 +180,11 @@ class DynamicApiController extends Controller
         switch ($method) {
             case 'get':
                 if ($targetId) {
-                    $data = $query->find($targetId);
+                    $data = $query->where('mock_id', $targetId)->first();
                     if (!$data) return response()->json(['error' => 'Mock record not found'], 404);
                     
                     $response = $data->json_data;
-                    $response['id'] = $data->id;
+                    $response['id'] = $data->mock_id;
                     return $this->applyCustomHeaders(response()->json($response, 200), $project, $matchedEndpoint);
                 } else {
                     $shouldPaginate = !empty($matchedConfig['paginate']) && !$isSingleItemRequest;
@@ -162,7 +194,7 @@ class DynamicApiController extends Controller
                         $paginator = $query->paginate($perPage);
                         $items = collect($paginator->items())->map(function($d) {
                             $item = $d->json_data;
-                            $item['id'] = $d->id;
+                            $item['id'] = $d->mock_id;
                             return $item;
                         });
                         return $this->applyCustomHeaders(response()->json([
@@ -175,7 +207,7 @@ class DynamicApiController extends Controller
                     } else {
                         $items = $query->get()->map(function($d) {
                             $item = $d->json_data;
-                            $item['id'] = $d->id;
+                            $item['id'] = $d->mock_id;
                             return $item;
                         });
                         return $this->applyCustomHeaders(response()->json($items, 200), $project, $matchedEndpoint);
@@ -187,27 +219,37 @@ class DynamicApiController extends Controller
                 if ($matchedEndpoint->parent_id && $parentId) {
                     $createData['parent_id'] = $parentId;
                 }
+                
+                $maxMockId = $matchedEndpoint->mockData()
+                    ->when($parentId, function($q) use ($parentId) {
+                        return $q->where('parent_id', $parentId);
+                    }, function($q) {
+                        return $q->whereNull('parent_id');
+                    })->max('mock_id');
+
+                $createData['mock_id'] = $maxMockId ? $maxMockId + 1 : 1;
+
                 $data = $matchedEndpoint->mockData()->create($createData);
                 $response = $data->json_data;
-                $response['id'] = $data->id;
+                $response['id'] = $data->mock_id;
                 return $this->applyCustomHeaders(response()->json($response, 201), $project, $matchedEndpoint);
 
             case 'put':
             case 'patch':
                 if (!$targetId) return response()->json(['error' => 'ID required for update'], 400);
-                $data = $matchedEndpoint->mockData()->find($targetId);
+                $data = $query->where('mock_id', $targetId)->first();
                 if (!$data) return response()->json(['error' => 'Mock record not found'], 404);
                 
                 $newData = $method === 'patch' ? array_merge($data->json_data, $request->all()) : $request->all();
                 
                 $data->update(['json_data' => $newData]);
                 $response = $data->json_data;
-                $response['id'] = $data->id;
+                $response['id'] = $data->mock_id;
                 return $this->applyCustomHeaders(response()->json($response, 200), $project, $matchedEndpoint);
 
             case 'delete':
                 if (!$targetId) return response()->json(['error' => 'ID required for delete'], 400);
-                $data = $matchedEndpoint->mockData()->find($targetId);
+                $data = $query->where('mock_id', $targetId)->first();
                 if (!$data) return response()->json(['error' => 'Mock record not found'], 404);
                 
                 $data->delete();
