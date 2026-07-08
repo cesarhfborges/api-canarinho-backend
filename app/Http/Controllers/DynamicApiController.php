@@ -64,14 +64,24 @@ class DynamicApiController extends Controller
             return response()->json(['error' => 'Method or URL not configured for this project'], 405);
         }
 
-        // 4. Determinar ID alvo
-        // Se a rota cadastrada termina com parâmetro (ex: /algo/:id) e não é POST, assumimos que é operação de item único
+        // 4. Determinar ID alvo e Parent ID
         $isSingleItemRequest = preg_match('/:([a-zA-Z0-9_]+)$/', $matchedConfig['url']);
         $method = strtolower($request->method());
         
         $targetId = null;
-        if ($isSingleItemRequest && $method !== 'post' && count($extractedParams) > 0) {
-            $targetId = end($extractedParams); // O último parâmetro é o ID do recurso alvo
+        $parentId = null;
+
+        if ($isSingleItemRequest && $method !== 'post') {
+            if (count($extractedParams) > 0) {
+                $targetId = array_pop($extractedParams);
+            }
+            if (count($extractedParams) > 0) {
+                $parentId = array_pop($extractedParams);
+            }
+        } else {
+            if (count($extractedParams) > 0) {
+                $parentId = array_pop($extractedParams);
+            }
         }
 
         // 5. Check Dynamic Rules (Headers, Body, Query)
@@ -109,6 +119,10 @@ class DynamicApiController extends Controller
 
         // 7. Configurar a Query Base (Filtros e Ordenação via MySQL JSON)
         $query = $matchedEndpoint->mockData();
+
+        if ($matchedEndpoint->parent_id && $parentId) {
+            $query->where('parent_id', $parentId);
+        }
         
         $filterBy = $request->query('filterBy');
         $filterValue = $request->query('filter');
@@ -169,7 +183,11 @@ class DynamicApiController extends Controller
                 }
 
             case 'post':
-                $data = $matchedEndpoint->mockData()->create(['json_data' => $request->all()]);
+                $createData = ['json_data' => $request->all()];
+                if ($matchedEndpoint->parent_id && $parentId) {
+                    $createData['parent_id'] = $parentId;
+                }
+                $data = $matchedEndpoint->mockData()->create($createData);
                 $response = $data->json_data;
                 $response['id'] = $data->id;
                 return $this->applyCustomHeaders(response()->json($response, 201), $project, $matchedEndpoint);

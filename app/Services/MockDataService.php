@@ -3,7 +3,6 @@
 namespace App\Services;
 
 use App\Models\Endpoint;
-use Carbon\Carbon;
 use Exception;
 use Faker\Factory as Faker;
 use Faker\Generator;
@@ -249,24 +248,63 @@ class MockDataService
         }
 
         $faker = Faker::create('pt_BR');
-        $generatedData = [];
+        $batch = [];
+        $batchSize = 1000;
+        $totalInserted = 0;
+        $now = \Carbon\Carbon::now();
 
-        for ($i = 0; $i < $count; $i++) {
-            $record = $this->generateRecord($schema, $faker);
+        if ($endpoint->parent_id) {
+            $parentRecords = \App\Models\MockData::where('endpoint_id', $endpoint->parent_id)->get();
+            if ($parentRecords->isEmpty()) {
+                return [];
+            }
 
-            // Save to DB
-            /** @noinspection LaravelEloquentGuardedAttributeAssignmentInspection */
-            $mockData = $endpoint->mockData()->create([
-                'json_data' => $record
-            ]);
+            foreach ($parentRecords as $parentRecord) {
+                for ($i = 0; $i < $count; $i++) {
+                    $record = $this->generateRecord($schema, $faker);
+                    $record['parent_id'] = $parentRecord->id; // Still put it in json just in case
 
-            // In DB, mockData->id is our primary key.
-            $record['id'] = $mockData->id;
+                    $batch[] = [
+                        'endpoint_id' => $endpoint->id,
+                        'parent_id' => $parentRecord->id,
+                        'json_data' => json_encode($record),
+                        'created_at' => $now,
+                        'updated_at' => $now
+                    ];
 
-            $generatedData[] = $record;
+                    if (count($batch) >= $batchSize) {
+                        \App\Models\MockData::insert($batch);
+                        $totalInserted += count($batch);
+                        $batch = [];
+                    }
+                }
+            }
+        } else {
+            for ($i = 0; $i < $count; $i++) {
+                $record = $this->generateRecord($schema, $faker);
+
+                $batch[] = [
+                    'endpoint_id' => $endpoint->id,
+                    'parent_id' => null,
+                    'json_data' => json_encode($record),
+                    'created_at' => $now,
+                    'updated_at' => $now
+                ];
+
+                if (count($batch) >= $batchSize) {
+                    \App\Models\MockData::insert($batch);
+                    $totalInserted += count($batch);
+                    $batch = [];
+                }
+            }
         }
 
-        return $generatedData;
+        if (count($batch) > 0) {
+            \App\Models\MockData::insert($batch);
+            $totalInserted += count($batch);
+        }
+
+        return ['inserted_count' => $totalInserted];
     }
 
     public function generateRecord(array $schema, $faker = null): array
@@ -317,12 +355,24 @@ class MockDataService
 
                 $match = false;
                 switch ($operator) {
-                    case '==': $match = $baseValue == $compareValue; break;
-                    case '!=': $match = $baseValue != $compareValue; break;
-                    case '>': $match = $baseValue > $compareValue; break;
-                    case '<': $match = $baseValue < $compareValue; break;
-                    case '>=': $match = $baseValue >= $compareValue; break;
-                    case '<=': $match = $baseValue <= $compareValue; break;
+                    case '==':
+                        $match = $baseValue == $compareValue;
+                        break;
+                    case '!=':
+                        $match = $baseValue != $compareValue;
+                        break;
+                    case '>':
+                        $match = $baseValue > $compareValue;
+                        break;
+                    case '<':
+                        $match = $baseValue < $compareValue;
+                        break;
+                    case '>=':
+                        $match = $baseValue >= $compareValue;
+                        break;
+                    case '<=':
+                        $match = $baseValue <= $compareValue;
+                        break;
                     case 'contains':
                         if (is_array($baseValue)) {
                             $match = in_array($compareValue, $baseValue);
@@ -368,16 +418,12 @@ class MockDataService
             if (isset($field['value']) && $field['value'] !== '') {
                 return $field['value'];
             } else {
-                switch ($type) {
-                    case 'String':
-                        return Str::random(10);
-                    case 'Number':
-                        return $faker->randomNumber();
-                    case 'Boolean':
-                        return $faker->boolean();
-                    default:
-                        return null;
-                }
+                return match ($type) {
+                    'String' => Str::random(10),
+                    'Number' => $faker->randomNumber(),
+                    'Boolean' => $faker->boolean(),
+                    default => null,
+                };
             }
         }
     }
@@ -433,6 +479,10 @@ class MockDataService
                 return $faker->ipv6();
 
             // Endereço
+            case 'location.place':
+                return $faker->streetName();
+            case 'location.number':
+                return $faker->buildingNumber();
             case 'location.city':
                 return $faker->city();
             case 'location.state':
