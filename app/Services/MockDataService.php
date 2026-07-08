@@ -248,7 +248,10 @@ class MockDataService
         }
 
         $faker = Faker::create('pt_BR');
-        $generatedData = [];
+        $batch = [];
+        $batchSize = 1000;
+        $totalInserted = 0;
+        $now = \Carbon\Carbon::now();
 
         if ($endpoint->parent_id) {
             $parentRecords = \App\Models\MockData::where('endpoint_id', $endpoint->parent_id)->get();
@@ -259,40 +262,49 @@ class MockDataService
             foreach ($parentRecords as $parentRecord) {
                 for ($i = 0; $i < $count; $i++) {
                     $record = $this->generateRecord($schema, $faker);
+                    $record['parent_id'] = $parentRecord->id; // Still put it in json just in case
 
-                    // Save to DB
-                    /** @noinspection LaravelEloquentGuardedAttributeAssignmentInspection */
-                    $mockData = $endpoint->mockData()->create([
-                        'json_data' => $record,
-                        'parent_id' => $parentRecord->id
-                    ]);
+                    $batch[] = [
+                        'endpoint_id' => $endpoint->id,
+                        'parent_id' => $parentRecord->id,
+                        'json_data' => json_encode($record),
+                        'created_at' => $now,
+                        'updated_at' => $now
+                    ];
 
-                    // In DB, mockData->id is our primary key.
-                    $record['id'] = $mockData->id;
-                    // Add parent_id to the returned record so frontend can see it if needed
-                    $record['parent_id'] = $parentRecord->id;
-
-                    $generatedData[] = $record;
+                    if (count($batch) >= $batchSize) {
+                        \App\Models\MockData::insert($batch);
+                        $totalInserted += count($batch);
+                        $batch = [];
+                    }
                 }
             }
         } else {
             for ($i = 0; $i < $count; $i++) {
                 $record = $this->generateRecord($schema, $faker);
 
-                // Save to DB
-                /** @noinspection LaravelEloquentGuardedAttributeAssignmentInspection */
-                $mockData = $endpoint->mockData()->create([
-                    'json_data' => $record
-                ]);
+                $batch[] = [
+                    'endpoint_id' => $endpoint->id,
+                    'parent_id' => null,
+                    'json_data' => json_encode($record),
+                    'created_at' => $now,
+                    'updated_at' => $now
+                ];
 
-                // In DB, mockData->id is our primary key.
-                $record['id'] = $mockData->id;
-
-                $generatedData[] = $record;
+                if (count($batch) >= $batchSize) {
+                    \App\Models\MockData::insert($batch);
+                    $totalInserted += count($batch);
+                    $batch = [];
+                }
             }
         }
 
-        return $generatedData;
+        if (count($batch) > 0) {
+            \App\Models\MockData::insert($batch);
+            $totalInserted += count($batch);
+        }
+
+        return ['inserted_count' => $totalInserted];
     }
 
     public function generateRecord(array $schema, $faker = null): array
