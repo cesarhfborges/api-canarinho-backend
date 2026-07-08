@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Endpoint extends Model
 {
     protected $fillable = [
-        'project_id', 'name', 'generator', 'endpoints_config', 'resource_schema', 'custom_headers'
+        'project_id', 'parent_id', 'name', 'generator', 'endpoints_config', 'resource_schema', 'custom_headers'
     ];
 
     protected $casts = [
@@ -49,6 +49,16 @@ class Endpoint extends Model
     public function mockData()
     {
         return $this->hasMany(MockData::class);
+    }
+
+    public function parent()
+    {
+        return $this->belongsTo(Endpoint::class, 'parent_id');
+    }
+
+    public function children()
+    {
+        return $this->hasMany(Endpoint::class, 'parent_id');
     }
 
     public function calls()

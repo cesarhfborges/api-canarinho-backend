@@ -25,7 +25,7 @@ class MockGeneratorController extends Controller
     public function generate(Request $request, $projectId, $id)
     {
         $this->validate($request, [
-            'count' => 'required|int|min:0|max:500'
+            'count' => 'required|int|min:0|max:100'
         ]);
 
         $endpoint = Endpoint::whereHas('project', function ($q) use ($request, $projectId) {

@@ -250,19 +250,46 @@ class MockDataService
         $faker = Faker::create('pt_BR');
         $generatedData = [];
 
-        for ($i = 0; $i < $count; $i++) {
-            $record = $this->generateRecord($schema, $faker);
+        if ($endpoint->parent_id) {
+            $parentRecords = \App\Models\MockData::where('endpoint_id', $endpoint->parent_id)->get();
+            if ($parentRecords->isEmpty()) {
+                return [];
+            }
 
-            // Save to DB
-            /** @noinspection LaravelEloquentGuardedAttributeAssignmentInspection */
-            $mockData = $endpoint->mockData()->create([
-                'json_data' => $record
-            ]);
+            foreach ($parentRecords as $parentRecord) {
+                for ($i = 0; $i < $count; $i++) {
+                    $record = $this->generateRecord($schema, $faker);
 
-            // In DB, mockData->id is our primary key.
-            $record['id'] = $mockData->id;
+                    // Save to DB
+                    /** @noinspection LaravelEloquentGuardedAttributeAssignmentInspection */
+                    $mockData = $endpoint->mockData()->create([
+                        'json_data' => $record,
+                        'parent_id' => $parentRecord->id
+                    ]);
 
-            $generatedData[] = $record;
+                    // In DB, mockData->id is our primary key.
+                    $record['id'] = $mockData->id;
+                    // Add parent_id to the returned record so frontend can see it if needed
+                    $record['parent_id'] = $parentRecord->id;
+
+                    $generatedData[] = $record;
+                }
+            }
+        } else {
+            for ($i = 0; $i < $count; $i++) {
+                $record = $this->generateRecord($schema, $faker);
+
+                // Save to DB
+                /** @noinspection LaravelEloquentGuardedAttributeAssignmentInspection */
+                $mockData = $endpoint->mockData()->create([
+                    'json_data' => $record
+                ]);
+
+                // In DB, mockData->id is our primary key.
+                $record['id'] = $mockData->id;
+
+                $generatedData[] = $record;
+            }
         }
 
         return $generatedData;

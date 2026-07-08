@@ -9,7 +9,7 @@ class MockData extends Model
     protected $table = 'mock_data';
 
     protected $fillable = [
-        'endpoint_id', 'json_data'
+        'endpoint_id', 'parent_id', 'json_data'
     ];
 
     protected $casts = [
@@ -21,5 +21,15 @@ class MockData extends Model
     public function endpoint()
     {
         return $this->belongsTo(Endpoint::class);
+    }
+
+    public function parent()
+    {
+        return $this->belongsTo(MockData::class, 'parent_id');
+    }
+
+    public function children()
+    {
+        return $this->hasMany(MockData::class, 'parent_id');
     }
 }

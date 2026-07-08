@@ -58,14 +58,22 @@ class EndpointController extends Controller
 
         $this->validate($request, [
             'name' => 'required|string',
+            'parent_id' => 'nullable|integer|exists:endpoints,id',
             'generator' => 'nullable|string',
             'endpoints' => 'nullable|array',
             'resourceSchema' => 'nullable|array',
             'custom_headers' => 'nullable|array'
         ]);
 
-        if ($project->endpoints()->where('name', $request->name)->exists()) {
-            return response()->json(['error' => 'Endpoint name already exists in this project.'], 400);
+        $existsQuery = $project->endpoints()->where('name', $request->name);
+        if ($request->filled('parent_id')) {
+            $existsQuery->where('parent_id', $request->parent_id);
+        } else {
+            $existsQuery->whereNull('parent_id');
+        }
+
+        if ($existsQuery->exists()) {
+            return response()->json(['error' => 'Endpoint name already exists at this level.'], 400);
         }
 
         list($endpoints, $resourceSchema) = $this->formatEndpointsAndSchema(
@@ -76,6 +84,7 @@ class EndpointController extends Controller
 
         $endpoint = $project->endpoints()->create([
             'name' => $request->name,
+            'parent_id' => $request->parent_id,
             'generator' => $request->generator,
             'endpoints_config' => $endpoints,
             'resource_schema' => $resourceSchema,
@@ -116,6 +125,7 @@ class EndpointController extends Controller
 
         $this->validate($request, [
             'name' => 'sometimes|required|string',
+            'parent_id' => 'nullable|integer|exists:endpoints,id',
             'generator' => 'nullable|string',
             'endpoints' => 'sometimes|nullable|array',
             'resourceSchema' => 'sometimes|nullable|array',
@@ -123,8 +133,17 @@ class EndpointController extends Controller
         ]);
 
         if ($request->has('name') && $request->name !== $endpoint->name) {
-            if ($endpoint->project->endpoints()->where('name', $request->name)->exists()) {
-                return response()->json(['error' => 'Endpoint name already exists in this project.'], 400);
+            $existsQuery = $endpoint->project->endpoints()->where('name', $request->name);
+            $parentId = $request->has('parent_id') ? $request->parent_id : $endpoint->parent_id;
+            
+            if ($parentId) {
+                $existsQuery->where('parent_id', $parentId);
+            } else {
+                $existsQuery->whereNull('parent_id');
+            }
+
+            if ($existsQuery->exists()) {
+                return response()->json(['error' => 'Endpoint name already exists at this level.'], 400);
             }
         }
 
@@ -141,6 +160,7 @@ class EndpointController extends Controller
         );
 
         if ($request->has('name')) $endpoint->name = $request->name;
+        if ($request->has('parent_id')) $endpoint->parent_id = $request->parent_id;
         if ($request->has('generator')) $endpoint->generator = $request->generator;
         if ($request->has('custom_headers')) $endpoint->custom_headers = $request->custom_headers;
         
@@ -195,15 +215,19 @@ class EndpointController extends Controller
             ];
         } else {
             foreach ($endpoints as &$ep) {
-                $method = strtoupper($ep['method'] ?? 'GET');
-                $hasId = str_contains($ep['url'] ?? '', '/:id');
-                
-                if ($method === 'GET' && $hasId) {
-                    $ep['url'] = "/{$name}/:id";
-                } elseif ($method === 'GET' || $method === 'POST') {
-                    $ep['url'] = "/{$name}";
-                } elseif (in_array($method, ['PUT', 'DELETE'])) {
-                    $ep['url'] = "/{$name}/:id";
+                // If url is empty or explicitly root, format it.
+                // Otherwise, trust the frontend's provided URL, which might contain parent paths!
+                if (empty($ep['url']) || $ep['url'] === '/' || $ep['url'] === "/{$name}" || $ep['url'] === "/{$name}/:id") {
+                    $method = strtoupper($ep['method'] ?? 'GET');
+                    $hasId = str_contains($ep['url'] ?? '', '/:id');
+                    
+                    if ($method === 'GET' && $hasId) {
+                        $ep['url'] = "/{$name}/:id";
+                    } elseif ($method === 'GET' || $method === 'POST') {
+                        $ep['url'] = "/{$name}";
+                    } elseif (in_array($method, ['PUT', 'DELETE'])) {
+                        $ep['url'] = "/{$name}/:id";
+                    }
                 }
             }
         }
