@@ -217,6 +217,10 @@ class DynamicApiController extends Controller
                 }
 
             case 'post':
+                if ($matchedEndpoint->mockData()->count() >= 5000) {
+                    return response()->json(['error' => 'Limite máximo de 5000 registros atingido para este endpoint.'], 422);
+                }
+
                 $createData = ['json_data' => $request->all()];
                 if ($matchedEndpoint->parent_id && $parentId) {
                     $createData['parent_id'] = $parentId;
