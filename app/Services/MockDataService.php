@@ -788,36 +788,53 @@ class MockDataService
         }
 
         $faker = Faker::create('pt_BR');
-        $mockRecords = $endpoint->mockData()->get();
+        $now = \Carbon\Carbon::now()->format('Y-m-d H:i:s');
 
-        foreach ($mockRecords as $mock) {
-            $oldData = $mock->json_data;
-            if (!is_array($oldData)) {
-                $oldData = [];
-            }
+        $endpoint->mockData()->chunkById(1000, function ($mockRecords) use ($schema, $faker, $now) {
+            $batch = [];
 
-            $newData = [];
-
-            foreach ($schema as $field) {
-                $name = $field['name'] ?? null;
-                if (!$name) continue;
-
-                if ($name === 'id') {
-                    $newData['id'] = $mock->id;
-                    continue;
+            foreach ($mockRecords as $mock) {
+                $oldData = $mock->json_data;
+                if (!is_array($oldData)) {
+                    $oldData = [];
                 }
 
-                // If the field existed in the old data, we keep it to preserve existing records
-                // unless we want to do strict type checking, but keeping old data is safer
-                if (array_key_exists($name, $oldData)) {
-                    $newData[$name] = $oldData[$name];
-                } else {
-                    // Field was added
-                    $newData[$name] = $this->generateFieldValue($field, $faker, $newData);
+                $newData = [];
+
+                foreach ($schema as $field) {
+                    $name = $field['name'] ?? null;
+                    if (!$name) continue;
+
+                    if ($name === 'id') {
+                        $newData['id'] = $mock->id;
+                        continue;
+                    }
+
+                    // If the field existed in the old data, we keep it to preserve existing records
+                    // unless we want to do strict type checking, but keeping old data is safer
+                    if (array_key_exists($name, $oldData)) {
+                        $newData[$name] = $oldData[$name];
+                    } else {
+                        // Field was added
+                        $newData[$name] = $this->generateFieldValue($field, $faker, $newData);
+                    }
                 }
+
+                $attributes = $mock->getAttributes();
+                $batch[] = [
+                    'id' => $attributes['id'],
+                    'endpoint_id' => $attributes['endpoint_id'],
+                    'parent_id' => $attributes['parent_id'] ?? null,
+                    'mock_id' => $attributes['mock_id'] ?? null,
+                    'json_data' => json_encode($newData),
+                    'created_at' => $attributes['created_at'] ?? $now,
+                    'updated_at' => $now
+                ];
             }
 
-            $mock->update(['json_data' => $newData]);
-        }
+            if (count($batch) > 0) {
+                \App\Models\MockData::upsert($batch, ['id'], ['json_data', 'updated_at']);
+            }
+        });
     }
 }
