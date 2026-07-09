@@ -187,10 +187,11 @@ class DynamicApiController extends Controller
                     $response['id'] = $data->mock_id;
                     return $this->applyCustomHeaders(response()->json($response, 200), $project, $matchedEndpoint);
                 } else {
-                    $shouldPaginate = !empty($matchedConfig['paginate']) && !$isSingleItemRequest;
+                    $wantsPagination = $request->has('page') || $request->has('per_page') || $request->has('limit');
+                    $shouldPaginate = (!empty($matchedConfig['paginate']) || $wantsPagination) && !$isSingleItemRequest;
                     
                     if ($shouldPaginate) {
-                        $perPage = (int) $request->query('per_page', $matchedConfig['per_page_default'] ?? 15);
+                        $perPage = (int) $request->query('per_page', $request->query('limit', $matchedConfig['per_page_default'] ?? 15));
                         $paginator = $query->paginate($perPage);
                         $items = collect($paginator->items())->map(function($d) {
                             $item = $d->json_data;
@@ -210,6 +211,7 @@ class DynamicApiController extends Controller
                             $item['id'] = $d->mock_id;
                             return $item;
                         });
+
                         return $this->applyCustomHeaders(response()->json($items, 200), $project, $matchedEndpoint);
                     }
                 }
