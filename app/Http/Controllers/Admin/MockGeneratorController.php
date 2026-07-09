@@ -42,6 +42,21 @@ class MockGeneratorController extends Controller
 
         $count = (int) $request->post('count', 10);
 
+        $totalToGenerate = $count;
+        if ($endpoint->parent_id) {
+            $parentCount = \App\Models\MockData::where('endpoint_id', $endpoint->parent_id)->count();
+            if ($parentCount === 0) {
+                return response()->json(['error' => 'O endpoint pai não possui dados gerados. Gere os dados do pai primeiro.'], 400);
+            }
+            $totalToGenerate = $parentCount * $count;
+        }
+
+        if ($totalToGenerate > 5000) {
+            return response()->json([
+                'error' => "Limite máximo de 5000 registros atingido. A operação tentaria gerar {$totalToGenerate} registros."
+            ], 422);
+        }
+
         $endpoint->mockData()->delete();
 
         $mockDataService = new \App\Services\MockDataService();
